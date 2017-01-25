@@ -59,15 +59,18 @@ void RobotMap::init() {
         chassisDrive->SetInvertedMotor(RobotDrive::kFrontRightMotor, true);
         chassisDrive->SetInvertedMotor(RobotDrive::kRearRightMotor, true);
     shooterShooterMotor.reset(new Talon(4));
+    std::static_pointer_cast<Talon>(shooterShooterMotor)->EnableDeadbandElimination(true);
     lw->AddActuator("Shooter", "ShooterMotor", std::static_pointer_cast<Talon>(shooterShooterMotor));
     
     shooterLoaderMotor.reset(new Talon(5));
     lw->AddActuator("Shooter", "LoaderMotor", std::static_pointer_cast<Talon>(shooterLoaderMotor));
-    
-    shooterEncoder.reset(new Encoder(0, 1, false, Encoder::k4X));
+
+    shooterEncoder.reset(new Encoder(0, 1, false, Encoder::k1X));
     lw->AddSensor("Shooter", "Encoder", shooterEncoder);
     shooterEncoder->SetDistancePerPulse(1.0);
     shooterEncoder->SetPIDSourceType(PIDSourceType::kRate);
+    shooterEncoder->SetSamplesToAverage(ENCODER_PULSES_PER_REVOLUTION * 3);
+
     intakeIntakeMotor.reset(new Talon(6));
     lw->AddActuator("Intake", "IntakeMotor", std::static_pointer_cast<Talon>(intakeIntakeMotor));
     
