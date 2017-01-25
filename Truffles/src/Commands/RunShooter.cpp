@@ -65,6 +65,12 @@ void RunShooter::Execute() {
 	SmartDashboard::PutNumber("encoder: rate", RobotMap::shooterEncoder->GetRate());
 	SmartDashboard::PutNumber("encoder: distance", RobotMap::shooterEncoder->GetDistance());
 	SmartDashboard::PutNumber("encoder: period", RobotMap::shooterEncoder->GetPeriod());
+
+	SmartDashboard::PutNumber("pdp: total current",RobotMap::getPowerDistributionPanel().GetTotalCurrent());
+	SmartDashboard::PutNumber("pdp: shooter motor current(?)", RobotMap::powerDistributionPanel->GetCurrent(4));
+	SmartDashboard::PutNumber("pdp: voltage ",RobotMap::powerDistributionPanel->GetVoltage());
+	SmartDashboard::PutNumber("pdp: power",RobotMap::powerDistributionPanel->GetTotalPower());
+
 }
 
 // Make this return true when this Command no longer needs to run execute()
