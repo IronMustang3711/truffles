@@ -16,7 +16,6 @@
 #include "Commands/AutonomousCommand.h"
 #include "Commands/DriveWithJoystick.h"
 #include "Commands/RunIntake.h"
-#include "Commands/RunLoader.h"
 #include "Commands/RunShooter.h"
 #include "Commands/RunWinch.h"
 
@@ -36,8 +35,7 @@ OI::OI() {
     winchDown->WhileHeld(new RunWinch(-1));
     winchUp.reset(new JoystickButton(joystick.get(), 7));
     winchUp->WhileHeld(new RunWinch(1));
-    loadButton.reset(new JoystickButton(joystick.get(), 1));
-    loadButton->WhileHeld(new RunLoader());
+
     shootButton.reset(new JoystickButton(joystick.get(), 2));
     shootButton->WhileHeld(new RunShooter());
 
@@ -47,7 +45,6 @@ OI::OI() {
     SmartDashboard::PutData("RunWinch: down", new RunWinch(-1));
     SmartDashboard::PutData("RunWinch: up", new RunWinch(1));
     SmartDashboard::PutData("RunWinch: upslow", new RunWinch(0.3));
-    SmartDashboard::PutData("RunLoader", new RunLoader());
     SmartDashboard::PutData("RunShooter", new RunShooter());
     SmartDashboard::PutData("DriveWithJoystick", new DriveWithJoystick());
     SmartDashboard::PutData("Autonomous Command", new AutonomousCommand());

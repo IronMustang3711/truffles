@@ -29,49 +29,49 @@ void RunShooter::Initialize() {
 
 // Called repeatedly when this Command is scheduled to run
 void RunShooter::Execute() {
-	const float maxSpeed = 5000; // rpm
-	float sliderValue = -Robot::oi->getJoystick()->GetRawAxis(3);   // this was reversed
-	SmartDashboard::PutNumber("slider",sliderValue);
-	float targetSpeed = maxSpeed * (sliderValue + 1)/2;  // speed is 0 to 5000
-	if (targetSpeed < 1000)
-		targetSpeed = 1000;
-	float encoderValue = -RobotMap::shooterEncoder->GetRate();
-	float actualSpeed = 3.0 * encoderValue;  // RPM is about 3x encoder rate
-	SmartDashboard::PutNumber("encoder speed",actualSpeed);
-	SmartDashboard::PutNumber("target speed",targetSpeed);
-
-	float feedForward = targetSpeed / maxSpeed;
-	float proportion = 1.0 / 500.0;
-	float speedError = targetSpeed - actualSpeed;
-	float drive = speedError * proportion + feedForward;
-
-	// override speed
-	//drive = feedForward;
-
-	SmartDashboard::PutNumber("drive",drive);
-	SmartDashboard::PutNumber("error",speedError);
-	const float maxDrive = 1.0;
-	if (drive > maxDrive)
-		drive = maxDrive;
-	if (drive < -maxDrive)
-		drive = -maxDrive;
-
-//	Robot::shooter->runShooterMotor(-sliderValue);
-	Robot::shooter->runShooterMotor(-drive);
-
-	// Output encoder values for testing/debugging...
-	SmartDashboard::PutNumber("encoder: raw value", RobotMap::shooterEncoder->GetRaw());
-	SmartDashboard::PutNumber("encoder: samples to avg", RobotMap::shooterEncoder->GetSamplesToAverage());
-	SmartDashboard::PutNumber("encoder: rate", RobotMap::shooterEncoder->GetRate());
-	SmartDashboard::PutNumber("encoder: distance", RobotMap::shooterEncoder->GetDistance());
-	SmartDashboard::PutNumber("encoder: period", RobotMap::shooterEncoder->GetPeriod());
-
-	SmartDashboard::PutNumber("encoder: calc rpm (avg)", (float)RobotMap::shooterEncoder->GetDistance() / RobotMap::shooterEncoder->GetPeriod());
-
-	SmartDashboard::PutNumber("pdp: total current",RobotMap::getPowerDistributionPanel().GetTotalCurrent());
-	SmartDashboard::PutNumber("pdp: shooter motor current(?)", RobotMap::powerDistributionPanel->GetCurrent(4));
-	SmartDashboard::PutNumber("pdp: voltage ",RobotMap::powerDistributionPanel->GetVoltage());
-	SmartDashboard::PutNumber("pdp: power",RobotMap::powerDistributionPanel->GetTotalPower());
+//	const float maxSpeed = 5000; // rpm
+//	float sliderValue = -Robot::oi->getJoystick()->GetRawAxis(3);   // this was reversed
+//	SmartDashboard::PutNumber("slider",sliderValue);
+//	float targetSpeed = maxSpeed * (sliderValue + 1)/2;  // speed is 0 to 5000
+//	if (targetSpeed < 1000)
+//		targetSpeed = 1000;
+//	float encoderValue = -RobotMap::shooterEncoder->GetRate();
+//	float actualSpeed = 3.0 * encoderValue;  // RPM is about 3x encoder rate
+//	SmartDashboard::PutNumber("encoder speed",actualSpeed);
+//	SmartDashboard::PutNumber("target speed",targetSpeed);
+//
+//	float feedForward = targetSpeed / maxSpeed;
+//	float proportion = 1.0 / 500.0;
+//	float speedError = targetSpeed - actualSpeed;
+//	float drive = speedError * proportion + feedForward;
+//
+//	// override speed
+//	//drive = feedForward;
+//
+//	SmartDashboard::PutNumber("drive",drive);
+//	SmartDashboard::PutNumber("error",speedError);
+//	const float maxDrive = 1.0;
+//	if (drive > maxDrive)
+//		drive = maxDrive;
+//	if (drive < -maxDrive)
+//		drive = -maxDrive;
+//
+////	Robot::shooter->runShooterMotor(-sliderValue);
+//	Robot::shooter->runShooterMotor(-drive);
+//
+//	// Output encoder values for testing/debugging...
+//	SmartDashboard::PutNumber("encoder: raw value", RobotMap::shooterEncoder->GetRaw());
+//	SmartDashboard::PutNumber("encoder: samples to avg", RobotMap::shooterEncoder->GetSamplesToAverage());
+//	SmartDashboard::PutNumber("encoder: rate", RobotMap::shooterEncoder->GetRate());
+//	SmartDashboard::PutNumber("encoder: distance", RobotMap::shooterEncoder->GetDistance());
+//	SmartDashboard::PutNumber("encoder: period", RobotMap::shooterEncoder->GetPeriod());
+//
+//	SmartDashboard::PutNumber("encoder: calc rpm (avg)", (float)RobotMap::shooterEncoder->GetDistance() / RobotMap::shooterEncoder->GetPeriod());
+//
+//	SmartDashboard::PutNumber("pdp: total current",RobotMap::getPowerDistributionPanel().GetTotalCurrent());
+//	SmartDashboard::PutNumber("pdp: shooter motor current(?)", RobotMap::powerDistributionPanel->GetCurrent(4));
+//	SmartDashboard::PutNumber("pdp: voltage ",RobotMap::powerDistributionPanel->GetVoltage());
+//	SmartDashboard::PutNumber("pdp: power",RobotMap::powerDistributionPanel->GetTotalPower());
 }
 
 // Make this return true when this Command no longer needs to run execute()
