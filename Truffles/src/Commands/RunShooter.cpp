@@ -25,53 +25,42 @@ RunShooter::RunShooter(): Command() {
 
 // Called just before this Command runs the first time
 void RunShooter::Initialize() {
+
 }
 
 // Called repeatedly when this Command is scheduled to run
 void RunShooter::Execute() {
-//	const float maxSpeed = 5000; // rpm
-//	float sliderValue = -Robot::oi->getJoystick()->GetRawAxis(3);   // this was reversed
-//	SmartDashboard::PutNumber("slider",sliderValue);
-//	float targetSpeed = maxSpeed * (sliderValue + 1)/2;  // speed is 0 to 5000
-//	if (targetSpeed < 1000)
-//		targetSpeed = 1000;
-//	float encoderValue = -RobotMap::shooterEncoder->GetRate();
-//	float actualSpeed = 3.0 * encoderValue;  // RPM is about 3x encoder rate
-//	SmartDashboard::PutNumber("encoder speed",actualSpeed);
-//	SmartDashboard::PutNumber("target speed",targetSpeed);
-//
-//	float feedForward = targetSpeed / maxSpeed;
-//	float proportion = 1.0 / 500.0;
-//	float speedError = targetSpeed - actualSpeed;
-//	float drive = speedError * proportion + feedForward;
-//
-//	// override speed
-//	//drive = feedForward;
-//
-//	SmartDashboard::PutNumber("drive",drive);
-//	SmartDashboard::PutNumber("error",speedError);
-//	const float maxDrive = 1.0;
-//	if (drive > maxDrive)
-//		drive = maxDrive;
-//	if (drive < -maxDrive)
-//		drive = -maxDrive;
-//
-////	Robot::shooter->runShooterMotor(-sliderValue);
-//	Robot::shooter->runShooterMotor(-drive);
-//
-//	// Output encoder values for testing/debugging...
-//	SmartDashboard::PutNumber("encoder: raw value", RobotMap::shooterEncoder->GetRaw());
-//	SmartDashboard::PutNumber("encoder: samples to avg", RobotMap::shooterEncoder->GetSamplesToAverage());
-//	SmartDashboard::PutNumber("encoder: rate", RobotMap::shooterEncoder->GetRate());
-//	SmartDashboard::PutNumber("encoder: distance", RobotMap::shooterEncoder->GetDistance());
-//	SmartDashboard::PutNumber("encoder: period", RobotMap::shooterEncoder->GetPeriod());
-//
-//	SmartDashboard::PutNumber("encoder: calc rpm (avg)", (float)RobotMap::shooterEncoder->GetDistance() / RobotMap::shooterEncoder->GetPeriod());
-//
-//	SmartDashboard::PutNumber("pdp: total current",RobotMap::getPowerDistributionPanel().GetTotalCurrent());
-//	SmartDashboard::PutNumber("pdp: shooter motor current(?)", RobotMap::powerDistributionPanel->GetCurrent(4));
-//	SmartDashboard::PutNumber("pdp: voltage ",RobotMap::powerDistributionPanel->GetVoltage());
-//	SmartDashboard::PutNumber("pdp: power",RobotMap::powerDistributionPanel->GetTotalPower());
+	 auto shooterController = RobotMap::shooterController;
+    shooterController->SetFeedbackDevice(CANTalon::QuadEncoder);
+    shooterController->ConfigEncoderCodesPerRev(20);
+    shooterController->SetSensorDirection(false);
+    shooterController->SetPosition(0);
+    shooterController->SetControlMode(CANSpeedController::kSpeed);
+
+    // Nominal Closed-Loop Output: Promotes the minimal or weakest motor-output
+    // during closed-loop.
+    shooterController->ConfigNominalOutputVoltage(+0., -2.0);
+    shooterController->ConfigPeakOutputVoltage(-2.0, -15.0);
+    /* set the allowable closed-loop error,
+     * Closed-Loop output will be neutral within this range.
+     * See Table in Section 17.2.1 for native units per rotation.
+     */
+    shooterController->SetAllowableClosedLoopErr(0); /* always servo */
+    shooterController->SetF(1.45);
+    shooterController->SetP(1.0);
+    shooterController->SetI(0.0);
+    shooterController->SetD(100.0);
+    shooterController->SetCloseLoopRampRate(0.0);
+   // shooterController.SetIzone(60);
+
+    auto stick = Robot::oi->getJoystick();
+
+    // sliderValue in [0,1]
+    double sliderValue = (-stick->GetRawAxis(3) + 1) * 0.5;
+    // target in [-5227,0];
+   double target = -5227.0 * log10(9.0 * sliderValue + 1.0);
+
+    shooterController->Set(target);
 }
 
 // Make this return true when this Command no longer needs to run execute()
