@@ -41,6 +41,7 @@ void Winch::InitDefaultCommand() {
 // Put methods for controlling this subsystem
 // here. Call these from Commands.
 void Winch::runWinchMotor(double speed) {
+    SmartDashboard::PutNumber("Winch:run:input",speed);
 //	if (speed != 0)
 //		shooterRunnng = true;
 //	else shooterRunning = false;

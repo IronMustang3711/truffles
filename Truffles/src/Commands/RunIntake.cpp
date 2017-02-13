@@ -32,7 +32,7 @@ void RunIntake::Initialize() {
 
 // Called repeatedly when this Command is scheduled to run
 void RunIntake::Execute() {
-	Robot::intake->run(0.4);
+	Robot::intake->run(0.6);
 
 }
 

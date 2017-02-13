@@ -30,39 +30,12 @@ void RunShooter::Initialize() {
 
 // Called repeatedly when this Command is scheduled to run
 void RunShooter::Execute() {
-	//TODO: most of this can be moved to initialize(?)
-    auto shooterController = RobotMap::shooterController;
-    shooterController->SetFeedbackDevice(CANTalon::QuadEncoder);
-    shooterController->ConfigEncoderCodesPerRev(20);
-    shooterController->SetSensorDirection(false);
-    shooterController->SetPosition(0);
-    shooterController->SetControlMode(CANSpeedController::kSpeed);
-
-    // Nominal Closed-Loop Output: Promotes the minimal or weakest motor-output
-    // during closed-loop.
-    shooterController->ConfigNominalOutputVoltage(+0., -2.0);
-    shooterController->ConfigPeakOutputVoltage(-2.0, -15.0);
-    /* set the allowable closed-loop error,
-     * Closed-Loop output will be neutral within this range.
-     * See Table in Section 17.2.1 for native units per rotation.
-     */
-    shooterController->SetAllowableClosedLoopErr(0); /* always servo */
-    shooterController->SetF(1.45);
-    shooterController->SetP(1.0);
-    shooterController->SetI(0.0);
-    shooterController->SetD(100.0);
-    shooterController->SetCloseLoopRampRate(0.0);
-    // shooterController.SetIzone(60);
-
     auto stick = Robot::oi->getJoystick();
 
     // sliderValue in [0,1]
     double sliderValue = (-stick->GetRawAxis(3) + 1) * 0.5;
-    // target in [-5227,0];
-    double target = -5227.0 * log10(9.0 * sliderValue + 1.0);
 
-    Robot::shooter->runShooterMotor(target); //TODO work out dependencies
-    //shooterController->Set(target);
+    Robot::shooter->runShooterMotor(sliderValue);
 }
 
 // Make this return true when this Command no longer needs to run execute()
