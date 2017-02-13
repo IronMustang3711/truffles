@@ -66,7 +66,7 @@ void RobotMap::init() {
     winchController.reset(new Spark(1));
     lw->AddActuator("Winch", "WinchMotor", (winchController));
     
-    hexopusController.reset(new Spark(3));
+    hexopusController.reset(new Spark(0));
     lw->AddActuator("Shooter","hexopus",hexopusController);
     
 
