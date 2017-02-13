@@ -35,7 +35,7 @@ void RunWinch::Initialize() {
 
 // Called repeatedly when this Command is scheduled to run
 void RunWinch::Execute() {
-
+	Robot::winch->runWinchMotor(m_speed);
 }
 
 // Make this return true when this Command no longer needs to run execute()
