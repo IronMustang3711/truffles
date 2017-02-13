@@ -40,10 +40,18 @@ void Shooter::InitDefaultCommand() {
 	SetDefaultCommand(new RunShooter());
 }
 
+void Shooter::runHexopusMotor(double speed){
+	assert(speed>=-1.0 && speed <= 1.0);
 
-// Put methods for controlling this subsystem
-// here. Call these from Commands.
-void Shooter::runShooterMotor(float speed) {
+	hexapusController->Set(speed);
+}
+
+
+/**
+ * speed in [0,1]
+ */
+void Shooter::runShooterMotor(double speed) {
+	assert(speed>=0.0 && speed <= 1.0);
 //	if (speed != 0)
 //		shooterRunnng = true;
 //	else shooterRunning = false;

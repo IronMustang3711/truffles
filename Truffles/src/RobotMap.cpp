@@ -36,13 +36,13 @@ void RobotMap::init() {
     leftFrontController.reset(new CANTalon(2));
     lw->AddActuator("Chassis", "LeftFront",leftFrontController);
     
-    leftRearController.reset(new CANTalon(3));
+    leftRearController.reset(new CANTalon(5));
     lw->AddActuator("Chassis", "LeftRear",leftRearController);
     
-    rightFrontController.reset(new CANTalon(4));
+    rightFrontController.reset(new CANTalon(1));
     lw->AddActuator("Chassis", "RightFront", (rightFrontController));
     
-    rightRearController.reset(new CANTalon(5));
+    rightRearController.reset(new CANTalon(4));
     lw->AddActuator("Chassis", "RightRear", (rightRearController));
     
     chassisDrive.reset(new RobotDrive(leftFrontController, leftRearController,
@@ -56,14 +56,14 @@ void RobotMap::init() {
         chassisDrive->SetInvertedMotor(RobotDrive::kFrontRightMotor, true);
         chassisDrive->SetInvertedMotor(RobotDrive::kRearRightMotor, true);
 
-        shooterController.reset(new CANTalon(4));
+        shooterController.reset(new CANTalon(3));
     lw->AddActuator("Shooter", "ShooterMotor", shooterController);
     
 
-    intakeController.reset(new Spark(1));
+    intakeController.reset(new Spark(2));
     lw->AddActuator("Intake", "IntakeMotor",(intakeController));
     
-    winchController.reset(new Spark(2));
+    winchController.reset(new Spark(1));
     lw->AddActuator("Winch", "WinchMotor", (winchController));
     
     hexopusController.reset(new Spark(3));

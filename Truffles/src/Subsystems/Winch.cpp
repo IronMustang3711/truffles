@@ -40,7 +40,7 @@ void Winch::InitDefaultCommand() {
 
 // Put methods for controlling this subsystem
 // here. Call these from Commands.
-void Winch::runWinchMotor(float speed) {
+void Winch::runWinchMotor(double speed) {
 //	if (speed != 0)
 //		shooterRunnng = true;
 //	else shooterRunning = false;
