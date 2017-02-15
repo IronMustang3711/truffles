@@ -16,10 +16,6 @@ bool GearCatchCommand::IsFinished() {
 
 void GearCatchCommand::Initialize() {}
 
-long GearCatchCommand::IsTimedOut() const {
-    return Command::IsTimedOut();
-}
-
 
 GearCatchVertical::GearCatchVertical() : GearCatchCommand("Gear Catch -> Vertical") {
     Requires(Robot::gearCatch.get());

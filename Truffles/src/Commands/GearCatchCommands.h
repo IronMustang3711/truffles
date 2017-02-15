@@ -22,7 +22,6 @@ public:
 
     virtual void Initialize() override;
 
-    long IsTimedOut() const ;
 };
 
 class GearCatchVertical : public GearCatchCommand {
