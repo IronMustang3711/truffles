@@ -9,54 +9,46 @@
 #include "Commands/Subsystem.h"
 #include "../Robot.h"
 
-class GearCatchVertical : public Command {
+
+class GearCatchCommand : public ::frc::Command {
+
+public:
+    GearCatchCommand(const std::string& name);
+    virtual void Interrupted() override;
+
+    virtual void End() override;
+
+    virtual bool IsFinished() override;
+
+    virtual void Initialize() override;
+
+    long IsTimedOut() const ;
+};
+
+class GearCatchVertical : public GearCatchCommand {
 public:
     GearCatchVertical();
 
     virtual void Execute() override;
 
-    virtual void Initialize() override;
-
-    virtual bool IsFinished() override;
-
-    virtual void End() override;
-
-    virtual void Interrupted() override;
-
 };
 
 
-class GearCatchOut : public Command {
+class GearCatchOut : public GearCatchCommand {
 public:
     GearCatchOut();
 
 
     virtual void Execute() override;
 
-    virtual void Initialize() override;
-
-    virtual bool IsFinished() override;
-
-    virtual void End() override;
-
-    virtual void Interrupted() override;
-
 
 };
 
-class GearCatchIn : public Command {
+class GearCatchIn : public GearCatchCommand {
 public:
     GearCatchIn();
 
     virtual void Execute() override;
-
-    virtual void Initialize() override;
-
-    virtual bool IsFinished() override;
-
-    virtual void End() override;
-
-    virtual void Interrupted() override;
 
 };
 

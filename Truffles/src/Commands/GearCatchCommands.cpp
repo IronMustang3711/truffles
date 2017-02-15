@@ -3,16 +3,33 @@
 //
 
 #include "GearCatchCommands.h"
+GearCatchCommand::GearCatchCommand(const std::string &name) : frc::Command(name) {}
+void GearCatchCommand::Interrupted() {
+    End();
+}
 
-GearCatchVertical::GearCatchVertical() : Command("Gear Catch -> Vertical") {
+void GearCatchCommand::End() {}
+
+bool GearCatchCommand::IsFinished() {
+    return false;//!IsTimedOut();
+}
+
+void GearCatchCommand::Initialize() {}
+
+long GearCatchCommand::IsTimedOut() const {
+    return Command::IsTimedOut();
+}
+
+
+GearCatchVertical::GearCatchVertical() : GearCatchCommand("Gear Catch -> Vertical") {
     Requires(Robot::gearCatch.get());
 }
 
-GearCatchOut::GearCatchOut() : Command("Gear Catch -> Out") {
+GearCatchOut::GearCatchOut() : GearCatchCommand("Gear Catch -> Out") {
     Requires(Robot::gearCatch.get());
 }
 
-GearCatchIn::GearCatchIn() : Command("Gear Catch -> In") {
+GearCatchIn::GearCatchIn() : GearCatchCommand("Gear Catch -> In") {
     Requires(Robot::gearCatch.get());
 }
 
@@ -20,51 +37,11 @@ void GearCatchVertical::Execute() {
     Robot::gearCatch->moveVertical();
 }
 
-void GearCatchVertical::Interrupted() {
-   End();
-}
-
-void GearCatchVertical::End() {
-    Command::End();
-}
-
-bool GearCatchVertical::IsFinished() {
-    return !IsTimedOut();
-}
-
-void GearCatchVertical::Initialize() {}
-
 
 void GearCatchOut::Execute() {
     Robot::gearCatch->moveOutward();
 }
 
-void GearCatchOut::Initialize() {}
-
-bool GearCatchOut::IsFinished() {
-    return false;
-}
-
-void GearCatchOut::End() {}
-
-void GearCatchOut::Interrupted() {
-    End();
-}
-
 void GearCatchIn::Execute() {
     Robot::gearCatch->moveInward();
-}
-
-void GearCatchIn::Interrupted() {
-
-}
-
-void GearCatchIn::End() {
-}
-
-bool GearCatchIn::IsFinished() {
-    return false;
-}
-
-void GearCatchIn::Initialize() {
 }
