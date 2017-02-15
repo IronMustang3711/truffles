@@ -4,6 +4,7 @@
 
 #include "GearCatch.h"
 #include "../RobotMap.h"
+#include "../Commands/GearCatchCommands.h"
 GearCatch::GearCatch() : Subsystem("Gear Catch") {
     actuator1 = RobotMap::gearCatchActuator1;
     actuator2 = RobotMap::gearCatchActuator2;
@@ -11,15 +12,16 @@ GearCatch::GearCatch() : Subsystem("Gear Catch") {
 
 void GearCatch::InitDefaultCommand() {
    //TODO: default command
+	//SetDefaultCommand(new GearCatchVertical());
 }
 
 void GearCatch::moveOutward() {
-    setPosition(0.5);
+    setPosition(0.6);
 }
 
 void GearCatch::setPosition(double position) {
-    actuator1->SetPosition(position);
-    actuator2->SetPosition(position);
+    actuator1->Set(position);
+    actuator2->Set(position);
 
 }
 

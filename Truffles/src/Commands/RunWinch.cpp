@@ -29,8 +29,6 @@ RunWinch::RunWinch(double speed): Command() {
 // Called just before this Command runs the first time
 void RunWinch::Initialize() {
 	Robot::winch->runWinchMotor(m_speed);
-
-
 }
 
 // Called repeatedly when this Command is scheduled to run
@@ -40,7 +38,7 @@ void RunWinch::Execute() {
 
 // Make this return true when this Command no longer needs to run execute()
 bool RunWinch::IsFinished() {
-    return false;
+	return false;//Robot::oi->getJoystick()->GetRawButton(8);
 }
 
 // Called once after isFinished returns true

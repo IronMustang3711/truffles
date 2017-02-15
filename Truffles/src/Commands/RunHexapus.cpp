@@ -13,6 +13,7 @@ void RunHexapus::Initialize() {
 }
 
 void RunHexapus::Execute() {
+    //TODO: This is WRONG!
     motorController->Set(amt);
 }
 
@@ -26,5 +27,5 @@ void RunHexapus::End() {
 
 RunHexapus::RunHexapus(double amt) : Command()  {
     this->amt = amt;
-    motorController = RobotMap::hexopusController;
+    motorController = RobotMap::hexapusController;
 }

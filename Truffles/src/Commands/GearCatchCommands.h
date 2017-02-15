@@ -10,7 +10,7 @@
 #include "../Robot.h"
 
 
-class GearCatchCommand : public ::frc::Command {
+class GearCatchCommand : public frc::Command {
 
 public:
     GearCatchCommand(const std::string& name);

@@ -11,22 +11,22 @@ void GearCatchCommand::Interrupted() {
 void GearCatchCommand::End() {}
 
 bool GearCatchCommand::IsFinished() {
-    return false;//!IsTimedOut();
+    return false;
 }
 
-void GearCatchCommand::Initialize() {}
+void GearCatchCommand::Initialize() {
+     Requires(Robot::gearCatch.get());
+}
 
 
 GearCatchVertical::GearCatchVertical() : GearCatchCommand("Gear Catch -> Vertical") {
-    Requires(Robot::gearCatch.get());
+    SetTimeout(1.0);
 }
 
 GearCatchOut::GearCatchOut() : GearCatchCommand("Gear Catch -> Out") {
-    Requires(Robot::gearCatch.get());
 }
 
 GearCatchIn::GearCatchIn() : GearCatchCommand("Gear Catch -> In") {
-    Requires(Robot::gearCatch.get());
 }
 
 void GearCatchVertical::Execute() {
