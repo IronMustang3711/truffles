@@ -36,8 +36,8 @@ void RunShooter::Execute() {
 
     // sliderValue in [0,1]
     double sliderValue = (-stick->GetRawAxis(3) + 1) * 0.5;
-    Robot::shooter->runShooterMotor(sliderValue);
 
+    Robot::shooter->runShooterMotor(sliderValue);
 }
 
 // Make this return true when this Command no longer needs to run execute()

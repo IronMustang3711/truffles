@@ -40,7 +40,7 @@ void Intake::InitDefaultCommand() {
  * @value [-1,1]
  */
 void Intake::run(double value){
-	assert(value >= -1.0 && value <= 1.0);
+	SmartDashboard::PutNumber("Intake:run:input",value);
 	intakeMotor->Set(value);
 }
 
