@@ -56,12 +56,12 @@ OI::OI() {
 //
     loadButton.reset(new JoystickButton(joystick.get(),1));
     loadButton->WhileHeld(new RunHexapus(1.0));
-//
-//    gearAcceptIn.reset(new JoystickButton(joystick.get(),4));
-//    gearAcceptIn->WhenActive(new GearCatchVertical());
-//
-//    gearAcceptIn.reset(new JoystickButton(joystick.get(),5));
-//    gearAcceptIn->WhenActive(new GearCatchOut());
+
+    gearAcceptIn.reset(new JoystickButton(joystick.get(),5));
+    gearAcceptIn->WhenPressed(new GearCatchIn());
+
+    gearAcceptOut.reset(new JoystickButton(joystick.get(),6));
+    gearAcceptOut->WhenPressed(new GearCatchOut());
 
     // SmartDashboard Buttons
     SmartDashboard::PutData("RunIntake: in", new RunIntake(1));
@@ -73,7 +73,7 @@ OI::OI() {
     SmartDashboard::PutData("DriveWithJoystick", new DriveWithJoystick());
     SmartDashboard::PutData("Autonomous Command", new AutonomousCommand());
     SmartDashboard::PutData("Hexapus",new RunHexapus(1.0));
-
+//
     SmartDashboard::PutData("Gear catch: vertical", new GearCatchVertical());
     SmartDashboard::PutData("Gear catch: in", new GearCatchIn());
     SmartDashboard::PutData("Gear catch: out", new GearCatchOut());

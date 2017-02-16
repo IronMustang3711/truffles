@@ -41,6 +41,7 @@ public:
 	void runShooterMotor(double speed);
 	void runHexapusMotor(double speed);
 
+    void initShooter();
 };
 
 #endif

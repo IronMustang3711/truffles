@@ -25,11 +25,13 @@ RunShooter::RunShooter() : Command() {
 
 // Called just before this Command runs the first time
 void RunShooter::Initialize() {
-
+    Robot::shooter->initShooter();
+    SmartDashboard::PutString("shooter trace:","init");
 }
 
 // Called repeatedly when this Command is scheduled to run
 void RunShooter::Execute() {
+    SmartDashboard::PutString("shooter trace:","exec");
 
 
     auto stick = Robot::oi->getJoystick();
@@ -42,16 +44,20 @@ void RunShooter::Execute() {
 
 // Make this return true when this Command no longer needs to run execute()
 bool RunShooter::IsFinished() {
-    return false;
+   return false; //return IsCanceled() || IsFinished();
 }
 
 // Called once after isFinished returns true
 void RunShooter::End() {
-    Robot::shooter->runShooterMotor(0);
+   // Robot::shooter->runShooterMotor(0);
+    SmartDashboard::PutString("shooter trace:","end");
+
 }
 
 // Called when another command which requires one or more of the same
 // subsystems is scheduled to run
 void RunShooter::Interrupted() {
     End();
+    SmartDashboard::PutString("shooter trace:","interrupted");
+
 }

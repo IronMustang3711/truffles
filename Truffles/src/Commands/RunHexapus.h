@@ -19,7 +19,7 @@ public:
 
 private:
     double amt;
-    std::shared_ptr<SpeedController>motorController;
+   // std::shared_ptr<SpeedController>motorController;
 };
 
 

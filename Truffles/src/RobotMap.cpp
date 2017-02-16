@@ -69,7 +69,7 @@ void RobotMap::init() {
     chassisDrive.reset(new RobotDrive(leftFrontController, leftRearController,
                                         rightFrontController, rightRearController));
 
-    chassisDrive->SetSafetyEnabled(true);
+    chassisDrive->SetSafetyEnabled(false);
     chassisDrive->SetExpiration(0.1);
     chassisDrive->SetSensitivity(0.5);
     chassisDrive->SetMaxOutput(1.0);
