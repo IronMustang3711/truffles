@@ -81,7 +81,7 @@ void Shooter::runShooterMotor(double input) {
 
 
 
-    double target = 5100.0 * log10(9.0 * input + 1.0);
+    double target = 5300.0 * log10(9.0 * input + 1.0);
 
     shooterController->Set(target);
 

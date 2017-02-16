@@ -47,16 +47,16 @@ void Chassis::InitDefaultCommand() {
 // Put methods for controlling this subsystem
 // here. Call these from Commands.
 void Chassis::MecanumDrive(std::shared_ptr<Joystick> stickPosition) {
-	float x = stickPosition->GetX(); // this is joystick left/right
-	float y = stickPosition->GetY(); // this is forward/backward
-	float z = stickPosition->GetZ(); // this is twist left/right
+	double x = stickPosition->GetX(); // this is joystick left/right
+	double y = stickPosition->GetY(); // this is forward/backward
+	double z = stickPosition->GetZ(); // this is twist left/right
 
 	// following makes controls less sensitive for small moves
 	x = pow(x, 3);
 	y = pow(y, 3);
 	z = pow(z, 3) * 0.3; // limit to 10% to make it easier to control
-
-	drive->MecanumDrive_Cartesian(x, y, z); //,gyro->GetAngle());//%THIS MAY BE A DIASTER
+	double yaw = RobotMap::ahrs->GetAngle();
+	drive->MecanumDrive_Cartesian(x, y, z, yaw); //,gyro->GetAngle());//%THIS MAY BE A DIASTER
 }
 void Chassis::AutoDrive(float fwdSpeed, float rotateSpeed) { //%NE
 	drive->MecanumDrive_Cartesian(0, -fwdSpeed, rotateSpeed);

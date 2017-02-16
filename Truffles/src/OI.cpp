@@ -48,8 +48,8 @@ OI::OI() {
     intakeButton->WhileHeld(new RunIntake(-0.6));
 //    winchDown.reset(new JoystickButton(joystick.get(), 9));
 //    winchDown->WhenPressed(new RunWinch(-1));
-//    winchUp.reset(new JoystickButton(joystick.get(), 7));
-//    winchUp->WhenActive(new RunWinch(1));
+    winchUp.reset(new JoystickButton(joystick.get(), 7));
+    winchUp->WhileHeld(new RunWinch(0.3));
 //
     shootButton.reset(new JoystickButton(joystick.get(), 2));
     shootButton->WhileHeld(new RunShooter());
