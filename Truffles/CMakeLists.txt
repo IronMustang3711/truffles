@@ -12,7 +12,7 @@ set(CMAKE_SYSTEM_NAME Linux)
 
 SET(CMAKE_CXX_COMPILER ${ARM_PREFIX}-g++)
 SET(CMAKE_C_COMPILER ${ARM_PREFIX}-gcc)
-set(CMAKE_CXX_FLAGS "-Wno-unknown-warning-option -std=c++1y -Wformat=2 -Wall -Wextra -Werror -pedantic -Wno-psabi" CACHE STRING "" FORCE)
+set(CMAKE_CXX_FLAGS "-Wno-unknown-warning-option -std=c++1y -Wformat=2 -Wall -Wextra -fpermissive -pedantic -Wno-psabi" CACHE STRING "" FORCE)
 set(CMAKE_CXX_FLAGS_DEBUG "-O0 -g3" CACHE STRING "" FORCE)
 set(CMAKE_CXX_FLAGS_RELEASE "-O3 -g" CACHE STRING "" FORCE) # still want debugging for release?
 
