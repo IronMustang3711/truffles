@@ -12,7 +12,7 @@ void GearCatchCommand::Interrupted() {
 
 //TODO: still pretty hackey
 void GearCatchCommand::End() {
-    Robot::gearCatch->moveInward();
+    Robot::gearCatch->moveIn();
 }
 
 bool GearCatchCommand::IsFinished() {
@@ -20,16 +20,12 @@ bool GearCatchCommand::IsFinished() {
 }
 
 void GearCatchCommand::Initialize() {
-    Robot::gearCatch->moveOutward();
+    Robot::gearCatch->moveOut();
     //RobotMap::gearCatchActuator1->Set(0.615);
 }
 
 
-GearCatchVertical::GearCatchVertical() : GearCatchCommand("Gear Catch -> Vertical") {
-    //SetTimeout(2.0); //TODO: uncomment?
-    //TODO: move to common constructor?
-    Requires(Robot::gearCatch.get());
-}
+
 
 GearCatchOut::GearCatchOut() : GearCatchCommand("Gear Catch -> Out") {
     Requires(Robot::gearCatch.get());
@@ -40,13 +36,8 @@ GearCatchIn::GearCatchIn() : GearCatchCommand("Gear Catch -> In") {
     Requires(Robot::gearCatch.get());
 }
 
-void GearCatchVertical::Execute() {
-    Robot::gearCatch->moveVertical();
-}
-
-
 void GearCatchOut::Execute() {
-    Robot::gearCatch->moveOutward();
+    Robot::gearCatch->moveOut();
 }
 
 void GearCatchIn::Execute() {
@@ -63,3 +54,19 @@ void GearCatchIn::Execute() {
     SmartDashboard::PutNumber("gear actuator position", nextPosition);
 }
 
+
+//GearCatchInUnpowered::GearCatchInUnpowered(): public GearCatchCommand("Gear Catch -> In (undriven)") {
+//
+//}
+
+void GearCatchInUnpowered::Execute() {
+    Command::Execute();
+}
+
+GearCatchInUnpowered::GearCatchInUnpowered() : GearCatchCommand("Gear Catch in (undriven)") {
+
+}
+
+//GearCatchInUnpowered::GearCatchInUnpowered() : pu {
+//
+//}

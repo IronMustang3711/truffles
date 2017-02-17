@@ -67,6 +67,8 @@ void Shooter::InitDefaultCommand() {
     SetDefaultCommand(new RunShooter());
 }
 
+
+
 void Shooter::runHexapusMotor(double speed) {
     SmartDashboard::PutNumber("Shooter:HexapusMotor:input", speed);
 
@@ -109,5 +111,9 @@ bool Shooter::isHexapusJammed() {
 
 double Shooter::getHexapusCurrent() {
     return RobotMap::powerDistributionPanel->GetCurrent(2);
+}
+
+void Shooter::runHexapusMotor() {
+    runHexapusMotor(0.75);
 }
 

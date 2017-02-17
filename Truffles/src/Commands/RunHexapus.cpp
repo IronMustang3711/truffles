@@ -5,17 +5,22 @@
 #include "RunHexapus.h"
 
 bool RunHexapus::IsFinished() {
-    return IsTimedOut();
+    return IsTimedOut() || IsCanceled();
 }
 
 void RunHexapus::Initialize() {
-    Command::Initialize();
 }
 
 void RunHexapus::Execute() {
-//    motorController->Set(amt);
     if (Robot::shooter->isHexapusJammed()) {
-        Cancel();
+        std::cout << "jam detected!!!!!" << std::endl;
+        Robot::oi->intakeButton->CancelWhenActive(this);
+
+        //TODO: leak!
+        RunHexapus* cmd = new RunHexapus(-0.75);
+        cmd->SetTimeout(0.5);
+        Robot::oi->intakeButton->WhileHeld(cmd);
+        //Cancel();
         return;
     }
     Robot::shooter->runHexapusMotor(amt);
@@ -31,6 +36,11 @@ void RunHexapus::End() {
 
 RunHexapus::RunHexapus(double amt) : Command() {
     this->amt = amt;
-    //motorController = RobotMap::hexapusController;
-    // Requires(Robot::shooter.get())
+
 }
+
+void RunHexapus::timeOut(double timeout) {
+    Command::SetTimeout(timeout);
+}
+
+

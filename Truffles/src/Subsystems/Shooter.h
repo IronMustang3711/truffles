@@ -52,6 +52,8 @@ public:
      */
     void runHexapusMotor(double speed);
 
+    void runHexapusMotor();
+
     /**
      * setup PID values for the shooter controller.
      */
