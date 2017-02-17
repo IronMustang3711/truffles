@@ -31,11 +31,11 @@ void RunShooter::Initialize() {
 // Called repeatedly when this Command is scheduled to run
 void RunShooter::Execute() {
 
-
-    auto stick = Robot::oi->getDriverJoystick();
+  double throttleVal =  Robot::oi.shooterJoystick.GetRawAxis(3);
+    //auto stick = Robot::oi->getDriverJoystick();
 
     // sliderValue in [0,1]
-    double sliderValue = (-stick->GetRawAxis(3) + 1) * 0.5;
+    double sliderValue = (throttleVal + 1) * 0.5;
 
     Robot::shooter->runShooterMotor(sliderValue);
 }
