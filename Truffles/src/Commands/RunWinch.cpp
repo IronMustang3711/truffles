@@ -38,7 +38,7 @@ void RunWinch::Execute() {
 
 // Make this return true when this Command no longer needs to run execute()
 bool RunWinch::IsFinished() {
-	return false;//Robot::oi->getJoystick()->GetRawButton(8);
+	return false;//Robot::oi->getDriverJoystick()->GetRawButton(8);
 }
 
 // Called once after isFinished returns true

@@ -13,8 +13,11 @@ void RunHexapus::Initialize() {
 }
 
 void RunHexapus::Execute() {
-//    //TODO: This is WRONG!
 //    motorController->Set(amt);
+    if (Robot::shooter->isHexapusJammed()) {
+        Cancel();
+        return;
+    }
     Robot::shooter->runHexapusMotor(amt);
 }
 
@@ -26,8 +29,8 @@ void RunHexapus::End() {
     Robot::shooter->runHexapusMotor(0);
 }
 
-RunHexapus::RunHexapus(double amt) : Command()  {
+RunHexapus::RunHexapus(double amt) : Command() {
     this->amt = amt;
     //motorController = RobotMap::hexapusController;
-   // Requires(Robot::shooter.get())
+    // Requires(Robot::shooter.get())
 }

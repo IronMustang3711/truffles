@@ -40,3 +40,7 @@ void GearCatch::moveInward() {
     actuator1->SetOffline();
     actuator2->SetOffline();
 }
+
+double GearCatch::getPosition() {
+    return actuator1->Get();
+}

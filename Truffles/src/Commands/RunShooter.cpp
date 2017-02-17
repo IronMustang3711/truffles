@@ -34,7 +34,7 @@ void RunShooter::Execute() {
     SmartDashboard::PutString("shooter trace:","exec");
 
 
-    auto stick = Robot::oi->getJoystick();
+    auto stick = Robot::oi->getDriverJoystick();
 
     // sliderValue in [0,1]
     double sliderValue = (-stick->GetRawAxis(3) + 1) * 0.5;

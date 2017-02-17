@@ -3,13 +3,16 @@
 //
 
 #include "GearCatchCommands.h"
+
 GearCatchCommand::GearCatchCommand(const std::string &name) : frc::Command(name) {}
+
 void GearCatchCommand::Interrupted() {
     End();
 }
-//TODO: HACKHACKHACKHACK
+
+//TODO: still pretty hackey
 void GearCatchCommand::End() {
-	  Robot::gearCatch->moveInward();
+    Robot::gearCatch->moveInward();
 }
 
 bool GearCatchCommand::IsFinished() {
@@ -17,27 +20,24 @@ bool GearCatchCommand::IsFinished() {
 }
 
 void GearCatchCommand::Initialize() {
-	RobotMap::gearCatchActuator1->Set(0.615);
-
-    // Requires(Robot::gearCatch.get());
+    Robot::gearCatch->moveOutward();
+    //RobotMap::gearCatchActuator1->Set(0.615);
 }
 
 
 GearCatchVertical::GearCatchVertical() : GearCatchCommand("Gear Catch -> Vertical") {
     //SetTimeout(2.0); //TODO: uncomment?
-	Requires(Robot::gearCatch.get());
+    //TODO: move to common constructor?
+    Requires(Robot::gearCatch.get());
 }
 
 GearCatchOut::GearCatchOut() : GearCatchCommand("Gear Catch -> Out") {
-	Requires(Robot::gearCatch.get());
-	//SetTimeout(2.0);
+    Requires(Robot::gearCatch.get());
+    //SetTimeout(2.0);
 }
 
 GearCatchIn::GearCatchIn() : GearCatchCommand("Gear Catch -> In") {
-	Requires(Robot::gearCatch.get());
-	//SetTimeout(2.0);
-	//RobotMap::gearCatchActuator1->Set(0.6);
-
+    Requires(Robot::gearCatch.get());
 }
 
 void GearCatchVertical::Execute() {
@@ -50,15 +50,16 @@ void GearCatchOut::Execute() {
 }
 
 void GearCatchIn::Execute() {
-	double value = RobotMap::gearCatchActuator1->Get();
-	if( value > 0.0001){
-		RobotMap::gearCatchActuator1->Set(value-0.01);
-		RobotMap::gearCatchActuator2->Set(value-0.01);
+    double prevPosition = Robot::gearCatch->getPosition();
+    double nextPosition = prevPosition - 0.01;
+    if (nextPosition > 0.0001) {
+        Robot::gearCatch->setPosition(nextPosition);
 
-	} else {
-		Cancel();
-	}
+    } else {
+        Robot::gearCatch->setPosition(0.0);
+        Cancel();
+    }
 
-	SmartDashboard::PutNumber("gear actuator 1", value);
+    SmartDashboard::PutNumber("gear actuator position", nextPosition);
 }
 

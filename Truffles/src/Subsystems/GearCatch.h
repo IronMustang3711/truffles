@@ -16,7 +16,16 @@ public:
     void moveOutward();
     void moveInward();
     void moveVertical();
+    /**
+     *
+     * @param position a value between 0 and 1
+     */
     void setPosition(double position);
+    /**
+     *
+     * @return a value between 0 and 1
+     */
+    double getPosition();
 
     void InitDefaultCommand() override;
 

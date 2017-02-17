@@ -47,7 +47,7 @@ void Chassis::InitDefaultCommand() {
 // Put methods for controlling this subsystem
 // here. Call these from Commands.
 void Chassis::MecanumDrive(std::shared_ptr<Joystick> stickPosition) {
-	double x = stickPosition->GetX(); // this is joystick left/right
+	double x = stickPosition->GetX(); // this is driverJoystick left/right
 	double y = stickPosition->GetY(); // this is forward/backward
 	double z = stickPosition->GetZ(); // this is twist left/right
 
