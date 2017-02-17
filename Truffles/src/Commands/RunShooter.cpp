@@ -26,15 +26,13 @@ RunShooter::RunShooter() : Command() {
 // Called just before this Command runs the first time
 void RunShooter::Initialize() {
     Robot::shooter->initShooter();
-    SmartDashboard::PutString("shooter trace:","init");
 }
 
 // Called repeatedly when this Command is scheduled to run
 void RunShooter::Execute() {
-    SmartDashboard::PutString("shooter trace:","exec");
 
 
-    auto stick = Robot::oi->getJoystick();
+    auto stick = Robot::oi->getDriverJoystick();
 
     // sliderValue in [0,1]
     double sliderValue = (-stick->GetRawAxis(3) + 1) * 0.5;
@@ -50,7 +48,6 @@ bool RunShooter::IsFinished() {
 // Called once after isFinished returns true
 void RunShooter::End() {
    // Robot::shooter->runShooterMotor(0);
-    SmartDashboard::PutString("shooter trace:","end");
 
 }
 
@@ -58,6 +55,5 @@ void RunShooter::End() {
 // subsystems is scheduled to run
 void RunShooter::Interrupted() {
     End();
-    SmartDashboard::PutString("shooter trace:","interrupted");
 
 }

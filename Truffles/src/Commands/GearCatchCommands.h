@@ -24,15 +24,6 @@ public:
 
 };
 
-class GearCatchVertical : public GearCatchCommand {
-public:
-    GearCatchVertical();
-
-    virtual void Execute() override;
-
-};
-
-
 class GearCatchOut : public GearCatchCommand {
 public:
     GearCatchOut();
@@ -51,5 +42,11 @@ public:
 
 };
 
+class GearCatchInUnpowered : public GearCatchCommand {
+public:
+    GearCatchInUnpowered();
 
+    virtual void Execute() override;
+
+};
 #endif //TRUFFLES_GEARCATCHCOMMANDS_H

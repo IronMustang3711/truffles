@@ -17,6 +17,8 @@ public:
     virtual void End();
     virtual void Interrupted();
 
+    void timeOut(double timeout) ;
+
 private:
     double amt;
    // std::shared_ptr<SpeedController>motorController;

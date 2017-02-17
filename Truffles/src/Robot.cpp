@@ -122,9 +122,9 @@ void Robot::dashboardUpdate(){
     /* for advanced users.  Before using this data, please consider whether     */
     /* the processed data (see above) will suit your needs.                     */
 
-    SmartDashboard::PutNumber(  "RawGyro_X",            ahrs->GetRawGyroX());
-    SmartDashboard::PutNumber(  "RawGyro_Y",            ahrs->GetRawGyroY());
-    SmartDashboard::PutNumber(  "RawGyro_Z",            ahrs->GetRawGyroZ());
+//    SmartDashboard::PutNumber(  "RawGyro_X",            ahrs->GetRawGyroX());
+//    SmartDashboard::PutNumber(  "RawGyro_Y",            ahrs->GetRawGyroY());
+//    SmartDashboard::PutNumber(  "RawGyro_Z",            ahrs->GetRawGyroZ());
 //    SmartDashboard::PutNumber(  "RawAccel_X",           ahrs->GetRawAccelX());
 //    SmartDashboard::PutNumber(  "RawAccel_Y",           ahrs->GetRawAccelY());
 //    SmartDashboard::PutNumber(  "RawAccel_Z",           ahrs->GetRawAccelZ());
@@ -134,12 +134,13 @@ void Robot::dashboardUpdate(){
 //    SmartDashboard::PutNumber(  "IMU_Temp_C",           ahrs->GetTempC());
 //    /* Omnimount Yaw Axis Information                                           */
     /* For more info, see http://navx-mxp.kauailabs.com/installation/omnimount  */
-    AHRS::BoardYawAxis yaw_axis = ahrs->GetBoardYawAxis();
-    SmartDashboard::PutString(  "YawAxisDirection",     yaw_axis.up ? "Up" : "Down" );
-    SmartDashboard::PutNumber(  "YawAxis",              yaw_axis.board_axis );
+//    AHRS::BoardYawAxis yaw_axis = ahrs->GetBoardYawAxis();
+//    SmartDashboard::PutString(  "YawAxisDirection",     yaw_axis.up ? "Up" : "Down" );
+//    SmartDashboard::PutNumber(  "YawAxis",              yaw_axis.board_axis );
 
+    //TODO: Make sure firmware is up to date.
     /* Sensor Board Information                                                 */
-    SmartDashboard::PutString(  "FirmwareVersion",      ahrs->GetFirmwareVersion());
+    SmartDashboard::PutString(  "FirmwareVersion(Check that this is up to date!)",      ahrs->GetFirmwareVersion());
 
     /* Quaternion Data                                                          */
     /* Quaternions are fascinating, and are the most compact representation of  */
@@ -150,6 +151,11 @@ void Robot::dashboardUpdate(){
     SmartDashboard::PutNumber(  "QuaternionX",          ahrs->GetQuaternionX());
     SmartDashboard::PutNumber(  "QuaternionY",          ahrs->GetQuaternionY());
     SmartDashboard::PutNumber(  "QuaternionZ",          ahrs->GetQuaternionZ());
+
+    SmartDashboard::PutData(Scheduler::GetInstance()); //TODO: Do these need to be updated periodically, or can these just be called once?
+    SmartDashboard::PutData(shooter.get());
+    SmartDashboard::PutData(intake.get());
+    SmartDashboard::PutData(gearCatch.get());
 
 }
 START_ROBOT_CLASS(Robot)
