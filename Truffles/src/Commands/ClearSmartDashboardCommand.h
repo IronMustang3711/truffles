@@ -8,7 +8,8 @@
 #ifndef SRC_COMMANDS_CLEARSMARTDASHBOARDCOMMAND_H_
 #define SRC_COMMANDS_CLEARSMARTDASHBOARDCOMMAND_H_
 
-#include "../Robot.h"
+#include <Commands/Command.h>
+
 
 class ClearSmartDashboardCommand : public Command{
 	public:

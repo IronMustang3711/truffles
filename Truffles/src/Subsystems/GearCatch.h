@@ -6,9 +6,8 @@
 #define TRUFFLES_GEARCATCH_H
 
 #include "Commands/Subsystem.h"
-#include "WPILib.h"
 #include "LinearActuator.h"
-#include <bits/shared_ptr.h>
+#include <memory>
 
 class GearCatch : public Subsystem {
     enum Position {

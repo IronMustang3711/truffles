@@ -5,6 +5,7 @@
  *      Author: jason
  */
 
+#include <SmartDashboard/SmartDashboard.h>
 #include "ClearSmartDashboardCommand.h"
 
 

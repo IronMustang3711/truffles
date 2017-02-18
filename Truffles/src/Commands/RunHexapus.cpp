@@ -3,6 +3,7 @@
 //
 
 #include "RunHexapus.h"
+#include "../Robot.h"
 
 bool RunHexapus::IsFinished() {
     return IsTimedOut() || IsCanceled();

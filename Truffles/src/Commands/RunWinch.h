@@ -13,8 +13,7 @@
 #define RUNWINCH_H
 
 
-#include "Commands/Subsystem.h"
-#include "../Robot.h"
+#include <Commands/Command.h>
 
 /**
  *

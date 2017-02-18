@@ -11,8 +11,9 @@
 
 #ifndef WINCH_H
 #define WINCH_H
+
+#include <SpeedController.h>
 #include "Commands/Subsystem.h"
-#include "WPILib.h"
 
 /**
  *

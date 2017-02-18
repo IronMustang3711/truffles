@@ -12,7 +12,6 @@
 #ifndef OI_H
 #define OI_H
 
-#include "WPILib.h"
 
 //class ReAddDefaultHexapusCommand : public InstantCommand {
 //    friend class OI;
@@ -28,7 +27,10 @@
 
 
 
-class Btn final : public Button {
+#include <Buttons/Button.h>
+#include <Joystick.h>
+
+class Btn final : public frc::Button {
 
 public:
     Btn(Joystick *stick, int buttonNumber);

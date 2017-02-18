@@ -11,8 +11,11 @@
 
 #ifndef CHASSIS_H
 #define CHASSIS_H
+
+#include <SpeedController.h>
+#include <RobotDrive.h>
+#include <Joystick.h>
 #include "Commands/Subsystem.h"
-#include "WPILib.h"
 
 /**
  *

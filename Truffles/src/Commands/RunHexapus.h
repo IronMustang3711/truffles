@@ -4,8 +4,8 @@
 
 #ifndef TRUFFLES_RUNHEXAPUS_H
 #define TRUFFLES_RUNHEXAPUS_H
-#include "Commands/Subsystem.h"
-#include "../Robot.h"
+#include <Commands/Command.h>
+
 
 class RunHexapus: public Command {
 
