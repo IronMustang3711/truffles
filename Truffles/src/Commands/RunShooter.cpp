@@ -32,22 +32,22 @@ void RunShooter::Initialize() {
 void RunShooter::Execute() {
 
 
-    auto stick = Robot::oi->getDriverJoystick();
+    double throttle = Robot::oi->shooterJoystick->GetZ();
 
     // sliderValue in [0,1]
-    double sliderValue = (-stick->GetRawAxis(3) + 1) * 0.5;
+    double sliderValue = (-throttle + 1) * 0.5;
 
     Robot::shooter->runShooterMotor(sliderValue);
 }
 
 // Make this return true when this Command no longer needs to run execute()
 bool RunShooter::IsFinished() {
-   return false; //return IsCanceled() || IsFinished();
+  return IsCanceled() || IsTimedOut() ;
 }
 
 // Called once after isFinished returns true
 void RunShooter::End() {
-   // Robot::shooter->runShooterMotor(0);
+    Robot::shooter->runShooterMotor(0);
 
 }
 

@@ -93,18 +93,18 @@ void Robot::dashboardUpdate(){
 	SmartDashboard::PutData("pdp",RobotMap::powerDistributionPanel.get());
 
     SmartDashboard::PutData("ahrs",RobotMap::ahrs.get());
-   // SmartDashboard::PutBoolean( "IMU_Connected",        ahrs->IsConnected());
-    SmartDashboard::PutNumber(  "IMU_Yaw",              ahrs->GetYaw());
-    SmartDashboard::PutNumber(  "IMU_Pitch",            ahrs->GetPitch());
-    SmartDashboard::PutNumber(  "IMU_Roll",             ahrs->GetRoll());
+//   // SmartDashboard::PutBoolean( "IMU_Connected",        ahrs->IsConnected());
+//    SmartDashboard::PutNumber(  "IMU_Yaw",              ahrs->GetYaw());
+//    SmartDashboard::PutNumber(  "IMU_Pitch",            ahrs->GetPitch());
+//    SmartDashboard::PutNumber(  "IMU_Roll",             ahrs->GetRoll());
     //SmartDashboard::PutNumber(  "IMU_CompassHeading",   ahrs->GetCompassHeading());
     //SmartDashboard::PutNumber(  "IMU_Update_Count",     ahrs->GetUpdateCount());
     //SmartDashboard::PutNumber(  "IMU_Byte_Count",       ahrs->GetByteCount());
     //SmartDashboard::PutNumber(  "IMU_Timestamp",        ahrs->GetLastSensorTimestamp());
 
     /* These functions are compatible w/the WPI Gyro Class */
-    SmartDashboard::PutNumber(  "IMU_TotalYaw",         ahrs->GetAngle());
-    SmartDashboard::PutNumber(  "IMU_YawRateDPS",       ahrs->GetRate());
+//    SmartDashboard::PutNumber(  "IMU_TotalYaw",         ahrs->GetAngle());
+//    SmartDashboard::PutNumber(  "IMU_YawRateDPS",       ahrs->GetRate());
 
    // SmartDashboard::PutNumber(  "IMU_Accel_X",          ahrs->GetWorldLinearAccelX());
     //SmartDashboard::PutNumber(  "IMU_Accel_Y",          ahrs->GetWorldLinearAccelY());
@@ -112,10 +112,10 @@ void Robot::dashboardUpdate(){
    // SmartDashboard::PutNumber(  "IMU_Temp_C",           ahrs->GetTempC());
     //SmartDashboard::PutBoolean( "IMU_IsCalibrating",    ahrs->IsCalibrating());
 
-    SmartDashboard::PutNumber(  "Velocity_X",           ahrs->GetVelocityX() );
-    SmartDashboard::PutNumber(  "Velocity_Y",           ahrs->GetVelocityY() );
-    SmartDashboard::PutNumber(  "Displacement_X",       ahrs->GetDisplacementX() );
-    SmartDashboard::PutNumber(  "Displacement_Y",       ahrs->GetDisplacementY() );
+//    SmartDashboard::PutNumber(  "Velocity_X",           ahrs->GetVelocityX() );
+//    SmartDashboard::PutNumber(  "Velocity_Y",           ahrs->GetVelocityY() );
+//    SmartDashboard::PutNumber(  "Displacement_X",       ahrs->GetDisplacementX() );
+//    SmartDashboard::PutNumber(  "Displacement_Y",       ahrs->GetDisplacementY() );
 
     /* Display Raw Gyro/Accelerometer/Magnetometer Values                       */
     /* NOTE:  These values are not normally necessary, but are made available   */
@@ -140,22 +140,22 @@ void Robot::dashboardUpdate(){
 
     //TODO: Make sure firmware is up to date.
     /* Sensor Board Information                                                 */
-    SmartDashboard::PutString(  "FirmwareVersion(Check that this is up to date!)",      ahrs->GetFirmwareVersion());
+  //  SmartDashboard::PutString(  "FirmwareVersion(Check that this is up to date!)",      ahrs->GetFirmwareVersion());
 
     /* Quaternion Data                                                          */
     /* Quaternions are fascinating, and are the most compact representation of  */
     /* orientation data.  All of the Yaw, Pitch and Roll Values can be derived  */
     /* from the Quaternions.  If interested in motion processing, knowledge of  */
     /* Quaternions is highly recommended.                                       */
-    SmartDashboard::PutNumber(  "QuaternionW",          ahrs->GetQuaternionW());
-    SmartDashboard::PutNumber(  "QuaternionX",          ahrs->GetQuaternionX());
-    SmartDashboard::PutNumber(  "QuaternionY",          ahrs->GetQuaternionY());
-    SmartDashboard::PutNumber(  "QuaternionZ",          ahrs->GetQuaternionZ());
+//    SmartDashboard::PutNumber(  "QuaternionW",          ahrs->GetQuaternionW());
+//    SmartDashboard::PutNumber(  "QuaternionX",          ahrs->GetQuaternionX());
+//    SmartDashboard::PutNumber(  "QuaternionY",          ahrs->GetQuaternionY());
+//    SmartDashboard::PutNumber(  "QuaternionZ",          ahrs->GetQuaternionZ());
 
-    SmartDashboard::PutData(Scheduler::GetInstance()); //TODO: Do these need to be updated periodically, or can these just be called once?
-    SmartDashboard::PutData(shooter.get());
-    SmartDashboard::PutData(intake.get());
-    SmartDashboard::PutData(gearCatch.get());
+//    SmartDashboard::PutData(Scheduler::GetInstance());
+//    SmartDashboard::PutData(shooter.get());
+//    SmartDashboard::PutData(intake.get());
+//    SmartDashboard::PutData(gearCatch.get());
 
 }
 START_ROBOT_CLASS(Robot)

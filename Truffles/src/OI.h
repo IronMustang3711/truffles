@@ -34,6 +34,7 @@ public:
     std::shared_ptr<JoystickButton> winchDown;
     std::shared_ptr<JoystickButton> winchUp;
     std::shared_ptr<JoystickButton> loadButton;
+    std::shared_ptr<JoystickButton>rotateButton;
 
     //shooter buttons
     std::shared_ptr<JoystickButton> shootButton;

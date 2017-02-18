@@ -50,6 +50,22 @@ public:
 
 };
 
+class RotateFront : public InstantCommand {
+    DriveWithJoystick* drive = new DriveWithJoystick();
+
+protected:
+    void Initialize() override {
+        drive->Start();
+       drive->toggle();
+    }
+
+    void Execute() override {
+    }
+    void End(){
+
+    }
+
+};
 
 
 
@@ -105,23 +121,29 @@ OI::OI() {
 //    winchDown->WhenPressed(new RunWinch(-1));
     winchUp.reset(new JoystickButton(driverJoystick.get(), 7));
     winchUp->WhileHeld(new RunWinch(0.3));
+
+    rotateButton.reset(new JoystickButton(driverJoystick.get(),1));
+    rotateButton->WhenPressed(new RotateFront());
+
+
 //
-    shootButton.reset(new JoystickButton(driverJoystick.get(), 2));
-    shootButton->WhileHeld(new RunShooter());
+    shootButton.reset(new JoystickButton(shooterJoystick.get(), 2));
+    shootButton->ToggleWhenPressed(new RunShooter());
 //
-    loadButton.reset(new HexapusButton(driverJoystick.get(), 1));
+    loadButton.reset(new HexapusButton(shooterJoystick.get(), 1));
     loadButton->WhileHeld(new RunHexapus(0.75));
     loadButton->WhenReleased(new ReAddDefaultHexapusCommand());
 
-    gearAcceptIn.reset(new JoystickButton(driverJoystick.get(), 5));
+    gearAcceptIn.reset(new JoystickButton(shooterJoystick.get(), 5));
     gearAcceptIn->WhenPressed(new GearCatchIn());
 
-    gearAcceptOut.reset(new JoystickButton(driverJoystick.get(), 6));
+
+    gearAcceptOut.reset(new JoystickButton(shooterJoystick.get(), 6));
     gearAcceptOut->WhenPressed(new GearCatchOut());
 
     RunHexapus *hexapus = new RunHexapus(-0.5);
     hexapus->timeOut(0.25);
-    unjamButton.reset(new JoystickButton(driverJoystick.get(),7));
+    unjamButton.reset(new JoystickButton(shooterJoystick.get(),7));
     unjamButton->WhenPressed(hexapus);
 
     initSmartDashboardCommands();

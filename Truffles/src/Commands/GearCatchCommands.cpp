@@ -29,11 +29,13 @@ void GearCatchCommand::Initialize() {
 
 GearCatchOut::GearCatchOut() : GearCatchCommand("Gear Catch -> Out") {
     Requires(Robot::gearCatch.get());
-    //SetTimeout(2.0);
+    SetTimeout(2.0);
 }
 
 GearCatchIn::GearCatchIn() : GearCatchCommand("Gear Catch -> In") {
     Requires(Robot::gearCatch.get());
+    SetTimeout(2.0);
+
 }
 
 void GearCatchOut::Execute() {
@@ -51,7 +53,7 @@ void GearCatchIn::Execute() {
         Cancel();
     }
 
-    SmartDashboard::PutNumber("gear actuator position", nextPosition);
+   // SmartDashboard::PutNumber("gear actuator position", nextPosition);
 }
 
 
@@ -60,7 +62,7 @@ void GearCatchIn::Execute() {
 //}
 
 void GearCatchInUnpowered::Execute() {
-    Command::Execute();
+    Robot::gearCatch->moveIn();
 }
 
 GearCatchInUnpowered::GearCatchInUnpowered() : GearCatchCommand("Gear Catch in (undriven)") {
