@@ -12,6 +12,7 @@
 
 class GearCatchCommand : public frc::Command {
 
+
 public:
     GearCatchCommand(const std::string& name);
     virtual void Interrupted() override;
@@ -21,6 +22,8 @@ public:
     virtual bool IsFinished() override;
 
     virtual void Initialize() override;
+
+    std::shared_ptr<GearCatch> gearCatch = Robot::gearCatch;
 
 };
 
@@ -42,11 +45,35 @@ public:
 
 };
 
-class GearCatchInUnpowered : public GearCatchCommand {
+class GearCatchChill : public GearCatchCommand {
 public:
-    GearCatchInUnpowered();
+    GearCatchChill();
 
     virtual void Execute() override;
+
+};
+
+class GearCatchToggle : public Command {
+public:
+    GearCatchToggle();
+
+    virtual void Interrupted() override;
+
+    virtual void End() override;
+
+    virtual bool IsFinished() override;
+
+    virtual void Initialize() override;
+
+    virtual void Execute() override;
+
+
+private:
+    GearCatchIn catchIn{};
+    GearCatchOut catchOut{};
+    // GearCatchChill chill{};
+    Command *currentCommand;
+
 
 };
 #endif //TRUFFLES_GEARCATCHCOMMANDS_H

@@ -6,17 +6,19 @@
 #include "../RobotMap.h"
 #include "../Commands/GearCatchCommands.h"
 
+
 GearCatch::GearCatch() : Subsystem("Gear Catch") {
     actuator1 = RobotMap::gearCatchActuator1;
     actuator2 = RobotMap::gearCatchActuator2;
 }
 
 void GearCatch::InitDefaultCommand() {
-    SetDefaultCommand(new GearCatchInUnpowered());
+    SetDefaultCommand(new GearCatchChill());
 }
 
 void GearCatch::moveOut() {
-    setPosition(0.615);
+    moveTo(Position::ACCEPT_BALLS);
+    // setPosition(0.615);
 }
 
 void GearCatch::setPosition(double position) {
@@ -24,19 +26,14 @@ void GearCatch::setPosition(double position) {
     actuator1->Set(position);
     actuator2->Set(position);
 
-    SmartDashboard::PutNumber("catch in",position);
-    SmartDashboard::PutNumber("Catch reported",actuator1->Get());
+    SmartDashboard::PutNumber("catch in", position);
+    SmartDashboard::PutNumber("Catch reported", actuator1->Get());
 
 
 }
 
-//void GearCatch::moveVertical() {
-//    moveTo(0.1);
-//
-//}
 
-
-void GearCatch::moveIn() {
+void GearCatch::chill() {
     //TODO does this work better than SetPosition(0) ?
     actuator1->SetOffline();
     actuator2->SetOffline();
@@ -47,7 +44,9 @@ double GearCatch::getPosition() {
 }
 
 void GearCatch::moveTo(GearCatch::Position p) {
-    switch(p){
+    state = p;
+    stateTransitionFinished = false;
+    switch (p) {
 
         case ACCEPT_BALLS:
             setPosition(0.615);
@@ -55,5 +54,18 @@ void GearCatch::moveTo(GearCatch::Position p) {
         case ACCEPT_GEARS:
             setPosition(0.0);
             break;
+        case CHILL:
+            chill();
+            break;
     }
 }
+
+GearCatch::Position GearCatch::getState() {
+    return state;
+}
+
+bool GearCatch::stateTransitionComplete() {
+    return typeid(GetCurrentCommand()) == typeid(GearCatchChill);
+}
+
+

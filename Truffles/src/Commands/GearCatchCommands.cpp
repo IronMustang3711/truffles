@@ -4,7 +4,9 @@
 
 #include "GearCatchCommands.h"
 
-GearCatchCommand::GearCatchCommand(const std::string &name) : frc::Command(name) {}
+GearCatchCommand::GearCatchCommand(const std::string &name) : frc::Command(name) {
+    Requires(Robot::gearCatch.get());
+}
 
 void GearCatchCommand::Interrupted() {
     End();
@@ -12,7 +14,7 @@ void GearCatchCommand::Interrupted() {
 
 //TODO: still pretty hackey
 void GearCatchCommand::End() {
-    Robot::gearCatch->moveIn();
+    gearCatch->chill();
 }
 
 bool GearCatchCommand::IsFinished() {
@@ -20,24 +22,20 @@ bool GearCatchCommand::IsFinished() {
 }
 
 void GearCatchCommand::Initialize() {
-    Robot::gearCatch->moveOut();
-    //RobotMap::gearCatchActuator1->Set(0.615);
+    gearCatch->moveOut(); //TODO see if this can be removed
 }
-
-
 
 
 GearCatchOut::GearCatchOut() : GearCatchCommand("Gear Catch -> Out") {
-    Requires(Robot::gearCatch.get());
-    //SetTimeout(2.0);
+    SetTimeout(2.0);
 }
 
 GearCatchIn::GearCatchIn() : GearCatchCommand("Gear Catch -> In") {
-    Requires(Robot::gearCatch.get());
+    SetTimeout(2.0);
 }
 
 void GearCatchOut::Execute() {
-    Robot::gearCatch->moveOut();
+    gearCatch->moveOut();
 }
 
 void GearCatchIn::Execute() {
@@ -55,18 +53,44 @@ void GearCatchIn::Execute() {
 }
 
 
-//GearCatchInUnpowered::GearCatchInUnpowered(): public GearCatchCommand("Gear Catch -> In (undriven)") {
-//
-//}
-
-void GearCatchInUnpowered::Execute() {
-    Command::Execute();
+void GearCatchChill::Execute() {
+    gearCatch->chill();
 }
 
-GearCatchInUnpowered::GearCatchInUnpowered() : GearCatchCommand("Gear Catch in (undriven)") {
+GearCatchChill::GearCatchChill() : GearCatchCommand("Gear Catch in (undriven)") {
 
 }
 
-//GearCatchInUnpowered::GearCatchInUnpowered() : pu {
-//
-//}
+
+GearCatchToggle::GearCatchToggle() : frc::Command("Gear Catch Toggle"), currentCommand(nullptr) {
+
+}
+
+void GearCatchToggle::Interrupted() {
+    End();
+}
+
+void GearCatchToggle::End() {
+
+}
+
+bool GearCatchToggle::IsFinished() {
+    return IsCanceled() || IsTimedOut();
+}
+
+void GearCatchToggle::Initialize() {
+    Command *curr = Robot::gearCatch->GetCurrentCommand();
+    if (curr != nullptr) {
+        currentCommand = curr;
+    }
+}
+
+void GearCatchToggle::Execute() {
+    if (typeid(currentCommand) == typeid(GearCatchChill)) {
+        catchOut.Start();
+    } else if (typeid(currentCommand) == typeid(GearCatchIn)) {
+        catchOut.Start();
+    } else if (typeid(currentCommand) == typeid(GearCatchOut)) {
+        catchIn.Start();
+    }
+}

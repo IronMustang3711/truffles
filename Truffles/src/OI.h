@@ -61,7 +61,7 @@ class ShooterJoystick : public Joystick {
 public:
     ShooterJoystick();
 
-    Btn hexapusToggleButton;
+    Btn hexapusButton;
     Btn flywheelToggleButton;
     Btn unjamHexapusButton;
     Btn gearCatchToggleButton;

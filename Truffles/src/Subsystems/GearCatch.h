@@ -7,12 +7,15 @@
 
 #include "Commands/Subsystem.h"
 #include "WPILib.h"
+#include "LinearActuator.h"
 #include <bits/shared_ptr.h>
 
 class GearCatch : public Subsystem {
     enum Position {
+
         ACCEPT_BALLS = 0,
-        ACCEPT_GEARS
+        ACCEPT_GEARS,
+        CHILL
     };
 public:
     GearCatch();
@@ -21,7 +24,7 @@ public:
 
     void moveOut();
 
-    void moveIn();
+    void chill();
 
    // void moveVertical();
 
@@ -39,9 +42,18 @@ public:
 
     void InitDefaultCommand() override;
 
+    //TODO: What did I want to do with the following methods...
+
+    Position getState();
+
+    bool stateTransitionComplete();
+
+
 private:
-    std::shared_ptr<Servo> actuator1;
-    std::shared_ptr<Servo> actuator2;
+    std::shared_ptr<LinearActuator> actuator1;
+    std::shared_ptr<LinearActuator> actuator2;
+    Position state = Position::CHILL;
+    bool stateTransitionFinished = true;
 
 
 };

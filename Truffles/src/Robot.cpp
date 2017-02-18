@@ -73,7 +73,7 @@ void Robot::TeleopInit() {
 	// This makes sure that the autonomous stops running when
 	// teleop starts running. If you want the autonomous to
 	// continue until interrupted by another command, remove
-	// these lines or comment it out.
+    // these lines or comment it catchOut.
 	if (autonomousCommand.get() != nullptr)
 		autonomousCommand->Cancel();
 }
