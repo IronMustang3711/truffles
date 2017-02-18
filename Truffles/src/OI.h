@@ -42,6 +42,7 @@ public:
     std::shared_ptr<JoystickButton> gearAcceptIn;
     std::shared_ptr<JoystickButton> intakeButton;
     std::shared_ptr<JoystickButton> unjamButton;
+    std::shared_ptr<JoystickButton> shooterLoaderButton;
 
 
     void initSmartDashboardCommands();
