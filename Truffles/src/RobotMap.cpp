@@ -60,6 +60,7 @@ void RobotMap::init() {
     leftFrontController.reset(new CANTalon(2));
     lw->AddActuator("Chassis", "LeftFront", leftFrontController);
 
+
     leftRearController.reset(new CANTalon(5));
     lw->AddActuator("Chassis", "LeftRear", leftRearController);
 
@@ -68,6 +69,20 @@ void RobotMap::init() {
 
     rightRearController.reset(new CANTalon(4));
     lw->AddActuator("Chassis", "RightRear", (rightRearController));
+
+    auto configDriveTalon = [](std::shared_ptr<CANTalon> t){
+        t->SetFeedbackDevice(CANTalon::QuadEncoder);
+        t->ConfigEncoderCodesPerRev(2916);
+        t->SetSensorDirection(true);
+        t->SetPosition(0);
+        t->ConfigLimitMode(CANSpeedController::kLimitMode_SrxDisableSwitchInputs);
+
+    };
+
+    configDriveTalon(leftFrontController);
+    configDriveTalon(leftRearController);
+    configDriveTalon(rightFrontController);
+    configDriveTalon(rightRearController);
 
     chassisDrive.reset(new RobotDrive(leftFrontController, leftRearController,
                                         rightFrontController, rightRearController));

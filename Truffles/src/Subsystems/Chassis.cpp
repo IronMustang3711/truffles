@@ -51,12 +51,7 @@ void Chassis::MecanumDrive(std::shared_ptr<Joystick> stickPosition, double gyroA
     double y = stickPosition->GetY(); // this is forward/backward
     double z = stickPosition->GetZ(); // this is twist left/right
 
-    // following makes controls less sensitive for small moves
-    x = pow(x, 3);
-    y = pow(y, 3);
-    z = pow(z, 3) * 0.3; // limit to 10% to make it easier to control
-
-    drive->MecanumDrive_Cartesian(x, y, z, gyroAngle); //,gyro->GetAngle());//%THIS MAY BE A DIASTER
+    MecanumDrive_Cartesian(x, y, z, gyroAngle);
 }
 
 
@@ -69,7 +64,67 @@ void Chassis::MecanumDrive_Cartesian(double x, double y, double rotation, double
     y = pow(y, 3);
     rotation = pow(rotation, 3) * 0.3; // limit to 10% to make it easier to control
     drive->MecanumDrive_Cartesian(x, y, rotation, gyroAngle);
+    SmartDashboard::PutNumber("right front encoder", rightFront->GetPosition());
+    SmartDashboard::PutNumber("left front encoder", leftFront->GetPosition());
+    SmartDashboard::PutNumber("right rear encoder", rightRear->GetPosition());
+    SmartDashboard::PutNumber("left rear encoder", leftRear->GetPosition());
+    SmartDashboard::PutNumber("right front quad A",rightFront->GetPinStateQuadA());
+    SmartDashboard::PutNumber("right front quad B",rightFront->GetPinStateQuadB());
+    SmartDashboard::PutNumber("right front quad IDX",rightFront->GetPinStateQuadIdx());
+
+
+
+
+    dashboardTelemetry();
 
 }
+
+void Chassis::dashboardTelemetry() {
+    std::map<std::string, CANTalon *> talons = {
+            {"front left",  leftFront.get()},
+            {"front right", rightFront.get()},
+            {"rear left",   leftRear.get()},
+            {"rear right",  rightRear.get()}
+    };
+
+    for (auto it = talons.begin(); it != talons.end(); ++it) {
+        SmartDashboard::PutNumber(it->first + "/position", it->second->GetPosition());
+    }
+
+
+}
+
+double Chassis::getRightFrontCurrent() {
+    return RobotMap::powerDistributionPanel->GetCurrent(15);
+}
+
+double Chassis::getRightRearCurrent() {
+    return RobotMap::powerDistributionPanel->GetCurrent(0);
+
+}
+
+double Chassis::getLeftFrontCurrent() {
+    return RobotMap::powerDistributionPanel->GetCurrent(14);
+
+}
+
+double Chassis::getLeftRearCurrent() {
+    return RobotMap::powerDistributionPanel->GetCurrent(1);
+
+}
+
+void Chassis::zeroEncoders() {
+    rightFront->SetPosition(0);
+    rightRear->SetPosition(0);
+
+    leftFront->SetPosition(0);
+    leftRear->SetPosition(0);
+
+
+}
+
+
+
+
 
 
