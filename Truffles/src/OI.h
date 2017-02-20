@@ -44,6 +44,9 @@ public:
     std::shared_ptr<JoystickButton> unjamButton;
     std::shared_ptr<JoystickButton> shooterLoaderButton;
 
+    std::shared_ptr<JoystickButton> shooterWinchZero;
+    std::shared_ptr<JoystickButton> shooterWinchUp;
+
 
     void initSmartDashboardCommands();
 

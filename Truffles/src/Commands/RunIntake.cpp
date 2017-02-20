@@ -38,7 +38,7 @@ void RunIntake::Execute() {
 
 // Make this return true when this Command no longer needs to run execute()
 bool RunIntake::IsFinished() {
-    return false;
+    return IsCanceled() || IsTimedOut();
 }
 
 // Called once after isFinished returns true
