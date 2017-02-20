@@ -13,7 +13,7 @@ set(CMAKE_SYSTEM_NAME Linux)
 SET(CMAKE_CXX_COMPILER ${ARM_PREFIX}-g++)
 SET(CMAKE_C_COMPILER ${ARM_PREFIX}-gcc)
 #TODO: add -Wno-unknown-warning-option for xcode
-set(CMAKE_CXX_FLAGS "-std=c++1y -Wformat=2 -Wno-unused-but-set-parameter -Wall -Wextra -pedantic -Wno-psabi" CACHE STRING "" FORCE)
+set(CMAKE_CXX_FLAGS "-std=c++1y -Wformat=2 -Wall -Wno-unused-but-set-parameter -Wextra -pedantic -Wno-psabi" CACHE STRING "" FORCE)
 set(CMAKE_CXX_FLAGS_DEBUG "-O0 -g3" CACHE STRING "" FORCE)
 set(CMAKE_CXX_FLAGS_RELEASE "-O3 -g" CACHE STRING "" FORCE) # still want debugging for release?
 

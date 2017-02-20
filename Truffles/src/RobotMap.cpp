@@ -31,6 +31,9 @@ std::shared_ptr<LinearActuator> RobotMap::gearCatchActuator2;
 std::shared_ptr<PowerDistributionPanel> RobotMap::powerDistributionPanel;
 
  std::shared_ptr<AHRS> RobotMap::ahrs;
+std::shared_ptr<Solenoid> RobotMap::lightsRed;
+std::shared_ptr<Solenoid> RobotMap::lightsGreen;
+std::shared_ptr<Solenoid> RobotMap::lightsBlue;
 
 
 
@@ -59,6 +62,7 @@ void RobotMap::init() {
     leftFrontController.reset(new CANTalon(2));
     lw->AddActuator("Chassis", "LeftFront", leftFrontController);
 
+
     leftRearController.reset(new CANTalon(5));
     lw->AddActuator("Chassis", "LeftRear", leftRearController);
 
@@ -67,6 +71,20 @@ void RobotMap::init() {
 
     rightRearController.reset(new CANTalon(4));
     lw->AddActuator("Chassis", "RightRear", (rightRearController));
+
+    auto configDriveTalon = [](std::shared_ptr<CANTalon> t){
+        t->SetFeedbackDevice(CANTalon::QuadEncoder);
+        t->ConfigEncoderCodesPerRev(2916);
+        t->SetSensorDirection(true);
+        t->SetPosition(0);
+        t->ConfigLimitMode(CANSpeedController::kLimitMode_SrxDisableSwitchInputs);
+
+    };
+
+    configDriveTalon(leftFrontController);
+    configDriveTalon(leftRearController);
+    configDriveTalon(rightFrontController);
+    configDriveTalon(rightRearController);
 
     chassisDrive.reset(new RobotDrive(leftFrontController, leftRearController,
                                         rightFrontController, rightRearController));
@@ -109,8 +127,19 @@ void RobotMap::init() {
 
 
 
-    powerDistributionPanel.reset(new PowerDistributionPanel());
+    powerDistributionPanel.reset(new PowerDistributionPanel(10));
     lw->AddSensor("Robot", "power distribution", powerDistributionPanel);
+
+    lightsRed.reset(new Solenoid(20,0));
+    lw->AddActuator("Lipstick","red(0)",lightsRed);
+
+    lightsGreen.reset(new Solenoid(20,1));
+    lw->AddActuator("Lipstick","green(1)",lightsGreen);
+
+    lightsBlue.reset(new Solenoid(20,2));
+    lw->AddActuator("Lipstick","blue(2)",lightsBlue);
+
+
 
 
 }

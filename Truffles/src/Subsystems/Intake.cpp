@@ -40,7 +40,6 @@ void Intake::InitDefaultCommand() {
  * @value [-1,1]
  */
 void Intake::run(double value){
-	SmartDashboard::PutNumber("Intake:run:input",value);
 	intakeMotor->Set(value);
 }
 

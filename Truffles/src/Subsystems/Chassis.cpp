@@ -46,32 +46,93 @@ void Chassis::InitDefaultCommand() {
 
 // Put methods for controlling this subsystem
 // here. Call these from Commands.
-void Chassis::MecanumDrive(std::shared_ptr<Joystick> stickPosition) {
+void Chassis::MecanumDrive(std::shared_ptr<Joystick> stickPosition, double gyroAngle) {
     double x = stickPosition->GetX(); // this is driverJoystick left/right
     double y = stickPosition->GetY(); // this is forward/backward
     double z = stickPosition->GetZ(); // this is twist left/right
 
-    // following makes controls less sensitive for small moves
-    x = pow(x, 3);
-    y = pow(y, 3);
-    z = pow(z, 3) * 0.3; // limit to 10% to make it easier to control
-    double yaw = RobotMap::ahrs->GetAngle();
-    drive->MecanumDrive_Cartesian(x, y, z, yaw); //,gyro->GetAngle());//%THIS MAY BE A DIASTER
+    MecanumDrive_Cartesian(x, y, z, gyroAngle);
 }
+
 
 void Chassis::AutoDrive(float fwdSpeed, float rotateSpeed) { //%NE
     drive->MecanumDrive_Cartesian(0, -fwdSpeed, rotateSpeed);
 }
 
-void Chassis::MecanumDrive(double x, double y, double z) {
+void Chassis::MecanumDrive_Cartesian(double x, double y, double rotation, double gyroAngle) {
     x = pow(x, 3);
     y = pow(y, 3);
-    z = pow(z, 3) * 0.3; // limit to 10% to make it easier to control
-    //double yaw = RobotMap::ahrs->GetAngle();
-    drive->MecanumDrive_Cartesian(x, y, z, 0); //,gyro->GetAngle());//%THIS MAY BE A DIASTER
+    rotation = pow(rotation, 3) * 0.3; // limit to 10% to make it easier to control
+    drive->MecanumDrive_Cartesian(x, y, rotation, gyroAngle);
+    SmartDashboard::PutNumber("right front encoder", rightFront->GetPosition());
+    SmartDashboard::PutNumber("left front encoder", leftFront->GetPosition());
+    SmartDashboard::PutNumber("right rear encoder", rightRear->GetPosition());
+    SmartDashboard::PutNumber("left rear encoder", leftRear->GetPosition());
+    SmartDashboard::PutNumber("right front quad A",rightFront->GetPinStateQuadA());
+    SmartDashboard::PutNumber("right front quad B",rightFront->GetPinStateQuadB());
+    SmartDashboard::PutNumber("right front quad IDX",rightFront->GetPinStateQuadIdx());
+
+
+
+
+    dashboardTelemetry();
+
 }
 
-void Chassis::MecanumDrive(const Joystick &joystick) {
-    MecanumDrive(joystick.GetX(), joystick.GetY(), joystick.GetZ());
+void Chassis::dashboardTelemetry() {
+    std::map<std::string, CANTalon *> talons = {
+            {"front left",  leftFront.get()},
+            {"front right", rightFront.get()},
+            {"rear left",   leftRear.get()},
+            {"rear right",  rightRear.get()}
+    };
+
+    for (auto it = talons.begin(); it != talons.end(); ++it) {
+        SmartDashboard::PutNumber(it->first + "/position", it->second->GetPosition());
+    }
+
+
 }
+
+double Chassis::getRightFrontCurrent() {
+    return RobotMap::powerDistributionPanel->GetCurrent(15);
+}
+
+double Chassis::getRightRearCurrent() {
+    return RobotMap::powerDistributionPanel->GetCurrent(0);
+
+}
+
+double Chassis::getLeftFrontCurrent() {
+    return RobotMap::powerDistributionPanel->GetCurrent(14);
+
+}
+
+double Chassis::getLeftRearCurrent() {
+    return RobotMap::powerDistributionPanel->GetCurrent(1);
+
+}
+
+void Chassis::zeroEncoders() {
+    rightFront->SetPosition(0);
+    rightRear->SetPosition(0);
+
+    leftFront->SetPosition(0);
+    leftRear->SetPosition(0);
+
+
+}
+
+void Chassis::initMagicMode() {
+
+}
+
+void Chassis::initRegularMode() {
+
+}
+
+
+
+
+
 
