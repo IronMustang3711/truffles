@@ -32,6 +32,7 @@ std::shared_ptr<Servo> RobotMap::gearCatchActuator2;
 std::shared_ptr<PowerDistributionPanel> RobotMap::powerDistributionPanel;
 
  std::shared_ptr<AHRS> RobotMap::ahrs;
+std::shared_ptr<Solenoid> RobotMap::lights;
 
 
 
@@ -125,8 +126,11 @@ void RobotMap::init() {
 
 
 
-    powerDistributionPanel.reset(new PowerDistributionPanel());
+    powerDistributionPanel.reset(new PowerDistributionPanel(10));
     lw->AddSensor("Robot", "power distribution", powerDistributionPanel);
+
+    lights.reset(new Solenoid(20,1));
+    lw->AddActuator("Lipstick","lights",lights);
 
 
 }

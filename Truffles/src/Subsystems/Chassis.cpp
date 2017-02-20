@@ -123,6 +123,14 @@ void Chassis::zeroEncoders() {
 
 }
 
+void Chassis::initMagicMode() {
+
+}
+
+void Chassis::initRegularMode() {
+
+}
+
 
 
 

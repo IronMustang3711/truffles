@@ -57,9 +57,10 @@ public:
 
     void zeroEncoders();
 
-    CANTalon* getTalons();
+  //  CANTalon* getTalons();
 
-
+    void initMagicMode();
+    void initRegularMode();
 	void dashboardTelemetry();
 };
 
