@@ -20,13 +20,13 @@ class GearCatch : public Subsystem {
  public:
   GearCatch();
 
-  void moveTo(Position p);
+
 
   void moveOut();
 
   void moveIn();
 
-  // void moveVertical();
+   void chill();
 
   /**
    *
@@ -42,12 +42,12 @@ class GearCatch : public Subsystem {
 
   void InitDefaultCommand() override;
 
-  // TODO: What did I want to do with the following methods...
+  // TODO: I put this stuff here to help implement value ramping in this class instead of a Command, but now Im not sure if it's a good idea.
 
-  Position getState();
-
-  bool stateTransitionComplete();
-
+//  Position getState();
+//
+//  bool stateTransitionComplete();
+ //   void moveTo(Position p);
  private:
   std::shared_ptr<LinearActuator> actuator1;
   std::shared_ptr<LinearActuator> actuator2;

@@ -5,7 +5,9 @@
 #include "GearCatchCommands.h"
 
 GearCatchCommand::GearCatchCommand(const std::string& name)
-    : frc::Command(name) {}
+    : frc::Command(name) {
+    Requires(Robot::intake.get());
+}
 
 void GearCatchCommand::Interrupted() {
   End();
@@ -22,16 +24,13 @@ bool GearCatchCommand::IsFinished() {
 
 void GearCatchCommand::Initialize() {
   Robot::gearCatch->moveOut();
-  // RobotMap::gearCatchActuator1->Set(0.615);
 }
 
 GearCatchOut::GearCatchOut() : GearCatchCommand("Gear Catch -> Out") {
-  Requires(Robot::gearCatch.get());
   SetTimeout(2.0);
 }
 
 GearCatchIn::GearCatchIn() : GearCatchCommand("Gear Catch -> In") {
-  Requires(Robot::gearCatch.get());
   SetTimeout(2.0);
 }
 
@@ -46,25 +45,16 @@ void GearCatchIn::Execute() {
     Robot::gearCatch->setPosition(nextPosition);
 
   } else {
-    Robot::gearCatch->setPosition(0.0);
+    Robot::gearCatch->moveIn();
     Cancel();
   }
 
   // SmartDashboard::PutNumber("gear actuator position", nextPosition);
 }
 
-// GearCatchInUnpowered::GearCatchInUnpowered(): public GearCatchCommand("Gear
-// Catch -> In (undriven)") {
-//
-//}
-
 void GearCatchInUnpowered::Execute() {
-  Robot::gearCatch->moveIn();
+  Robot::gearCatch->chill();
 }
 
 GearCatchInUnpowered::GearCatchInUnpowered()
     : GearCatchCommand("Gear Catch in (undriven)") {}
-
-// GearCatchInUnpowered::GearCatchInUnpowered() : pu {
-//
-//}
