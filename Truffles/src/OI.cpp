@@ -102,7 +102,8 @@ OI::OI() {
   driverJoystick.reset(new Joystick(0));
   shooterJoystick.reset(new Joystick(1));
 
-  winchUpSlow.reset(new JoystickButton(driverJoystick.get(), 8));
+  winchUpSlow.reset(new JoystickButton(
+      driverJoystick.get(), 8));  // TODO change variable name to winchUp
   winchUpSlow->WhileHeld(new RunWinch(1.0));
   winchUpSlow->WhenReleased(new RunWinch(0.3));
 
@@ -138,7 +139,7 @@ OI::OI() {
   gearAcceptOut->WhenPressed(new GearCatchOut());
 
   RunHexapus* hexapus = new RunHexapus(-0.5);
-  hexapus->timeOut(0.25);
+  hexapus->timeOut(0.1);
   unjamButton.reset(new JoystickButton(shooterJoystick.get(), 7));
   unjamButton->WhenPressed(hexapus);
   unjamButton->WhenReleased(new ReAddDefaultHexapusCommand());
@@ -185,5 +186,5 @@ std::shared_ptr<Joystick> OI::getShooterJoystick() {
 ReAddDefaultHexapusCommand::ReAddDefaultHexapusCommand() : InstantCommand() {}
 
 void ReAddDefaultHexapusCommand::Exeute() {
-  Robot::oi->shootButton->WhileHeld(new RunHexapus(0.75));
+  Robot::oi->loadButton->WhileHeld(new RunHexapus(0.75));
 }

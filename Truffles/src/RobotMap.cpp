@@ -98,7 +98,7 @@ void RobotMap::init() {
   intakeController.reset(new Spark(2));
   lw->AddActuator("Intake", "IntakeMotor", (intakeController));
 
-  winchController.reset(new Spark(1));
+  winchController.reset(new Spark(1));  // TODO change to Talon?
   lw->AddActuator("Winch", "WinchMotor", (winchController));
 
   hexapusController.reset(new Spark(0));
