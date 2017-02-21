@@ -118,8 +118,8 @@ OI::OI() {
   shooterRunHexapus->WhileHeld(new RunHexapus(0.75));
   shooterRunHexapus->WhenReleased(new ReAddDefaultHexapusCommand());
 
-  shooterGearCatchIn.reset(new JoystickButton(shooterJoystick.get(), 5));
-  shooterGearCatchIn->WhenPressed(new GearCatchIn());
+  gearCatchToggle.reset(new JoystickButton(shooterJoystick.get(), 5));
+  gearCatchToggle->WhenPressed(new GearCatchToggle());
 
   shooterGearCatchOut.reset(new JoystickButton(shooterJoystick.get(), 6));
   shooterGearCatchOut->WhenPressed(new GearCatchOut());

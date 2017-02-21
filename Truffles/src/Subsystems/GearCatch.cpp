@@ -14,11 +14,6 @@
 GearCatch::GearCatch() : Subsystem("Gear Catch") {
   actuator1 = RobotMap::gearCatchActuator1;
   actuator2 = RobotMap::gearCatchActuator2;
-
-}
-
-void GearCatch::InitDefaultCommand() {
-  //SetDefaultCommand(new GearCatchInUnpowered());
 }
 
 void GearCatch::moveOut() {
@@ -41,18 +36,4 @@ void GearCatch::chill() {
 
 double GearCatch::getPosition() {
   return actuator1->Get();
-}
-
-void GearCatch::moveTo(GearCatch::Position p) {
-  switch (p) {
-    case ACCEPT_BALLS:
-      setPosition(0.615);
-      break;
-    case ACCEPT_GEARS:
-      setPosition(0.0);
-      break;
-    case CHILL:
-      chill();
-      break;
-  }
 }

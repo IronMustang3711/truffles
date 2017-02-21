@@ -16,9 +16,9 @@ class GearCatch : public Subsystem {
   void moveOut();
 
   void moveIn();
-/**
- * WARNING: be careful about calling this!
- */
+  /**
+   * WARNING: be careful about calling this!
+   */
   void chill();
 
   /**
@@ -33,24 +33,9 @@ class GearCatch : public Subsystem {
    */
   double getPosition();
 
-  void InitDefaultCommand() override;
-
-  // TODO: I put this stuff here to help implement value ramping in this class
-  // instead of a Command, but now Im not sure if it's a good idea.
-
-  //  Position getState();
-  //
-  //  bool stateTransitionComplete();
-  //   void moveTo(Position p);
-  enum Position { ACCEPT_BALLS = 0, ACCEPT_GEARS, CHILL };
-
  private:
   std::shared_ptr<LinearActuator> actuator1;
   std::shared_ptr<LinearActuator> actuator2;
-  Position state = Position::CHILL;
-  bool stateTransitionFinished = true;
-
-  void moveTo(Position p);
 };
 
 #endif  // TRUFFLES_GEARCATCH_H

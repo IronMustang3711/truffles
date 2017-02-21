@@ -64,7 +64,6 @@ void Chassis::MecanumDrive_Cartesian(double x,
       pow(rotation, 3) * 0.3;  // limit to 10% to make it easier to control
   drive->MecanumDrive_Cartesian(x, y, rotation, gyroAngle);
 
-
   dashboardTelemetry();
 }
 

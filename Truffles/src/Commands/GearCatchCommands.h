@@ -11,12 +11,6 @@
 class GearCatchCommand : public InstantCommand {
  public:
   GearCatchCommand(const std::string& name);
- // virtual void Interrupted() override;
-
-  //virtual void End() override;
-
- // virtual void Initialize() override;
-
   std::shared_ptr<GearCatch> gearCatch = Robot::gearCatch;
 };
 
@@ -31,9 +25,7 @@ class GearCatchIn : public GearCatchCommand {
  public:
   GearCatchIn();
 
-   // bool IsFinished() override;
-
-    virtual void Execute() override;
+  virtual void Execute() override;
 };
 
 class GearCatchInUnpowered : public GearCatchCommand {
@@ -47,22 +39,16 @@ class GearCatchToggle : public InstantCommand {
  public:
   GearCatchToggle();
 
-  //virtual void End() override;
-
-  virtual void Initialize() override;
-
   virtual void Execute() override;
 
   void setCurrentCommand(GearCatchCommand* cmd);
 
  protected:
- // bool IsFinished() override;
   void changeCommand();
 
  private:
   GearCatchIn catchIn{};
   GearCatchOut catchOut{};
-  GearCatchInUnpowered chill{};
   Command* currentCommand;
 };
 #endif  // TRUFFLES_GEARCATCHCOMMANDS_H
