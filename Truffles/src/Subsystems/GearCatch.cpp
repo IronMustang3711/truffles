@@ -15,9 +15,6 @@ GearCatch::GearCatch() : Subsystem("Gear Catch") {
   actuator1 = RobotMap::gearCatchActuator1;
   actuator2 = RobotMap::gearCatchActuator2;
 
-  actuator1->SetBounds(2.0, 0, 0, 0, 1.1);
-  // actuator1->SetPeriodMultiplier(PWM::kPeriodMultiplier_1X);
-  actuator2->SetBounds(2.0, 0, 0, 0, 1.1);
 }
 
 void GearCatch::InitDefaultCommand() {

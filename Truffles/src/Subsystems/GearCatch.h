@@ -16,7 +16,9 @@ class GearCatch : public Subsystem {
   void moveOut();
 
   void moveIn();
-
+/**
+ * WARNING: be careful about calling this!
+ */
   void chill();
 
   /**

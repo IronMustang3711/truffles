@@ -17,7 +17,7 @@
  */
 
 LinearActuator::LinearActuator(int channel) : Servo(channel) {
-  SetBounds(2.0, 0.0, 0.0, 0.0, 1.0);
+  SetBounds(2.0, 0.0, 0.0, 0.0, 1.05);
  // SetPeriodMultiplier(kPeriodMultiplier_1X);
   SetSpeed(1.0);  // TODO Is this what the chief delphi post was talking about?
                   // This seems wrong.

@@ -8,14 +8,12 @@
 #include "../Robot.h"
 #include <Commands/Command.h>
 
-class GearCatchCommand : public frc::Command {
+class GearCatchCommand : public InstantCommand {
  public:
   GearCatchCommand(const std::string& name);
-  virtual void Interrupted() override;
+ // virtual void Interrupted() override;
 
-  virtual void End() override;
-
-  virtual bool IsFinished() override;
+  //virtual void End() override;
 
   virtual void Initialize() override;
 
@@ -33,7 +31,9 @@ class GearCatchIn : public GearCatchCommand {
  public:
   GearCatchIn();
 
-  virtual void Execute() override;
+   // bool IsFinished() override;
+
+    virtual void Execute() override;
 };
 
 class GearCatchInUnpowered : public GearCatchCommand {

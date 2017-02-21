@@ -4,34 +4,34 @@
 
 #include "GearCatchCommands.h"
 
-GearCatchCommand::GearCatchCommand(const std::string& name) : Command(name) {
+GearCatchCommand::GearCatchCommand(const std::string& name) : InstantCommand(name) {
   Requires(Robot::gearCatch.get());
 }
 
-void GearCatchCommand::Interrupted() {
-  Cancel();
-}
+//void GearCatchCommand::Interrupted() {
+//  Cancel();
+//}
 
-// TODO: still pretty hackey
-void GearCatchCommand::End() {
- // Robot::gearCatch->moveIn();
-}
+// WARNING: DONT DO THIS BECAUSE IT WILL IMMEDIATELY CANCEL ANY MOVEMENT!!!!
+//void GearCatchCommand::End() {
+// // Robot::gearCatch->chill();
+//}
 
-bool GearCatchCommand::IsFinished() {
-  return IsTimedOut();
- // return IsCanceled() || IsTimedOut();
-}
+//bool GearCatchCommand::IsFinished() {
+//  return IsTimedOut();
+// // return IsCanceled() || IsTimedOut();
+//}
 
 void GearCatchCommand::Initialize() {
   Robot::gearCatch->moveOut();  // TODO Is this necessary?
 }
 
 GearCatchOut::GearCatchOut() : GearCatchCommand("Gear Catch -> Out") {
-  SetTimeout(2.0);
+ // SetTimeout(2.0);
 }
 
 GearCatchIn::GearCatchIn() : GearCatchCommand("Gear Catch -> In") {
-  SetTimeout(2.0);
+ // SetTimeout(2.0);
 }
 
 void GearCatchOut::Execute() {
@@ -51,6 +51,10 @@ void GearCatchIn::Execute() {
 
   // SmartDashboard::PutNumber("gear actuator position", nextPosition);
 }
+
+//bool GearCatchIn::IsFinished() {
+//  return true;
+//}
 
 void GearCatchInUnpowered::Execute() {
   Robot::gearCatch->chill();
