@@ -53,16 +53,16 @@ class GearCatchToggle : public Command {
 
   virtual void Execute() override;
 
-    void setCurrentCommand(GearCatchCommand* cmd);
+  void setCurrentCommand(GearCatchCommand* cmd);
 
-protected:
-    bool IsFinished() override;
-    void changeCommand();
+ protected:
+  bool IsFinished() override;
+  void changeCommand();
 
-private:
+ private:
   GearCatchIn catchIn{};
   GearCatchOut catchOut{};
-   GearCatchInUnpowered chill{};
+  GearCatchInUnpowered chill{};
   Command* currentCommand;
 };
 #endif  // TRUFFLES_GEARCATCHCOMMANDS_H

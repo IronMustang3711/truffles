@@ -38,6 +38,7 @@ class OI {
   std::shared_ptr<JoystickButton> shooterShoot;
   std::shared_ptr<JoystickButton> shooterGearCatchOut;
   std::shared_ptr<JoystickButton> shooterGearCatchIn;
+  std::shared_ptr<JoystickButton> shooterGearIntakeToggle;
   std::shared_ptr<JoystickButton> driverBallIntake;
   std::shared_ptr<JoystickButton> shooterUnjam;
   std::shared_ptr<JoystickButton> shooterRunIntake;

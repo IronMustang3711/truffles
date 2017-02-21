@@ -13,12 +13,11 @@
 class LinearActuator : public frc::Servo {
  public:
   LinearActuator(int channel);
-/**
- *
- * @param value in [0,1]
- * */
+  /**
+   *
+   * @param value in [0,1]
+   * */
   void SetPosition(double value) override;
-
 };
 
 #endif /* SRC_SUBSYSTEMS_LINEARACTUATOR_H_ */

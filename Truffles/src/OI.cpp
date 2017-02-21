@@ -124,6 +124,9 @@ OI::OI() {
   shooterGearCatchOut.reset(new JoystickButton(shooterJoystick.get(), 6));
   shooterGearCatchOut->WhenPressed(new GearCatchOut());
 
+  shooterGearIntakeToggle.reset(new JoystickButton(shooterJoystick.get(), 8));
+  shooterGearIntakeToggle->WhenPressed(new GearCatchToggle());
+
   RunHexapus* hexapus = new RunHexapus(-0.5);
   hexapus->timeOut(0.1);
   shooterUnjam.reset(new JoystickButton(shooterJoystick.get(), 7));

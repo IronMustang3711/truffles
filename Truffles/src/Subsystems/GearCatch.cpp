@@ -29,8 +29,8 @@ void GearCatch::moveOut() {
 }
 
 void GearCatch::setPosition(double position) {
-    actuator1->Set(position);
-    actuator2->Set(position);
+  actuator1->Set(position);
+  actuator2->Set(position);
 }
 
 void GearCatch::moveIn() {
@@ -55,7 +55,7 @@ void GearCatch::moveTo(GearCatch::Position p) {
       setPosition(0.0);
       break;
     case CHILL:
-        chill();
+      chill();
       break;
   }
 }
