@@ -63,16 +63,7 @@ void Chassis::MecanumDrive_Cartesian(double x,
   rotation =
       pow(rotation, 3) * 0.3;  // limit to 10% to make it easier to control
   drive->MecanumDrive_Cartesian(x, y, rotation, gyroAngle);
-  SmartDashboard::PutNumber("right front encoder", rightFront->GetPosition());
-  SmartDashboard::PutNumber("left front encoder", leftFront->GetPosition());
-  SmartDashboard::PutNumber("right rear encoder", rightRear->GetPosition());
-  SmartDashboard::PutNumber("left rear encoder", leftRear->GetPosition());
-  SmartDashboard::PutNumber("right front quad A",
-                            rightFront->GetPinStateQuadA());
-  SmartDashboard::PutNumber("right front quad B",
-                            rightFront->GetPinStateQuadB());
-  SmartDashboard::PutNumber("right front quad IDX",
-                            rightFront->GetPinStateQuadIdx());
+
 
   dashboardTelemetry();
 }

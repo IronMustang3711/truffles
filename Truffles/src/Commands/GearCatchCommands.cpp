@@ -5,7 +5,7 @@
 #include "GearCatchCommands.h"
 
 GearCatchCommand::GearCatchCommand(const std::string& name) : Command(name) {
-  Requires(Robot::intake.get());
+  Requires(Robot::gearCatch.get());
 }
 
 void GearCatchCommand::Interrupted() {
@@ -14,11 +14,12 @@ void GearCatchCommand::Interrupted() {
 
 // TODO: still pretty hackey
 void GearCatchCommand::End() {
-  Robot::gearCatch->moveIn();
+ // Robot::gearCatch->moveIn();
 }
 
 bool GearCatchCommand::IsFinished() {
-  return IsCanceled() || IsTimedOut();
+  return IsTimedOut();
+ // return IsCanceled() || IsTimedOut();
 }
 
 void GearCatchCommand::Initialize() {
@@ -38,14 +39,15 @@ void GearCatchOut::Execute() {
 }
 
 void GearCatchIn::Execute() {
-  double prevPosition = Robot::gearCatch->getPosition();
-  double nextPosition = prevPosition - 0.01;
-  if (nextPosition > 0.0001) {
-    Robot::gearCatch->setPosition(nextPosition);
-  } else {
-    Robot::gearCatch->moveIn();
-    Cancel();
-  }
+  Robot::gearCatch->moveIn();
+//  double prevPosition = Robot::gearCatch->getPosition();
+//  double nextPosition = prevPosition - 0.01;
+//  if (nextPosition > 0.0001) {
+//    Robot::gearCatch->setPosition(nextPosition);
+//  } else {
+//    Robot::gearCatch->moveIn();
+//    Cancel();
+//  }
 
   // SmartDashboard::PutNumber("gear actuator position", nextPosition);
 }
