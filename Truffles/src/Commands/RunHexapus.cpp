@@ -15,13 +15,12 @@ void RunHexapus::Initialize() {
 void RunHexapus::Execute() {
     if (Robot::shooter->isHexapusJammed()) {
         std::cout << "jam detected!!!!!" << std::endl;
-        Robot::oi.driverJoystick.ballIntakeButton.CancelWhenActive(this);
-       // Robot::oi->intakeButton->CancelWhenActive(this);
+        Robot::oi->intakeButton->CancelWhenActive(this);
 
         //TODO: leak!
         RunHexapus* cmd = new RunHexapus(-0.75);
         cmd->SetTimeout(0.5);
-        Robot::oi.driverJoystick.ballIntakeButton.WhileHeld(cmd);
+        Robot::oi->intakeButton->WhileHeld(cmd);
         //Cancel();
         return;
     }

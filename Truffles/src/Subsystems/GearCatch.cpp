@@ -59,5 +59,6 @@ void GearCatch::moveTo(GearCatch::Position p) {
         case ACCEPT_GEARS:
             setPosition(0.0);
             break;
+        case CHILL:break;
     }
 }

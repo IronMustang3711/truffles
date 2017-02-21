@@ -13,8 +13,8 @@
 #define DRIVEWITHJOYSTICK_H
 
 
-#include <Commands/Command.h>
-
+#include "Commands/Subsystem.h"
+#include "../Robot.h"
 
 /**
  *

@@ -23,7 +23,7 @@ public:
 
     void moveOut();
 
-    void chill();
+    void moveIn();
 
    // void moveVertical();
 

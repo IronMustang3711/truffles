@@ -11,7 +11,6 @@
 
 class GearCatchCommand : public frc::Command {
 
-
 public:
     GearCatchCommand(const std::string& name);
     virtual void Interrupted() override;
@@ -44,9 +43,9 @@ public:
 
 };
 
-class GearCatchChill : public GearCatchCommand {
+class GearCatchInUnpowered : public GearCatchCommand {
 public:
-    GearCatchChill();
+    GearCatchInUnpowered();
 
     virtual void Execute() override;
 

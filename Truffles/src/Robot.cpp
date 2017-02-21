@@ -90,7 +90,7 @@ void Robot::TestPeriodic() {
 
 
 void Robot::dashboardUpdate(){
-    auto ahrs = RobotMap::ahrs.get();
+//    auto ahrs = RobotMap::ahrs.get();
 //	SmartDashboard::PutData("pdp",RobotMap::powerDistributionPanel.get());
 //
 //    SmartDashboard::PutData("ahrs",RobotMap::ahrs.get());
