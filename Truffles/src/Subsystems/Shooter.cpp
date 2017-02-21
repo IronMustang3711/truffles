@@ -16,7 +16,15 @@ Shooter::Shooter() : Subsystem("Shooter") {
   hexapusController = RobotMap::hexapusController;
 
   initShooter();
-  shooterRunning = false;
+}
+
+double map(double in,
+           double inputMin,
+           double inputMax,
+           double outputMin,
+           double outputMax) {
+  return outputMin +
+         (outputMax - outputMin) * ((in - inputMin) / (inputMax - inputMin));
 }
 
 void Shooter::initShooter() {
@@ -38,22 +46,7 @@ void Shooter::initShooter() {
 
 void Shooter::InitDefaultCommand() {}
 
-void Shooter::runHexapusMotor(double speed) {
-  hexapusController->Set(-speed);
-}
 
-double map(double in,
-           double inputMin,
-           double inputMax,
-           double outputMin,
-           double outputMax) {
-  return outputMin +
-         (outputMax - outputMin) * ((in - inputMin) / (inputMax - inputMin));
-}
-
-/**
- * speed in [0,1]
- */
 void Shooter::runShooterMotor(double input) {
   double target = input < 0.1 ? (10 + 31900.0 * input)
                               : map(input, 0.1, 1.0, 3200.0, 4200.0);
@@ -65,24 +58,4 @@ void Shooter::runShooterMotor(double input) {
   SmartDashboard::PutNumber("shooter:speed", shooterController->GetSpeed());
   SmartDashboard::PutNumber("Shooter:error",
                             shooterController->GetClosedLoopError());
-}
-
-bool Shooter::isHexapusJammed() {
-  return getHexapusCurrent() >= 6.0;
-}
-
-double Shooter::getHexapusCurrent() {
-  return RobotMap::powerDistributionPanel->GetCurrent(2);
-}
-
-void Shooter::runHexapusMotor() {
-  runHexapusMotor(0.5);
-}
-
-void Shooter::stopHexapusMotor() {
-  runHexapusMotor(0);
-}
-
-void Shooter::unjamHexapusMotor() {
-  runHexapusMotor(-0.6);
 }
