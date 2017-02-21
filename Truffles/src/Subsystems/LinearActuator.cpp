@@ -22,12 +22,11 @@ LinearActuator::LinearActuator(int channel) : Servo(channel) {
   SetSpeed(1.0);
   SetSpeed(-1);
 }
-
+/**
+ * Set(double) delegates to SetPosition
+ * @param value
+ */
 void LinearActuator::SetPosition(double value) {
-  PWM::SetPosition(value);
+  SetSpeed(2*(value-0.5));
 }
 
-// void LinearActuator::Set(double value) {
-//    SetSpeed(2*(value-0.5));
-//    Servo::Set(value);
-//}
