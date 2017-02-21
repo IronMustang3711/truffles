@@ -49,3 +49,15 @@ void RunWinch::End() {
 void RunWinch::Interrupted() {
   End();
 }
+
+RunWinch* RunWinch::createGoUpCommand(){
+  return new RunWinch(1.0);
+}
+
+RunWinch* RunWinch::createHoldCommand() {
+ return new RunWinch(0.3);
+}
+
+RunWinch *RunWinch::createDownCommand() {
+   return new RunWinch(-0.1);
+}

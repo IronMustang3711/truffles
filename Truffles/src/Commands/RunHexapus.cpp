@@ -43,3 +43,14 @@ RunHexapus::RunHexapus(double amt) : Command() {
 void RunHexapus::timeOut(double timeout) {
   Command::SetTimeout(timeout);
 }
+
+RunHexapus *RunHexapus::createUnjamCommand() {
+  RunHexapus* hexapus = new RunHexapus(-0.5);
+  hexapus->timeOut(0.1);
+  return hexapus;
+}
+
+
+
+RunHexapus::RunHexapus() : RunHexapus(0.75){
+}

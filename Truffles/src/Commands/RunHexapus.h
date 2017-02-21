@@ -8,7 +8,8 @@
 
 class RunHexapus : public Command {
  public:
-  RunHexapus(double amt);
+    RunHexapus();
+
   virtual void Initialize();
   virtual void Execute();
   virtual bool IsFinished();
@@ -16,7 +17,10 @@ class RunHexapus : public Command {
   virtual void Interrupted();
 
   void timeOut(double timeout);
+    static RunHexapus* createUnjamCommand();
 
+protected:
+    RunHexapus(double amt);
  private:
   double amt;
   // std::shared_ptr<SpeedController>motorController;
