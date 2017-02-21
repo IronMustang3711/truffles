@@ -6,19 +6,17 @@
 #define TRUFFLES_SIMPLECOMMAND_H
 #include <Commands/Command.h>
 
-
 class SimpleCommand : public Command {
-public:
-    SimpleCommand(const std::string &name);
+ public:
+  SimpleCommand(const std::string& name);
 
-    SimpleCommand(const std::string &name, double timeout);
+  SimpleCommand(const std::string& name, double timeout);
 
-protected:
-    void Interrupted() override;
+ protected:
+  void Interrupted() override;
 
-protected:
-    bool IsFinished() override;
+ protected:
+  bool IsFinished() override;
 };
 
-
-#endif //TRUFFLES_SIMPLECOMMAND_H
+#endif  // TRUFFLES_SIMPLECOMMAND_H

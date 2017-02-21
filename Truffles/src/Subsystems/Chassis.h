@@ -60,9 +60,12 @@ class Chassis : public Subsystem {
 
   //  CANTalon* getTalons();
 
+  void toggleRobotFrontDirection();
+
   void initMagicMode();
   void initRegularMode();
   void dashboardTelemetry();
+  double rotateAngle = 0.0;
 };
 
 #endif

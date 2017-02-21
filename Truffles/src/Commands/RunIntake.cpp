@@ -49,6 +49,4 @@ void RunIntake::Interrupted() {
   End();
 }
 
-RunIntake::RunIntake() :RunIntake(-0.6){}
-
-
+RunIntake::RunIntake() : RunIntake(-0.6) {}

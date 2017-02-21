@@ -5,15 +5,14 @@
 #include "SimpleCommand.h"
 
 bool SimpleCommand::IsFinished() {
-    return IsTimedOut() || IsCanceled();
+  return IsTimedOut() || IsCanceled();
 }
 
 void SimpleCommand::Interrupted() {
-    End();
+  End();
 }
 
-SimpleCommand::SimpleCommand(const std::string &name) : Command(name) {}
+SimpleCommand::SimpleCommand(const std::string& name) : Command(name) {}
 
-SimpleCommand::SimpleCommand(const std::string &name, double timeout) : Command(name, timeout) {}
-
-
+SimpleCommand::SimpleCommand(const std::string& name, double timeout)
+    : Command(name, timeout) {}

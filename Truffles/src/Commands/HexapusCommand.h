@@ -7,13 +7,9 @@
 #include <Commands/Command.h>
 #include "SimpleCommand.h"
 
-
-class HexapusCommand  : public SimpleCommand {
-public:
-    HexapusCommand();
-
-
+class HexapusCommand : public SimpleCommand {
+ public:
+  HexapusCommand();
 };
 
-
-#endif //TRUFFLES_HEXAPUSCOMMAND_H
+#endif  // TRUFFLES_HEXAPUSCOMMAND_H

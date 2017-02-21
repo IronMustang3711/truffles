@@ -4,6 +4,4 @@
 
 #include "HexapusCommand.h"
 
-HexapusCommand::HexapusCommand() : SimpleCommand("Hexapus") {
-
-}
+HexapusCommand::HexapusCommand() : SimpleCommand("Hexapus") {}

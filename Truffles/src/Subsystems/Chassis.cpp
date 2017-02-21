@@ -62,7 +62,7 @@ void Chassis::MecanumDrive_Cartesian(double x,
   y = pow(y, 3);
   rotation =
       pow(rotation, 3) * 0.3;  // limit to 10% to make it easier to control
-  drive->MecanumDrive_Cartesian(x, y, rotation, gyroAngle);
+  drive->MecanumDrive_Cartesian(x, y, rotation, gyroAngle + rotateAngle);
 
   dashboardTelemetry();
 }
@@ -106,3 +106,7 @@ void Chassis::zeroEncoders() {
 void Chassis::initMagicMode() {}
 
 void Chassis::initRegularMode() {}
+
+void Chassis::toggleRobotFrontDirection() {
+  rotateAngle = (rotateAngle == 0.0 ? 90.0 : 0.0);
+}
