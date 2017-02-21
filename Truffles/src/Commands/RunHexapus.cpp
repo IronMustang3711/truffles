@@ -14,12 +14,12 @@ void RunHexapus::Initialize() {}
 void RunHexapus::Execute() {
   if (Robot::shooter->isHexapusJammed()) {
     std::cout << "jam detected!!!!!" << std::endl;
-    Robot::oi->shootButton->CancelWhenActive(this);
+    Robot::oi->loadButton->CancelWhenActive(this);
 
     // TODO: leak!
     RunHexapus* cmd = new RunHexapus(-0.75);
     cmd->SetTimeout(0.2);
-    Robot::oi->shootButton->WhileHeld(cmd);
+    Robot::oi->loadButton->WhileHeld(cmd);
     // Cancel();
     End();
     return;

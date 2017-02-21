@@ -142,7 +142,7 @@ OI::OI() {
   hexapus->timeOut(0.1);
   unjamButton.reset(new JoystickButton(shooterJoystick.get(), 7));
   unjamButton->WhenPressed(hexapus);
-  unjamButton->WhenReleased(new ReAddDefaultHexapusCommand());
+ // unjamButton->WhenReleased(new ReAddDefaultHexapusCommand());
 
   shooterLoaderButton.reset(new JoystickButton(shooterJoystick.get(), 3));
   shooterLoaderButton->WhileHeld(new RunIntake(-0.6));
