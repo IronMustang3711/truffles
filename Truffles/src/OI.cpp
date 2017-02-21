@@ -155,6 +155,7 @@ void OI::initSmartDashboardCommands() {
   //
   SmartDashboard::PutData("Gear catch: in (undriven)",
                           new GearCatchInUnpowered());
+  SmartDashboard::PutData("gear catch: toggle", new GearCatchToggle());
   SmartDashboard::PutData("Gear catch: in", new GearCatchIn());
   SmartDashboard::PutData("Gear catch: out", new GearCatchOut());
   SmartDashboard::PutData("Toggle lights", new ToggleLights());

@@ -8,92 +8,71 @@ GearCatchCommand::GearCatchCommand(const std::string& name) : InstantCommand(nam
   Requires(Robot::gearCatch.get());
 }
 
-//void GearCatchCommand::Interrupted() {
-//  Cancel();
-//}
 
 // WARNING: DONT DO THIS BECAUSE IT WILL IMMEDIATELY CANCEL ANY MOVEMENT!!!!
 //void GearCatchCommand::End() {
 // // Robot::gearCatch->chill();
 //}
 
-//bool GearCatchCommand::IsFinished() {
-//  return IsTimedOut();
-// // return IsCanceled() || IsTimedOut();
+
+//void GearCatchCommand::Initialize() {
+//  //Robot::gearCatch->moveOut();  // TODO Is this necessary?
 //}
 
-void GearCatchCommand::Initialize() {
-  Robot::gearCatch->moveOut();  // TODO Is this necessary?
-}
-
 GearCatchOut::GearCatchOut() : GearCatchCommand("Gear Catch -> Out") {
- // SetTimeout(2.0);
 }
 
 GearCatchIn::GearCatchIn() : GearCatchCommand("Gear Catch -> In") {
- // SetTimeout(2.0);
 }
 
 void GearCatchOut::Execute() {
-  Robot::gearCatch->moveOut();
+  gearCatch->moveOut();
 }
 
 void GearCatchIn::Execute() {
-  Robot::gearCatch->moveIn();
-//  double prevPosition = Robot::gearCatch->getPosition();
-//  double nextPosition = prevPosition - 0.01;
-//  if (nextPosition > 0.0001) {
-//    Robot::gearCatch->setPosition(nextPosition);
-//  } else {
-//    Robot::gearCatch->moveIn();
-//    Cancel();
-//  }
+  gearCatch->moveIn();
 
-  // SmartDashboard::PutNumber("gear actuator position", nextPosition);
 }
 
-//bool GearCatchIn::IsFinished() {
-//  return true;
-//}
-
 void GearCatchInUnpowered::Execute() {
-  Robot::gearCatch->chill();
+  gearCatch->chill();
 }
 
 GearCatchInUnpowered::GearCatchInUnpowered()
     : GearCatchCommand("Gear Catch in (undriven)") {}
 
-GearCatchToggle::GearCatchToggle() : Command("Gear Catch Toggle") {
+GearCatchToggle::GearCatchToggle() : InstantCommand("Gear Catch Toggle") {
   currentCommand = &chill;
-  SetInterruptible(false);
+  //SetInterruptible(false);
 }
 
-void GearCatchToggle::End() {
-  Command::End();
-}
+//void GearCatchToggle::End() {
+//  Command::End();
+//}
 
 void GearCatchToggle::Initialize() {
-  currentCommand = &chill;
+ // currentCommand = &chill;
+ // Execute();
 }
 
 void GearCatchToggle::Execute() {
-  if (currentCommand == nullptr || !currentCommand->IsRunning())
+  //if (currentCommand == nullptr || !currentCommand->IsRunning())
     changeCommand();
 }
 
 void GearCatchToggle::setCurrentCommand(GearCatchCommand* cmd) {
+  SmartDashboard::PutString("trace",cmd->GetName());
   currentCommand = cmd;
+  currentCommand->Start();
 }
 
-bool GearCatchToggle::IsFinished() {
-  return false;
-}
+//bool GearCatchToggle::IsFinished() {
+//  return false;
+//}
 
 void GearCatchToggle::changeCommand() {
-  if (currentCommand == &catchIn)
+  if (currentCommand != nullptr && currentCommand->GetID() == catchIn.GetID())
     setCurrentCommand(&catchOut);
-  else if (currentCommand == &catchOut)
-    setCurrentCommand(&catchIn);
   else
-    setCurrentCommand(&chill);
+    setCurrentCommand(&catchIn);
 }
