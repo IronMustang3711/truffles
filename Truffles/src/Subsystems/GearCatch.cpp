@@ -6,17 +6,14 @@
 #include "../Commands/GearCatchCommands.h"
 #include "../RobotMap.h"
 /**
- * see
+ * @see
  https://www.chiefdelphi.com/forums/showthread.php?t=154631&highlight=linear+actuator+servo
  *
-
+* @see LinearActuator
  */
 GearCatch::GearCatch() : Subsystem("Gear Catch") {
   actuator1 = RobotMap::gearCatchActuator1;
   actuator2 = RobotMap::gearCatchActuator2;
-//Moved to LinearActuator
-//  actuator1->SetBounds(2.0, 0, 0, 0, 1.0);
-//  actuator2->SetBounds(2.0, 0, 0, 0, 1.0);
 }
 
 void GearCatch::InitDefaultCommand() {
@@ -27,19 +24,7 @@ void GearCatch::moveOut() {
   setPosition(0.615);
 }
 
-/*
- * from the above link:
- * ... -The basic set function does not seem to work for whatever reason.
- * Using setSpeed(1) and setSpeed(-1) properly calls setMaxPWM and setMinPWM
- * wheres set(1) and set(0) do not properly call them.
- */
 void GearCatch::setPosition(double position) {
-    //Moved to LinearActuator
-//  double scaledPosition = 2 * position - 1;
-//
-//  actuator1->SetSpeed(scaledPosition);
-//  actuator2->SetSpeed(scaledPosition);
-  //    // Servo.set expects input in [0,1]
     actuator1->Set(position);
     actuator2->Set(position);
 }

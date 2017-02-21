@@ -18,12 +18,12 @@
 
 LinearActuator::LinearActuator(int channel) : Servo(channel) {
   SetBounds(2.0, 0.0, 0.0, 0.0, 1.0);
-  SetPeriodMultiplier(kPeriodMultiplier_4X);  //?
-  SetSpeed(1.0);
+  SetPeriodMultiplier(kPeriodMultiplier_4X);
+  SetSpeed(1.0); //TODO Is this what the chief delphi post was talking about? This seems wrong.
   SetSpeed(-1);
 }
 /**
- * Set(double) delegates to SetPosition
+ * Set(double) will delegate to this method
  * @param value
  */
 void LinearActuator::SetPosition(double value) {

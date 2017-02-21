@@ -4,13 +4,12 @@
 
 #include "GearCatchCommands.h"
 
-GearCatchCommand::GearCatchCommand(const std::string& name)
-    : frc::Command(name) {
-    Requires(Robot::intake.get());
+GearCatchCommand::GearCatchCommand(const std::string& name) : Command(name) {
+  Requires(Robot::intake.get());
 }
 
 void GearCatchCommand::Interrupted() {
-  End();
+  Cancel();
 }
 
 // TODO: still pretty hackey
@@ -23,7 +22,7 @@ bool GearCatchCommand::IsFinished() {
 }
 
 void GearCatchCommand::Initialize() {
-  Robot::gearCatch->moveOut();
+  Robot::gearCatch->moveOut();  // TODO Is this necessary?
 }
 
 GearCatchOut::GearCatchOut() : GearCatchCommand("Gear Catch -> Out") {
@@ -43,7 +42,6 @@ void GearCatchIn::Execute() {
   double nextPosition = prevPosition - 0.01;
   if (nextPosition > 0.0001) {
     Robot::gearCatch->setPosition(nextPosition);
-
   } else {
     Robot::gearCatch->moveIn();
     Cancel();
@@ -58,3 +56,38 @@ void GearCatchInUnpowered::Execute() {
 
 GearCatchInUnpowered::GearCatchInUnpowered()
     : GearCatchCommand("Gear Catch in (undriven)") {}
+
+GearCatchToggle::GearCatchToggle() : Command("Gear Catch Toggle") {
+  currentCommand = &chill;
+  SetInterruptible(false);
+}
+
+void GearCatchToggle::End() {
+  Command::End();
+}
+
+void GearCatchToggle::Initialize() {
+  currentCommand = &chill;
+}
+
+void GearCatchToggle::Execute() {
+  if (currentCommand == nullptr || !currentCommand->IsRunning())
+    changeCommand();
+}
+
+void GearCatchToggle::setCurrentCommand(GearCatchCommand* cmd) {
+  currentCommand = cmd;
+}
+
+bool GearCatchToggle::IsFinished() {
+  return false;
+}
+
+void GearCatchToggle::changeCommand() {
+  if (currentCommand == &catchIn)
+    setCurrentCommand(&catchOut);
+  else if (currentCommand == &catchOut)
+    setCurrentCommand(&catchIn);
+  else
+    setCurrentCommand(&chill);
+}
