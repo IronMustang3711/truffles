@@ -23,10 +23,8 @@ class DriveWithJoystick : public Command {
  public:
   DriveWithJoystick();
 
-
-  virtual void Execute() override ;
-  virtual bool IsFinished() override ;
-
+  virtual void Execute() override;
+  virtual bool IsFinished() override;
 };
 
 #endif

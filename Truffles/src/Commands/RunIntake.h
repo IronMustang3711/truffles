@@ -13,7 +13,6 @@
 
 #include <Commands/Command.h>
 
-
 class RunIntake : public frc::Command {
  public:
   RunIntake();
@@ -28,7 +27,6 @@ class RunIntake : public frc::Command {
   RunIntake(double speed);
 
  private:
-
   double m_speed;
 };
 

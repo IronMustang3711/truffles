@@ -45,7 +45,6 @@ class ShooterJoystick : public Joystick {
 };
 
 class OI {
-
  public:
   std::shared_ptr<DriverJoystick> driverJoystick;
   std::shared_ptr<ShooterJoystick> shooterJoystick;
@@ -54,7 +53,6 @@ class OI {
 
  public:
   OI();
-
 };
 
 #endif

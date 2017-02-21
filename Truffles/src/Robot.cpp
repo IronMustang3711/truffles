@@ -87,7 +87,7 @@ void Robot::TestPeriodic() {
 void Robot::dashboardUpdate() {
   SmartDashboard::PutData("gear catch", gearCatch.get());
   //    auto ahrs = RobotMap::ahrs.get();
-  //	SmartDashboard::PutData("pdp",RobotMap::powerDistributionPanel.get());
+  SmartDashboard::PutData("pdp", RobotMap::powerDistributionPanel.get());
   //
   //    SmartDashboard::PutData("ahrs",RobotMap::ahrs.get());
   ////   // SmartDashboard::PutBoolean( "IMU_Connected", ahrs->IsConnected());

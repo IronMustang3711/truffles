@@ -13,7 +13,6 @@
 
 #include <Commands/Command.h>
 
-
 class RunWinch : public Command {
  public:
   virtual void Initialize();
