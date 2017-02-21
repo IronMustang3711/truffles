@@ -14,10 +14,6 @@ GearCatchCommand::GearCatchCommand(const std::string& name)
 // // Robot::gearCatch->chill();
 //}
 
-// void GearCatchCommand::Initialize() {
-//  //Robot::gearCatch->moveOut();  // TODO Is this necessary?
-//}
-
 GearCatchOut::GearCatchOut() : GearCatchCommand("Gear Catch -> Out") {}
 
 GearCatchIn::GearCatchIn() : GearCatchCommand("Gear Catch -> In") {}

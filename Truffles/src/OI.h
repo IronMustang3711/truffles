@@ -40,8 +40,8 @@ class ShooterJoystick : public Joystick {
   Btn* runIntake;
   Btn* shoot;
   Btn* unjam;
-  Btn* gearCatchIn;
-  Btn* gearCatchOut;
+  Btn* gearCatchToggle;
+  // Btn* gearCatchOut;
 };
 
 class OI {

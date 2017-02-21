@@ -82,22 +82,23 @@ ShooterJoystick::ShooterJoystick()
       runIntake(new Btn(this, 3)),
       shoot(new Btn(this, 2)),
       unjam(new Btn(this, 7)),
-      gearCatchIn(new Btn(this, 5)),
-      gearCatchOut(new Btn(this, 6)) {
+      gearCatchToggle(new Btn(this, 5)) {
   winchDown->WhileHeld(RunWinch::createDownCommand());
   winchStop->WhenPressed(RunWinch::createDownCommand());
   winchUp->WhileHeld(RunWinch::createGoUpCommand());
   winchUp->WhenReleased(RunWinch::createHoldCommand());
 
-  auto g = new CommandGroup();
-  g->AddParallel(new RunShooter());
-  g->AddParallel(new RunIntake());
+  {
+    auto g = new CommandGroup();
+    g->AddParallel(new RunShooter());
+    g->AddParallel(new RunIntake());
+    shoot->ToggleWhenPressed(g);
+  }
 
-  shoot->ToggleWhenPressed(g);
   runIntake->WhileHeld(new RunIntake());
 
-  gearCatchIn->WhenPressed(new GearCatchToggle());
-  gearCatchOut->WhenPressed(new GearCatchOut());
+  gearCatchToggle->WhenPressed(new GearCatchToggle());
+  // gearCatchOut->WhenPressed(new GearCatchOut());
 
   // runHexapus->WhenReleased(new StopHexapus());
 

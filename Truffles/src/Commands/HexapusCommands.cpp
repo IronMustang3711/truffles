@@ -8,7 +8,7 @@
 StopHexapus::StopHexapus() : InstantCommand("stop") {}
 
 void StopHexapus::Execute() {
-  Robot::shooter->runHexapusMotor(0.0);
+  Robot::shooter->stopHexapusMotor();
 }
 
 RunHexapus::RunHexapus()
@@ -22,8 +22,9 @@ void RunHexapus::Execute() {
   }
   if (Robot::shooter->isHexapusJammed()) {
     jamCount++;
-    SmartDashboard::PutNumber("current", Robot::shooter->getHexapusCurrent());
-    SmartDashboard::PutNumber("jam count", jamCount);
+    // SmartDashboard::PutNumber("current",
+    // Robot::shooter->getHexapusCurrent());
+    SmartDashboard::PutNumber("hexapus jam count", jamCount);
     Robot::shooter->stopHexapusMotor();
     Cancel();
     unjamHexapus.Start();

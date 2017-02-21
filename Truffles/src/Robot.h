@@ -49,6 +49,7 @@ class Robot : public IterativeRobot {
   virtual void TeleopInit();
   virtual void TeleopPeriodic();
   virtual void TestPeriodic();
+  void updateAllianceColor();
 
   void dashboardUpdate();
 };
