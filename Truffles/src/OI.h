@@ -28,19 +28,19 @@ class OI {
   std::shared_ptr<Joystick> driverJoystick;
   std::shared_ptr<Joystick> shooterJoystick;
   // driver buttons
-  std::shared_ptr<JoystickButton> winchUpSlow;
-  std::shared_ptr<JoystickButton> winchDown;
-  std::shared_ptr<JoystickButton> winchUp;
-  std::shared_ptr<JoystickButton> loadButton;
-  std::shared_ptr<JoystickButton> rotateButton;
+
+  std::shared_ptr<JoystickButton> shooterWinchDown;
+  std::shared_ptr<JoystickButton> driverWinchUp;
+  std::shared_ptr<JoystickButton> shooterRunHexapus;
+  std::shared_ptr<JoystickButton> driverChangeFront;
 
   // shooter buttons
-  std::shared_ptr<JoystickButton> shootButton;
-  std::shared_ptr<JoystickButton> gearAcceptOut;
-  std::shared_ptr<JoystickButton> gearAcceptIn;
-  std::shared_ptr<JoystickButton> intakeButton;
-  std::shared_ptr<JoystickButton> unjamButton;
-  std::shared_ptr<JoystickButton> shooterLoaderButton;
+  std::shared_ptr<JoystickButton> shooterShoot;
+  std::shared_ptr<JoystickButton> shooterGearCatchOut;
+  std::shared_ptr<JoystickButton> shooterGearCatchIn;
+  std::shared_ptr<JoystickButton> driverBallIntake;
+  std::shared_ptr<JoystickButton> shooterUnjam;
+  std::shared_ptr<JoystickButton> shooterRunIntake;
 
   std::shared_ptr<JoystickButton> shooterWinchZero;
   std::shared_ptr<JoystickButton> shooterWinchUp;
