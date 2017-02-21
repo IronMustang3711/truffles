@@ -2,8 +2,9 @@
 <project version="4">
   <component name="CMakeRunConfigurationManager" shouldGenerate="true" buildAllGenerated="true">
     <generated>
-      <config projectName="Truffles" targetName="deploy" />
       <config projectName="Truffles" targetName="FRCUserProgram" />
+      <config projectName="Truffles" targetName="clangformat" />
+      <config projectName="Truffles" targetName="deploy" />
     </generated>
   </component>
   <component name="CMakeSettings">
@@ -13,12 +14,49 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1c4993e5-df4e-4337-bd19-e201baa65fdb" name="Default" comment="">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.settings/org.eclipse.cdt.core.prefs" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.settings/org.eclipse.cdt.ui.prefs" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.clang-format" afterPath="$PROJECT_DIR$/.clang-format" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CMakeLists.txt" afterPath="$PROJECT_DIR$/CMakeLists.txt" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Commands/AutonomousCommand.cpp" afterPath="$PROJECT_DIR$/src/Commands/AutonomousCommand.cpp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Commands/AutonomousCommand.h" afterPath="$PROJECT_DIR$/src/Commands/AutonomousCommand.h" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Commands/ClearSmartDashboardCommand.cpp" afterPath="$PROJECT_DIR$/src/Commands/ClearSmartDashboardCommand.cpp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Commands/ClearSmartDashboardCommand.h" afterPath="$PROJECT_DIR$/src/Commands/ClearSmartDashboardCommand.h" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Commands/DriveWithJoystick.cpp" afterPath="$PROJECT_DIR$/src/Commands/DriveWithJoystick.cpp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Commands/DriveWithJoystick.h" afterPath="$PROJECT_DIR$/src/Commands/DriveWithJoystick.h" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Commands/GearCatchCommands.cpp" afterPath="$PROJECT_DIR$/src/Commands/GearCatchCommands.cpp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Commands/GearCatchCommands.h" afterPath="$PROJECT_DIR$/src/Commands/GearCatchCommands.h" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Commands/RunHexapus.cpp" afterPath="$PROJECT_DIR$/src/Commands/RunHexapus.cpp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Commands/RunHexapus.h" afterPath="$PROJECT_DIR$/src/Commands/RunHexapus.h" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Commands/RunIntake.cpp" afterPath="$PROJECT_DIR$/src/Commands/RunIntake.cpp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Commands/RunIntake.h" afterPath="$PROJECT_DIR$/src/Commands/RunIntake.h" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Commands/RunShooter.cpp" afterPath="$PROJECT_DIR$/src/Commands/RunShooter.cpp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Commands/RunShooter.h" afterPath="$PROJECT_DIR$/src/Commands/RunShooter.h" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Commands/RunWinch.cpp" afterPath="$PROJECT_DIR$/src/Commands/RunWinch.cpp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Commands/RunWinch.h" afterPath="$PROJECT_DIR$/src/Commands/RunWinch.h" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Commands/ToggleLights.cpp" afterPath="$PROJECT_DIR$/src/Commands/ToggleLights.cpp" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Commands/ToggleLights.h" afterPath="$PROJECT_DIR$/src/Commands/ToggleLights.h" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/OI.cpp" afterPath="$PROJECT_DIR$/src/OI.cpp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/OI.h" afterPath="$PROJECT_DIR$/src/OI.h" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Robot.cpp" afterPath="$PROJECT_DIR$/src/Robot.cpp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Robot.h" afterPath="$PROJECT_DIR$/src/Robot.h" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/RobotMap.cpp" afterPath="$PROJECT_DIR$/src/RobotMap.cpp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/RobotMap.h" afterPath="$PROJECT_DIR$/src/RobotMap.h" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Subsystems/Chassis.cpp" afterPath="$PROJECT_DIR$/src/Subsystems/Chassis.cpp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Subsystems/Chassis.h" afterPath="$PROJECT_DIR$/src/Subsystems/Chassis.h" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Subsystems/GearCatch.cpp" afterPath="$PROJECT_DIR$/src/Subsystems/GearCatch.cpp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Subsystems/GearCatch.h" afterPath="$PROJECT_DIR$/src/Subsystems/GearCatch.h" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Subsystems/Intake.cpp" afterPath="$PROJECT_DIR$/src/Subsystems/Intake.cpp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Subsystems/Intake.h" afterPath="$PROJECT_DIR$/src/Subsystems/Intake.h" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Subsystems/LinearActuator.cpp" afterPath="$PROJECT_DIR$/src/Subsystems/LinearActuator.cpp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Subsystems/LinearActuator.h" afterPath="$PROJECT_DIR$/src/Subsystems/LinearActuator.h" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Subsystems/Shooter.cpp" afterPath="$PROJECT_DIR$/src/Subsystems/Shooter.cpp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Subsystems/Shooter.h" afterPath="$PROJECT_DIR$/src/Subsystems/Shooter.h" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Subsystems/Winch.cpp" afterPath="$PROJECT_DIR$/src/Subsystems/Winch.cpp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Subsystems/Winch.h" afterPath="$PROJECT_DIR$/src/Subsystems/Winch.h" />
     </list>
-    <list id="7c380e8f-e321-480a-a9be-11b064a25aef" name="ide files" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-    </list>
+    <list id="7c380e8f-e321-480a-a9be-11b064a25aef" name="ide files" comment="" />
     <ignored path="$PROJECT_DIR$/cmake-build-debug/" />
     <ignored path="$PROJECT_DIR$/Debug/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -37,30 +75,58 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="Chassis.cpp" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Subsystems/Chassis.cpp">
+      <file leaf-file-name=".clang-format" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/.clang-format">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="192">
-              <caret line="12" column="0" lean-forward="false" selection-start-line="12" selection-start-column="0" selection-end-line="12" selection-end-column="0" />
+            <state relative-caret-position="1232">
+              <caret line="77" column="20" lean-forward="false" selection-start-line="77" selection-start-column="20" selection-end-line="77" selection-end-column="20" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ToggleLights.h" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Commands/ToggleLights.h">
+      <file leaf-file-name="CMakeLists.txt" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/CMakeLists.txt">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="128">
-              <caret line="8" column="21" lean-forward="false" selection-start-line="8" selection-start-column="21" selection-end-line="8" selection-end-column="21" />
-              <folding>
-                <element signature="e#112#143#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="390">
+              <caret line="77" column="19" lean-forward="false" selection-start-line="77" selection-start-column="19" selection-end-line="77" selection-end-column="19" />
+              <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="RunWinch.cpp" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Commands/RunWinch.cpp">
+      <file leaf-file-name="Robot.cpp" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Robot.cpp">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="16">
+              <caret line="23" column="66" lean-forward="false" selection-start-line="23" selection-start-column="66" selection-end-line="23" selection-end-column="66" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Robot.h" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Robot.h">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="447">
+              <caret line="42" column="64" lean-forward="true" selection-start-line="42" selection-start-column="64" selection-end-line="42" selection-end-column="64" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="org.eclipse.cdt.core.prefs" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/.settings/org.eclipse.cdt.core.prefs">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-2366">
+              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="org.eclipse.cdt.ui.prefs" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/.settings/org.eclipse.cdt.ui.prefs">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="0">
               <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
@@ -69,33 +135,13 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ToggleLights.cpp" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/Commands/ToggleLights.cpp">
+      <file leaf-file-name="OI.cpp" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/OI.cpp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="80">
-              <caret line="5" column="0" lean-forward="true" selection-start-line="5" selection-start-column="0" selection-end-line="5" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="InstantCommand.h" pinned="false" current-in-tab="false">
-        <entry file="file://$USER_HOME$/wpilib/cpp/current/include/Commands/InstantCommand.h">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="193">
-              <caret line="21" column="6" lean-forward="false" selection-start-line="21" selection-start-column="6" selection-end-line="21" selection-end-column="6" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Chassis.h" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Subsystems/Chassis.h">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1008">
-              <caret line="65" column="0" lean-forward="false" selection-start-line="65" selection-start-column="0" selection-end-line="65" selection-end-column="0" />
+            <state relative-caret-position="400">
+              <caret line="25" column="0" lean-forward="false" selection-start-line="25" selection-start-column="0" selection-end-line="25" selection-end-column="0" />
               <folding>
-                <marker date="1487623760000" expanded="true" signature="532:533" ph="..." />
+                <marker date="1487637305000" expanded="true" signature="6059:6117" ph="{...}" />
               </folding>
             </state>
           </provider>
@@ -104,47 +150,9 @@
       <file leaf-file-name="RobotMap.cpp" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/RobotMap.cpp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="192">
-              <caret line="12" column="9" lean-forward="false" selection-start-line="12" selection-start-column="9" selection-end-line="12" selection-end-column="9" />
-              <folding>
-                <element signature="e#547#568#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="RunWinch.h" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Commands/RunWinch.h">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="240">
-              <caret line="15" column="0" lean-forward="false" selection-start-line="15" selection-start-column="0" selection-end-line="16" selection-end-column="21" />
-              <folding>
-                <element signature="e#526#557#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="OI.cpp" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/OI.cpp">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2832">
-              <caret line="177" column="51" lean-forward="true" selection-start-line="177" selection-start-column="51" selection-end-line="177" selection-end-column="51" />
-              <folding>
-                <element signature="e#564#603#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="RobotMap.h" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/RobotMap.h">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="704">
-              <caret line="45" column="0" lean-forward="false" selection-start-line="45" selection-start-column="0" selection-end-line="45" selection-end-column="0" />
-              <folding>
-                <marker date="1487623760000" expanded="true" signature="1761:1996" ph="{...}" />
-              </folding>
+            <state relative-caret-position="368">
+              <caret line="55" column="45" lean-forward="false" selection-start-line="55" selection-start-column="45" selection-end-line="55" selection-end-column="45" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -155,6 +163,7 @@
     <findStrings>
       <find>PutNumber</find>
       <find>pinsta</find>
+      <find>pointer</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -173,32 +182,33 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/Robot.h" />
         <option value="$PROJECT_DIR$/src/Commands/GearCatchCommand.h" />
         <option value="$PROJECT_DIR$/src/Commands/GearCatchCommand.cpp" />
-        <option value="$PROJECT_DIR$/src/Commands/GearCatchCommands.h" />
-        <option value="$PROJECT_DIR$/src/Subsystems/GearCatch.h" />
-        <option value="$PROJECT_DIR$/CMakeLists.txt" />
-        <option value="$PROJECT_DIR$/src/Commands/DriveWithJoystick.h" />
         <option value="$PROJECT_DIR$/src/Commands/DriveWithJoystick.cpp" />
         <option value="$PROJECT_DIR$/src/Commands/RunShooter.h" />
         <option value="$PROJECT_DIR$/src/Commands/GearCatchCommands.cpp" />
-        <option value="$PROJECT_DIR$/src/Commands/RunShooter.cpp" />
-        <option value="$PROJECT_DIR$/src/Subsystems/GearCatch.cpp" />
         <option value="$PROJECT_DIR$/src/Subsystems/Intake.cpp" />
         <option value="$PROJECT_DIR$/src/Subsystems/Winch.cpp" />
         <option value="$PROJECT_DIR$/src/Subsystems/Shooter.h" />
         <option value="$PROJECT_DIR$/src/Subsystems/Shooter.cpp" />
         <option value="$PROJECT_DIR$/src/Commands/RunIntake.cpp" />
         <option value="$PROJECT_DIR$/src/OI.h" />
-        <option value="$PROJECT_DIR$/src/Robot.cpp" />
         <option value="$PROJECT_DIR$/src/RobotMap.h" />
         <option value="$PROJECT_DIR$/src/OI.cpp" />
-        <option value="$PROJECT_DIR$/src/RobotMap.cpp" />
         <option value="$PROJECT_DIR$/src/Subsystems/Chassis.h" />
         <option value="$PROJECT_DIR$/src/Subsystems/Chassis.cpp" />
         <option value="$PROJECT_DIR$/src/Commands/ToggleLights.h" />
         <option value="$PROJECT_DIR$/src/Commands/ToggleLights.cpp" />
+        <option value="$PROJECT_DIR$/src/Commands/RunShooter.cpp" />
+        <option value="$PROJECT_DIR$/src/Robot.h" />
+        <option value="$PROJECT_DIR$/src/Commands/DriveWithJoystick.h" />
+        <option value="$PROJECT_DIR$/src/Commands/GearCatchCommands.h" />
+        <option value="$PROJECT_DIR$/src/Subsystems/GearCatch.h" />
+        <option value="$PROJECT_DIR$/src/Commands/RunHexapus.cpp" />
+        <option value="$PROJECT_DIR$/src/Subsystems/GearCatch.cpp" />
+        <option value="$PROJECT_DIR$/src/Robot.cpp" />
+        <option value="$PROJECT_DIR$/src/RobotMap.cpp" />
+        <option value="$PROJECT_DIR$/CMakeLists.txt" />
       </list>
     </option>
   </component>
@@ -212,7 +222,7 @@
   <component name="ProjectFrameBounds">
     <option name="x" value="224" />
     <option name="y" value="22" />
-    <option name="width" value="956" />
+    <option name="width" value="1138" />
     <option name="height" value="874" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
@@ -239,38 +249,6 @@
               <option name="myItemType" value="com.jetbrains.cidr.projectView.CidrFilesViewHelper$MyProjectTreeStructure$1" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="External Libraries" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ExternalLibrariesNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Header Search Paths" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.NamedLibraryElementNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Truffles" />
-              <option name="myItemType" value="com.jetbrains.cidr.projectView.CidrFilesViewHelper$MyProjectTreeStructure$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="External Libraries" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ExternalLibrariesNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Header Search Paths" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.NamedLibraryElementNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="include" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Truffles" />
-              <option name="myItemType" value="com.jetbrains.cidr.projectView.CidrFilesViewHelper$MyProjectTreeStructure$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
               <option name="myItemId" value="Truffles" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
@@ -286,42 +264,6 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Truffles" />
-              <option name="myItemType" value="com.jetbrains.cidr.projectView.CidrFilesViewHelper$MyProjectTreeStructure$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Truffles" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Subsystems" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Truffles" />
-              <option name="myItemType" value="com.jetbrains.cidr.projectView.CidrFilesViewHelper$MyProjectTreeStructure$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Truffles" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Commands" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -331,14 +273,14 @@
   </component>
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="settings.editor.selected.configurable" value="preferences.sourceCode" />
+    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
     <property name="nodejs_interpreter_path" value="/usr/local/bin/node" />
     <property name="js.eslint.eslintPackage" value="/usr/local/lib/node_modules/eslint" />
     <property name="js-jscs-nodeInterpreter" value="/usr/local/bin/node" />
     <property name="full.screen.before.presentation.mode" value="false" />
     <property name="SearchEverywhereHistoryKey" value="Servo&#9;null&#9;null&#10;Command&#9;null&#9;null&#10;Ro&#9;FILE&#9;file:///Users/jason/git/truffles/Truffles/src/RobotMap.cpp" />
   </component>
-  <component name="RunManager" selected="Application.deploy">
+  <component name="RunManager" selected="Application.clangformat">
     <configuration default="true" type="BashConfigurationType" factoryName="Bash">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="INTERPRETER_PATH" value="/bin/bash" />
@@ -529,10 +471,15 @@
       <envs />
       <method />
     </configuration>
-    <list size="3">
+    <configuration default="false" name="clangformat" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="Truffles" TARGET_NAME="clangformat" CONFIG_NAME="Debug">
+      <envs />
+      <method />
+    </configuration>
+    <list size="4">
       <item index="0" class="java.lang.String" itemvalue="Application.Build All" />
       <item index="1" class="java.lang.String" itemvalue="Application.deploy" />
       <item index="2" class="java.lang.String" itemvalue="Application.FRCUserProgram" />
+      <item index="3" class="java.lang.String" itemvalue="Application.clangformat" />
     </list>
   </component>
   <component name="ShelveChangesManager" show_recycled="false">
@@ -560,6 +507,8 @@
       <workItem from="1487553753994" duration="3211000" />
       <workItem from="1487611253396" duration="350000" />
       <workItem from="1487623746900" duration="252000" />
+      <workItem from="1487635307311" duration="1413000" />
+      <workItem from="1487637138294" duration="359000" />
     </task>
     <task id="LOCAL-00001" summary="add shooter code">
       <created>1486938208656</created>
@@ -652,11 +601,18 @@
       <option name="project" value="LOCAL" />
       <updated>1487623352032</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="Reverted some changes introduced in previous merge.&#10;&#10;I hope I got everything!">
+      <created>1487635844107</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1487635844107</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="27300000" />
+    <option name="totallyTimeSpent" value="29072000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -668,27 +624,27 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="224" y="22" width="956" height="874" extended-state="0" />
-    <editor active="true" />
+    <frame x="224" y="22" width="1138" height="874" extended-state="0" />
+    <editor active="false" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.36363637" sideWeight="0.4749679" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.19695613" sideWeight="0.4749679" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.36713734" sideWeight="0.49625668" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.36713734" sideWeight="0.49625668" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="CMake" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32862645" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.36713734" sideWeight="0.5037433" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32734275" sideWeight="0.49753347" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.48908857" sideWeight="0.49753347" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.21916842" sideWeight="0.5250321" order="1" side_tool="true" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32991013" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32862645" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
     </layout>
     <layout-to-restore>
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -751,41 +707,14 @@
     <MESSAGE value="autonomous prep" />
     <MESSAGE value="lights, motion magic WIP" />
     <MESSAGE value="Added SmartDashboard import to fix compile issues with Eclipse&#10;&#10;(cherry picked from commit dbb3bcb)" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added SmartDashboard import to fix compile issues with Eclipse&#10;&#10;(cherry picked from commit dbb3bcb)" />
+    <MESSAGE value="Reverted some changes introduced in previous merge.&#10;&#10;I hope I got everything!" />
+    <option name="LAST_COMMIT_MESSAGE" value="Reverted some changes introduced in previous merge.&#10;&#10;I hope I got everything!" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/Commands/RunIntake.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="256">
-          <caret line="16" column="7" lean-forward="false" selection-start-line="16" selection-start-column="7" selection-end-line="16" selection-end-column="7" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Commands/GearCatchCommands.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Subsystems/Shooter.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Subsystems/Shooter.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="464">
-          <caret line="29" column="6" lean-forward="false" selection-start-line="29" selection-start-column="6" selection-end-line="29" selection-end-column="6" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/RobotMap.cpp">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="512">
@@ -837,13 +766,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/CMakeLists.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="96">
-          <caret line="14" column="48" lean-forward="false" selection-start-line="14" selection-start-column="48" selection-end-line="14" selection-end-column="48" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$USER_HOME$/wpilib/user/cpp/include/AHRS.h">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="346">
@@ -865,25 +787,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Commands/DriveWithJoystick.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="511">
-          <caret line="36" column="12" lean-forward="false" selection-start-line="36" selection-start-column="12" selection-end-line="36" selection-end-column="12" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/Commands/RunShooter.h">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="298">
           <caret line="38" column="23" lean-forward="false" selection-start-line="38" selection-start-column="23" selection-end-line="38" selection-end-column="23" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Commands/DriveWithJoystick.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="575">
-          <caret line="53" column="58" lean-forward="false" selection-start-line="53" selection-start-column="58" selection-end-line="53" selection-end-column="58" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -905,49 +812,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="202">
           <caret line="41" column="24" lean-forward="false" selection-start-line="41" selection-start-column="4" selection-end-line="41" selection-end-column="24" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Robot.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="688">
-          <caret line="43" column="30" lean-forward="false" selection-start-line="43" selection-start-column="30" selection-end-line="43" selection-end-column="30" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Subsystems/GearCatch.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="176">
-          <caret line="11" column="6" lean-forward="false" selection-start-line="11" selection-start-column="6" selection-end-line="11" selection-end-column="6" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Commands/GearCatchCommands.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="736">
-          <caret line="46" column="4" lean-forward="false" selection-start-line="46" selection-start-column="4" selection-end-line="46" selection-end-column="4" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Commands/GearCatchCommands.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="880">
-          <caret line="55" column="5" lean-forward="false" selection-start-line="55" selection-start-column="5" selection-end-line="55" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Commands/RunShooter.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="560">
-          <caret line="35" column="0" lean-forward="false" selection-start-line="35" selection-start-column="0" selection-end-line="35" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Subsystems/GearCatch.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="496">
-          <caret line="31" column="0" lean-forward="false" selection-start-line="31" selection-start-column="0" selection-end-line="31" selection-end-column="0" />
         </state>
       </provider>
     </entry>
@@ -986,13 +850,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/OI.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="271">
-          <caret line="46" column="0" lean-forward="false" selection-start-line="46" selection-start-column="0" selection-end-line="48" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/Subsystems/Shooter.cpp">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1904">
@@ -1015,19 +872,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Robot.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="720">
-          <caret line="45" column="6" lean-forward="false" selection-start-line="45" selection-start-column="6" selection-end-line="45" selection-end-column="6" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$USER_HOME$/wpilib/cpp/current/include/Commands/Command.h">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="720">
           <caret line="51" column="6" lean-forward="false" selection-start-line="51" selection-start-column="6" selection-end-line="51" selection-end-column="6" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1040,11 +888,9 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Subsystems/Chassis.h">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1008">
+        <state relative-caret-position="1040">
           <caret line="65" column="0" lean-forward="false" selection-start-line="65" selection-start-column="0" selection-end-line="65" selection-end-column="0" />
-          <folding>
-            <marker date="1487623760000" expanded="true" signature="532:533" ph="..." />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1058,49 +904,23 @@
     </entry>
     <entry file="file://$USER_HOME$/wpilib/cpp/current/include/Commands/InstantCommand.h">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="193">
+        <state relative-caret-position="336">
           <caret line="21" column="6" lean-forward="false" selection-start-line="21" selection-start-column="6" selection-end-line="21" selection-end-column="6" />
-          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Commands/RunWinch.h">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="240">
-          <caret line="15" column="0" lean-forward="false" selection-start-line="15" selection-start-column="0" selection-end-line="16" selection-end-column="21" />
-          <folding>
-            <element signature="e#526#557#0" expanded="true" />
-          </folding>
+          <caret line="15" column="0" lean-forward="false" selection-start-line="15" selection-start-column="0" selection-end-line="15" selection-end-column="29" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/RobotMap.h">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="704">
-          <caret line="45" column="0" lean-forward="false" selection-start-line="45" selection-start-column="0" selection-end-line="45" selection-end-column="0" />
-          <folding>
-            <marker date="1487623760000" expanded="true" signature="1761:1996" ph="{...}" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/RobotMap.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="192">
-          <caret line="12" column="9" lean-forward="false" selection-start-line="12" selection-start-column="9" selection-end-line="12" selection-end-column="9" />
-          <folding>
-            <element signature="e#547#568#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/OI.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2832">
-          <caret line="177" column="51" lean-forward="true" selection-start-line="177" selection-start-column="51" selection-end-line="177" selection-end-column="51" />
-          <folding>
-            <element signature="e#564#603#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="768">
+          <caret line="48" column="0" lean-forward="false" selection-start-line="48" selection-start-column="0" selection-end-line="48" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1108,9 +928,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="128">
           <caret line="8" column="21" lean-forward="false" selection-start-line="8" selection-start-column="21" selection-end-line="8" selection-end-column="21" />
-          <folding>
-            <element signature="e#112#143#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1125,7 +942,142 @@
     <entry file="file://$PROJECT_DIR$/src/Commands/ToggleLights.cpp">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="80">
-          <caret line="5" column="0" lean-forward="true" selection-start-line="5" selection-start-column="0" selection-end-line="5" selection-end-column="0" />
+          <caret line="5" column="0" lean-forward="false" selection-start-line="5" selection-start-column="0" selection-end-line="5" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Commands/RunShooter.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="187">
+          <caret line="22" column="1" lean-forward="true" selection-start-line="22" selection-start-column="1" selection-end-line="22" selection-end-column="1" />
+          <folding>
+            <element signature="e#485#508#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Commands/DriveWithJoystick.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="155">
+          <caret line="19" column="16" lean-forward="true" selection-start-line="19" selection-start-column="16" selection-end-line="19" selection-end-column="16" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Commands/DriveWithJoystick.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="43">
+          <caret line="20" column="2" lean-forward="false" selection-start-line="20" selection-start-column="2" selection-end-line="20" selection-end-column="2" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Commands/GearCatchCommands.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="289">
+          <caret line="52" column="0" lean-forward="false" selection-start-line="52" selection-start-column="0" selection-end-line="52" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Commands/GearCatchCommands.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-229">
+          <caret line="32" column="1" lean-forward="true" selection-start-line="32" selection-start-column="1" selection-end-line="32" selection-end-column="1" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Subsystems/GearCatch.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="240">
+          <caret line="17" column="6" lean-forward="false" selection-start-line="17" selection-start-column="6" selection-end-line="17" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/OI.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="107">
+          <caret line="21" column="21" lean-forward="true" selection-start-line="21" selection-start-column="21" selection-end-line="21" selection-end-column="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Commands/RunHexapus.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="75">
+          <caret line="12" column="1" lean-forward="false" selection-start-line="12" selection-start-column="1" selection-end-line="12" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Subsystems/GearCatch.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="816">
+          <caret line="53" column="7" lean-forward="false" selection-start-line="53" selection-start-column="7" selection-end-line="53" selection-end-column="7" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/OI.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="400">
+          <caret line="25" column="0" lean-forward="false" selection-start-line="25" selection-start-column="0" selection-end-line="25" selection-end-column="0" />
+          <folding>
+            <marker date="1487637305000" expanded="true" signature="6059:6117" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/RobotMap.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="368">
+          <caret line="55" column="45" lean-forward="false" selection-start-line="55" selection-start-column="45" selection-end-line="55" selection-end-column="45" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.clang-format">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1232">
+          <caret line="77" column="20" lean-forward="false" selection-start-line="77" selection-start-column="20" selection-end-line="77" selection-end-column="20" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/CMakeLists.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="390">
+          <caret line="77" column="19" lean-forward="false" selection-start-line="77" selection-start-column="19" selection-end-line="77" selection-end-column="19" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Robot.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="16">
+          <caret line="23" column="66" lean-forward="false" selection-start-line="23" selection-start-column="66" selection-end-line="23" selection-end-column="66" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Robot.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="447">
+          <caret line="42" column="64" lean-forward="true" selection-start-line="42" selection-start-column="64" selection-end-line="42" selection-end-column="64" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.settings/org.eclipse.cdt.core.prefs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-2366">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.settings/org.eclipse.cdt.ui.prefs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
         </state>
       </provider>

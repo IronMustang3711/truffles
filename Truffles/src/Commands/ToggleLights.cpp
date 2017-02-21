@@ -5,12 +5,9 @@
 #include "ToggleLights.h"
 
 void ToggleLights::Execute() {
-    RobotMap::lightsRed->Set(!RobotMap::lightsRed->Get());
-    RobotMap::lightsGreen->Set(!RobotMap::lightsGreen->Get());
-    RobotMap::lightsBlue->Set(!RobotMap::lightsBlue->Get());
-
+  RobotMap::lightsRed->Set(!RobotMap::lightsRed->Get());
+  RobotMap::lightsGreen->Set(!RobotMap::lightsGreen->Get());
+  RobotMap::lightsBlue->Set(!RobotMap::lightsBlue->Get());
 }
 
-ToggleLights::ToggleLights() : InstantCommand(){
-
-}
+ToggleLights::ToggleLights() : InstantCommand() {}

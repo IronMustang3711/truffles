@@ -10,12 +10,11 @@
 
 #include <Commands/Command.h>
 
+class ClearSmartDashboardCommand : public Command {
+ public:
+  ClearSmartDashboardCommand() : Command("clear smart dashboard") {}
 
-class ClearSmartDashboardCommand : public Command{
-	public:
-	ClearSmartDashboardCommand() : Command("clear smart dashboard"){}
-
-	void clearSmartDashboardData();
+  void clearSmartDashboardData();
 };
 
 #endif /* SRC_COMMANDS_CLEARSMARTDASHBOARDCOMMAND_H_ */

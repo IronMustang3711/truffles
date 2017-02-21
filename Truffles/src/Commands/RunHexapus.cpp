@@ -6,42 +6,38 @@
 #include "../Robot.h"
 
 bool RunHexapus::IsFinished() {
-    return IsTimedOut() || IsCanceled();
+  return IsTimedOut() || IsCanceled();
 }
 
-void RunHexapus::Initialize() {
-}
+void RunHexapus::Initialize() {}
 
 void RunHexapus::Execute() {
-    if (Robot::shooter->isHexapusJammed()) {
-        std::cout << "jam detected!!!!!" << std::endl;
-        Robot::oi->intakeButton->CancelWhenActive(this);
+  if (Robot::shooter->isHexapusJammed()) {
+    std::cout << "jam detected!!!!!" << std::endl;
+    Robot::oi->intakeButton->CancelWhenActive(this);
 
-        //TODO: leak!
-        RunHexapus* cmd = new RunHexapus(-0.75);
-        cmd->SetTimeout(0.5);
-        Robot::oi->intakeButton->WhileHeld(cmd);
-        //Cancel();
-        return;
-    }
-    Robot::shooter->runHexapusMotor(amt);
+    // TODO: leak!
+    RunHexapus* cmd = new RunHexapus(-0.75);
+    cmd->SetTimeout(0.5);
+    Robot::oi->intakeButton->WhileHeld(cmd);
+    // Cancel();
+    return;
+  }
+  Robot::shooter->runHexapusMotor(amt);
 }
 
 void RunHexapus::Interrupted() {
-    End();
+  End();
 }
 
 void RunHexapus::End() {
-    Robot::shooter->runHexapusMotor(0);
+  Robot::shooter->runHexapusMotor(0);
 }
 
 RunHexapus::RunHexapus(double amt) : Command() {
-    this->amt = amt;
-
+  this->amt = amt;
 }
 
 void RunHexapus::timeOut(double timeout) {
-    Command::SetTimeout(timeout);
+  Command::SetTimeout(timeout);
 }
-
-

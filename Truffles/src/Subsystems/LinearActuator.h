@@ -10,11 +10,11 @@
 
 #include <Servo.h>
 
-class LinearActuator: public frc::Servo {
-public:
-	LinearActuator(int channel);
+class LinearActuator : public frc::Servo {
+ public:
+  LinearActuator(int channel);
 
-    void SetPosition(double value) override;
+  void SetPosition(double value) override;
 };
 
 #endif /* SRC_SUBSYSTEMS_LINEARACTUATOR_H_ */

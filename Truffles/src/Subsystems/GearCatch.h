@@ -10,52 +10,49 @@
 #include <memory>
 
 class GearCatch : public Subsystem {
-    enum Position {
+  enum Position {
 
-        ACCEPT_BALLS = 0,
-        ACCEPT_GEARS,
-        CHILL
-    };
-public:
-    GearCatch();
+    ACCEPT_BALLS = 0,
+    ACCEPT_GEARS,
+    CHILL
+  };
 
-    void moveTo(Position p);
+ public:
+  GearCatch();
 
-    void moveOut();
+  void moveTo(Position p);
 
-    void moveIn();
+  void moveOut();
 
-   // void moveVertical();
+  void moveIn();
 
-    /**
-     *
-     * @param position a value between 0 and 1
-     */
-    void setPosition(double position);
+  // void moveVertical();
 
-    /**
-     *
-     * @return a value between 0 and 1
-     */
-    double getPosition();
+  /**
+   *
+   * @param position a value between 0 and 1
+   */
+  void setPosition(double position);
 
-    void InitDefaultCommand() override;
+  /**
+   *
+   * @return a value between 0 and 1
+   */
+  double getPosition();
 
-    //TODO: What did I want to do with the following methods...
+  void InitDefaultCommand() override;
 
-    Position getState();
+  // TODO: What did I want to do with the following methods...
 
-    bool stateTransitionComplete();
+  Position getState();
 
+  bool stateTransitionComplete();
 
-private:
-    std::shared_ptr<LinearActuator> actuator1;
-    std::shared_ptr<LinearActuator> actuator2;
-    Position state = Position::CHILL;
-    bool stateTransitionFinished = true;
-
-
+ private:
+  std::shared_ptr<LinearActuator> actuator1;
+  std::shared_ptr<LinearActuator> actuator2;
+  Position state = Position::CHILL;
+  bool stateTransitionFinished = true;
 };
 
-
-#endif //TRUFFLES_GEARCATCH_H
+#endif  // TRUFFLES_GEARCATCH_H

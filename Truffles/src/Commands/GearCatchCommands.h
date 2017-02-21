@@ -5,73 +5,62 @@
 #ifndef TRUFFLES_GEARCATCHCOMMANDS_H
 #define TRUFFLES_GEARCATCHCOMMANDS_H
 
-
-#include <Commands/Command.h>
 #include "../Robot.h"
+#include <Commands/Command.h>
 
 class GearCatchCommand : public frc::Command {
+ public:
+  GearCatchCommand(const std::string& name);
+  virtual void Interrupted() override;
 
-public:
-    GearCatchCommand(const std::string& name);
-    virtual void Interrupted() override;
+  virtual void End() override;
 
-    virtual void End() override;
+  virtual bool IsFinished() override;
 
-    virtual bool IsFinished() override;
+  virtual void Initialize() override;
 
-    virtual void Initialize() override;
-
-    std::shared_ptr<GearCatch> gearCatch = Robot::gearCatch;
-
+  std::shared_ptr<GearCatch> gearCatch = Robot::gearCatch;
 };
 
 class GearCatchOut : public GearCatchCommand {
-public:
-    GearCatchOut();
+ public:
+  GearCatchOut();
 
-
-    virtual void Execute() override;
-
-
+  virtual void Execute() override;
 };
 
 class GearCatchIn : public GearCatchCommand {
-public:
-    GearCatchIn();
+ public:
+  GearCatchIn();
 
-    virtual void Execute() override;
-
+  virtual void Execute() override;
 };
 
 class GearCatchInUnpowered : public GearCatchCommand {
-public:
-    GearCatchInUnpowered();
+ public:
+  GearCatchInUnpowered();
 
-    virtual void Execute() override;
-
+  virtual void Execute() override;
 };
 
 class GearCatchToggle : public Command {
-public:
-    GearCatchToggle();
+ public:
+  GearCatchToggle();
 
-    virtual void Interrupted() override;
+  virtual void Interrupted() override;
 
-    virtual void End() override;
+  virtual void End() override;
 
-    virtual bool IsFinished() override;
+  virtual bool IsFinished() override;
 
-    virtual void Initialize() override;
+  virtual void Initialize() override;
 
-    virtual void Execute() override;
+  virtual void Execute() override;
 
-
-private:
-    GearCatchIn catchIn{};
-    GearCatchOut catchOut{};
-    // GearCatchChill chill{};
-    Command *currentCommand;
-
-
+ private:
+  GearCatchIn catchIn{};
+  GearCatchOut catchOut{};
+  // GearCatchChill chill{};
+  Command* currentCommand;
 };
-#endif //TRUFFLES_GEARCATCHCOMMANDS_H
+#endif  // TRUFFLES_GEARCATCHCOMMANDS_H

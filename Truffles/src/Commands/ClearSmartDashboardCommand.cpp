@@ -5,16 +5,14 @@
  *      Author: jason
  */
 
-#include <SmartDashboard/SmartDashboard.h>
 #include "ClearSmartDashboardCommand.h"
+#include <SmartDashboard/SmartDashboard.h>
 
-
-void ClearSmartDashboardCommand::clearSmartDashboardData(){
-	for(std::string key: SmartDashboard::GetKeys()){
-		if(SmartDashboard::IsPersistent(key)){
-			SmartDashboard::ClearPersistent(key);
-		}
-		SmartDashboard::Delete(key);
-	}
-
+void ClearSmartDashboardCommand::clearSmartDashboardData() {
+  for (std::string key : SmartDashboard::GetKeys()) {
+    if (SmartDashboard::IsPersistent(key)) {
+      SmartDashboard::ClearPersistent(key);
+    }
+    SmartDashboard::Delete(key);
+  }
 }

@@ -5,19 +5,15 @@
 #ifndef TRUFFLES_TOGGLELIGHTS_H
 #define TRUFFLES_TOGGLELIGHTS_H
 
-#include "Commands/Subsystem.h"
 #include "../Robot.h"
-
+#include "Commands/Subsystem.h"
 
 class ToggleLights : public InstantCommand {
+ public:
+  ToggleLights();
 
-public:
-    ToggleLights();
-
-protected:
-    void Execute() override;
-
+ protected:
+  void Execute() override;
 };
 
-
-#endif //TRUFFLES_TOGGLELIGHTS_H
+#endif  // TRUFFLES_TOGGLELIGHTS_H
