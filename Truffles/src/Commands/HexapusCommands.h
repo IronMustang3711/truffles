@@ -24,12 +24,14 @@ class StopHexapus : public InstantCommand {
 class RunHexapus : public SimpleCommand {
  public:
   RunHexapus();
+  //  virtual void Initialize() override;
   virtual void Execute() override;
   virtual void End() override;
   UnjamHexapus unjamHexapus;
   StopHexapus stopHexapus;
   int jamCount = 0;
-  bool disable = false;
+ // bool disable = false;
+//    bool pausedAfterDisable=false;
 };
 
 #endif  // TRUFFLES_HEXAPUSCOMMAND_H
