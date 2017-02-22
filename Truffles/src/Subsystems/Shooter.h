@@ -29,6 +29,24 @@ class Shooter : public Subsystem {
    * @param speed in [0,1]
    */
   void runShooterMotor(double speed);
+    double getSetPoint();
+    double getVelocity();
+    double getClosedLoopError();
+    double getOutput();
+
+    double prevSetPoint=0;
+    double prevVelocity=0;
+    double prevClosedLoopError=0;
+    double prevOutput=0;
+
+    enum State {
+        OFF,INIT,SHOOT,BANG_BANG,STEADY
+    };
+
+     std::string StateName(State s);
+
+    State state = OFF;
+
 
   //  /**
   //   *
