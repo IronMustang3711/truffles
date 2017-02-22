@@ -13,7 +13,6 @@
 
 Shooter::Shooter() : Subsystem("Shooter") {
   shooterController = RobotMap::shooterController;
-  hexapusController = RobotMap::hexapusController;
 
   initShooter();
 }
@@ -46,12 +45,14 @@ void Shooter::initShooter() {
 
 void Shooter::InitDefaultCommand() {}
 
-void Shooter::runShooterMotor(double speed){
+void Shooter::run(double speed){
+  shooterController->Set(speed);
+
   double sp = getSetPoint();
   double vel = getVelocity();
   double err = getClosedLoopError();
   double out = getOutput();
-  hexapusController->Set(-speed);
+
   if (speed == 0.0) {
     state = OFF;
   }
@@ -78,7 +79,7 @@ void Shooter::runShooterMotor(double speed){
       break;
 
     case BANG_BANG:
-      if (std::abs(getSetPoint() - getVelocity()) <= 20.0) {
+      if (err <= 20.0 ) {
         state = STEADY;
       } else if (err - prevClosedLoopError > 50.0 && sp == prevSetPoint) {
         state = SHOOT;
@@ -95,7 +96,6 @@ void Shooter::runShooterMotor(double speed){
   prevVelocity = vel;
   prevClosedLoopError = err;
   prevOutput = out;
-
   SmartDashboard::PutString("shooter state", StateName(state));
 }
 
@@ -103,7 +103,9 @@ void Shooter::runShooterMotor(double input) {
   double target = input < 0.1 ? (10 + 31900.0 * input)
                               : map(input, 0.1, 1.0, 3200.0, 4200.0);
 
-  shooterController->Set(target);
+  run(target);
+
+ // shooterController->Set(target);
 
   SmartDashboard::PutNumber("shooter:target", target);
   // SmartDashboard::PutNumber("shooter:input", input);
@@ -112,25 +114,6 @@ void Shooter::runShooterMotor(double input) {
                             shooterController->GetClosedLoopError());
 }
 
-bool Shooter::isHexapusJammed() {
-  return getHexapusCurrent() >= 6.0;
-}
-
-double Shooter::getHexapusCurrent() {
-  return RobotMap::powerDistributionPanel->GetCurrent(2);
-}
-
-void Shooter::runHexapusMotor() {
-  runHexapusMotor(0.5);
-}
-
-void Shooter::stopHexapusMotor() {
-  runHexapusMotor(0);
-}
-
-void Shooter::unjamHexapusMotor() {
-  runHexapusMotor(-0.6);
-}
 
 double Shooter::getSetPoint() {
   return shooterController->GetSetpoint();

@@ -20,12 +20,7 @@ void RunHexapus::Execute() {
 //    Cancel();
 //    return;
 //  }
-  if (Robot::shooter->isHexapusJammed()) {
-  if (disable) {
-    DriverStation::ReportError("Hexapus disabled because of too many Jams!");
-    Cancel();
-    return;
-  }
+
   if (Robot::hexapus->isJammed()) {
     jamCount++;
     // SmartDashboard::PutNumber("current",
@@ -46,7 +41,7 @@ void RunHexapus::Execute() {
 }
 
 void RunHexapus::End() {
-    Robot::shooter->stopHexapusMotor();
+    Robot::hexapus->stop();
   //stopHexapus.Start();
 }
 

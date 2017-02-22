@@ -17,8 +17,7 @@
 class Shooter : public Subsystem {
  private:
   std::shared_ptr<CANTalon> shooterController;
-  // TODO factor out hexapus into separate system?
-  std::shared_ptr<SpeedController> hexapusController;
+
 
  public:
   Shooter();
@@ -29,6 +28,11 @@ class Shooter : public Subsystem {
    * @param speed in [0,1]
    */
   void runShooterMotor(double speed);
+    /**
+     *
+     * @param d in [0,4500]
+     */
+    void run(double d);
     double getSetPoint();
     double getVelocity();
     double getClosedLoopError();
@@ -48,23 +52,14 @@ class Shooter : public Subsystem {
     State state = OFF;
 
 
-  //  /**
-  //   *
-  //   * @param speed in [0,1]
-  //   */
-  //  void runHexapusMotor(double speed);
-  //
-  //  void runHexapusMotor();
-  //  void stopHexapusMotor();
-  //  void unjamHexapusMotor();
+
 
   /**
    * setup PID values for the shooter controller.
    */
   void initShooter();
 
-  //  double getHexapusCurrent();
-  //  bool isHexapusJammed();
+
 };
 
 #endif
