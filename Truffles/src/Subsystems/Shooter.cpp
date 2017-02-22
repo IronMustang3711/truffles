@@ -39,7 +39,56 @@ void Shooter::initShooter() {
 void Shooter::InitDefaultCommand() {}
 
 void Shooter::runHexapusMotor(double speed) {
+  double sp = getSetPoint();
+  double vel = getVelocity();
+  double err = getClosedLoopError();
+  double out = getOutput();
   hexapusController->Set(-speed);
+  if (speed == 0.0) {
+    state = OFF;
+  }
+  switch (state) {
+    case OFF:
+      if (speed != 0.0) {
+        state = INIT;
+        initShooter();
+      }
+      break;
+
+    case INIT:
+      if (err <= 20.0) {
+        state = STEADY;
+      } else if (err - prevClosedLoopError > 50.0 && sp == prevSetPoint) {
+        state = SHOOT;
+      }
+      break;
+
+    case SHOOT:
+      if (prevVelocity - vel < 10 && prevSetPoint == sp) {
+        state = BANG_BANG;
+      }
+      break;
+
+    case BANG_BANG:
+      if (std::abs(getSetPoint() - getVelocity()) <= 20.0) {
+        state = STEADY;
+      } else if (err - prevClosedLoopError > 50.0 && sp == prevSetPoint) {
+        state = SHOOT;
+      }
+      break;
+
+    case STEADY:
+      if (prevVelocity - vel > 50 && prevSetPoint == sp) {
+        state = SHOOT;
+      }
+      break;
+  }
+  prevSetPoint = sp;
+  prevVelocity = vel;
+  prevClosedLoopError = err;
+  prevOutput = out;
+
+  SmartDashboard::PutString("shooter state", StateName(state));
 }
 
 double map(double in,
@@ -85,4 +134,37 @@ void Shooter::stopHexapusMotor() {
 
 void Shooter::unjamHexapusMotor() {
   runHexapusMotor(-0.6);
+}
+
+double Shooter::getSetPoint() {
+  return shooterController->GetSetpoint();
+}
+
+double Shooter::getVelocity() {
+  return shooterController->GetSpeed();
+}
+
+double Shooter::getClosedLoopError() {
+  return shooterController->GetClosedLoopError();
+}
+
+double Shooter::getOutput() {
+  return shooterController->GetOutputVoltage() /
+         shooterController->GetBusVoltage();
+}
+
+std::string Shooter::StateName(Shooter::State s) {
+  switch (s) {
+    case OFF:
+      return "OFF";
+    case INIT:
+      return "INIT";
+    case SHOOT:
+      return "SHOOT";
+    case BANG_BANG:
+      return "BANG_BANG";
+    case STEADY:
+      return "STEADY";
+  }
+  return "butts";
 }
