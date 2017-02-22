@@ -8,7 +8,7 @@
 StopHexapus::StopHexapus() : InstantCommand("stop") {}
 
 void StopHexapus::Execute() {
-  Robot::shooter->stopHexapusMotor();
+  Robot::hexapus->stop();
 }
 
 RunHexapus::RunHexapus()
@@ -21,21 +21,22 @@ void RunHexapus::Execute() {
 //    return;
 //  }
   if (Robot::shooter->isHexapusJammed()) {
+  if (disable) {
+    DriverStation::ReportError("Hexapus disabled because of too many Jams!");
+    Cancel();
+    return;
+  }
+  if (Robot::hexapus->isJammed()) {
     jamCount++;
     // SmartDashboard::PutNumber("current",
     // Robot::shooter->getHexapusCurrent());
     SmartDashboard::PutNumber("hexapus jam count", jamCount);
-    Robot::shooter->stopHexapusMotor();
-      if(GetGroup()!=nullptr){
-          GetGroup()->Cancel();
-      } else {
-         Cancel();
-      }
-
+    Robot::hexapus->stop();
+    Cancel();
     unjamHexapus.Start();
   } else {
     jamCount = 0;
-    Robot::shooter->runHexapusMotor();
+    Robot::hexapus->run();
   }
 
   if (jamCount == 5) {
@@ -49,15 +50,11 @@ void RunHexapus::End() {
   //stopHexapus.Start();
 }
 
-//void RunHexapus::Initialize() {
-//
-//}
-
 void UnjamHexapus::Execute() {
-  if (Robot::shooter->isHexapusJammed()) {
+  if (Robot::hexapus->isJammed()) {
     Cancel();
   }
-  Robot::shooter->unjamHexapusMotor();
+  Robot::hexapus->unjam();
 }
 
 void UnjamHexapus::End() {
