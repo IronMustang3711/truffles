@@ -55,3 +55,7 @@ RunWinch* RunWinch::createHoldCommand() {
 RunWinch* RunWinch::createDownCommand() {
   return new RunWinch(-0.1);
 }
+
+RunWinch *RunWinch::createStopCommand() {
+  return new RunWinch(0.0);
+}
