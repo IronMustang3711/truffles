@@ -5,48 +5,50 @@
 #ifndef TRUFFLES_GEARCATCHCOMMANDS_H
 #define TRUFFLES_GEARCATCHCOMMANDS_H
 
-
-#include "Commands/Subsystem.h"
 #include "../Robot.h"
+#include <Commands/Command.h>
 
-
-class GearCatchCommand : public frc::Command {
-
-public:
-    GearCatchCommand(const std::string& name);
-    virtual void Interrupted() override;
-
-    virtual void End() override;
-
-    virtual bool IsFinished() override;
-
-    virtual void Initialize() override;
-
+class GearCatchCommand : public InstantCommand {
+ public:
+  GearCatchCommand(const std::string& name);
+  std::shared_ptr<GearCatch> gearCatch = Robot::gearCatch;
 };
 
 class GearCatchOut : public GearCatchCommand {
-public:
-    GearCatchOut();
+ public:
+  GearCatchOut();
 
-
-    virtual void Execute() override;
-
-
+  virtual void Execute() override;
 };
 
 class GearCatchIn : public GearCatchCommand {
-public:
-    GearCatchIn();
+ public:
+  GearCatchIn();
 
-    virtual void Execute() override;
-
+  virtual void Execute() override;
 };
 
 class GearCatchInUnpowered : public GearCatchCommand {
-public:
-    GearCatchInUnpowered();
+ public:
+  GearCatchInUnpowered();
 
-    virtual void Execute() override;
-
+  virtual void Execute() override;
 };
-#endif //TRUFFLES_GEARCATCHCOMMANDS_H
+
+class GearCatchToggle : public InstantCommand {
+ public:
+  GearCatchToggle();
+
+  virtual void Execute() override;
+
+  void setCurrentCommand(GearCatchCommand* cmd);
+
+ protected:
+  void changeCommand();
+
+ private:
+  GearCatchIn catchIn{};
+  GearCatchOut catchOut{};
+  Command* currentCommand;
+};
+#endif  // TRUFFLES_GEARCATCHCOMMANDS_H

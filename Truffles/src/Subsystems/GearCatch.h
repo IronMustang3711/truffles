@@ -6,45 +6,36 @@
 #define TRUFFLES_GEARCATCH_H
 
 #include "Commands/Subsystem.h"
-#include "WPILib.h"
-#include <bits/shared_ptr.h>
-
+#include "LinearActuator.h"
+#include <memory>
+// TODO default command to Inward?
 class GearCatch : public Subsystem {
-    enum Position {
-        ACCEPT_BALLS = 0,
-        ACCEPT_GEARS
-    };
-public:
-    GearCatch();
+ public:
+  GearCatch();
 
-    void moveTo(Position p);
+  void moveOut();
 
-    void moveOut();
+  void moveIn();
+  /**
+   * WARNING: be careful about calling this!
+   */
+  void chill();
 
-    void moveIn();
+  /**
+   *
+   * @param position a value between 0 and 1
+   */
+  void setPosition(double position);
 
-   // void moveVertical();
+  /**
+   *
+   * @return a value between 0 and 1
+   */
+  double getPosition();
 
-    /**
-     *
-     * @param position a value between 0 and 1
-     */
-    void setPosition(double position);
-
-    /**
-     *
-     * @return a value between 0 and 1
-     */
-    double getPosition();
-
-    void InitDefaultCommand() override;
-
-private:
-    std::shared_ptr<Servo> actuator1;
-    std::shared_ptr<Servo> actuator2;
-
-
+ private:
+  std::shared_ptr<LinearActuator> actuator1;
+  std::shared_ptr<LinearActuator> actuator2;
 };
 
-
-#endif //TRUFFLES_GEARCATCH_H
+#endif  // TRUFFLES_GEARCATCH_H

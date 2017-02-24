@@ -4,71 +4,52 @@
 
 #include "GearCatchCommands.h"
 
-GearCatchCommand::GearCatchCommand(const std::string &name) : frc::Command(name) {}
-
-void GearCatchCommand::Interrupted() {
-    End();
+GearCatchCommand::GearCatchCommand(const std::string& name)
+    : InstantCommand(name) {
+  Requires(Robot::gearCatch.get());
 }
 
-//TODO: still pretty hackey
-void GearCatchCommand::End() {
-    Robot::gearCatch->moveIn();
-}
+// WARNING: DONT DO THIS BECAUSE IT WILL IMMEDIATELY CANCEL ANY MOVEMENT!!!!
+// void GearCatchCommand::End() {
+// // Robot::gearCatch->chill();
+//}
 
-bool GearCatchCommand::IsFinished() {
-    return IsCanceled() || IsTimedOut();
-}
+GearCatchOut::GearCatchOut() : GearCatchCommand("Gear Catch -> Out") {}
 
-void GearCatchCommand::Initialize() {
-    Robot::gearCatch->moveOut();
-    //RobotMap::gearCatchActuator1->Set(0.615);
-}
-
-
-
-
-GearCatchOut::GearCatchOut() : GearCatchCommand("Gear Catch -> Out") {
-    Requires(Robot::gearCatch.get());
-    SetTimeout(2.0);
-}
-
-GearCatchIn::GearCatchIn() : GearCatchCommand("Gear Catch -> In") {
-    Requires(Robot::gearCatch.get());
-    SetTimeout(2.0);
-
-}
+GearCatchIn::GearCatchIn() : GearCatchCommand("Gear Catch -> In") {}
 
 void GearCatchOut::Execute() {
-    Robot::gearCatch->moveOut();
+  gearCatch->moveOut();
 }
 
 void GearCatchIn::Execute() {
-    double prevPosition = Robot::gearCatch->getPosition();
-    double nextPosition = prevPosition - 0.01;
-    if (nextPosition > 0.0001) {
-        Robot::gearCatch->setPosition(nextPosition);
-
-    } else {
-        Robot::gearCatch->setPosition(0.0);
-        Cancel();
-    }
-
-   // SmartDashboard::PutNumber("gear actuator position", nextPosition);
+  gearCatch->moveIn();
 }
-
-
-//GearCatchInUnpowered::GearCatchInUnpowered(): public GearCatchCommand("Gear Catch -> In (undriven)") {
-//
-//}
 
 void GearCatchInUnpowered::Execute() {
-    Robot::gearCatch->moveIn();
+  gearCatch->chill();
 }
 
-GearCatchInUnpowered::GearCatchInUnpowered() : GearCatchCommand("Gear Catch in (undriven)") {
+GearCatchInUnpowered::GearCatchInUnpowered()
+    : GearCatchCommand("Gear Catch in (undriven)") {}
 
+GearCatchToggle::GearCatchToggle() : InstantCommand("Gear Catch Toggle") {
+  currentCommand = &catchIn;
 }
 
-//GearCatchInUnpowered::GearCatchInUnpowered() : pu {
-//
-//}
+void GearCatchToggle::Execute() {
+  changeCommand();
+}
+
+void GearCatchToggle::setCurrentCommand(GearCatchCommand* cmd) {
+  SmartDashboard::PutString("trace", cmd->GetName());
+  currentCommand = cmd;
+  currentCommand->Start();
+}
+
+void GearCatchToggle::changeCommand() {
+  if (currentCommand != nullptr && currentCommand->GetID() == catchIn.GetID())
+    setCurrentCommand(&catchOut);
+  else
+    setCurrentCommand(&catchIn);
+}

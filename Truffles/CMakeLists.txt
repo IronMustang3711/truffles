@@ -63,3 +63,20 @@ target_link_libraries(FRCUserProgram CTRLib navx_frc_cpp  wpi) #TODO add additio
 add_custom_target("deploy"
         COMMAND ant -f ${CMAKE_CURRENT_SOURCE_DIR}/build.xml
         DEPENDS FRCUserProgram)
+
+
+
+# additional target to perform clang-format run, requires clang-format
+
+# get all project files
+file(GLOB_RECURSE ALL_SOURCE_FILES *.cpp *.h)
+
+
+add_custom_target(
+        clangformat
+        COMMAND clang-format
+        -style=file
+        -i
+        ${ALL_SOURCE_FILES}
+)
+
