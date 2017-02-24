@@ -88,26 +88,21 @@ ShooterJoystick::ShooterJoystick()
   winchUp->WhileHeld(RunWinch::createGoUpCommand());
   winchUp->WhenReleased(RunWinch::createHoldCommand());
 
-
-    shoot->ToggleWhenPressed(new RunShooter());
-
+  shoot->ToggleWhenPressed(new RunShooter());
 
   runIntake->WhileHeld(new RunIntake());
 
   gearCatchToggle->WhenPressed(new GearCatchToggle());
 
   runHexapus->WhileHeld(new RunHexapus());
- // runHexapus->WhenReleased(new StopHexapus());
+  // runHexapus->WhenReleased(new StopHexapus());
 
-
-
-
-//    {
-//        auto g = new CommandGroup();
-//        g->AddParallel(new RunHexapus());
-//        g->AddParallel(new RunIntake(-0.4));
-//        runHexapus->WhileHeld(g);
-//    }
+  //    {
+  //        auto g = new CommandGroup();
+  //        g->AddParallel(new RunHexapus());
+  //        g->AddParallel(new RunIntake(-0.4));
+  //        runHexapus->WhileHeld(g);
+  //    }
   // runHexapus->WhenReleased(new StopHexapus());
 
   unjam->WhenPressed(new UnjamHexapus(new StopHexapus()));

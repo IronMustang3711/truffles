@@ -30,8 +30,8 @@ class RunHexapus : public SimpleCommand {
   UnjamHexapus unjamHexapus;
   StopHexapus stopHexapus;
   int jamCount = 0;
- // bool disable = false;
-//    bool pausedAfterDisable=false;
+  // bool disable = false;
+  //    bool pausedAfterDisable=false;
 };
 
 #endif  // TRUFFLES_HEXAPUSCOMMAND_H

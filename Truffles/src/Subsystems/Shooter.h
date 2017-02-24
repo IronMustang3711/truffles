@@ -18,7 +18,6 @@ class Shooter : public Subsystem {
  private:
   std::shared_ptr<CANTalon> shooterController;
 
-
  public:
   Shooter();
 
@@ -28,38 +27,31 @@ class Shooter : public Subsystem {
    * @param speed in [0,1]
    */
   void runShooterMotor(double speed);
-    /**
-     *
-     * @param d in [0,4500]
-     */
-    void run(double d);
-    double getSetPoint();
-    double getVelocity();
-    double getClosedLoopError();
-    double getOutput();
+  /**
+   *
+   * @param d in [0,4500]
+   */
+  void run(double d);
+  double getSetPoint();
+  double getVelocity();
+  double getClosedLoopError();
+  double getOutput();
 
-    double prevSetPoint=0;
-    double prevVelocity=0;
-    double prevClosedLoopError=0;
-    double prevOutput=0;
+  double prevSetPoint = 0;
+  double prevVelocity = 0;
+  double prevClosedLoopError = 0;
+  double prevOutput = 0;
 
-    enum State {
-        OFF,INIT,SHOOT,BANG_BANG,STEADY
-    };
+  enum State { OFF, INIT, SHOOT, BANG_BANG, STEADY };
 
-     std::string StateName(State s);
+  std::string StateName(State s);
 
-    State state = OFF;
-
-
-
+  State state = OFF;
 
   /**
    * setup PID values for the shooter controller.
    */
   void initShooter();
-
-
 };
 
 #endif

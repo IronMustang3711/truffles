@@ -11,7 +11,6 @@
 #include "RunShooter.h"
 #include "../Robot.h"
 
-
 RunShooter::RunShooter() : Command() {
   Requires(Robot::shooter.get());
 }

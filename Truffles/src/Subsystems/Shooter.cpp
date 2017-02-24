@@ -45,7 +45,13 @@ void Shooter::initShooter() {
 
 void Shooter::InitDefaultCommand() {}
 
-void Shooter::run(double speed){
+void Shooter::run(double speed) {
+  //  if(state == BANG_BANG){
+  //    shooterController->SetP(5.0);
+  //  }
+  //  else {
+  //    shooterController->SetP(1.0);
+  //  }
   shooterController->Set(speed);
 
   double sp = getSetPoint();
@@ -53,7 +59,7 @@ void Shooter::run(double speed){
   double err = getClosedLoopError();
   double out = getOutput();
 
-  if (speed == 0.0) {
+  if (speed == 10.0) {
     state = OFF;
   }
   switch (state) {
@@ -73,15 +79,17 @@ void Shooter::run(double speed){
       break;
 
     case SHOOT:
-      if (prevVelocity - vel < 10 && prevSetPoint == sp) {
+      if ((prevVelocity - vel < 10 ||
+           std::abs(prevClosedLoopError - err) < 5.0) &&
+          prevSetPoint == sp) {
         state = BANG_BANG;
       }
       break;
 
     case BANG_BANG:
-      if (err <= 20.0 ) {
+      if (err <= 20.0) {
         state = STEADY;
-      } else if (err - prevClosedLoopError > 50.0 && sp == prevSetPoint) {
+      } else if (err - prevClosedLoopError > 20.0 && sp == prevSetPoint) {
         state = SHOOT;
       }
       break;
@@ -96,7 +104,6 @@ void Shooter::run(double speed){
   prevVelocity = vel;
   prevClosedLoopError = err;
   prevOutput = out;
-  SmartDashboard::PutString("shooter state", StateName(state));
 }
 
 void Shooter::runShooterMotor(double input) {
@@ -105,15 +112,14 @@ void Shooter::runShooterMotor(double input) {
 
   run(target);
 
- // shooterController->Set(target);
-
+  // shooterController->Set(target);
+  SmartDashboard::PutString("shooter state", StateName(state));
+  SmartDashboard::PutNumber("shooter output", prevOutput);
   SmartDashboard::PutNumber("shooter:target", target);
   // SmartDashboard::PutNumber("shooter:input", input);
-  SmartDashboard::PutNumber("shooter:speed", shooterController->GetSpeed());
-  SmartDashboard::PutNumber("Shooter:error",
-                            shooterController->GetClosedLoopError());
+  SmartDashboard::PutNumber("shooter:speed", prevVelocity);
+  SmartDashboard::PutNumber("Shooter:error", prevClosedLoopError);
 }
-
 
 double Shooter::getSetPoint() {
   return shooterController->GetSetpoint();

@@ -15,11 +15,12 @@ RunHexapus::RunHexapus()
     : SimpleCommand("run"), unjamHexapus{this}, stopHexapus{} {}
 
 void RunHexapus::Execute() {
-//  if (disable) {
-//    DriverStation::ReportError("Hexapus disabled because of too many Jams!");
-//    Cancel();
-//    return;
-//  }
+  //  if (disable) {
+  //    DriverStation::ReportError("Hexapus disabled because of too many
+  //    Jams!");
+  //    Cancel();
+  //    return;
+  //  }
 
   if (Robot::hexapus->isJammed()) {
     jamCount++;
@@ -35,14 +36,14 @@ void RunHexapus::Execute() {
   }
 
   if (jamCount == 5) {
-      DriverStation::ReportError("Hexapus is jammed!");
-    //disable = true;
+    DriverStation::ReportError("Hexapus is jammed!");
+    // disable = true;
   }
 }
 
 void RunHexapus::End() {
-    Robot::hexapus->stop();
-  //stopHexapus.Start();
+  Robot::hexapus->stop();
+  // stopHexapus.Start();
 }
 
 void UnjamHexapus::Execute() {

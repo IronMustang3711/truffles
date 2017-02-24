@@ -23,9 +23,9 @@ class RunIntake : public frc::Command {
   virtual void End();
   virtual void Interrupted();
 
-    RunIntake(double speed);
+  RunIntake(double speed);
 
-private:
+ private:
   double m_speed;
 };
 

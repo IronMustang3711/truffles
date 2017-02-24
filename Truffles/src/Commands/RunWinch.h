@@ -24,7 +24,7 @@ class RunWinch : public Command {
   static RunWinch* createGoUpCommand();
   static RunWinch* createHoldCommand();
   static RunWinch* createDownCommand();
-    static RunWinch* createStopCommand();
+  static RunWinch* createStopCommand();
 
  protected:
   RunWinch(double speed);
