@@ -52,6 +52,8 @@ class Shooter : public Subsystem {
    * setup PID values for the shooter controller.
    */
   void initShooter();
+
+  void transition(State newState);
 };
 
 #endif

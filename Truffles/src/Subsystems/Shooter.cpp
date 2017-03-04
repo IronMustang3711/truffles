@@ -42,16 +42,10 @@ void Shooter::initShooter() {
   shooterController->SetD(0.0);
   shooterController->SetCloseLoopRampRate(0.0);
 }
-
+const double OFF_SPEED = 10.0;
 void Shooter::InitDefaultCommand() {}
 
 void Shooter::run(double speed) {
-  //  if(state == BANG_BANG){
-  //    shooterController->SetP(5.0);
-  //  }
-  //  else {
-  //    shooterController->SetP(1.0);
-  //  }
   shooterController->Set(speed);
 
   double sp = getSetPoint();
@@ -59,22 +53,21 @@ void Shooter::run(double speed) {
   double err = getClosedLoopError();
   double out = getOutput();
 
-  if (speed == 10.0) {
-    state = OFF;
+  if (speed == OFF_SPEED) {
+    transition(OFF);
   }
   switch (state) {
     case OFF:
-      if (speed != 0.0) {
-        state = INIT;
-        initShooter();
+      if (speed != OFF_SPEED) {
+        transition(INIT);
       }
       break;
 
     case INIT:
       if (err <= 20.0) {
-        state = STEADY;
+        transition(STEADY);
       } else if (err - prevClosedLoopError > 50.0 && sp == prevSetPoint) {
-        state = SHOOT;
+        transition(SHOOT);
       }
       break;
 
@@ -82,21 +75,21 @@ void Shooter::run(double speed) {
       if ((prevVelocity - vel < 10 ||
            std::abs(prevClosedLoopError - err) < 5.0) &&
           prevSetPoint == sp) {
-        state = BANG_BANG;
+        transition(BANG_BANG);
       }
       break;
 
     case BANG_BANG:
       if (err <= 20.0) {
-        state = STEADY;
+        transition(STEADY);
       } else if (err - prevClosedLoopError > 20.0 && sp == prevSetPoint) {
-        state = SHOOT;
+        transition(SHOOT);
       }
       break;
 
     case STEADY:
       if (prevVelocity - vel > 50 && prevSetPoint == sp) {
-        state = SHOOT;
+        transition(SHOOT);
       }
       break;
   }
@@ -152,4 +145,18 @@ std::string Shooter::StateName(Shooter::State s) {
       return "STEADY";
   }
   return "butts";
+}
+
+void Shooter::transition(Shooter::State newState) {
+  if (state == OFF && newState == INIT) {
+    initShooter();
+  }
+  if (newState == BANG_BANG) {
+    shooterController->SetD(0);
+  }
+  if (state == BANG_BANG) {
+    shooterController->SetD(100.0);
+  }
+
+  state = newState;
 }

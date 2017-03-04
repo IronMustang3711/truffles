@@ -110,3 +110,39 @@ void Chassis::initRegularMode() {}
 void Chassis::toggleRobotFrontDirection() {
   rotateAngle = (rotateAngle == 0.0 ? 90.0 : 0.0);
 }
+
+void Chassis::TankDrive(double leftValue,
+                        double rightValue,
+                        bool squaredInputs) {
+  drive->TankDrive(leftValue, rightValue, squaredInputs);
+}
+
+void Chassis::Drive(double outputMagnitude, double curve) {
+  drive->Drive(outputMagnitude, curve);
+}
+
+void Chassis::MecanumDrive_Polar(double magnitude,
+                                 double direction,
+                                 double rotation) {
+  drive->MecanumDrive_Polar(magnitude, direction, rotation);
+}
+
+double Chassis::getLeftRearVelocity() {
+  return leftRear->GetSpeed();
+}
+
+double Chassis::getLeftRearPosition() {
+  return leftRear->GetPosition();
+}
+
+double Chassis::getRightRearPosition() {
+  return rightRear->GetPosition();
+}
+
+double Chassis::getRightRearVelocity() {
+  return rightRear->GetSpeed();
+}
+
+double Chassis::getHeading() {
+  return RobotMap::ahrs->GetAngle();
+}

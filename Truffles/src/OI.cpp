@@ -10,6 +10,9 @@
 #include "Commands/ToggleLights.h"
 #include "Commands/ToggleRobotFront.h"
 #include "Commands/HexapusCommands.h"
+#include "Commands/auto/DriveStraight.h"
+#include "Commands/auto/ZeroEncoders.h"
+
 
 /**
  * Operator Input Setup //TODO update description
@@ -54,6 +57,8 @@ void OI::initSmartDashboardCommands() {
   SmartDashboard::PutData("Gear catch: in", new GearCatchIn());
   SmartDashboard::PutData("Gear catch: out", new GearCatchOut());
   SmartDashboard::PutData("Toggle lights", new ToggleLights());
+  SmartDashboard::PutData("zero encoders",new ZeroEncoders());
+  SmartDashboard::PutData("driveStraight",new DriveStraight());
 }
 
 Btn::Btn(Joystick* j, int b) : joystick(j), buttonNumber(b) {}

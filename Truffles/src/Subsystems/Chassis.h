@@ -50,11 +50,23 @@ class Chassis : public Subsystem {
                               double y,
                               double rotation,
                               double gyroAngle = 0.0);
+  void MecanumDrive_Polar(double magnitude, double direction, double rotation);
+  void Drive(double outputMagnitude, double curve);
+  void TankDrive(double leftValue,
+                 double rightValue,
+                 bool squaredInputs = true);
 
   double getRightFrontCurrent();
   double getRightRearCurrent();
   double getLeftFrontCurrent();
   double getLeftRearCurrent();
+
+  double getLeftRearVelocity();
+  double getLeftRearPosition();
+  double getRightRearPosition();
+  double getRightRearVelocity();
+
+  double getHeading();
 
   void zeroEncoders();
 
