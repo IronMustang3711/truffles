@@ -289,8 +289,7 @@ void Robot::dashboardUpdate() {
 		// We found what we think are the correct two blocks of reflective tape
 		Block leftBlock;
 		Block rightBlock;
-		if (RobotMap::pixy->blocks[firstBlockIndex].x
-				< RobotMap::pixy->blocks[secondBlockIndex]) {
+		if (RobotMap::pixy->blocks[firstBlockIndex].x < RobotMap::pixy->blocks[secondBlockIndex].x) {
 			leftBlock = RobotMap::pixy->blocks[firstBlockIndex];
 			rightBlock = RobotMap::pixy->blocks[secondBlockIndex];
 		} else {
