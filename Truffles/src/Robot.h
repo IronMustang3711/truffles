@@ -49,5 +49,7 @@ class Robot : public IterativeRobot {
   void updateAllianceColor();
 
   void dashboardUpdate();
+
+  static void vision();
 };
 #endif

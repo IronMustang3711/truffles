@@ -22,6 +22,11 @@ void RunHexapus::Execute() {
   //    return;
   //  }
 
+  if (Robot::shooter->state != Shooter::STEADY) {
+    // Robot::hexapus->run(0.3);
+    return;
+  }
+
   if (Robot::hexapus->isJammed()) {
     jamCount++;
     // SmartDashboard::PutNumber("current",

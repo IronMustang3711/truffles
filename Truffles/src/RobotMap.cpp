@@ -34,6 +34,11 @@ std::shared_ptr<Solenoid> RobotMap::lightsRed;
 std::shared_ptr<Solenoid> RobotMap::lightsGreen;
 std::shared_ptr<Solenoid> RobotMap::lightsBlue;
 
+std::shared_ptr<Solenoid> RobotMap::pixyRinglight;
+std::shared_ptr<Solenoid> RobotMap::rearRingLight;
+
+
+
 /* some BS about Abstract classes */
 // class MyRobotDrive : public RobotDrive {
 // public:
@@ -125,6 +130,12 @@ void RobotMap::init() {
 
   lightsBlue.reset(new Solenoid(20, 2));
   lw->AddActuator("Lipstick", "blue(2)", lightsBlue);
+
+  pixyRinglight.reset(new Solenoid(20,3));
+  lw->AddActuator("ringlight","pixy",pixyRinglight);
+
+  rearRingLight.reset(new Solenoid(20,4));
+  lw->AddActuator("ringlight","rear cam",rearRingLight);
 }
 
 const PowerDistributionPanel& RobotMap::getPowerDistributionPanel() {
