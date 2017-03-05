@@ -12,6 +12,7 @@
 #include "Commands/HexapusCommands.h"
 #include "Commands/auto/DriveStraight.h"
 #include "Commands/auto/ZeroEncoders.h"
+#include "Commands/TogglePixyLight.h"
 
 
 /**
@@ -59,6 +60,7 @@ void OI::initSmartDashboardCommands() {
   SmartDashboard::PutData("Toggle lights", new ToggleLights());
   SmartDashboard::PutData("zero encoders",new ZeroEncoders());
   SmartDashboard::PutData("driveStraight",new DriveStraight());
+  SmartDashboard::PutData("PixyLight", new TogglePixyLight());
 }
 
 Btn::Btn(Joystick* j, int b) : joystick(j), buttonNumber(b) {}
