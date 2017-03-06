@@ -12,6 +12,7 @@
 #include "Commands/HexapusCommands.h"
 #include "Commands/auto/DriveStraight.h"
 #include "Commands/auto/ZeroEncoders.h"
+#include "Commands/auto/RotateCommand.h"
 
 
 /**
@@ -57,8 +58,11 @@ void OI::initSmartDashboardCommands() {
   SmartDashboard::PutData("Gear catch: in", new GearCatchIn());
   SmartDashboard::PutData("Gear catch: out", new GearCatchOut());
   SmartDashboard::PutData("Toggle lights", new ToggleLights());
+
+
   SmartDashboard::PutData("zero encoders",new ZeroEncoders());
   SmartDashboard::PutData("driveStraight",new DriveStraight());
+  SmartDashboard::PutData("rotate",new RotateCommand());
 }
 
 Btn::Btn(Joystick* j, int b) : joystick(j), buttonNumber(b) {}
