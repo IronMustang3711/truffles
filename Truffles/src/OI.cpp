@@ -13,6 +13,7 @@
 #include "Commands/auto/DriveStraight.h"
 #include "Commands/auto/ZeroEncoders.h"
 #include "Commands/auto/RotateCommand.h"
+#include "Commands/auto/StrafeCommand.h"
 
 
 /**
@@ -63,6 +64,7 @@ void OI::initSmartDashboardCommands() {
   SmartDashboard::PutData("zero encoders",new ZeroEncoders());
   SmartDashboard::PutData("driveStraight",new DriveStraight());
   SmartDashboard::PutData("rotate",new RotateCommand());
+  SmartDashboard::PutData("strafe",new StrafeCommand());
 }
 
 Btn::Btn(Joystick* j, int b) : joystick(j), buttonNumber(b) {}
