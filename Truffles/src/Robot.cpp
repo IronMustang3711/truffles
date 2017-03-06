@@ -149,11 +149,15 @@ void Robot::TestPeriodic() {
 }
 
 void Robot::dashboardUpdate() {
-	// SmartDashboard::PutData("gear catch", gearCatch.get());
-	//    auto ahrs = RobotMap::ahrs.get();
+
 	SmartDashboard::PutData(hexapus.get());
 	SmartDashboard::PutData("pdp", RobotMap::powerDistributionPanel.get());
-	//
+	chassis->dashboardTelemetry();
+
+	//    SmartDashboard::PutData(Scheduler::GetInstance());
+	//    SmartDashboard::PutData(shooter.get());
+	//    SmartDashboard::PutData(intake.get());
+	//    SmartDashboard::PutData(gearCatch.get());
 	//    SmartDashboard::PutData("ahrs",RobotMap::ahrs.get());
 	////   // SmartDashboard::PutBoolean( "IMU_Connected", ahrs->IsConnected());
 	//    SmartDashboard::PutNumber(  "IMU_Yaw",              ahrs->GetYaw());
@@ -224,10 +228,7 @@ void Robot::dashboardUpdate() {
 	//    SmartDashboard::PutNumber(  "QuaternionX", ahrs->GetQuaternionX());
 	//    SmartDashboard::PutNumber(  "QuaternionY", ahrs->GetQuaternionY());
 	//    SmartDashboard::PutNumber(  "QuaternionZ", ahrs->GetQuaternionZ());
-	//    SmartDashboard::PutData(Scheduler::GetInstance());
-	//    SmartDashboard::PutData(shooter.get());
-	//    SmartDashboard::PutData(intake.get());
-	//    SmartDashboard::PutData(gearCatch.get());
+
 }
 
 void Robot::updateAllianceColor() {

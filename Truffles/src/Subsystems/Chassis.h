@@ -65,6 +65,10 @@ class Chassis : public Subsystem {
   double getLeftRearPosition();
   double getRightRearPosition();
   double getRightRearVelocity();
+  double getLeftFrontVelocity();
+  double getLeftFrontPosition();
+  double getRightFrontPosition();
+  double getRightFrontVelocity();
 
   double getHeading();
 
