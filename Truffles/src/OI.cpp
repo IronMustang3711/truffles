@@ -14,6 +14,7 @@
 #include "Commands/auto/ZeroEncoders.h"
 #include "Commands/auto/RotateCommand.h"
 #include "Commands/auto/StrafeCommand.h"
+#include "Commands/auto/PlaceGear.h"
 #include "Commands/SolenoidToggle.h"
 
 /**
@@ -76,6 +77,10 @@ void OI::initSmartDashboardCommands() {
       new SolenoidToggle(RobotMap::pixyRinglight, "pixy ringlight"));
   SmartDashboard::PutData(
       new SolenoidToggle(RobotMap::rearRingLight, "rear ringlight"));
+
+  SmartDashboard::PutData("Auto: DS1", new PlaceGear(0));
+  SmartDashboard::PutData("Auto: DS2", new PlaceGear(1));
+  SmartDashboard::PutData("Auto: DS3", new PlaceGear(2));
 }
 
 Btn::Btn(Joystick* j, int b) : joystick(j), buttonNumber(b) {}
