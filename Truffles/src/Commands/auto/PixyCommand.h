@@ -8,9 +8,11 @@
 #ifndef SRC_COMMANDS_AUTO_PIXYCOMMAND_H_
 #define SRC_COMMANDS_AUTO_PIXYCOMMAND_H_
 
+#include "Pixy.h"
 #include "Commands/Subsystem.h"
+#include "../../Robot.h"
 
-class PixyCommand {
+class PixyCommand: public Command {
 public:
 	PixyCommand();
 	virtual ~PixyCommand();
@@ -21,8 +23,12 @@ public:
 	virtual void End();
 	virtual void Interrupted();
 
+	double widthAspect;
+	double heightAspect;
+	int leftMargin;
+	int rightMargin;
+	double marginAspect;
 private:
-	Pixy* pixy;
 };
 
 #endif /* SRC_COMMANDS_AUTO_PIXYCOMMAND_H_ */
