@@ -8,7 +8,7 @@
 #include <Commands/InstantCommand.h>
 #include <Timer.h>
 #include "SimpleCommand.h"
-
+#include <string>
 class MyHexapusCommand : public SimpleCommand {
  public:
   MyHexapusCommand();
@@ -20,6 +20,8 @@ class MyHexapusCommand : public SimpleCommand {
   virtual void Execute() override;
   virtual void End() override;
   void transition(State newState);
+
+  static std::string StateName(State state);
 
  private:
   Timer unjamTimer{};

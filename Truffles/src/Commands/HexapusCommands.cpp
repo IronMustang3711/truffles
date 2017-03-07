@@ -13,8 +13,15 @@ MyHexapusCommand::State MyHexapusCommand::getState() {
 }
 void MyHexapusCommand::transition(State newState) {
   State prevState = state;
+
   if (prevState == State::RUNNING) {
+    if (runCount <= 10) {
+      jamCount++;
+    }
+
     runCount = 0;
+  } else if (prevState != State::UNJAM) {
+    jamCount = 0;
   }
 
   switch (newState) {
@@ -23,33 +30,42 @@ void MyHexapusCommand::transition(State newState) {
       break;
     case State::RUNNING:
       Robot::hexapus->run();
-      runCount++;
       break;
-    //    case State::PRE_UNJAM: //Smallish delay until unjam
-    //    	if(prevState==State::UNJAM){ jamCount++; }
-    //    	Robot::hexapus->stop();
-    //    	break;
     case State::UNJAM:
-      //      if (jamCount++ == 7) {
-      //        Cancel();
-      //      } else {
-      unjamTimer.Reset();
-      Robot::hexapus->unjam();
-      // }
+      if (jamCount > 5) {
+        Cancel();
+      } else {
+        unjamTimer.Reset();
+        Robot::hexapus->unjam();
+      }
       break;
     case State::WAITING_FOR_SHOOTER:
       Robot::hexapus->stop();
       break;
   }
 
+  SmartDashboard::PutString("hexapus state", StateName(newState));
+
   state = newState;
+}
+std::string MyHexapusCommand::StateName(State state) {
+  switch (state) {
+    case State::INITIAL_OFF:
+      return "initial/off";
+    case State::WAITING_FOR_SHOOTER:
+      return "waiting for shooter";
+    case State::RUNNING:
+      return "running";
+    case State::UNJAM:
+      return "unjamming";
+  }
+  return "lol";
 }
 
 void MyHexapusCommand::Initialize() {
   transition(State::INITIAL_OFF);
 }
 
-// TODO: cancel command if too many jams in a row
 void MyHexapusCommand::Execute() {
   switch (state) {
     case State::INITIAL_OFF:
@@ -66,6 +82,7 @@ void MyHexapusCommand::Execute() {
       } else if (Robot::shooter->state != Shooter::STEADY) {
         transition(State::WAITING_FOR_SHOOTER);
       }
+      runCount++;
       break;
     case State::UNJAM:
       if (unjamTimer.Get() >= UNJAM_TIME) {
