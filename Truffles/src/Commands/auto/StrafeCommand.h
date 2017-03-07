@@ -15,8 +15,13 @@
 class StrafeCommand : public Command {
 public:
 	StrafeCommand();
+	virtual void Initialize() override;
+	virtual bool IsFinished() override;
+	virtual void Execute() override;
+	virtual void End() override;
 
-	virtual bool IsFinished();
+	Timer timer;
+	bool rampUp=true;
 
 };
 
