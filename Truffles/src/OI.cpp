@@ -117,7 +117,7 @@ ShooterJoystick::ShooterJoystick()
 
   gearCatchToggle->WhenPressed(new GearCatchToggle());
 
-  runHexapus->WhileHeld(new RunHexapus());
+  runHexapus->WhileHeld(new MyHexapusCommand());
   // runHexapus->WhenReleased(new StopHexapus());
 
   //    {
