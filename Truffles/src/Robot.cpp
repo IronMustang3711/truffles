@@ -234,32 +234,26 @@ void Robot::dashboardUpdate() {
 	//    SmartDashboard::PutData(intake.get());
 	//    SmartDashboard::PutData(gearCatch.get());
 
-	  // Show Pixy data...
-	uint16_t objectCount = RobotMap::pixy->getBlocks(100);
+	/*PIXY::BEGIN*/
+	// Show Pixy data...
+	uint16_t objectCount = RobotMap::pixy->getBlocks(10);
 	SmartDashboard::PutNumber("Pixy: objectCount", objectCount);
+	/*
 	if (objectCount <= 2) {
 		for (int i = 0; i < objectCount; i++) {
 			Block block = RobotMap::pixy->blocks[i];
 
-			SmartDashboard::PutNumber(
-					"Pixy: Block " + std::to_string(i) + ".sig",
-					block.signature);
-			SmartDashboard::PutString(
-					"Pixy: Block " + std::to_string(i) + ".(x,y)",
-					std::to_string(block.x) + "," + std::to_string(block.y));
-			SmartDashboard::PutString(
-					"Pixy: Block " + std::to_string(i) + ".(w,h)",
-					std::to_string(block.width) + ","
-							+ std::to_string(block.height));
+			SmartDashboard::PutNumber("Pixy: Block " + std::to_string(i) + ".sig", block.signature);
+			SmartDashboard::PutString("Pixy: Block " + std::to_string(i) + ".(x,y)", std::to_string(block.x) + "," + std::to_string(block.y));
+			SmartDashboard::PutString("Pixy: Block " + std::to_string(i) + ".(w,h)", std::to_string(block.width) + "," + std::to_string(block.height));
 		}
 		for (int i = objectCount; i < 10; i++) {
 			SmartDashboard::Delete("Pixy: Block " + std::to_string(i) + ".sig");
-			SmartDashboard::Delete(
-					"Pixy: Block " + std::to_string(i) + ".(x,y)");
-			SmartDashboard::Delete(
-					"Pixy: Block " + std::to_string(i) + ".(w,h)");
+			SmartDashboard::Delete("Pixy: Block " + std::to_string(i) + ".(x,y)");
+			SmartDashboard::Delete("Pixy: Block " + std::to_string(i) + ".(w,h)");
 		}
 	}
+	*/
 
 	/**/
 	int firstBlockIndex = -1;
@@ -268,15 +262,14 @@ void Robot::dashboardUpdate() {
 	if (objectCount == 2) {
 		// We assume that the two objects found are the two strips of tape
 		firstBlockIndex = 0;
-		firstBlockIndex = 1;
+		secondBlockIndex = 1;
 	} else if (objectCount > 2) {
 		// There's some kind of interference or other objects found, so attempt to find the find ones
 		for (int i = 0; i < objectCount; i++) {
-			double objectAspect = RobotMap::pixy->blocks[i].height
-					/ RobotMap::pixy->blocks[i].width;
+			double objectAspect = RobotMap::pixy->blocks[i].height / RobotMap::pixy->blocks[i].width;
 
-			// Ideal aspect is 10/2.5=4, but let's be flexible
-			if ((objectAspect >= 3) && (objectAspect <= 5)) {
+			// Ideal aspect is 10/2.5=4, but let's be flexible to handle looking at it from the side/rotated etc
+			if ((objectAspect >= 2) && (objectAspect <= 4)) {
 				if (firstBlockIndex == -1) {
 					firstBlockIndex = i;
 				} else {
@@ -286,8 +279,8 @@ void Robot::dashboardUpdate() {
 		}
 	}
 
-	SmartDashboard::PutNumber("Pixy: 1st block index", firstBlockIndex);
-	SmartDashboard::PutNumber("Pixy: 2nd block index", secondBlockIndex);
+	//SmartDashboard::PutNumber("Pixy: 1st block index", firstBlockIndex);
+	//SmartDashboard::PutNumber("Pixy: 2nd block index", secondBlockIndex);
 
 	if (firstBlockIndex > -1 && secondBlockIndex > -1) {
 		// We found what we think are the correct two blocks of reflective tape
@@ -304,14 +297,16 @@ void Robot::dashboardUpdate() {
 		double widthAspect = (double) leftBlock.width / rightBlock.width;
 		double heightAspect = (double) leftBlock.height / rightBlock.height;
 
-		SmartDashboard::PutNumber("Pixy: widthAspect", widthAspect);
+		//SmartDashboard::PutNumber("Pixy: widthAspect", widthAspect);
 		SmartDashboard::PutNumber("Pixy: heightAspect", heightAspect);
 
 		// Figure out if we need to turn around the z-axis
-		if (heightAspect <= 0.95) {
+		if (heightAspect <= 0.97) {
 			// Left block is shorter than the right
-		} else if (heightAspect >= 1.05) {
+			SmartDashboard::PutString("TODO:Rotate", "Rotate Left");
+		} else if (heightAspect >= 1.03) {
 			// Right block is shorter than the left
+			SmartDashboard::PutString("TODO:Rotate", "Rotate Right");
 		}
 
 		// Figure out if we need to align
@@ -320,14 +315,22 @@ void Robot::dashboardUpdate() {
 
 		SmartDashboard::PutNumber("Pixy: leftMargin", leftMargin);
 		SmartDashboard::PutNumber("Pixy: rightMargin", rightMargin);
+
+		double marginAspect = (double)leftMargin / rightMargin;
+		if (marginAspect <= 0.9) {
+			SmartDashboard::PutString("TODO:Strafe", "Strafe Left: " + std::to_string((double)leftMargin/rightMargin));
+		} else if (marginAspect >= 1.1) {
+			SmartDashboard::PutString("TODO:Strafe", "Strafe Right: " + std::to_string((double)leftMargin/rightMargin));
+		}
 	} else {
-		SmartDashboard::PutNumber("Pixy: widthAspect", 0);
+		SmartDashboard::PutString("TODO:Strafe", "");
+		SmartDashboard::PutString("TODO:Rotate", "");
+		//SmartDashboard::PutNumber("Pixy: widthAspect", 0);
 		SmartDashboard::PutNumber("Pixy: heightAspect", 0);
 		SmartDashboard::PutNumber("Pixy: leftMargin", 0);
 		SmartDashboard::PutNumber("Pixy: rightMargin", 0);
 	}
-
-	/**/
+	/*PIXY::END*/
 }
 
 void Robot::updateAllianceColor() {

@@ -36,7 +36,7 @@ bool Pixy::getStart() {
 	while (true) {
 		w = getWord();
 		if (w == 0 && lastw == 0) {
-			//delayMicroseconds(10);
+			//Wait(0.01);
 			return false;
 		} else if (w == PIXY_START_WORD && lastw == PIXY_START_WORD) {
 			blockType = NORMAL_BLOCK;
@@ -59,7 +59,7 @@ uint16_t Pixy::getBlocks(uint16_t maxBlocks) {
 	uint16_t w, checksum, sum;
 	Block *block;
 
-	if (!skipStart) {
+	if (true /*!skipStart*/) {
 		// We'll read/block until we see the Pixy starting frame identifier (0xaa55)
 		if (getStart() == false) {
 			return 0;
@@ -75,17 +75,13 @@ uint16_t Pixy::getBlocks(uint16_t maxBlocks) {
 			skipStart = true;
 			blockType = NORMAL_BLOCK;
 			return blockCount;
-		} else {
-			if (checksum == PIXY_START_WORD_CC) {
-				// We've reached the beginning of the next frame
-				skipStart = true;
-				blockType = CC_BLOCK;
-				return blockCount;
-			} else {
-				if (checksum==0) {
-					return blockCount;
-				}
-			}
+		} else if (checksum == PIXY_START_WORD_CC) {
+			// We've reached the beginning of the next frame
+			skipStart = true;
+			blockType = CC_BLOCK;
+			return blockCount;
+		} else if (checksum == 0) {
+			return blockCount;
 		}
 
 		block = blocks + blockCount;
@@ -103,21 +99,18 @@ uint16_t Pixy::getBlocks(uint16_t maxBlocks) {
 		if (checksum == sum) {
 			blockCount++;
 		} else {
-			printf("Pixy: cs error");
+			printf("Pixy: checksum error");
 		}
 
 		w = getWord();
 		if (w == PIXY_START_WORD) {
 			blockType = NORMAL_BLOCK;
+		} else if (w == PIXY_START_WORD_CC) {
+			blockType = CC_BLOCK;
 		} else {
-			if (w==PIXY_START_WORD_CC) {
-				blockType = CC_BLOCK;
-			} else {
-				return blockCount;
-			}
+			return blockCount;
 		}
 	}
-
 	return blockCount;
 }
 

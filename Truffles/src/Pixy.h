@@ -23,8 +23,7 @@
  * 12, 13   y              height of object
  */
 
-#define PIXY_INITIAL_ARRAYSIZE      30
-#define PIXY_MAXIMUM_ARRAYSIZE      100
+#define PIXY_MAXIMUM_ARRAYSIZE      10
 #define PIXY_START_WORD             0xaa55  // For regular color recognition
 #define PIXY_START_WORD_CC          0xaa56  // For color code - angle rotation recognition
 #define PIXY_START_WORDX            0x55aa  // Regular color another way around
