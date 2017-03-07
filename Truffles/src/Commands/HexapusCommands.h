@@ -25,6 +25,7 @@ class MyHexapusCommand : public SimpleCommand {
   Timer unjamTimer{};
   State state{State::INITIAL_OFF};
   int jamCount = 0;
+  int runCount = 0;
 };
 
 class UnjamHexapus : public SimpleCommand {

@@ -50,6 +50,7 @@ void OI::initSmartDashboardCommands() {
   SmartDashboard::PutData("RunWinch: up", RunWinch::createGoUpCommand());
   SmartDashboard::PutData("RunWinch: upslow", RunWinch::createHoldCommand());
   SmartDashboard::PutData("RunShooter", new RunShooter());
+  SmartDashboard::PutData("RunShooterAndIntake", new RunShooterAndIntake());
   SmartDashboard::PutData("DriveWithJoystick", new DriveWithJoystick());
   SmartDashboard::PutData("Autonomous Command", new AutonomousCommand());
 
@@ -110,7 +111,7 @@ ShooterJoystick::ShooterJoystick()
   winchUp->WhileHeld(RunWinch::createGoUpCommand());
   winchUp->WhenReleased(RunWinch::createHoldCommand());
 
-  shoot->ToggleWhenPressed(new RunShooter());
+  shoot->ToggleWhenPressed(new RunShooterAndIntake());
 
   runIntake->WhileHeld(new RunIntake());
 

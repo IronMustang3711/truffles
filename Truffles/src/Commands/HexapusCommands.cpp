@@ -5,27 +5,41 @@
 #include "HexapusCommands.h"
 #include "../Robot.h"
 static const int UNJAM_TIME = 0.15;
+
 MyHexapusCommand::MyHexapusCommand() : SimpleCommand("my hexapus command") {}
 
 MyHexapusCommand::State MyHexapusCommand::getState() {
   return state;
 }
 void MyHexapusCommand::transition(State newState) {
+  State prevState = state;
+  if (prevState == State::RUNNING) {
+    runCount = 0;
+  }
+
   switch (newState) {
     case State::INITIAL_OFF:
       Robot::hexapus->stop();
       break;
     case State::RUNNING:
-      jamCount = 0;
       Robot::hexapus->run();
+      runCount++;
       break;
+    //    case State::PRE_UNJAM: //Smallish delay until unjam
+    //    	if(prevState==State::UNJAM){ jamCount++; }
+    //    	Robot::hexapus->stop();
+    //    	break;
     case State::UNJAM:
-      if (jamCount++ == 7) {
-        Cancel();
-      } else {
-        unjamTimer.Reset();
-        Robot::hexapus->unjam();
-      }
+      //      if (jamCount++ == 7) {
+      //        Cancel();
+      //      } else {
+      unjamTimer.Reset();
+      Robot::hexapus->unjam();
+      // }
+      break;
+    case State::WAITING_FOR_SHOOTER:
+      Robot::hexapus->stop();
+      break;
   }
 
   state = newState;
@@ -34,6 +48,8 @@ void MyHexapusCommand::transition(State newState) {
 void MyHexapusCommand::Initialize() {
   transition(State::INITIAL_OFF);
 }
+
+// TODO: cancel command if too many jams in a row
 void MyHexapusCommand::Execute() {
   switch (state) {
     case State::INITIAL_OFF:
@@ -81,8 +97,9 @@ void RunHexapus::Execute() {
   //    return;
   //  }
 
-  if (Robot::shooter->state != Shooter::STEADY) {
-    // Robot::hexapus->run(0.3);
+  auto shooterState = Robot::shooter->state;
+
+  if (shooterState == Shooter::OFF) {
     return;
   }
 
@@ -96,7 +113,11 @@ void RunHexapus::Execute() {
     unjamHexapus.Start();
   } else {
     jamCount = 0;
-    Robot::hexapus->run();
+    if (shooterState != Shooter::STEADY) {
+      Robot::hexapus->run(0.2);
+    } else {
+      Robot::hexapus->run();
+    }
   }
 
   if (jamCount % 5 == 0) {
