@@ -12,9 +12,11 @@
 #include <memory>
 #include "Notifier.h"
 #include "Timer.h"
-class StrafeCommand : public SimpleCommand {
+class StrafeCommand : public Command {
 public:
 	StrafeCommand();
+
+	virtual bool IsFinished();
 
 };
 

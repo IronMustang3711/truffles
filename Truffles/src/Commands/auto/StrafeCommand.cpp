@@ -7,9 +7,11 @@
 
 #include <Commands/auto/StrafeCommand.h>
 
-StrafeCommand::StrafeCommand() :SimpleCommand("strafe") {
-
-
+StrafeCommand::StrafeCommand() :Command("strafe") {
+	//Requires(Robot::chassis);
+SetTimeout(2.0);
 }
-
+bool StrafeCommand::IsFinished() {
+	return !IsTimedOut();
+}
 

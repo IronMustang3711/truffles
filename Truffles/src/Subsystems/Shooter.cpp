@@ -10,7 +10,7 @@
 
 #include "Shooter.h"
 #include "../RobotMap.h"
-
+using namespace frc;
 Shooter::Shooter() : Subsystem("Shooter") {
   shooterController = RobotMap::shooterController;
 
@@ -31,7 +31,7 @@ void Shooter::initShooter() {
   shooterController->ConfigEncoderCodesPerRev(20);
   shooterController->SetSensorDirection(true);
   shooterController->SetPosition(0);
-  shooterController->SetControlMode(CANSpeedController::kSpeed);
+  shooterController->SetControlMode(CANSpeedController::ControlMode::kSpeed);
   shooterController->SetClosedLoopOutputDirection(false);
   shooterController->ConfigNominalOutputVoltage(+0., -0.0);
   shooterController->ConfigPeakOutputVoltage(12.0, -12.0);
@@ -106,6 +106,7 @@ void Shooter::runShooterMotor(double input) {
   run(target);
 
   // shooterController->Set(target);
+
   SmartDashboard::PutString("shooter state", StateName(state));
   SmartDashboard::PutNumber("shooter output", prevOutput);
   SmartDashboard::PutNumber("shooter:target", target);

@@ -12,23 +12,37 @@ DriveStraight::DriveStraight() : SimpleCommand("DriveStraight"), timer{} {
   Requires(drive.get());
 }
 
-void DriveStraight::update() {}
-
-void DriveStraight::operator()() {
-  double t = timer.Get();
-  double output = 0.0;
-  if (t <= duration) {
-    output = motorOut * t;
-  } else if (t > duration && t <= 2 * duration) {
-    output = motorOut;
-  } else if (t > 2 * duration && t <= 3 * duration) {
-    output = motorOut - motorOut * (t - 2 * duration);
-  } else {
-    Cancel();
-  }
-  double angle = useGyro ? -0.5 * drive->getHeading() : 0.0;
-  drive->Drive(output, angle);
+void DriveStraight::update() {
+	 double t = timer.Get();
+	  double output = 0.0;
+	  if (t <= duration) {
+	    output = motorOut * t;
+	  } else if (t > duration && t <= 2 * duration) {
+	    output = motorOut;
+	  } else if (t > 2 * duration && t <= 3 * duration) {
+	    output = motorOut - motorOut * (t - 2 * duration);
+	  } else {
+	    Cancel();
+	  }
+	//  double angle = useGyro ? -0.5 * drive->getHeading() : 0.0;
+	  drive->MecanumDrive_Polar(output, 0, 0);
 }
+
+//void DriveStraight::operator()() {
+//  double t = timer.Get();
+//  double output = 0.0;
+//  if (t <= duration) {
+//    output = motorOut * t;
+//  } else if (t > duration && t <= 2 * duration) {
+//    output = motorOut;
+//  } else if (t > 2 * duration && t <= 3 * duration) {
+//    output = motorOut - motorOut * (t - 2 * duration);
+//  } else {
+//    Cancel();
+//  }
+//  double angle = useGyro ? -0.5 * drive->getHeading() : 0.0;
+//  drive->Drive(output, angle);
+//}
 
 void DriveStraight::Initialize() {
   motorOut = SmartDashboard::GetNumber("motor out", 0.5);
