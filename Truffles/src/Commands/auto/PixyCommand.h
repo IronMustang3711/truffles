@@ -12,6 +12,12 @@
 #include "Commands/Subsystem.h"
 #include "../../Robot.h"
 
+enum PixyMovement {
+	NONE,
+	LEFT,
+	RIGHT
+};
+
 class PixyCommand: public Command {
 public:
 	PixyCommand();
@@ -28,6 +34,9 @@ public:
 	int leftMargin;
 	int rightMargin;
 	double marginAspect;
+
+	PixyMovement rotate;
+	PixyMovement strafe;
 private:
 };
 

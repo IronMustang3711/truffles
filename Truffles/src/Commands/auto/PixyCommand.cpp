@@ -20,6 +20,9 @@ void PixyCommand::Execute() {
 	uint16_t objectCount = RobotMap::pixy->getBlocks(10);
 	SmartDashboard::PutNumber("Pixy: objectCount", objectCount);
 
+	this->rotate = PixyMovement::NONE;
+	this->strafe = PixyMovement::NONE;
+
 	int firstBlockIndex = -1;
 	int secondBlockIndex = -1;
 
@@ -68,9 +71,11 @@ void PixyCommand::Execute() {
 		if (this->heightAspect <= 0.97) {
 			// Left block is shorter than the right
 			SmartDashboard::PutString("TODO:Rotate", "Rotate Left");
+			this->rotate = PixyMovement::LEFT;
 		} else if (this->heightAspect >= 1.03) {
 			// Right block is shorter than the left
 			SmartDashboard::PutString("TODO:Rotate", "Rotate Right");
+			this->rotate = PixyMovement::RIGHT;
 		}
 
 		// Figure out if we need to align
@@ -83,8 +88,10 @@ void PixyCommand::Execute() {
 		this->marginAspect = (double)this->leftMargin / this->rightMargin;
 		if (this->marginAspect <= 0.9) {
 			SmartDashboard::PutString("TODO:Strafe", "Strafe Left: " + std::to_string(this->marginAspect));
+			this->strafe = PixyMovement::LEFT;
 		} else if (this->marginAspect >= 1.1) {
 			SmartDashboard::PutString("TODO:Strafe", "Strafe Right: " + std::to_string(this->marginAspect));
+			this->strafe = PixyMovement::RIGHT;
 		}
 	} else {
 		SmartDashboard::PutString("TODO:Strafe", "");

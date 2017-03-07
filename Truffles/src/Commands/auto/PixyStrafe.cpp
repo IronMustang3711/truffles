@@ -10,10 +10,13 @@
 PixyStrafe::PixyStrafe(): PixyCommand() {
 }
 
+void PixyStrafe::Execute() {
+	PixyCommand::Execute();
+}
+
 bool PixyStrafe::IsFinished() {
-	return true;
+	return this->strafe == PixyMovement::NONE;
 }
 
 PixyStrafe::~PixyStrafe() {
 }
-

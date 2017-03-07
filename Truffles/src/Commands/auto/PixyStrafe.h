@@ -15,6 +15,7 @@ public:
 	PixyStrafe();
 	virtual ~PixyStrafe();
 
+	virtual void Execute();
 	virtual bool IsFinished();
 };
 

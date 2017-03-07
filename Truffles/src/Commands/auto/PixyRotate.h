@@ -15,6 +15,7 @@ public:
 	PixyRotate();
 	virtual ~PixyRotate();
 
+	virtual void Execute();
 	virtual bool IsFinished();
 };
 

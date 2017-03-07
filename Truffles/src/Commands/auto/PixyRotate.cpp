@@ -10,10 +10,13 @@
 PixyRotate::PixyRotate(): PixyCommand() {
 }
 
+void PixyRotate::Execute() {
+	PixyCommand::Execute();
+}
+
 bool PixyRotate::IsFinished() {
-	return true;
+	return this->rotate == PixyMovement::NONE;
 }
 
 PixyRotate::~PixyRotate() {
 }
-
