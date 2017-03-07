@@ -7,6 +7,9 @@
 
 #include "../SimpleCommand.h"
 #include "../../Subsystems/Chassis.h"
+#include <memory>
+#include "Notifier.h"
+#include "Timer.h"
 
 class DriveStraight : public SimpleCommand {
  public:

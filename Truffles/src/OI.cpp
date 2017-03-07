@@ -12,8 +12,9 @@
 #include "Commands/HexapusCommands.h"
 #include "Commands/auto/DriveStraight.h"
 #include "Commands/auto/ZeroEncoders.h"
-#include "Commands/TogglePixyLight.h"
-
+#include "Commands/auto/RotateCommand.h"
+#include "Commands/auto/StrafeCommand.h"
+#include "Commands/SolenoidToggle.h"
 
 /**
  * Operator Input Setup //TODO update description
@@ -58,9 +59,23 @@ void OI::initSmartDashboardCommands() {
   SmartDashboard::PutData("Gear catch: in", new GearCatchIn());
   SmartDashboard::PutData("Gear catch: out", new GearCatchOut());
   SmartDashboard::PutData("Toggle lights", new ToggleLights());
-  SmartDashboard::PutData("zero encoders",new ZeroEncoders());
-  SmartDashboard::PutData("driveStraight",new DriveStraight());
-  SmartDashboard::PutData("PixyLight", new TogglePixyLight());
+
+  SmartDashboard::PutData("zero encoders", new ZeroEncoders());
+  SmartDashboard::PutData("driveStraight", new DriveStraight());
+  SmartDashboard::PutData("rotate", new RotateCommand());
+  SmartDashboard::PutData("strafe", new StrafeCommand());
+
+  SmartDashboard::PutData(
+      new SolenoidToggle(RobotMap::lightsRed, "red lights"));
+  SmartDashboard::PutData(
+      new SolenoidToggle(RobotMap::lightsGreen, "green lights"));
+  SmartDashboard::PutData(
+      new SolenoidToggle(RobotMap::lightsBlue, "blue lights"));
+
+  SmartDashboard::PutData(
+      new SolenoidToggle(RobotMap::pixyRinglight, "pixy ringlight"));
+  SmartDashboard::PutData(
+      new SolenoidToggle(RobotMap::rearRingLight, "rear ringlight"));
 }
 
 Btn::Btn(Joystick* j, int b) : joystick(j), buttonNumber(b) {}
