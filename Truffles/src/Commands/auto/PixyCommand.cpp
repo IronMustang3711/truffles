@@ -8,12 +8,17 @@
 #include "Commands/auto/PixyCommand.h"
 
 PixyCommand::PixyCommand(): Command() {
-	//Requires(Robot::chassis.get());
-	//RobotMap::pixy = new Pixy(I2C::Port::kOnboard, PIXY_I2C_ADDR);
+	this->widthAspect = 0.0;
+	this->heightAspect = 0.0;
+	this->marginAspect = 0.0;
+	this->leftMargin = 0;
+	this->rightMargin = 0;
+	this->strafe = PixyMovement::NONE;
+	this->rotate = PixyMovement::NONE;
 }
 
 void PixyCommand::Initialize() {
-
+	SetTimeout(5);  // Time out command after 5 seconds
 }
 
 void PixyCommand::Execute() {
@@ -108,13 +113,12 @@ bool PixyCommand::IsFinished() {
 }
 
 void PixyCommand::End() {
-
+	Robot::chassis->AutoDrive(0, 0);
 }
 
 void PixyCommand::Interrupted() {
-
+	End();
 }
 
 PixyCommand::~PixyCommand() {
-	//RobotMap::pixy = NULL;
 }
