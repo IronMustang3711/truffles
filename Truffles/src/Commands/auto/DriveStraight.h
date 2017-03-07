@@ -11,8 +11,6 @@
 #include "Notifier.h"
 #include "Timer.h"
 
-
-
 class DriveStraight : public SimpleCommand {
  public:
   DriveStraight();

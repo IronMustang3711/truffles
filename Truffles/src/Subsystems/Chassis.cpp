@@ -68,8 +68,7 @@ void Chassis::MecanumDrive_Cartesian(double x,
 }
 
 void Chassis::dashboardTelemetry() {
-
-	//TODO: does this work??
+  // TODO: does this work??
   std::map<std::string, CANTalon*> talons = {{"front left", leftFront.get()},
                                              {"front right", rightFront.get()},
                                              {"rear left", leftRear.get()},
@@ -104,6 +103,8 @@ void Chassis::zeroEncoders() {
   leftFront->SetPosition(0);
   leftRear->SetPosition(0);
 }
+
+void Chassis::prepareForTeleop() {}
 
 void Chassis::initMagicMode() {}
 
@@ -145,17 +146,17 @@ double Chassis::getRightRearVelocity() {
   return rightRear->GetSpeed();
 }
 
-double Chassis::getLeftFrontVelocity(){
-	return leftFront->GetSpeed();
+double Chassis::getLeftFrontVelocity() {
+  return leftFront->GetSpeed();
 }
-double Chassis::getLeftFrontPosition(){
-	return leftFront->GetPosition();
+double Chassis::getLeftFrontPosition() {
+  return leftFront->GetPosition();
 }
-double Chassis::getRightFrontPosition(){
-	return rightFront->GetPosition();
+double Chassis::getRightFrontPosition() {
+  return rightFront->GetPosition();
 }
-double Chassis::getRightFrontVelocity(){
-	return rightFront->GetSpeed();
+double Chassis::getRightFrontVelocity() {
+  return rightFront->GetSpeed();
 }
 
 double Chassis::getHeading() {

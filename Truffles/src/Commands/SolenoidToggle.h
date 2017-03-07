@@ -8,7 +8,7 @@
 #ifndef SRC_SUBSYSTEMS_SOLENOIDTOGGLE_H_
 #define SRC_SUBSYSTEMS_SOLENOIDTOGGLE_H_
 #include "commands/InstantCommand.h"
-#include "Solenoid.h"
+#include <solenoid.h>
 class SolenoidToggle : public InstantCommand {
 //class Solenoid; //TODO figure out how forward declarations work in cpp
 public:

@@ -14,6 +14,7 @@
 #include "Commands/Subsystem.h"
 #include "WPILib.h"
 #include <CANTalon.h>
+#include <vector>
 
 /**
  *
@@ -77,6 +78,8 @@ class Chassis : public Subsystem {
   //  CANTalon* getTalons();
 
   void toggleRobotFrontDirection();
+
+  void prepareForTeleop();
 
   void initMagicMode();
   void initRegularMode();
