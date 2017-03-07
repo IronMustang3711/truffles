@@ -13,10 +13,12 @@
 
 #include "CANTalon.h"
 #include "Commands/Subsystem.h"
+#include "Filters/LinearDigitalFilter.h"
+#include "Timer.h"
+using namespace frc;
 
 class Shooter : public Subsystem {
- private:
-  std::shared_ptr<CANTalon> shooterController;
+
 
  public:
   Shooter();
@@ -45,7 +47,7 @@ class Shooter : public Subsystem {
   enum State { OFF, INIT, SHOOT, BANG_BANG, STEADY };
 
   std::string StateName(State s);
-
+  State getState();
   State state = OFF;
 
   /**
@@ -54,6 +56,15 @@ class Shooter : public Subsystem {
   void initShooter();
 
   void transition(State newState);
+
+  void InitTable(std::shared_ptr<ITable> subtable) override;
+
+ private:
+  bool isShooting();
+  bool isOff(double requestedSpeed);
+  std::shared_ptr<CANTalon> shooterController;
+  LinearDigitalFilter errorFilter;
+  Timer setpointUpdateTimer;
 };
 
 #endif
