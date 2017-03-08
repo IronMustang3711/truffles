@@ -4,7 +4,7 @@
 
 #include "DriveStraight.h"
 #include "../../Robot.h"
-
+//a = 42, b=48
 // p,i,d,f, update rate(seconds)
 DriveStraight2::DriveStraight2(double distance) : PIDCommand("Rotate", 1, 0, 0, 0.1, 0.01),targetDistance(distance) {
   Requires(Robot::chassis.get());
