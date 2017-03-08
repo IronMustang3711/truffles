@@ -13,6 +13,8 @@ class Shooter : public Subsystem {
   Shooter();
 
   void InitDefaultCommand();
+
+  void stop();
   /**
    *
    * @param speed in [0,1]
@@ -25,7 +27,7 @@ class Shooter : public Subsystem {
   void run(double d);
   double getSetPoint();
   double getVelocity();
-  double getClosedLoopError();
+  int getClosedLoopError();
   double getOutput();
 
   double prevSetPoint = 0;
@@ -49,6 +51,7 @@ class Shooter : public Subsystem {
   // void InitTable(std::shared_ptr<ITable> subtable) override;
 
  private:
+  bool setpointRecentlyChanged();
   bool isShooting();
   bool isOff(double requestedSpeed);
   std::shared_ptr<CANTalon> shooterController;

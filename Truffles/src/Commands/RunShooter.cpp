@@ -7,7 +7,7 @@ RunShooter::RunShooter() : Command() {
 }
 
 void RunShooter::Initialize() {
-  Robot::shooter->initShooter();
+  Robot::shooter->stop();
 }
 
 void RunShooter::Execute() {
@@ -24,7 +24,7 @@ bool RunShooter::IsFinished() {
 }
 
 void RunShooter::End() {
-  Robot::shooter->runShooterMotor(0);
+  Robot::shooter->stop();
 }
 
 void RunShooter::Interrupted() {
