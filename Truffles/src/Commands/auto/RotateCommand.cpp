@@ -1,6 +1,6 @@
 #include "RotateCommand.h"
 #include "../../Robot.h"
-#include <string>
+
 std::string PIDTypeName(PIDSourceType type) {
   switch (type) {
     case PIDSourceType::kDisplacement:

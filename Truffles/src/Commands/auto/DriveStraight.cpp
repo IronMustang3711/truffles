@@ -98,10 +98,10 @@ void DriveStraight::Initialize() {
 }
 
 void DriveStraight::Execute() {
-  SmartDashboard::PutBoolean("encoder velocity(left)",
-                             drive->getLeftRearVelocity());
-  SmartDashboard::PutBoolean("encoder velocity(right)",
-                             drive->getRightRearVelocity());
+  SmartDashboard::PutNumber("encoder velocity(left)",
+                            drive->getLeftRearVelocity());
+  SmartDashboard::PutNumber("encoder velocity(right)",
+                            drive->getRightRearVelocity());
 }
 
 void DriveStraight::End() {

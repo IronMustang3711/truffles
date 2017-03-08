@@ -22,6 +22,9 @@ class StrafeCommand : public Command {
 
   Timer timer;
   bool rampUp = true;
+  std::shared_ptr<Chassis> drive;
+  std::unique_ptr<Notifier> updater;
+  double initialHeading = 0;
 };
 
 #endif /* SRC_COMMANDS_AUTO_STRAFECOMMAND_H_ */
