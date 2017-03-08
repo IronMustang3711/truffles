@@ -14,9 +14,9 @@ void PixyStrafe::Execute() {
 
   // Robot::chassis->AutoDrive();
   if (this->strafe == PixyMovement::LEFT) {
-    Robot::chassis->MecanumDrive_Cartesian(-0.1, 0, 0, 0);
+    Robot::chassis->MecanumDrive_Cartesian(-0.2, 0, 0, 0);
   } else if (this->strafe == PixyMovement::RIGHT) {
-    Robot::chassis->MecanumDrive_Cartesian(0.1, 0, 0, 0);
+    Robot::chassis->MecanumDrive_Cartesian(0.2, 0, 0, 0);
   }
 }
 
