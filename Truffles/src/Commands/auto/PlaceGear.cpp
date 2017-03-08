@@ -37,5 +37,4 @@ PlaceGear::PlaceGear(int mode) : CommandGroup() {
   AddSequential(new TogglePixyLight());  // Turn Pixy light off again
 }
 
-PlaceGear::~PlaceGear() {
-}
+PlaceGear::~PlaceGear() {}

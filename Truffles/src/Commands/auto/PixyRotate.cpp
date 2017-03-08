@@ -10,9 +10,9 @@
 PixyRotate::PixyRotate() : PixyCommand() {}
 
 void PixyRotate::Initialize() {
-   PixyCommand::Initialize();
-   updater = std::make_unique<Notifier>(&PixyRotate::Execute, this);
-   updater->StartPeriodic(0.01);
+  PixyCommand::Initialize();
+  updater = std::make_unique<Notifier>(&PixyRotate::Execute, this);
+  updater->StartPeriodic(0.01);
 }
 
 void PixyRotate::Execute() {
@@ -26,8 +26,9 @@ void PixyRotate::Execute() {
 }
 
 bool PixyRotate::IsFinished() {
-  //return (this->rotate == PixyMovement::NONE) || IsTimedOut() || IsCanceled();
-	return IsTimedOut();
+  // return (this->rotate == PixyMovement::NONE) || IsTimedOut() ||
+  // IsCanceled();
+  return IsTimedOut();
 }
 
 PixyRotate::~PixyRotate() {}

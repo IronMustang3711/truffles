@@ -10,9 +10,9 @@
 PixyStrafe::PixyStrafe() : PixyCommand() {}
 
 void PixyStrafe::Initialize() {
-	PixyCommand::Initialize();
-    updater = std::make_unique<Notifier>(&PixyStrafe::Execute, this);
-    updater->StartPeriodic(0.01);
+  PixyCommand::Initialize();
+  updater = std::make_unique<Notifier>(&PixyStrafe::Execute, this);
+  updater->StartPeriodic(0.01);
 }
 
 void PixyStrafe::Execute() {
@@ -26,8 +26,9 @@ void PixyStrafe::Execute() {
 }
 
 bool PixyStrafe::IsFinished() {
-  //return (this->strafe == PixyMovement::NONE) || IsTimedOut() || IsCanceled();
-	return IsTimedOut();
+  // return (this->strafe == PixyMovement::NONE) || IsTimedOut() ||
+  // IsCanceled();
+  return IsTimedOut();
 }
 
 PixyStrafe::~PixyStrafe() {}
