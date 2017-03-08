@@ -144,18 +144,18 @@ void Shooter::runShooterMotor(double input) {
 
   // shooterController->Set(target);
 
-  //  SmartDashboard::PutString("shooter state", StateName(state));
-  //  SmartDashboard::PutNumber("shooter output", prevOutput);
-  //  SmartDashboard::PutNumber("shooter:target", target);
-  //  // SmartDashboard::PutNumber("shooter:input", input);
-  //  SmartDashboard::PutNumber("shooter:speed", prevVelocity);
-  //  SmartDashboard::PutNumber("Shooter:error", prevClosedLoopError);
+    SmartDashboard::PutString("shooter state", StateName(state));
+    SmartDashboard::PutNumber("shooter output", prevOutput);
+    SmartDashboard::PutNumber("shooter:target", target);
+    // SmartDashboard::PutNumber("shooter:input", input);
+    SmartDashboard::PutNumber("shooter:speed", prevVelocity);
+    SmartDashboard::PutNumber("Shooter:error", prevClosedLoopError);
 
-  GetTable()->PutNumber("setpoint", prevOutput);
-  GetTable()->PutNumber("velocity", target);
-  GetTable()->PutNumber("error", prevClosedLoopError);
-  GetTable()->PutNumber("error(lowpass)", errorFilter.Get());
-  GetTable()->PutNumber("output", prevOutput);
+//  GetTable()->PutNumber("setpoint", prevOutput);
+//  GetTable()->PutNumber("velocity", target);
+//  GetTable()->PutNumber("error", prevClosedLoopError);
+//  GetTable()->PutNumber("error(lowpass)", errorFilter.Get());
+//  GetTable()->PutNumber("output", prevOutput);
 }
 
 double Shooter::getSetPoint() {

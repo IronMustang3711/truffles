@@ -98,9 +98,9 @@ void DriveStraight::Initialize() {
 }
 
 void DriveStraight::Execute() {
-  SmartDashboard::PutBoolean("encoder velocity(left)",
+  SmartDashboard::PutNumber("encoder velocity(left)",
                              drive->getLeftRearVelocity());
-  SmartDashboard::PutBoolean("encoder velocity(right)",
+  SmartDashboard::PutNumber("encoder velocity(right)",
                              drive->getRightRearVelocity());
 }
 
