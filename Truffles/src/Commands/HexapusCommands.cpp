@@ -18,7 +18,6 @@ void MyHexapusCommand::transition(State newState) {
     if (runCount <= 10) {
       jamCount++;
     }
-
     runCount = 0;
   } else if (prevState != State::UNJAM) {
     jamCount = 0;
@@ -26,6 +25,8 @@ void MyHexapusCommand::transition(State newState) {
 
   switch (newState) {
     case State::INITIAL_OFF:
+    	unjamTimer.Stop();
+    	unjamTimer.Reset();
       Robot::hexapus->stop();
       break;
     case State::RUNNING:
@@ -36,6 +37,7 @@ void MyHexapusCommand::transition(State newState) {
         Cancel();
       } else {
         unjamTimer.Reset();
+        unjamTimer.Start();
         Robot::hexapus->unjam();
       }
       break;

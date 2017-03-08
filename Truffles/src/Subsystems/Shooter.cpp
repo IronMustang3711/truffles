@@ -72,7 +72,10 @@ bool Shooter::isShooting() {
 }
 bool Shooter::setpointRecentlyChanged() {
 	double t = setpointUpdateTimer.Get();
-	if(t > 0.5) setpointUpdateTimer.Reset();
+	if(t > 0.5){
+		setpointUpdateTimer.Stop();
+		setpointUpdateTimer.Reset();
+	}
 	return t != 0 && t < 0.5;
 }
 
