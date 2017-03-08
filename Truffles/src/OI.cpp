@@ -62,9 +62,9 @@ void OI::initSmartDashboardCommands() {
   //  SmartDashboard::PutData("Toggle lights", new ToggleLights());
 
   SmartDashboard::PutData("zero encoders", new ZeroEncoders());
-  SmartDashboard::PutData("driveStraight", new DriveStraight());
-  SmartDashboard::PutData("rotate", new RotateCommand());
-  SmartDashboard::PutData("strafe", new StrafeCommand());
+  SmartDashboard::PutData("driveStraight", new DriveStraight(1));
+  SmartDashboard::PutData("rotate", new RotateCommand(45));
+  SmartDashboard::PutData("strafe", new StrafeCommand(1));
 
   //  SmartDashboard::PutData(
   //      new SolenoidToggle(RobotMap::lightsRed, "red lights"));

@@ -13,7 +13,7 @@ std::string PIDTypeName(PIDSourceType type) {
 }
 
 // p,i,d,f, update rate(seconds)
-RotateCommand::RotateCommand() : PIDCommand("Rotate", 1, 0, 0, 0.1, 0.01) {
+RotateCommand::RotateCommand(double amt) : PIDCommand("Rotate", 1, 0, 0, 0.1, 0.01),dstAngle(amt) {
   Requires(Robot::chassis.get());
   SetTimeout(3.0);
   SetPIDSourceType(PIDSourceType::kDisplacement);

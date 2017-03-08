@@ -6,7 +6,7 @@
 #include "../../Robot.h"
 
 // p,i,d,f, update rate(seconds)
-DriveStraight2::DriveStraight2() : PIDCommand("Rotate", 1, 0, 0, 0.1, 0.01) {
+DriveStraight2::DriveStraight2(double distance) : PIDCommand("Rotate", 1, 0, 0, 0.1, 0.01),targetDistance(distance) {
   Requires(Robot::chassis.get());
   SetTimeout(3.0);
   SetPIDSourceType(PIDSourceType::kDisplacement);
@@ -47,7 +47,7 @@ void DriveStraight2::UsePIDOutput(double out) {
   Robot::chassis->MecanumDrive_Cartesian(0, output, out, 0);
 }
 
-DriveStraight::DriveStraight() : SimpleCommand("DriveStraight"), timer{} {
+DriveStraight::DriveStraight(double distance) : SimpleCommand("DriveStraight"), timer{},targetDistance(distance) {
   updater = std::make_unique<Notifier>(&DriveStraight::update, this);
   drive = Robot::chassis;
   SetTimeout(3.5);

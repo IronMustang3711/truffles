@@ -34,8 +34,7 @@ void Robot::RobotInit() {
   //  std::thread visionThread(vision);
   //  visionThread.detach();
 }
-#pragma clang diagnostic push
-#pragma clang diagnostic ignored "-Wmissing-noreturn"
+
 // TODO see https://www.chiefdelphi.com/forums/showthread.php?threadid=156277
 void Robot::vision() {
   cs::UsbCamera camera = CameraServer::GetInstance()->StartAutomaticCapture();
@@ -87,7 +86,6 @@ void Robot::vision() {
     outputStream.PutFrame(copy);
   }
 }
-#pragma clang diagnostic pop
 
 /**
  * This function is called when the disabled button is hit.

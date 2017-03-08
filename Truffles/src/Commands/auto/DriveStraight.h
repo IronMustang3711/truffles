@@ -10,10 +10,10 @@
 #include <memory>
 #include "Notifier.h"
 #include "Timer.h"
-
+//TODO: see if this works (better than DriveStraight)
 class DriveStraight2 : public PIDCommand {
  public:
-  DriveStraight2();
+  DriveStraight2(double distanceInInches);
   void Initialize() override;
   void Execute() override;
   void End() override;
@@ -27,11 +27,12 @@ class DriveStraight2 : public PIDCommand {
   double startAngle = 0;
   double motorOut = 0.5;
   double duration = 1.0;
+  double targetDistance=0;
 };
 
 class DriveStraight : public SimpleCommand {
  public:
-  DriveStraight();
+  DriveStraight(double distanceInInches);
 
  protected:
   void Initialize() override;
@@ -51,6 +52,7 @@ class DriveStraight : public SimpleCommand {
   double duration = 1.0;
   bool useGyro = true;
   double initialHeading = 0.0;
+  double targetDistance;
 };
 
 #endif  // TRUFFLES_DRIVESTRAIGHT_H

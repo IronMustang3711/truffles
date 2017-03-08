@@ -58,8 +58,9 @@ std::string MyHexapusCommand::StateName(State state) {
       return "running";
     case State::UNJAM:
       return "unjamming";
+
   }
-  // return "lol";
+   return "lol";
 }
 
 void MyHexapusCommand::Initialize() {
