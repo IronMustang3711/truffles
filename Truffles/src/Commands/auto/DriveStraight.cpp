@@ -89,7 +89,7 @@ void DriveStraight::update() {
 void DriveStraight::Initialize() {
   motorOut = SmartDashboard::GetNumber("motor out", 0.5);
   useGyro = SmartDashboard::GetBoolean("use gyro", true);
-  duration = SmartDashboard::GetBoolean("drive straight segment duration", 1.0);
+  duration = SmartDashboard::GetNumber("drive straight segment duration", 1.0);
   SetTimeout(duration + 0.5);
   drive->zeroEncoders();
   updater->StartPeriodic(0.01);

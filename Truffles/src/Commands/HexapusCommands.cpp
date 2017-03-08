@@ -4,7 +4,7 @@
 
 #include "HexapusCommands.h"
 #include "../Robot.h"
-static const int UNJAM_TIME = 0.15;
+static const double UNJAM_TIME = 0.15;
 
 MyHexapusCommand::MyHexapusCommand() : SimpleCommand("my hexapus command") {}
 
@@ -59,7 +59,7 @@ std::string MyHexapusCommand::StateName(State state) {
     case State::UNJAM:
       return "unjamming";
   }
-  return "lol";
+  // return "lol";
 }
 
 void MyHexapusCommand::Initialize() {

@@ -41,7 +41,6 @@ class DriveStraight : public SimpleCommand {
   void End() override;
 
  public:
-  void operator()();
   void update();
 
  private:
