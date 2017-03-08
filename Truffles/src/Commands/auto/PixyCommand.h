@@ -8,7 +8,7 @@
 #ifndef SRC_COMMANDS_AUTO_PIXYCOMMAND_H_
 #define SRC_COMMANDS_AUTO_PIXYCOMMAND_H_
 
-#include "Pixy.h"
+#include "../../Pixy.h"
 #include "Commands/Subsystem.h"
 #include "../../Robot.h"
 

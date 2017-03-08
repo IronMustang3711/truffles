@@ -5,7 +5,7 @@
  *      Author: jason
  */
 
-#include <Commands/auto/StrafeCommand.h>
+#include "StrafeCommand.h"
 
 StrafeCommand::StrafeCommand() :SimpleCommand("strafe") {
 

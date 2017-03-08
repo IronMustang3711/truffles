@@ -5,7 +5,7 @@
  *      Author: steffen
  */
 
-#include <Commands/auto/PixyRotate.h>
+#include "PixyRotate.h"
 
 PixyRotate::PixyRotate(): PixyCommand() {
 }

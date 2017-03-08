@@ -5,7 +5,7 @@
  *      Author: steffen
  */
 
-#include <Commands/auto/PixyStrafe.h>
+#include "PixyStrafe.h"
 
 PixyStrafe::PixyStrafe(): PixyCommand() {
 }

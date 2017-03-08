@@ -5,7 +5,7 @@
  *      Author: steffen
  */
 
-#include "Commands/auto/PlaceGear.h"
+#include "PlaceGear.h"
 
 PlaceGear::PlaceGear(int mode): CommandGroup() {
 

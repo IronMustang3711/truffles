@@ -5,7 +5,7 @@
  *      Author: steffen
  */
 
-#include "Commands/auto/PixyCommand.h"
+#include "PixyCommand.h"
 
 PixyCommand::PixyCommand(): Command() {
 	this->widthAspect = 0.0;
