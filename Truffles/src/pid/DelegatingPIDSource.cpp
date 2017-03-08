@@ -5,7 +5,7 @@
  *      Author: jason
  */
 
-#include <pid/DelegatingPIDSource.h>
+#include "DelegatingPIDSource.h"
 
 DelegatingPIDSource::DelegatingPIDSource(PIDSourceProvider pidFunc) : provider(pidFunc) {
 

@@ -22,6 +22,9 @@ public:
 
 	Timer timer;
 	bool rampUp=true;
+	  std::shared_ptr<Chassis> drive;
+	  std::unique_ptr<Notifier> updater;
+	  double initialHeading=0;
 
 };
 
