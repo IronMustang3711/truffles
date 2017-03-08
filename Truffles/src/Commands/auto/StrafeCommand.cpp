@@ -6,6 +6,7 @@
  */
 
 #include "StrafeCommand.h"
+#include "../../Robot.h"
 
 StrafeCommand::StrafeCommand() :Command("strafe"),timer{} {
 	Requires(Robot::chassis.get());

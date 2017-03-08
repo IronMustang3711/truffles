@@ -5,7 +5,7 @@
  *      Author: jason
  */
 
-#include <Commands/auto/AutonomousCommandFactory.h>
+#include "AutonomousCommandFactory.h"
 #include <DriverStation.h>
 using namespace frc;
 std::shared_ptr<Command> AutonomousCommandFactory::createAutonomousCommand() {
