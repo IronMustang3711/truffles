@@ -12,10 +12,16 @@
 #include <memory>
 #include "Notifier.h"
 #include "Timer.h"
-class StrafeCommand : public SimpleCommand {
-public:
-	StrafeCommand();
+class StrafeCommand : public Command {
+ public:
+  StrafeCommand();
+  virtual void Initialize() override;
+  virtual bool IsFinished() override;
+  virtual void Execute() override;
+  virtual void End() override;
 
+  Timer timer;
+  bool rampUp = true;
 };
 
 #endif /* SRC_COMMANDS_AUTO_STRAFECOMMAND_H_ */

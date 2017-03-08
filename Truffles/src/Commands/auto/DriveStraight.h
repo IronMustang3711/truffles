@@ -11,6 +11,24 @@
 #include "Notifier.h"
 #include "Timer.h"
 
+class DriveStraight2 : public PIDCommand {
+ public:
+  DriveStraight2();
+  void Initialize() override;
+  void Execute() override;
+  void End() override;
+  bool IsFinished() override;
+
+  virtual double ReturnPIDInput() override;
+  virtual void UsePIDOutput(double output) override;
+
+ private:
+  Timer timer{};
+  double startAngle = 0;
+  double motorOut = 0.5;
+  double duration = 1.0;
+};
+
 class DriveStraight : public SimpleCommand {
  public:
   DriveStraight();
@@ -33,6 +51,7 @@ class DriveStraight : public SimpleCommand {
   double motorOut = 0.5;
   double duration = 1.0;
   bool useGyro = true;
+  double initialHeading = 0.0;
 };
 
 #endif  // TRUFFLES_DRIVESTRAIGHT_H

@@ -10,13 +10,13 @@
 
 #include "PixyCommand.h"
 
-class PixyStrafe: public PixyCommand {
-public:
-	PixyStrafe();
-	virtual ~PixyStrafe();
+class PixyStrafe : public PixyCommand {
+ public:
+  PixyStrafe();
+  virtual ~PixyStrafe();
 
-	virtual void Execute();
-	virtual bool IsFinished();
+  virtual void Execute();
+  virtual bool IsFinished();
 };
 
 #endif /* SRC_COMMANDS_AUTO_PIXYSTRAFE_H_ */

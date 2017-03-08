@@ -10,13 +10,13 @@
 
 #include "PixyCommand.h"
 
-class PixyRotate: public PixyCommand {
-public:
-	PixyRotate();
-	virtual ~PixyRotate();
+class PixyRotate : public PixyCommand {
+ public:
+  PixyRotate();
+  virtual ~PixyRotate();
 
-	virtual void Execute();
-	virtual bool IsFinished();
+  virtual void Execute();
+  virtual bool IsFinished();
 };
 
 #endif /* SRC_COMMANDS_AUTO_PIXYROTATE_H_ */
