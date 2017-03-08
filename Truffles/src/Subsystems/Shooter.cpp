@@ -16,26 +16,23 @@
 #include "../pid/DelegatingPIDSource.h"
 using namespace frc;
 
-
-//TODO: std::bind!
+// TODO: std::bind!
 struct CANTalonErrorSourceFunctor {
-public:
-	std::shared_ptr<CANTalon> talon;
-	CANTalonErrorSourceFunctor(std::shared_ptr<CANTalon> ptr) : talon{ptr}
-	{
-	}
-	double operator () (void){
-		return talon->GetClosedLoopError();
-	}
+ public:
+  std::shared_ptr<CANTalon> talon;
+  CANTalonErrorSourceFunctor(std::shared_ptr<CANTalon> ptr) : talon{ptr} {}
+  double operator()(void) { return talon->GetClosedLoopError(); }
 };
 
-
-Shooter::Shooter() : Subsystem("Shooter"),
-		shooterController(RobotMap::shooterController),
-		errorFilter(LinearDigitalFilter::SinglePoleIIR(
-				std::make_shared<DelegatingPIDSource>(CANTalonErrorSourceFunctor(RobotMap::shooterController))
-				  ,1.0,5.0)),
-		setpointUpdateTimer{}
+Shooter::Shooter()
+    : Subsystem("Shooter"),
+      shooterController(RobotMap::shooterController),
+      errorFilter(LinearDigitalFilter::SinglePoleIIR(
+          std::make_shared<DelegatingPIDSource>(
+              CANTalonErrorSourceFunctor(RobotMap::shooterController)),
+          1.0,
+          5.0)),
+      setpointUpdateTimer{}
 
 {
   initShooter();
@@ -70,20 +67,19 @@ void Shooter::initShooter() {
 void Shooter::InitDefaultCommand() {}
 
 Shooter::State Shooter::getState() {
-	return state;
+  return state;
 }
 
-bool Shooter::isOff(double requestedSpeed){
-	return requestedSpeed == 0.0 || requestedSpeed == 10.0;
+bool Shooter::isOff(double requestedSpeed) {
+  return requestedSpeed == 0.0 || requestedSpeed == 10.0;
 }
 
-bool Shooter::isShooting(){
-	return getClosedLoopError() - prevClosedLoopError > 50.0 && getSetPoint() == prevSetPoint;
+bool Shooter::isShooting() {
+  return getClosedLoopError() - prevClosedLoopError > 50.0 &&
+         getSetPoint() == prevSetPoint;
 }
 
 void Shooter::run(double speed) {
-
-
   double sp = getSetPoint();
   double vel = getVelocity();
   double err = getClosedLoopError();
@@ -100,26 +96,27 @@ void Shooter::run(double speed) {
       break;
 
     case INIT:
-      if (std::abs(prevClosedLoopError-err) <= 1.) {
-        transition(STEADY); //error not changing much, transition to steady
+      if (std::abs(prevClosedLoopError - err) <= 1.) {
+        transition(STEADY);  // error not changing much, transition to steady
       } else if (isShooting()) {
-        transition(SHOOT); //large increase in error, not caused by change in setpoint
-      } else{
-    	  //still initializing
+        transition(SHOOT);  // large increase in error, not caused by change in
+                            // setpoint
+      } else {
+        // still initializing
       }
       break;
 
     case SHOOT:
-      if ( std::abs(prevVelocity - vel < 10)
-      	|| std::abs(prevClosedLoopError - err) < 5.0) {
-    	  //deceleration is over
-    	  //TODO keep track of acceleration!
+      if (std::abs(prevVelocity - vel < 10) ||
+          std::abs(prevClosedLoopError - err) < 5.0) {
+        // deceleration is over
+        // TODO keep track of acceleration!
         transition(BANG_BANG);
       }
       break;
 
     case BANG_BANG:
-      if (std::abs(prevClosedLoopError-err) <= 1.) {
+      if (std::abs(prevClosedLoopError - err) <= 1.) {
         transition(STEADY);
       } else if (err - prevClosedLoopError > 20.0 && sp == prevSetPoint) {
         transition(SHOOT);
@@ -147,18 +144,18 @@ void Shooter::runShooterMotor(double input) {
 
   // shooterController->Set(target);
 
-//  SmartDashboard::PutString("shooter state", StateName(state));
-//  SmartDashboard::PutNumber("shooter output", prevOutput);
-//  SmartDashboard::PutNumber("shooter:target", target);
-//  // SmartDashboard::PutNumber("shooter:input", input);
-//  SmartDashboard::PutNumber("shooter:speed", prevVelocity);
-//  SmartDashboard::PutNumber("Shooter:error", prevClosedLoopError);
+  //  SmartDashboard::PutString("shooter state", StateName(state));
+  //  SmartDashboard::PutNumber("shooter output", prevOutput);
+  //  SmartDashboard::PutNumber("shooter:target", target);
+  //  // SmartDashboard::PutNumber("shooter:input", input);
+  //  SmartDashboard::PutNumber("shooter:speed", prevVelocity);
+  //  SmartDashboard::PutNumber("Shooter:error", prevClosedLoopError);
 
-	GetTable()->PutNumber("setpoint",prevOutput);
-	GetTable()->PutNumber("velocity",target);
-	GetTable()->PutNumber("error",prevClosedLoopError);
-	GetTable()->PutNumber("error(lowpass)",errorFilter.Get());
-	GetTable()->PutNumber("output",prevOutput);
+  GetTable()->PutNumber("setpoint", prevOutput);
+  GetTable()->PutNumber("velocity", target);
+  GetTable()->PutNumber("error", prevClosedLoopError);
+  GetTable()->PutNumber("error(lowpass)", errorFilter.Get());
+  GetTable()->PutNumber("output", prevOutput);
 }
 
 double Shooter::getSetPoint() {
@@ -170,7 +167,7 @@ double Shooter::getVelocity() {
 }
 
 double Shooter::getClosedLoopError() {
-	//return errorFilter.Get();
+  // return errorFilter.Get();
   return shooterController->GetClosedLoopError();
 }
 
@@ -205,16 +202,16 @@ void Shooter::transition(Shooter::State newState) {
   if (state == BANG_BANG) {
     shooterController->SetD(100.0);
   }
-	GetTable()->PutString("state",StateName(newState));
+  GetTable()->PutString("state", StateName(newState));
 
   state = newState;
 }
-void Shooter::InitTable(std::shared_ptr<ITable> subtable){
-	subtable->PutString("state",StateName(state));
-	subtable->PutNumber("setpoint",0);
-	subtable->PutNumber("target",0);
-	subtable->PutNumber("velocity",0);
-	subtable->PutNumber("error",0);
-	subtable->PutNumber("error(lowpass)",0);
-	subtable->PutNumber("output",0);
+void Shooter::InitTable(std::shared_ptr<ITable> subtable) {
+  subtable->PutString("state", StateName(state));
+  subtable->PutNumber("setpoint", 0);
+  subtable->PutNumber("target", 0);
+  subtable->PutNumber("velocity", 0);
+  subtable->PutNumber("error", 0);
+  subtable->PutNumber("error(lowpass)", 0);
+  subtable->PutNumber("output", 0);
 }

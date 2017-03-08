@@ -45,32 +45,33 @@ OI::OI() {
 void OI::initSmartDashboardCommands() {
   // SmartDashboard Buttons
   SmartDashboard::PutData("RunIntake", new RunIntake());
-//  SmartDashboard::PutData("RunWinch: down", RunWinch::createDownCommand());
-//  SmartDashboard::PutData("RunWinch: up", RunWinch::createGoUpCommand());
-//  SmartDashboard::PutData("RunWinch: upslow", RunWinch::createHoldCommand());
+  //  SmartDashboard::PutData("RunWinch: down", RunWinch::createDownCommand());
+  //  SmartDashboard::PutData("RunWinch: up", RunWinch::createGoUpCommand());
+  //  SmartDashboard::PutData("RunWinch: upslow",
+  //  RunWinch::createHoldCommand());
   SmartDashboard::PutData("RunShooter", new RunShooter());
   SmartDashboard::PutData("RunShooterAndIntake", new RunShooterAndIntake());
-//  SmartDashboard::PutData("DriveWithJoystick", new DriveWithJoystick());
-//  SmartDashboard::PutData("Autonomous Command", new AutonomousCommand());
-//
-//  SmartDashboard::PutData("Gear catch: in (undriven)",
-//                          new GearCatchInUnpowered());
-//  SmartDashboard::PutData("gear catch: toggle", new GearCatchToggle());
-//  SmartDashboard::PutData("Gear catch: in", new GearCatchIn());
-//  SmartDashboard::PutData("Gear catch: out", new GearCatchOut());
-//  SmartDashboard::PutData("Toggle lights", new ToggleLights());
+  //  SmartDashboard::PutData("DriveWithJoystick", new DriveWithJoystick());
+  //  SmartDashboard::PutData("Autonomous Command", new AutonomousCommand());
+  //
+  //  SmartDashboard::PutData("Gear catch: in (undriven)",
+  //                          new GearCatchInUnpowered());
+  //  SmartDashboard::PutData("gear catch: toggle", new GearCatchToggle());
+  //  SmartDashboard::PutData("Gear catch: in", new GearCatchIn());
+  //  SmartDashboard::PutData("Gear catch: out", new GearCatchOut());
+  //  SmartDashboard::PutData("Toggle lights", new ToggleLights());
 
   SmartDashboard::PutData("zero encoders", new ZeroEncoders());
   SmartDashboard::PutData("driveStraight", new DriveStraight());
   SmartDashboard::PutData("rotate", new RotateCommand());
   SmartDashboard::PutData("strafe", new StrafeCommand());
 
-//  SmartDashboard::PutData(
-//      new SolenoidToggle(RobotMap::lightsRed, "red lights"));
-//  SmartDashboard::PutData(
-//      new SolenoidToggle(RobotMap::lightsGreen, "green lights"));
-//  SmartDashboard::PutData(
-//      new SolenoidToggle(RobotMap::lightsBlue, "blue lights"));
+  //  SmartDashboard::PutData(
+  //      new SolenoidToggle(RobotMap::lightsRed, "red lights"));
+  //  SmartDashboard::PutData(
+  //      new SolenoidToggle(RobotMap::lightsGreen, "green lights"));
+  //  SmartDashboard::PutData(
+  //      new SolenoidToggle(RobotMap::lightsBlue, "blue lights"));
 
   SmartDashboard::PutData(
       new SolenoidToggle(RobotMap::pixyRinglight, "pixy ringlight"));
@@ -111,9 +112,11 @@ ShooterJoystick::ShooterJoystick()
   winchUp->WhenReleased(RunWinch::createHoldCommand());
 
   shoot->ToggleWhenPressed(new RunShooter());
-  //RunShooterAndIntake is another option, but the intake draws too much current
-  //and messes with shooter tuning. It seems like the talon should be able to adapt to this,
-  //but whatever...
+  // RunShooterAndIntake is another option, but the intake draws too much
+  // current
+  // and messes with shooter tuning. It seems like the talon should be able to
+  // adapt to this,
+  // but whatever...
 
   runIntake->WhileHeld(new RunIntake());
 

@@ -18,8 +18,6 @@
 using namespace frc;
 
 class Shooter : public Subsystem {
-
-
  public:
   Shooter();
 
