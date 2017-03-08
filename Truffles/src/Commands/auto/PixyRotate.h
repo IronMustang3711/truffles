@@ -15,6 +15,7 @@ class PixyRotate : public PixyCommand {
   PixyRotate();
   virtual ~PixyRotate();
 
+  virtual void Initialize();
   virtual void Execute();
   virtual bool IsFinished();
 };

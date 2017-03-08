@@ -11,6 +11,7 @@
 #include "../../Pixy.h"
 #include "Commands/Subsystem.h"
 #include "../../Robot.h"
+#include "Notifier.h"
 
 enum PixyMovement { NONE, LEFT, RIGHT };
 
@@ -33,6 +34,7 @@ class PixyCommand : public Command {
 
   PixyMovement rotate;
   PixyMovement strafe;
+  std::unique_ptr<Notifier> updater;
 
  private:
 };
