@@ -7,13 +7,9 @@
 
 #include "DelegatingPIDSource.h"
 
-DelegatingPIDSource::DelegatingPIDSource(PIDSourceProvider pidFunc) : provider(pidFunc) {
-
+DelegatingPIDSource::DelegatingPIDSource(PIDSourceProvider pidFunc)
+    : provider(pidFunc) {}
+double DelegatingPIDSource::PIDGet() {
+  return provider();
 }
-double DelegatingPIDSource::PIDGet(){
-	return provider();
-}
-DelegatingPIDSource::~DelegatingPIDSource() {
-
-}
-
+DelegatingPIDSource::~DelegatingPIDSource() {}

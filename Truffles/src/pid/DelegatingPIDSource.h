@@ -12,17 +12,17 @@
 #include <functional>
 using namespace frc;
 
-class DelegatingPIDSource : public PIDSource{
-public:
-	typedef std::function<double(void)> PIDSourceProvider;
+class DelegatingPIDSource : public PIDSource {
+ public:
+  typedef std::function<double(void)> PIDSourceProvider;
 
-	DelegatingPIDSource(PIDSourceProvider);
-	virtual ~DelegatingPIDSource();
+  DelegatingPIDSource(PIDSourceProvider);
+  virtual ~DelegatingPIDSource();
 
-	virtual double PIDGet() override;
+  virtual double PIDGet() override;
 
-private:
-	PIDSourceProvider provider;
+ private:
+  PIDSourceProvider provider;
 };
 
 #endif /* SRC_PID_DELEGATINGPIDSOURCE_H_ */

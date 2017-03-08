@@ -151,7 +151,7 @@ void Robot::TestPeriodic() {
 
 void Robot::dashboardUpdate() {
   SmartDashboard::PutData(hexapus.get());
- SmartDashboard::PutData(shooter.get());
+  SmartDashboard::PutData(shooter.get());
   // SmartDashboard::PutData("pdp", RobotMap::powerDistributionPanel.get());
   chassis->dashboardTelemetry();
 

@@ -15,10 +15,10 @@
 #include "PixyRotate.h"
 #include "PixyStrafe.h"
 
-class PlaceGear: public CommandGroup {
-public:
-	PlaceGear(int mode);
-	virtual ~PlaceGear();
+class PlaceGear : public CommandGroup {
+ public:
+  PlaceGear(int mode);
+  virtual ~PlaceGear();
 };
 
 #endif /* SRC_COMMANDS_AUTO_PLACEGEAR_H_ */
