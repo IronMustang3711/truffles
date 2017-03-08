@@ -8,6 +8,7 @@
 #include "PlaceGear.h"
 
 PlaceGear::PlaceGear(int mode) : CommandGroup() {
+  AddSequential(new TogglePixyLight());  // Turn Pixy light on
   switch (mode) {
     case 0:
       // Robot starting on left side (in front of driver station 1)
@@ -33,8 +34,8 @@ PlaceGear::PlaceGear(int mode) : CommandGroup() {
       AddSequential(new DriveStraight());
       break;
   }
+  AddSequential(new TogglePixyLight());  // Turn Pixy light off again
 }
 
 PlaceGear::~PlaceGear() {
-  // TODO Auto-generated destructor stub
 }
