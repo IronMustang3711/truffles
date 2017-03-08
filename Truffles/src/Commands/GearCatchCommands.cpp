@@ -42,7 +42,7 @@ void GearCatchToggle::Execute() {
 }
 
 void GearCatchToggle::setCurrentCommand(GearCatchCommand* cmd) {
- // SmartDashboard::PutString("trace", cmd->GetName());
+  // SmartDashboard::PutString("trace", cmd->GetName());
   currentCommand = cmd;
   currentCommand->Start();
 }

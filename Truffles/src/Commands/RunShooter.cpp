@@ -10,7 +10,7 @@
 
 #include "RunShooter.h"
 #include "../Robot.h"
-
+#include "RunIntake.h"
 RunShooter::RunShooter() : Command() {
   Requires(Robot::shooter.get());
 }
@@ -38,4 +38,17 @@ void RunShooter::End() {
 
 void RunShooter::Interrupted() {
   End();
+}
+
+RunShooterAndIntake::RunShooterAndIntake()
+    : CommandGroup("Run shooter and intake") {
+  runShooterCommand = new RunShooter();
+  runIntakeCommand = new RunIntake();
+  AddParallel(runShooterCommand);
+  AddParallel(runIntakeCommand);  // TODO: timeout/periodic?
+}
+RunShooterAndIntake::~RunShooterAndIntake() {
+  delete runShooterCommand;
+  delete runIntakeCommand;
+  // CommandGroup::~CommandGroup();
 }
