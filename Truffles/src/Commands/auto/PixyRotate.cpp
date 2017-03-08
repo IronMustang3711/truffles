@@ -22,7 +22,7 @@ void PixyRotate::Execute() {
 }
 
 bool PixyRotate::IsFinished() {
-	return (this->rotate == PixyMovement::NONE) || IsTimedOut();
+	return (this->rotate == PixyMovement::NONE) || IsTimedOut() || IsCanceled();
 }
 
 PixyRotate::~PixyRotate() {

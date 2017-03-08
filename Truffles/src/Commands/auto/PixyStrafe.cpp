@@ -22,7 +22,7 @@ void PixyStrafe::Execute() {
 }
 
 bool PixyStrafe::IsFinished() {
-	return (this->strafe == PixyMovement::NONE) || IsTimedOut();
+	return (this->strafe == PixyMovement::NONE) || IsTimedOut() || IsCanceled();
 }
 
 PixyStrafe::~PixyStrafe() {
