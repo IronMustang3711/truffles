@@ -17,7 +17,7 @@
 #include "Commands/SolenoidToggle.h"
 
 /**
- * Operator Input Setup //TODO update description
+ * Operator Input Setup //TODO update/validate description
  * ====================
  *
  * Driver Joystick

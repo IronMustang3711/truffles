@@ -104,11 +104,13 @@ void Chassis::zeroEncoders() {
   leftRear->SetPosition(0);
 }
 
-void Chassis::prepareForTeleop() {}
+void Chassis::prepareForTeleop() {
+  // TODO
+}
 
-void Chassis::initMagicMode() {}
-
-void Chassis::initRegularMode() {}
+// void Chassis::initMagicMode() {}
+//
+// void Chassis::initRegularMode() {}
 
 void Chassis::toggleRobotFrontDirection() {
   rotateAngle = (rotateAngle == 0.0 ? 90.0 : 0.0);

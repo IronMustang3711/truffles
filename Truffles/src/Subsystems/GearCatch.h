@@ -8,7 +8,6 @@
 #include "Commands/Subsystem.h"
 #include "LinearActuator.h"
 #include <memory>
-// TODO default command to Inward?
 class GearCatch : public Subsystem {
  public:
   GearCatch();

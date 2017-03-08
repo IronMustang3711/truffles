@@ -10,9 +10,8 @@
 #include <memory>
 #include <commands/Command.h>
 class AutonomousCommandFactory {
-public:
-
-	static std::shared_ptr<Command> createAutonomousCommand();
+ public:
+  static std::shared_ptr<Command> createAutonomousCommand();
 };
 
 #endif /* SRC_COMMANDS_AUTO_AUTONOMOUSCOMMANDFACTORY_H_ */
