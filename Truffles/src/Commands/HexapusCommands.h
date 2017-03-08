@@ -6,8 +6,30 @@
 #define TRUFFLES_HEXAPUSCOMMAND_H
 #include <Commands/Command.h>
 #include <Commands/InstantCommand.h>
-#include <bitset>
+#include <Timer.h>
 #include "SimpleCommand.h"
+#include <string>
+class MyHexapusCommand : public SimpleCommand {
+ public:
+  MyHexapusCommand();
+  enum class State { INITIAL_OFF, WAITING_FOR_SHOOTER, RUNNING, UNJAM };
+  State getState();
+
+ protected:
+  virtual void Initialize() override;
+  virtual void Execute() override;
+  virtual void End() override;
+  void transition(State newState);
+
+  static std::string StateName(State state);
+
+ private:
+  Timer unjamTimer{};
+  State state{State::INITIAL_OFF};
+  int jamCount = 0;
+  int runCount = 0;
+};
+
 class UnjamHexapus : public SimpleCommand {
  public:
   UnjamHexapus(Command* whenFinished);
