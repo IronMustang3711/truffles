@@ -15,15 +15,10 @@ std::shared_ptr<Command> AutonomousCommandFactory::createAutonomousCommand() {
 	std::shared_ptr<Command> ptr;
 
 	/*
-	 * position 2(either side) : go straight
-	 *
-	 * red:
+	 * all positions :
 	 * 	1.) straight, right
+	 * 	2.) straight
 	 * 	3.)straight, left
-	 *
-	 *blue:
-	 *	1.) straight, right
-	 *	3.) straight, left
 	 *
 	 */
 
