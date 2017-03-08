@@ -14,7 +14,7 @@ std::shared_ptr<Command> AutonomousCommandFactory::createAutonomousCommand() {
   std::shared_ptr<Command> ptr;
 
   /*
-   * all positions :
+   * both alliances :
    * 	1.) straight, right
    * 	2.) straight
    * 	3.)straight, left
