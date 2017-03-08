@@ -14,6 +14,7 @@
 #include "StrafeCommand.h"
 #include "PixyRotate.h"
 #include "PixyStrafe.h"
+#include "../TogglePixyLight.h"
 
 class PlaceGear : public CommandGroup {
  public:

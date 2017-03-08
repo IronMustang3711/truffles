@@ -54,8 +54,8 @@ void PixyCommand::Execute() {
     }
   }
 
-  // SmartDashboard::PutNumber("Pixy: 1st block index", firstBlockIndex);
-  // SmartDashboard::PutNumber("Pixy: 2nd block index", secondBlockIndex);
+  SmartDashboard::PutNumber("Pixy: 1st block index", firstBlockIndex);
+  SmartDashboard::PutNumber("Pixy: 2nd block index", secondBlockIndex);
 
   if (firstBlockIndex > -1 && secondBlockIndex > -1) {
     // We found what we think are the correct two blocks of reflective tape
@@ -115,10 +115,11 @@ void PixyCommand::Execute() {
 }
 
 bool PixyCommand::IsFinished() {
-  return true;
+  return false;
 }
 
 void PixyCommand::End() {
+  updater->Stop();
   Robot::chassis->AutoDrive(0, 0);
 }
 

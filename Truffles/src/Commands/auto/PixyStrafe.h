@@ -15,6 +15,7 @@ class PixyStrafe : public PixyCommand {
   PixyStrafe();
   virtual ~PixyStrafe();
 
+  virtual void Initialize();
   virtual void Execute();
   virtual bool IsFinished();
 };

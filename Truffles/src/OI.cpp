@@ -82,6 +82,9 @@ void OI::initSmartDashboardCommands() {
   SmartDashboard::PutData("Auto: DS1", new PlaceGear(0));
   SmartDashboard::PutData("Auto: DS2", new PlaceGear(1));
   SmartDashboard::PutData("Auto: DS3", new PlaceGear(2));
+
+  SmartDashboard::PutData("Pixy: Strafe", new PixyStrafe());
+  SmartDashboard::PutData("Pixy: Rotate", new PixyRotate());
 }
 
 Btn::Btn(Joystick* j, int b) : joystick(j), buttonNumber(b) {}
