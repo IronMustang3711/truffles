@@ -206,12 +206,12 @@ void Shooter::transition(Shooter::State newState) {
 
   state = newState;
 }
-void Shooter::InitTable(std::shared_ptr<ITable> subtable) {
-  subtable->PutString("state", StateName(state));
-  subtable->PutNumber("setpoint", 0);
-  subtable->PutNumber("target", 0);
-  subtable->PutNumber("velocity", 0);
-  subtable->PutNumber("error", 0);
-  subtable->PutNumber("error(lowpass)", 0);
-  subtable->PutNumber("output", 0);
-}
+//void Shooter::InitTable(std::shared_ptr<ITable> subtable) {
+//  subtable->PutString("state", StateName(state));
+//  subtable->PutNumber("setpoint", 0);
+//  subtable->PutNumber("target", 0);
+//  subtable->PutNumber("velocity", 0);
+//  subtable->PutNumber("error", 0);
+//  subtable->PutNumber("error(lowpass)", 0);
+//  subtable->PutNumber("output", 0);
+//}

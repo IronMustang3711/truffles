@@ -55,7 +55,7 @@ class Shooter : public Subsystem {
 
   void transition(State newState);
 
-  void InitTable(std::shared_ptr<ITable> subtable) override;
+  //void InitTable(std::shared_ptr<ITable> subtable) override;
 
  private:
   bool isShooting();

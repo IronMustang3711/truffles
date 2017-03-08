@@ -15,30 +15,35 @@ StrafeCommand::StrafeCommand() :Command("strafe"),timer{} {
 
 }
 bool StrafeCommand::IsFinished() {
-	return !IsTimedOut();
+	return IsTimedOut();
 }
 void StrafeCommand::Initialize(){
 	timer.Reset();
+	timer.Start();
 	updater->StartPeriodic(0.01);
 	initialHeading = drive->getHeading();
 }
 void StrafeCommand::Execute() {
-	double out=0;
-	double t = timer.Get();
-	if(t>=0.5){
-		rampUp=false;
-		timer.Reset();
-		t=0;
-	}
-	if(rampUp){
-		out = 0.5*t;
-	} else {
-		out = 0.5 - 0.5*t;
-	}
-	drive->MecanumDrive_Cartesian(out,0,drive->getHeading()-initialHeading);
+	//double out=0;
+//	double t = timer.Get();
+//	if(t>=0.5){
+//		rampUp=false;
+//		timer.Reset();
+//		t=0;
+//	}
+//	if(rampUp){
+//		out = 0.5*t;
+//	} else {
+//		out = 1 - 0.5*t;
+//	}
+	//SmartDashboard::PutNumber("strafe out",out);
+	double heading = drive->getHeading()-initialHeading;
+	//if(heading<0.5) heading = 0;
+	drive->MecanumDrive_Cartesian(0.8,0,0,heading);
 
 }
 
 void StrafeCommand::End() {
+	drive->Drive(0,0);
 	updater->Stop();
 }
