@@ -2,6 +2,7 @@
 #include "RunShooter.h"
 #include "../Robot.h"
 #include "RunIntake.h"
+#include "../Subsystems/Shooter.h"
 RunShooter::RunShooter() : Command() {
   Requires(Robot::shooter.get());
 }

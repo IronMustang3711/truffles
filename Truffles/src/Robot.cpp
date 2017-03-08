@@ -14,6 +14,7 @@ std::shared_ptr<Intake> Robot::intake;
 std::shared_ptr<Winch> Robot::winch;
 std::shared_ptr<GearCatch> Robot::gearCatch;
 std::unique_ptr<OI> Robot::oi;
+std::shared_ptr<Lights> Robot::lights;
 /**
  * WARNING: changing order of initialization will probably break everything!
  */
@@ -25,6 +26,7 @@ void Robot::RobotInit() {
   intake.reset(new Intake());
   winch.reset(new Winch());
   gearCatch.reset(new GearCatch());
+  lights.reset(new Lights());
 
   oi.reset(new OI());
 
@@ -211,13 +213,13 @@ void Robot::dashboardUpdate() {
 void Robot::updateAllianceColor() {
   switch (DriverStation::GetInstance().GetAlliance()) {
     case DriverStation::kRed:
-      RobotMap::lightsRed->Set(true);
-      RobotMap::lightsBlue->Set(false);
+    	lights->perimeterRed.setOn(true);
+    	lights->perimeterBlue.setOn(false);
 
       break;
     case DriverStation::kBlue:
-      RobotMap::lightsRed->Set(false);
-      RobotMap::lightsBlue->Set(true);
+    	lights->perimeterRed.setOn(false);
+    	lights->perimeterBlue.setOn(true);
 
       break;
     case DriverStation::kInvalid:

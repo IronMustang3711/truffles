@@ -6,6 +6,7 @@
 #include "Commands/Subsystem.h"
 #include "Filters/LinearDigitalFilter.h"
 #include "Timer.h"
+
 using namespace frc;
 
 class Shooter : public Subsystem {
