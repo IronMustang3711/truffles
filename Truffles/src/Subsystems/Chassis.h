@@ -40,6 +40,7 @@ class Chassis : public Subsystem {
   void TankDrive(double leftValue,
                  double rightValue,
                  bool squaredInputs = true);
+  void stop();
 
   double getRightFrontCurrent();
   double getRightRearCurrent();

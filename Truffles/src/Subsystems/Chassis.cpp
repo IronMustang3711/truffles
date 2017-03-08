@@ -37,8 +37,11 @@ void Chassis::MecanumDrive_Cartesian(double x,
   rotation =
       pow(rotation, 3) * 0.3;  // limit to 10% to make it easier to control
   drive->MecanumDrive_Cartesian(x, y, rotation, gyroAngle + rotateAngle);
-
+//TODO: we should probably make sure that rotateAngle is 0 for autonomous
   dashboardTelemetry();
+}
+void Chassis::stop() {
+	drive->StopMotor();
 }
 
 void Chassis::dashboardTelemetry() {

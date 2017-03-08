@@ -28,6 +28,9 @@ class DriveStraight2 : public PIDCommand {
   double motorOut = 0.5;
   double duration = 1.0;
   double targetDistance=0;
+
+  double initialEncoderPositionLeft = 0;
+  double initialEncoderPositionRight = 0;
 };
 
 class DriveStraight : public SimpleCommand {
@@ -52,7 +55,10 @@ class DriveStraight : public SimpleCommand {
   double duration = 1.0;
   bool useGyro = true;
   double initialHeading = 0.0;
-  double targetDistance;
+  double targetDistance=0;
+  double initialEncoderPositionLeft = 0;
+  double initialEncoderPositionRight = 0;
+
 };
 
 #endif  // TRUFFLES_DRIVESTRAIGHT_H

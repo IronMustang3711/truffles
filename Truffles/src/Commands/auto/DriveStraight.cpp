@@ -14,7 +14,8 @@ DriveStraight2::DriveStraight2(double distance) : PIDCommand("Rotate", 1, 0, 0, 
 
 void DriveStraight2::Initialize() {
   startAngle = Robot::chassis->getHeading();  // or calibrate?
-
+  initialEncoderPositionLeft = Robot::chassis->getRightRearPosition();
+  initialEncoderPositionRight = Robot::chassis->getLeftRearPosition();
   SetSetpoint(startAngle);
 }
 
