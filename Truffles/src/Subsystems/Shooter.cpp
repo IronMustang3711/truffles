@@ -4,22 +4,15 @@
 #include <PIDSource.h>
 #include <memory>
 #include <functional>
-#include "../pid/DelegatingPIDSource.h"
+#include "../PIDStuff.h"
 using namespace frc;
 
-// TODO: std::bind!
-struct CANTalonErrorSourceFunctor {
- public:
-  std::shared_ptr<CANTalon> talon;
-  CANTalonErrorSourceFunctor(std::shared_ptr<CANTalon> ptr) : talon{ptr} {}
-  double operator()(void) { return (double) talon->GetClosedLoopError(); }
-};
 Shooter::Shooter()
     : Subsystem("Shooter"),
       shooterController(RobotMap::shooterController),
       errorFilter(LinearDigitalFilter::SinglePoleIIR(
-          std::make_shared<DelegatingPIDSource>(
-              CANTalonErrorSourceFunctor(RobotMap::shooterController)),
+    		  std::make_shared<utils::PIDSourceAdapter>(
+    				  std::bind(&CANTalon::GetClosedLoopError,RobotMap::shooterController)),
           1.0,
           5.0)),
       setpointUpdateTimer{}
