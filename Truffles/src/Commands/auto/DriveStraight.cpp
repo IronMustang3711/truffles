@@ -4,9 +4,9 @@
 
 #include "DriveStraight.h"
 #include "../../Robot.h"
-
+//a = 42, b=48
 // p,i,d,f, update rate(seconds)
-DriveStraight2::DriveStraight2() : PIDCommand("Rotate", 1, 0, 0, 0.1, 0.01) {
+DriveStraight2::DriveStraight2(double distance) : PIDCommand("Rotate", 1, 0, 0, 0.1, 0.01),targetDistance(distance) {
   Requires(Robot::chassis.get());
   SetTimeout(3.0);
   SetPIDSourceType(PIDSourceType::kDisplacement);
@@ -14,7 +14,8 @@ DriveStraight2::DriveStraight2() : PIDCommand("Rotate", 1, 0, 0, 0.1, 0.01) {
 
 void DriveStraight2::Initialize() {
   startAngle = Robot::chassis->getHeading();  // or calibrate?
-
+  initialEncoderPositionLeft = Robot::chassis->getRightRearPosition();
+  initialEncoderPositionRight = Robot::chassis->getLeftRearPosition();
   SetSetpoint(startAngle);
 }
 
@@ -47,7 +48,7 @@ void DriveStraight2::UsePIDOutput(double out) {
   Robot::chassis->MecanumDrive_Cartesian(0, output, out, 0);
 }
 
-DriveStraight::DriveStraight() : SimpleCommand("DriveStraight"), timer{} {
+DriveStraight::DriveStraight(double distance) : SimpleCommand("DriveStraight"), timer{},targetDistance(distance) {
   updater = std::make_unique<Notifier>(&DriveStraight::update, this);
   drive = Robot::chassis;
   SetTimeout(3.5);
@@ -89,7 +90,7 @@ void DriveStraight::update() {
 void DriveStraight::Initialize() {
   motorOut = SmartDashboard::GetNumber("motor out", 0.5);
   useGyro = SmartDashboard::GetBoolean("use gyro", true);
-  duration = SmartDashboard::GetBoolean("drive straight segment duration", 1.0);
+  duration = SmartDashboard::GetNumber("drive straight segment duration", 1.0);
   SetTimeout(duration + 0.5);
   drive->zeroEncoders();
   updater->StartPeriodic(0.01);

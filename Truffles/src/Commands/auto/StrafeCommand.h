@@ -14,7 +14,7 @@
 #include "Timer.h"
 class StrafeCommand : public Command {
  public:
-  StrafeCommand();
+  StrafeCommand(double distanceInInches_rightIsPositive);
   virtual void Initialize() override;
   virtual bool IsFinished() override;
   virtual void Execute() override;
@@ -25,6 +25,7 @@ class StrafeCommand : public Command {
   std::shared_ptr<Chassis> drive;
   std::unique_ptr<Notifier> updater;
   double initialHeading = 0;
+  double targetDistance = 0;
 };
 
 #endif /* SRC_COMMANDS_AUTO_STRAFECOMMAND_H_ */

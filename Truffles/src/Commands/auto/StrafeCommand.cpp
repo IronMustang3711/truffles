@@ -7,7 +7,7 @@
 
 #include "StrafeCommand.h"
 #include "../../Robot.h"
-StrafeCommand::StrafeCommand() : Command("strafe"), timer{} {
+StrafeCommand::StrafeCommand(double distance) : Command("strafe"), timer{},targetDistance(distance) {
   updater = std::make_unique<Notifier>(&StrafeCommand::Execute, this);
   drive = Robot::chassis;
   Requires(Robot::chassis.get());

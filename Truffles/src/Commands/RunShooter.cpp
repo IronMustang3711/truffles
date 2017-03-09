@@ -2,12 +2,13 @@
 #include "RunShooter.h"
 #include "../Robot.h"
 #include "RunIntake.h"
+#include "../Subsystems/Shooter.h"
 RunShooter::RunShooter() : Command() {
   Requires(Robot::shooter.get());
 }
 
 void RunShooter::Initialize() {
-  Robot::shooter->initShooter();
+  Robot::shooter->stop();
 }
 
 void RunShooter::Execute() {
@@ -24,7 +25,7 @@ bool RunShooter::IsFinished() {
 }
 
 void RunShooter::End() {
-  Robot::shooter->runShooterMotor(0);
+  Robot::shooter->stop();
 }
 
 void RunShooter::Interrupted() {

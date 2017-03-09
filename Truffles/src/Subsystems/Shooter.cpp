@@ -4,23 +4,15 @@
 #include <PIDSource.h>
 #include <memory>
 #include <functional>
-#include "../pid/DelegatingPIDSource.h"
+#include "../PIDStuff.h"
 using namespace frc;
-
-// TODO: std::bind!
-struct CANTalonErrorSourceFunctor {
- public:
-  std::shared_ptr<CANTalon> talon;
-  CANTalonErrorSourceFunctor(std::shared_ptr<CANTalon> ptr) : talon{ptr} {}
-  double operator()(void) { return talon->GetClosedLoopError(); }
-};
 
 Shooter::Shooter()
     : Subsystem("Shooter"),
       shooterController(RobotMap::shooterController),
       errorFilter(LinearDigitalFilter::SinglePoleIIR(
-          std::make_shared<DelegatingPIDSource>(
-              CANTalonErrorSourceFunctor(RobotMap::shooterController)),
+    		  std::make_shared<utils::PIDSourceAdapter>(
+    				  std::bind(&CANTalon::GetClosedLoopError,RobotMap::shooterController)),
           1.0,
           5.0)),
       setpointUpdateTimer{}
@@ -53,6 +45,8 @@ void Shooter::initShooter() {
   shooterController->SetI(0.0);
   shooterController->SetD(0.0);
   shooterController->SetCloseLoopRampRate(0.0);
+  //TODO: Shooter error is currently converging at ~24
+
 }
 
 void Shooter::InitDefaultCommand() {}
@@ -67,7 +61,15 @@ bool Shooter::isOff(double requestedSpeed) {
 
 bool Shooter::isShooting() {
   return getClosedLoopError() - prevClosedLoopError > 50.0 &&
-         getSetPoint() == prevSetPoint;
+         !setpointRecentlyChanged();
+}
+bool Shooter::setpointRecentlyChanged() {
+	double t = setpointUpdateTimer.Get();
+	if(t > 0.5){
+		setpointUpdateTimer.Stop();
+		setpointUpdateTimer.Reset();
+	}
+	return t != 0 && t < 0.5;
 }
 
 void Shooter::run(double speed) {
@@ -78,6 +80,10 @@ void Shooter::run(double speed) {
 
   if (isOff(speed)) {
     transition(OFF);
+  }
+  if(sp != prevSetPoint){
+	  setpointUpdateTimer.Reset();
+	  setpointUpdateTimer.Start();
   }
   switch (state) {
     case OFF:
@@ -109,7 +115,7 @@ void Shooter::run(double speed) {
     case BANG_BANG:
       if (std::abs(prevClosedLoopError - err) <= 1.) {
         transition(STEADY);
-      } else if (err - prevClosedLoopError > 20.0 && sp == prevSetPoint) {
+      } else if (err - prevClosedLoopError > 20.0 && !setpointRecentlyChanged()) {
         transition(SHOOT);
       }
       break;
@@ -135,8 +141,8 @@ void Shooter::runShooterMotor(double input) {
 
   // shooterController->Set(target);
 
-  SmartDashboard::PutString("shooter state", StateName(state));
-  SmartDashboard::PutNumber("shooter output", prevOutput);
+  SmartDashboard::PutString("shooter:state", StateName(state));
+  SmartDashboard::PutNumber("shooter:output", prevOutput);
   SmartDashboard::PutNumber("shooter:target", target);
   // SmartDashboard::PutNumber("shooter:input", input);
   SmartDashboard::PutNumber("shooter:speed", prevVelocity);
@@ -157,7 +163,7 @@ double Shooter::getVelocity() {
   return shooterController->GetSpeed();
 }
 
-double Shooter::getClosedLoopError() {
+int Shooter::getClosedLoopError() {
   // return errorFilter.Get();
   return shooterController->GetClosedLoopError();
 }
@@ -184,19 +190,29 @@ std::string Shooter::StateName(Shooter::State s) {
 }
 
 void Shooter::transition(Shooter::State newState) {
-  if (state == OFF && newState == INIT) {
-    initShooter();
-  }
-  if (newState == BANG_BANG) {
-    shooterController->SetD(0);
-  }
+	if(newState == OFF){
+		shooterController->StopMotor();
+	} else if(newState == BANG_BANG){
+		 shooterController->SetD(0);
+	} else if(newState == INIT && state == OFF){
+		initShooter();
+	}
+
+
   if (state == BANG_BANG) {
     shooterController->SetD(100.0);
   }
-  GetTable()->PutString("state", StateName(newState));
+
+ // GetTable()->PutString("state", StateName(newState));
 
   state = newState;
 }
+
+void Shooter::stop() {
+	transition(OFF);
+}
+
+
 // void Shooter::InitTable(std::shared_ptr<ITable> subtable) {
 //  subtable->PutString("state", StateName(state));
 //  subtable->PutNumber("setpoint", 0);

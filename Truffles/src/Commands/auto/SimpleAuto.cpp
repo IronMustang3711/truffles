@@ -21,7 +21,7 @@ class SimpleDriveStraight : public Command {
 
 class SimpleRotate : public Command {
  public:
-  SimpleRotate() : Command("drive straight(simple)") {}
+  SimpleRotate() : Command("rotate(simple)") {}
 
   virtual void Initialize() override {}
   virtual void Execute() override {}

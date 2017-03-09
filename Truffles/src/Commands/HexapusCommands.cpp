@@ -4,7 +4,7 @@
 
 #include "HexapusCommands.h"
 #include "../Robot.h"
-static const int UNJAM_TIME = 0.15;
+static const double UNJAM_TIME = 0.15;
 
 MyHexapusCommand::MyHexapusCommand() : SimpleCommand("my hexapus command") {}
 
@@ -18,7 +18,6 @@ void MyHexapusCommand::transition(State newState) {
     if (runCount <= 10) {
       jamCount++;
     }
-
     runCount = 0;
   } else if (prevState != State::UNJAM) {
     jamCount = 0;
@@ -26,6 +25,8 @@ void MyHexapusCommand::transition(State newState) {
 
   switch (newState) {
     case State::INITIAL_OFF:
+    	unjamTimer.Stop();
+    	unjamTimer.Reset();
       Robot::hexapus->stop();
       break;
     case State::RUNNING:
@@ -36,6 +37,7 @@ void MyHexapusCommand::transition(State newState) {
         Cancel();
       } else {
         unjamTimer.Reset();
+        unjamTimer.Start();
         Robot::hexapus->unjam();
       }
       break;
@@ -58,8 +60,9 @@ std::string MyHexapusCommand::StateName(State state) {
       return "running";
     case State::UNJAM:
       return "unjamming";
+
   }
-  return "lol";
+   return "lol";
 }
 
 void MyHexapusCommand::Initialize() {

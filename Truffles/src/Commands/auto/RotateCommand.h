@@ -9,7 +9,7 @@
 
 class RotateCommand : public PIDCommand {
  public:
-  RotateCommand();
+  RotateCommand(double amtInDegrees);
   void Initialize();
   void Execute();
   void End();
