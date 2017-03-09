@@ -20,7 +20,7 @@ bool PixySubsystem::isTracking() {
 
 void PixySubsystem::enable() {
 	enabled = true;
-	notifier.StartPeriodic(0.03); // 30 updates/sec
+	notifier.StartPeriodic(0.04); // 25 updates/sec
 }
 
 void PixySubsystem::disable() {
@@ -55,5 +55,4 @@ std::shared_ptr<PIDSource> PixySubsystem::createPIDSourceForRotation() {
 std::shared_ptr<PIDSource> PixySubsystem::createPIDSourceForStrafing() {
 	return std::make_shared<utils::PIDSourceAdapter>(std::bind(&PixySubsystem::getBlockRatio,this));
 }
-// Put methods for controlling this subsystem
-// here. Call these from Commands.
+
