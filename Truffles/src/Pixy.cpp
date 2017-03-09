@@ -55,6 +55,9 @@ bool Pixy::getStart() {
     lastw = w;
   }
 }
+uint16_t Pixy::getBlocks() {
+	return getBlocks(PIXY_MAXIMUM_ARRAYSIZE);
+}
 
 uint16_t Pixy::getBlocks(uint16_t maxBlocks) {
   blocks[0] = {0};  // Resets the array - clears out data from previous reading
@@ -132,3 +135,5 @@ Pixy::~Pixy() {
 
   i2c = nullptr;
 }
+
+

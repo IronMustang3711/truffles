@@ -97,7 +97,13 @@ class Pixy {
  public:
   Pixy(I2C::Port port, int i2cAddress);
   ~Pixy();
+  /**
+   *
+   * @param maxBlocks the maximum number of blocks we are interested in, up to PIXY_MAXIMUM_ARRAYSIZE
+   * @return the number of blocks available
+   */
   uint16_t getBlocks(uint16_t maxBlocks);
+  uint16_t getBlocks();
   Block blocks[PIXY_MAXIMUM_ARRAYSIZE];  // Array that stores the matched
                                          // signature objects
 };
