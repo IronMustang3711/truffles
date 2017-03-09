@@ -13,35 +13,37 @@ std::string PIDTypeName(PIDSourceType type) {
 }
 
 // p,i,d,f, update rate(seconds)
-RotateCommand::RotateCommand(double amt) : PIDCommand("Rotate", 1, 0, 0, 0.1, 0.01),dstAngle(amt) {
+RotateCommand::RotateCommand(double amt) : PIDCommand("Rotate", 1, 0, 0, 1.0, 0.05),dstAngle(amt) {
   Requires(Robot::chassis.get());
   SetTimeout(3.0);
   SetPIDSourceType(PIDSourceType::kDisplacement);
-  SmartDashboard::PutString("gyro pid source type",
-                            PIDTypeName(RobotMap::ahrs->GetPIDSourceType()));
+  auto c = GetPIDController();
+  c->SetAbsoluteTolerance(0.5);
+  c->SetToleranceBuffer(3);
+  c->SetInputRange(-180,180);
+  c->SetOutputRange(-180,180);
+  c->SetContinuous(true);
+
+
 }
 
 void RotateCommand::Initialize() {
   startAngle = Robot::chassis->getHeading();  // or calibrate?
-  dstAngle = SmartDashboard::PutNumber("rotate angle", startAngle);
   SetSetpoint(dstAngle);
 }
 
 void RotateCommand::Execute() {}
 
 bool RotateCommand::IsFinished() {
-  return IsTimedOut() || IsCanceled() ||
-         std::abs(ReturnPIDInput() - GetSetpoint()) < 5.0;
+  return IsTimedOut() || IsCanceled() || GetPIDController()->OnTarget();
 }
 
 void RotateCommand::End() {
-  // TODO Pizza hut here?
+ Robot::chassis->stop();
 }
 
 double RotateCommand::ReturnPIDInput() {
   return Robot::chassis->getHeading();
-  // return RobotMap::ahrs->PIDGet();//LOL IMPLEMENTS PIDSource but marks api as
-  // private ?????!!!!
 }
 
 void RotateCommand::UsePIDOutput(double out) {
