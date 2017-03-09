@@ -25,7 +25,7 @@ void Hexapus::run(double speed) {
   hexapusController->Set(-speed);
 }
 void Hexapus::run() {
-  run(0.5);
+  run(0.6);
 }
 
 void Hexapus::stop() {
