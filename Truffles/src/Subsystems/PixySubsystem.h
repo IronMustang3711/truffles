@@ -10,7 +10,7 @@ private:
 	Pixy* pixy;
 	void doUpdate();
 	Notifier notifier;
-	int numberOfTracks=0;
+	int objectCount=0;
 	bool enabled = false;
 
 public:

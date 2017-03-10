@@ -44,6 +44,16 @@ enum BlockType {
   CC_BLOCK       // Color-code recognition (change in angle)
 };
 
+struct Point2_UI16{
+public:
+	Point2_UI16(uint16_t _x,uint16_t _y) : x(_x),y(_y){}
+	uint16_t x = 0;
+	uint16_t y = 0;
+
+	Point2_UI16 midpointBetween(Point2_UI16 other){
+		return Point2_UI16{uint16_t((other.x-this->x)/2), uint16_t((other.y-this->y)/2)};
+	}
+};
 struct Block {
   void print() {
     int i, j;
@@ -80,6 +90,11 @@ struct Block {
   uint16_t width;
   uint16_t height;
   uint16_t angle;  // Only applicable to color-code recognition
+
+  Point2_UI16 centroid(){
+	  return Point2_UI16{uint16_t(x+width/2),uint16_t(y+height/2)};
+
+  }
 };
 
 class Pixy {
