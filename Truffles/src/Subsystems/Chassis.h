@@ -30,7 +30,7 @@ class Chassis : public Subsystem {
    */
   void MecanumDrive(std::shared_ptr<Joystick> stickPosition,
                     double gyroAngle = 0.0);
-  void AutoDrive(float fwdSpeed, float rotateSpeed);
+  void AutoDrive(double fwdSpeed, double rotateSpeed);
   void MecanumDrive_Cartesian(double x,
                               double y,
                               double rotation,

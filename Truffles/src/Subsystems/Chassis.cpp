@@ -29,7 +29,7 @@ void Chassis::MecanumDrive(std::shared_ptr<Joystick> stickPosition,
   MecanumDrive_Cartesian(x, y, z, gyroAngle);
 }
 
-void Chassis::AutoDrive(float fwdSpeed, float rotateSpeed) {  //%NE
+void Chassis::AutoDrive(double fwdSpeed, double rotateSpeed) {  //%NE
   drive->MecanumDrive_Cartesian(0, -fwdSpeed, rotateSpeed);
 }
 
