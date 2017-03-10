@@ -7,20 +7,24 @@
 
 #include "StrafeCommand.h"
 #include "../../Robot.h"
+double sgn(double in){
+	return in > 0 ? 1 : in == 0 ? 0 : -1;
+}
 StrafeCommand::StrafeCommand(double distance) : Command("strafe"), timer{},targetDistance(distance) {
   updater = std::make_unique<Notifier>(&StrafeCommand::Execute, this);
   drive = Robot::chassis;
   Requires(Robot::chassis.get());
-  SetTimeout(2.0);
+  SetTimeout(4.0);
 }
 bool StrafeCommand::IsFinished() {
   return IsTimedOut();
 }
 void StrafeCommand::Initialize() {
+	initialHeading = drive->getHeading();
   timer.Reset();
   timer.Start();
   updater->StartPeriodic(0.01);
-  initialHeading = drive->getHeading();
+
 }
 void StrafeCommand::Execute() {
   // double out=0;
@@ -38,10 +42,11 @@ void StrafeCommand::Execute() {
   // SmartDashboard::PutNumber("strafe out",out);
   double heading = drive->getHeading() - initialHeading;
   // if(heading<0.5) heading = 0;
-  drive->MecanumDrive_Cartesian(0.8, 0, 0, heading);
+  drive->MecanumDrive_Cartesian(sgn(targetDistance)*0.8, 0, 0, 0.05*heading);
 }
 
 void StrafeCommand::End() {
   drive->Drive(0, 0);
   updater->Stop();
+  timer.Stop();
 }

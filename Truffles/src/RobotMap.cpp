@@ -41,12 +41,17 @@ void RobotMap::init() {
 
   auto configDriveTalon = [](std::shared_ptr<CANTalon> t) {
     t->SetFeedbackDevice(CANTalon::QuadEncoder);
-    t->ConfigEncoderCodesPerRev(2916);
+    t->ConfigEncoderCodesPerRev(3042);
     t->SetSensorDirection(true);
     t->SetPosition(0);
     t->ConfigLimitMode(CANSpeedController::kLimitMode_SrxDisableSwitchInputs);
 
   };
+
+  //gearbox ratio 8.45:1
+  //wheelbase== 26"
+  //encoder 360 : 1
+  //theoretically: 1 revolution = 18.8"
 
   configDriveTalon(leftFrontController);
   configDriveTalon(leftRearController);

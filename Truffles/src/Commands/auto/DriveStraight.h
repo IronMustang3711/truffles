@@ -31,6 +31,10 @@ class DriveStraight2 : public PIDCommand {
 
   double initialEncoderPositionLeft = 0;
   double initialEncoderPositionRight = 0;
+
+	double kPgain = 0.04; /* percent throttle per degree of error */
+	double kDgain = 0.0004; /* percent throttle per angular velocity dps */
+	double kMaxCorrectionRatio = 0.30; /* cap corrective turning throttle to 30 percent of forward throttle */
 };
 
 class DriveStraight : public SimpleCommand {

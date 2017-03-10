@@ -2,7 +2,12 @@
 #include "Chassis.h"
 #include "../Commands/DriveWithJoystick.h"
 #include "../RobotMap.h"
-
+/**
+ *   gearbox ratio 8.45:1
+  wheelbase== 26"
+  encoder 360 : 1
+  theoretically: 1 revolution = 18.8"
+ */
 Chassis::Chassis() : Subsystem("Chassis") {
   leftFront = RobotMap::leftFrontController;
   leftRear = RobotMap::leftRearController;
@@ -28,6 +33,27 @@ void Chassis::AutoDrive(float fwdSpeed, float rotateSpeed) {  //%NE
   drive->MecanumDrive_Cartesian(0, -fwdSpeed, rotateSpeed);
 }
 
+/**
+ * Drive method for Mecanum wheeled robots.
+ *
+ * A method for driving with Mecanum wheeled robots. There are 4 wheels
+ * on the robot, arranged so that the front and back wheels are toed in 45
+ * degrees.
+ * When looking at the wheels from the top, the roller axles should form an X
+ * across the robot.
+ *
+ * This is designed to be directly driven by joystick axes.
+ *
+ * @param x         The speed that the robot should drive in the X direction.
+ *                  [-1.0..1.0]
+ * @param y         The speed that the robot should drive in the Y direction.
+ *                  This input is inverted to match the forward == -1.0 that
+ *                  joysticks produce. [-1.0..1.0]
+ * @param rotation  The rate of rotation for the robot that is completely
+ *                  independent of the translation. [-1.0..1.0]
+ * @param gyroAngle The current angle reading from the gyro.  Use this to
+ *                  implement field-oriented controls.
+ */
 void Chassis::MecanumDrive_Cartesian(double x,
                                      double y,
                                      double rotation,
@@ -98,11 +124,51 @@ void Chassis::TankDrive(double leftValue,
                         bool squaredInputs) {
   drive->TankDrive(leftValue, rightValue, squaredInputs);
 }
+/**
+ * Drive the motors at "outputMagnitude" and "curve".
+ * Both outputMagnitude and curve are -1.0 to +1.0 values, where 0.0 represents
+ * stopped and not turning. curve < 0 will turn left and curve > 0 will turn
+ * right.
+ *
+ * The algorithm for steering provides a constant turn radius for any normal
+ * speed range, both forward and backward. Increasing m_sensitivity causes
+ * sharper turns for fixed values of curve.
+ *
+ * This function will most likely be used in an autonomous routine.
+ *
+ * @param outputMagnitude The speed setting for the outside wheel in a turn,
+ *                        forward or backwards, +1 to -1.
+ * @param curve           The rate of turn, constant for different forward
+ *                        speeds. Set curve < 0 for left turn or curve > 0 for
+ *                        right turn.
+ *
+ * Set curve = e^(-r/w) to get a turn radius r for wheelbase w of your robot.
+ * Conversely, turn radius r = -ln(curve)*w for a given value of curve and
+ * wheelbase w.
+ */
+//note wheelbase == 33-34 inches, probably
+//6" wheel diameter
 
 void Chassis::Drive(double outputMagnitude, double curve) {
   drive->Drive(outputMagnitude, curve);
 }
-
+/**
+ * Drive method for Mecanum wheeled robots.
+ *
+ * A method for driving with Mecanum wheeled robots. There are 4 wheels
+ * on the robot, arranged so that the front and back wheels are toed in 45
+ * degrees.
+ * When looking at the wheels from the top, the roller axles should form an X
+ * across the robot.
+ *
+ * @param magnitude The speed that the robot should drive in a given direction.
+ *                  [-1.0..1.0]
+ * @param direction The direction the robot should drive in degrees. The
+ *                  direction and maginitute are independent of the rotation
+ *                  rate.
+ * @param rotation  The rate of rotation for the robot that is completely
+ *                  independent of the magnitute or direction. [-1.0..1.0]
+ */
 void Chassis::MecanumDrive_Polar(double magnitude,
                                  double direction,
                                  double rotation) {

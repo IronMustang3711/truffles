@@ -13,15 +13,15 @@ std::string PIDTypeName(PIDSourceType type) {
 }
 
 // p,i,d,f, update rate(seconds)
-RotateCommand::RotateCommand(double amt) : PIDCommand("Rotate", 1, 0, 0, 1.0, 0.05),dstAngle(amt) {
+RotateCommand::RotateCommand(double amt) : PIDCommand("Rotate", 0.5, 0, 0, 0.1, 0.05),dstAngle(amt) {
   Requires(Robot::chassis.get());
   SetTimeout(3.0);
   SetPIDSourceType(PIDSourceType::kDisplacement);
   auto c = GetPIDController();
-  c->SetAbsoluteTolerance(0.5);
+  c->SetAbsoluteTolerance(2.0);
   c->SetToleranceBuffer(3);
   c->SetInputRange(-180,180);
-  c->SetOutputRange(-180,180);
+  c->SetOutputRange(-1,1);
   c->SetContinuous(true);
 
 
@@ -47,5 +47,5 @@ double RotateCommand::ReturnPIDInput() {
 }
 
 void RotateCommand::UsePIDOutput(double out) {
-  Robot::chassis->MecanumDrive_Cartesian(0, 0, out, startAngle);
+  Robot::chassis->MecanumDrive_Cartesian(0, 0, out, startAngle); //TODO: instead of startAngle, try Robot::chassis->getHeading()
 }
