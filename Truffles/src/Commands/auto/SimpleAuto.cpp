@@ -34,7 +34,7 @@ class SimpleDriveStraight : public Command {
 
  private:
   double targetDistance = 0;
-  Notifier notifier{SimpleDriveStraight::doUpdate,this};
+  Notifier notifier{&SimpleDriveStraight::doUpdate,this};
   Timer timer{};
 
 

@@ -20,7 +20,6 @@
 
 class Robot : public IterativeRobot {
  public:
-  std::unique_ptr<Command> autonomousCommand;
   static std::unique_ptr<OI> oi;
   LiveWindow* lw = LiveWindow::GetInstance();
   static std::shared_ptr<Chassis> chassis;
@@ -44,5 +43,9 @@ class Robot : public IterativeRobot {
   void dashboardUpdate();
 
   static void vision();
+
+ private:
+ 	std::unique_ptr<frc::Command> autonomousCommand;
+ 	frc::SendableChooser<frc::Command*> chooser;
 };
 #endif
