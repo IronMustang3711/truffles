@@ -43,7 +43,9 @@ void Robot::RobotInit() {
 
 	CameraServer::GetInstance()->StartAutomaticCapture().SetResolution(320,
 			240);
-	  std::thread visionThread(vision2);
+//	  std::thread visionThread(vision2);
+//	  visionThread.detach();
+	  std::thread visionThread(vision);
 	  visionThread.detach();
 }
 
