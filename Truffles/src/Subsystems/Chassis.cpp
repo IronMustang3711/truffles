@@ -78,8 +78,10 @@ void Chassis::dashboardTelemetry() {
                                              {"rear right", rightRear.get()}};
 
   for (auto it = talons.begin(); it != talons.end(); ++it) {
-    SmartDashboard::PutNumber(it->first + "_position",
-                              it->second->GetPosition());
+    SmartDashboard::PutNumber(it->first + "enc_position",
+                              it->second->GetEncPosition());
+    SmartDashboard::PutNumber(it->first + "enc_position",
+                                it->second->GetPosition());
   }
 }
 

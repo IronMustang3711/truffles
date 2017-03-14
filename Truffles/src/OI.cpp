@@ -84,7 +84,7 @@ void OI::initSmartDashboardCommands() {
   SmartDashboard::PutData(
       new SolenoidToggle(RobotMap::rearRingLight, "rear ringlight"));
 
-  SmartDashboard::PutData("ringlights",new RingLights());
+ // SmartDashboard::PutData("ringlights",new RingLights());
 }
 
 Btn::Btn(Joystick* j, int b) : joystick(j), buttonNumber(b) {}

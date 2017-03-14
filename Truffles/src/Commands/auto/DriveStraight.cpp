@@ -97,7 +97,7 @@ void DriveStraight2::UsePIDOutput(double out) {
   Robot::chassis->MecanumDrive_Cartesian(0, output, turnThrottle, 0);
 }
 
-DriveStraight::DriveStraight(double distance) : SimpleCommand("DriveStraight"), timer{},targetDistance(distance) {
+DriveStraight::DriveStraight(double distance) : Command("DriveStraight"), timer{},targetDistance(distance) {
   updater = std::make_unique<Notifier>(&DriveStraight::update, this);
   drive = Robot::chassis;
   SetTimeout(5.0);

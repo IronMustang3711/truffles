@@ -41,7 +41,7 @@ void RobotMap::init() {
 
   auto configDriveTalon = [](std::shared_ptr<CANTalon> t) {
     t->SetFeedbackDevice(CANTalon::QuadEncoder);
-    t->ConfigEncoderCodesPerRev(3042);
+    t->ConfigEncoderCodesPerRev(4000);
     t->SetSensorDirection(true);
     t->SetPosition(0);
     t->ConfigLimitMode(CANSpeedController::kLimitMode_SrxDisableSwitchInputs);

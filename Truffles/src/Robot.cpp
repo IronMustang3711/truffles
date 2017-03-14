@@ -41,8 +41,8 @@ void Robot::RobotInit() {
 
 	CameraServer::GetInstance()->StartAutomaticCapture().SetResolution(320,
 			240);
-	//  std::thread visionThread(vision);
-	//  visionThread.detach();
+	  std::thread visionThread(vision);
+	  visionThread.detach();
 }
 
 // TODO see https://www.chiefdelphi.com/forums/showthread.php?threadid=156277
