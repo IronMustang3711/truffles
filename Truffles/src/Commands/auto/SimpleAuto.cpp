@@ -9,7 +9,7 @@
 #include <Commands/Command.h>
 #include "../../Robot.h"
 #include "Notifier.h"
-#include "PIDStuff.h"
+#include "../../PIDStuff.h"
 
 class SimpleDriveStraight: public Command, PIDSource, PIDOutput {
 public:

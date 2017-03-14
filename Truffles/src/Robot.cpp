@@ -34,7 +34,8 @@ void Robot::RobotInit() {
 	updateAllianceColor();
 
 	chooser.AddDefault("nothing", new Noop());
-	chooser.AddObject("drive straight", new DriveStraight(100));
+	chooser.AddObject("drive straight", new DriveStraight(2));
+	SmartDashboard::PutData("auto modes",&chooser);
 
 	//autonomousCommand.reset(new Noop());
 

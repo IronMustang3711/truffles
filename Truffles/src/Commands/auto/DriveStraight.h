@@ -37,7 +37,7 @@ class DriveStraight2 : public PIDCommand {
 	double kMaxCorrectionRatio = 0.30; /* cap corrective turning throttle to 30 percent of forward throttle */
 };
 
-class DriveStraight : public SimpleCommand {
+class DriveStraight : public Command {
  public:
   DriveStraight(double distanceInInches);
 
@@ -47,6 +47,8 @@ class DriveStraight : public SimpleCommand {
   void Execute() override;
 
   void End() override;
+
+virtual bool IsFinished() override;
 
  public:
   void update();

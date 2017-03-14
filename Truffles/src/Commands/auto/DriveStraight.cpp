@@ -102,6 +102,7 @@ DriveStraight::DriveStraight(double distance) : SimpleCommand("DriveStraight"), 
   drive = Robot::chassis;
   SetTimeout(5.0);
   Requires(drive.get());
+    duration = targetDistance;//TODO HACK GALORE!
 }
 
 void DriveStraight::update() {
@@ -150,4 +151,8 @@ void DriveStraight::End() {
                             drive->getLeftRearPosition());
   SmartDashboard::PutNumber("final position(right)",
                             drive->getRightRearPosition());
+}
+
+bool DriveStraight::IsFinished() {
+    return IsTimedOut();
 }
