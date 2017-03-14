@@ -25,38 +25,47 @@ std::shared_ptr<Solenoid> RobotMap::pixyRinglight;
 std::shared_ptr<Solenoid> RobotMap::rearRingLight;
 
 void RobotMap::init() {
+									//encoder*gear reduction
+	const uint16_t encTicksPerRev = 360*4;
   LiveWindow* lw = LiveWindow::GetInstance();
-
+  auto talonCommon = [](std::shared_ptr<CANTalon>t){
+	  t->SetFeedbackDevice(CANTalon::QuadEncoder);
+	    t->SetPosition(0);
+	    t->ConfigLimitMode(CANSpeedController::kLimitMode_SrxDisableSwitchInputs);
+  };
   leftFrontController.reset(new CANTalon(2));
+  talonCommon(leftFrontController);
+  leftFrontController->ConfigEncoderCodesPerRev(encTicksPerRev);
+  leftFrontController->SetSensorDirection(false);
   lw->AddActuator("Chassis", "LeftFront", leftFrontController);
 
+
   leftRearController.reset(new CANTalon(5));
+  talonCommon(leftRearController);
+  leftRearController->ConfigEncoderCodesPerRev(encTicksPerRev);
+  leftRearController->SetSensorDirection(false);
   lw->AddActuator("Chassis", "LeftRear", leftRearController);
 
   rightFrontController.reset(new CANTalon(1));
+  talonCommon(rightFrontController);
+  rightFrontController->ConfigEncoderCodesPerRev(1000);
+  rightFrontController->SetSensorDirection(true);
   lw->AddActuator("Chassis", "RightFront", (rightFrontController));
 
   rightRearController.reset(new CANTalon(4));
+  talonCommon(rightFrontController);
+  rightFrontController->ConfigEncoderCodesPerRev(encTicksPerRev);
+  rightFrontController->SetSensorDirection(true);
   lw->AddActuator("Chassis", "RightRear", (rightRearController));
 
-  auto configDriveTalon = [](std::shared_ptr<CANTalon> t) {
-    t->SetFeedbackDevice(CANTalon::QuadEncoder);
-    t->ConfigEncoderCodesPerRev(4000);
-    t->SetSensorDirection(true);
-    t->SetPosition(0);
-    t->ConfigLimitMode(CANSpeedController::kLimitMode_SrxDisableSwitchInputs);
 
-  };
 
-  //gearbox ratio 8.45:1
+  //gearbox ratio 4:1
   //wheelbase== 26"
   //encoder 360 : 1
   //theoretically: 1 revolution = 18.8"
 
-  configDriveTalon(leftFrontController);
-  configDriveTalon(leftRearController);
-  configDriveTalon(rightFrontController);
-  configDriveTalon(rightRearController);
+
 
   chassisDrive.reset(new RobotDrive(leftFrontController, leftRearController,
                                     rightFrontController, rightRearController));

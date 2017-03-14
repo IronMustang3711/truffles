@@ -45,7 +45,6 @@ void Robot::RobotInit() {
 	  visionThread.detach();
 }
 
-// TODO see https://www.chiefdelphi.com/forums/showthread.php?threadid=156277
 void Robot::vision() {
 	cs::UsbCamera camera = CameraServer::GetInstance()->StartAutomaticCapture();
 	camera.SetResolution(640, 480);
