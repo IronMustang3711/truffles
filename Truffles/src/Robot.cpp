@@ -7,6 +7,8 @@
 #include "opencv2/features2d.hpp"
 #include "commands/Noop.h"
 #include "commands/auto/DriveStraight.h"
+#include "vision/VisionRunner.h"
+#include "vision/VerticalLinePipeline.h"
 
 std::shared_ptr<Chassis> Robot::chassis;
 std::shared_ptr<Shooter> Robot::shooter;
@@ -41,8 +43,18 @@ void Robot::RobotInit() {
 
 	CameraServer::GetInstance()->StartAutomaticCapture().SetResolution(320,
 			240);
-	  std::thread visionThread(vision);
+	  std::thread visionThread(vision2);
 	  visionThread.detach();
+}
+
+void Robot::vision2(){
+	auto outVideo = CameraServer::GetInstance()->PutVideo("machine vision",320,240);
+	auto myCallback = [](VerticalLinePipeline& pipe){
+		//TODO: replace with something useful!
+	};
+	VisionRunner<VerticalLinePipeline> runner(outVideo,new VerticalLinePipeline(),myCallback);
+
+	runner.RunForever(); //I assume that this blocks, but one never knows with wpilib code.
 }
 
 void Robot::vision() {

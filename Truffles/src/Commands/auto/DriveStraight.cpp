@@ -8,6 +8,7 @@
 template <typename T> int sgn(T val) {
     return (T(0) < val) - (val < T(0));
 }
+template<> int sgn<double>(double);
 
 //These next 2 are from ctre exaple code
 /** @param value to cap.

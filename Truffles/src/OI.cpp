@@ -47,13 +47,13 @@ OI::OI() {
 }
 void OI::initSmartDashboardCommands() {
   // SmartDashboard Buttons
-  SmartDashboard::PutData("RunIntake", new RunIntake());
+//  SmartDashboard::PutData("RunIntake", new RunIntake());
   //  SmartDashboard::PutData("RunWinch: down", RunWinch::createDownCommand());
   //  SmartDashboard::PutData("RunWinch: up", RunWinch::createGoUpCommand());
   //  SmartDashboard::PutData("RunWinch: upslow",
   //  RunWinch::createHoldCommand());
-  SmartDashboard::PutData("RunShooter", new RunShooter());
-  SmartDashboard::PutData("RunShooterAndIntake", new RunShooterAndIntake());
+//  SmartDashboard::PutData("RunShooter", new RunShooter());
+//  SmartDashboard::PutData("RunShooterAndIntake", new RunShooterAndIntake());
   //  SmartDashboard::PutData("DriveWithJoystick", new DriveWithJoystick());
   //  SmartDashboard::PutData("Autonomous Command", new AutonomousCommand());
   //
@@ -65,12 +65,12 @@ void OI::initSmartDashboardCommands() {
   //  SmartDashboard::PutData("Toggle lights", new ToggleLights());
 
   SmartDashboard::PutData("zero encoders", new ZeroEncoders());
-  SmartDashboard::PutData("driveStraight", new DriveStraight(1));
-  SmartDashboard::PutData("driveStraight2",new DriveStraight2(1));
-  SmartDashboard::PutData("driveStraightSimple",new SimpleDriveStraight(1));
+  SmartDashboard::PutData("driveStraight", new DriveStraight(100));
+  SmartDashboard::PutData("driveStraight2",new DriveStraight2(100));
+  SmartDashboard::PutData("driveStraightSimple",new SimpleDriveStraight(100));
 
   SmartDashboard::PutData("rotate", new RotateCommand(45));
-  SmartDashboard::PutData("strafe", new StrafeCommand(1));
+  SmartDashboard::PutData("strafe", new StrafeCommand(20));
 
   //  SmartDashboard::PutData(
   //      new SolenoidToggle(RobotMap::lightsRed, "red lights"));
@@ -84,7 +84,7 @@ void OI::initSmartDashboardCommands() {
   SmartDashboard::PutData(
       new SolenoidToggle(RobotMap::rearRingLight, "rear ringlight"));
 
- // SmartDashboard::PutData("ringlights",new RingLights());
+  SmartDashboard::PutData("ringlights",new Ringlights());
 }
 
 Btn::Btn(Joystick* j, int b) : joystick(j), buttonNumber(b) {}
@@ -127,19 +127,7 @@ ShooterJoystick::ShooterJoystick()
   // but whatever...
 
   runIntake->WhileHeld(new RunIntake());
-
   gearCatchToggle->WhenPressed(new GearCatchToggle());
-
   runHexapus->WhileHeld(new MyHexapusCommand());
-  // runHexapus->WhenReleased(new StopHexapus());
-
-  //    {
-  //        auto g = new CommandGroup();
-  //        g->AddParallel(new RunHexapus());
-  //        g->AddParallel(new RunIntake(-0.4));
-  //        runHexapus->WhileHeld(g);
-  //    }
-  // runHexapus->WhenReleased(new StopHexapus());
-
   unjam->WhenPressed(new UnjamHexapus(new StopHexapus()));
 }

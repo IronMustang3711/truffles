@@ -43,6 +43,8 @@ class Robot : public IterativeRobot {
   void dashboardUpdate();
 
   static void vision();
+  static void vision2();
+
 
  private:
  	std::unique_ptr<frc::Command> autonomousCommand;

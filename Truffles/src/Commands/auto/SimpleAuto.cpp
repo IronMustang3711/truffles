@@ -17,6 +17,7 @@ public:
 			Command("drive straight(simple)"), targetDistance(distanceInInches)
 			//p,i,d,f,src,target,update rate
 					, pid { 0.01, 0, 0, 0.001, this, this, 0.02 } {
+
 	}
 
 	virtual ~SimpleDriveStraight() {
@@ -26,8 +27,9 @@ public:
 		timer.Reset();
 		timer.Start();
 		pid.SetInputRange(0, targetDistance);
-		pid.SetOutputRange(0, 0.4);
+		pid.SetOutputRange(-0.5, 0.5);
 		pid.SetPercentTolerance(2);
+		initialHeading = Robot::chassis->getHeading();
 		pid.Enable();
 		// notifier.StartPeriodic(0.02); //50 hz
 	}
@@ -46,23 +48,21 @@ public:
 		return pid.OnTarget();
 	}
 
-//	void doUpdate() {
-//
-//	}
-
 // PIDOutput interface
 	virtual void PIDWrite(double output) {
-		Robot::chassis->AutoDrive(output, 0);
+		double headingCorrection = -0.2*(initialHeading - Robot::chassis->getHeading());
+		Robot::chassis->AutoDrive(output, headingCorrection);
 	}
 
 	// PIDSource interface
 	virtual double PIDGet() {
-		return (Robot::chassis->getLeftFrontPosition()
-				+ Robot::chassis->getRightFrontPosition()) / 2;
+		return (Robot::chassis->getLeftRearPosition()
+				+ Robot::chassis->getRightRearPosition()) / 2;
 	}
 
 private:
 	double targetDistance = 0;
+	double initialHeading = 0;
 	PIDController pid;
 	// Notifier notifier{&SimpleDriveStraight::doUpdate,this};
 	Timer timer { };
@@ -71,11 +71,12 @@ private:
 
 class SimpleRotate: public Command {
 public:
-	SimpleRotate(double targetHeadingInDegrees) :
-			Command("rotate(simple)"), targetHeading(targetHeadingInDegrees) {
+	SimpleRotate(double targetHeadingInDegrees_Relative) :
+			Command("rotate(simple)"), targetHeading(targetHeadingInDegrees_Relative) {
 	}
 
 	virtual void Initialize() override {
+		initialHeading = Robot::chassis->getHeading();
 	}
 	virtual void Execute() override {
 	}
