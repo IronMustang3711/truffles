@@ -16,6 +16,7 @@
 #include "Commands/auto/RotateCommand.h"
 #include "Commands/auto/StrafeCommand.h"
 #include "Commands/auto/SimpleAuto.cpp"
+#include "Commands/Ringlights.h"
 #include "Commands/SolenoidToggle.h"
 
 /**
@@ -82,6 +83,8 @@ void OI::initSmartDashboardCommands() {
       new SolenoidToggle(RobotMap::pixyRinglight, "pixy ringlight"));
   SmartDashboard::PutData(
       new SolenoidToggle(RobotMap::rearRingLight, "rear ringlight"));
+
+  SmartDashboard::PutData("ringlights",new RingLights());
 }
 
 Btn::Btn(Joystick* j, int b) : joystick(j), buttonNumber(b) {}

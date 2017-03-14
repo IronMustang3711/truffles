@@ -27,7 +27,7 @@ public:
 		timer.Start();
 		pid.SetInputRange(0, targetDistance);
 		pid.SetOutputRange(0, 0.4);
-		pid.SetPercentTolerance(52);
+		pid.SetPercentTolerance(2);
 		pid.Enable();
 		// notifier.StartPeriodic(0.02); //50 hz
 	}
