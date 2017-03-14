@@ -25,8 +25,9 @@ public:
 	virtual void Initialize() override {
 		timer.Reset();
 		timer.Start();
-		pid.SetInputRange(0,targetDistance);
-		pid.SetOutputRange(0,0.6);
+		pid.SetInputRange(0, targetDistance);
+		pid.SetOutputRange(0, 0.4);
+		pid.SetPercentTolerance(52);
 		pid.Enable();
 		// notifier.StartPeriodic(0.02); //50 hz
 	}
@@ -36,6 +37,10 @@ public:
 		timer.Stop();
 		timer.Reset();
 		pid.Disable();
+		SmartDashboard::PutNumber("final position(left)",
+				Robot::chassis->getLeftRearPosition());
+		SmartDashboard::PutNumber("final position(right)",
+				Robot::chassis->getRightRearPosition());
 	}
 	virtual bool IsFinished() override {
 		return pid.OnTarget();
@@ -45,14 +50,15 @@ public:
 //
 //	}
 
-	// PIDOutput interface
-	virtual void PIDWrite(double output){
-		Robot::chassis->AutoDrive(output,0);
+// PIDOutput interface
+	virtual void PIDWrite(double output) {
+		Robot::chassis->AutoDrive(output, 0);
 	}
 
 	// PIDSource interface
-	virtual double PIDGet(){
-		return (Robot::chassis->getLeftFrontPosition() + Robot::chassis->getRightFrontPosition())/2;
+	virtual double PIDGet() {
+		return (Robot::chassis->getLeftFrontPosition()
+				+ Robot::chassis->getRightFrontPosition()) / 2;
 	}
 
 private:

@@ -11,9 +11,11 @@
 #include "Commands/ToggleRobotFront.h"
 #include "Commands/HexapusCommands.h"
 #include "Commands/auto/DriveStraight.h"
+
 #include "Commands/auto/ZeroEncoders.h"
 #include "Commands/auto/RotateCommand.h"
 #include "Commands/auto/StrafeCommand.h"
+#include "Commands/auto/SimpleAuto.cpp"
 #include "Commands/SolenoidToggle.h"
 
 /**
@@ -63,6 +65,9 @@ void OI::initSmartDashboardCommands() {
 
   SmartDashboard::PutData("zero encoders", new ZeroEncoders());
   SmartDashboard::PutData("driveStraight", new DriveStraight(1));
+  SmartDashboard::PutData("driveStraight2",new DriveStraight2(1));
+  SmartDashboard::PutData("driveStraightSimple",new SimpleDriveStraight(1));
+
   SmartDashboard::PutData("rotate", new RotateCommand(45));
   SmartDashboard::PutData("strafe", new StrafeCommand(1));
 
