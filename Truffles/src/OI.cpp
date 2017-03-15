@@ -52,8 +52,8 @@ void OI::initSmartDashboardCommands() {
 	// SmartDashboard Buttons
 
 	SmartDashboard::PutData("zero encoders", new ZeroEncoders());
-	SmartDashboard::PutData("driveStraight", new DriveStraight(100));
-	SmartDashboard::PutData("driveStraight2", new DriveStraight2(100));
+//	SmartDashboard::PutData("driveStraight", new DriveStraight(100));
+//	SmartDashboard::PutData("driveStraight2", new DriveStraight2(100));
 	SmartDashboard::PutData("driveStraightSimple",
 			new SimpleDriveStraight(100));
 

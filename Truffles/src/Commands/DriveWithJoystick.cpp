@@ -7,7 +7,7 @@ DriveWithJoystick::DriveWithJoystick() :
 }
 
 void DriveWithJoystick::Execute() {
-	Robot::chassis->MecanumDrive(Robot::oi->driverJoystick);
+	Robot::chassis->teleopDrive(Robot::oi->driverJoystick);
 }
 
 bool DriveWithJoystick::IsFinished() {

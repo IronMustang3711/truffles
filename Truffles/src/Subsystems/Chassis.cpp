@@ -19,18 +19,40 @@ Chassis::Chassis() :
 void Chassis::InitDefaultCommand() {
 	SetDefaultCommand(new DriveWithJoystick());
 }
-
-void Chassis::MecanumDrive(std::shared_ptr<Joystick> stickPosition,
+/**
+ * delegates to Chassis::teleopDrive(double x, double y, double rotation,
+		double gyroAngle)
+ * @param stickPosition
+ * @param gyroAngle
+ */
+void Chassis::teleopDrive(std::shared_ptr<Joystick> stickPosition,
 		double gyroAngle) {
 	double x = stickPosition->GetX();  // this is driverJoystick left/right
 	double y = stickPosition->GetY();  // this is forward/backward
 	double z = stickPosition->GetZ();  // this is twist left/right
 
-	MecanumDrive_Cartesian(x, y, z, gyroAngle);
+	teleopDrive(x, y, z, gyroAngle);
+}
+/**
+ *delegates to void Chassis::MecanumDrive_Cartesian(double x, double y, double rotation,
+		double gyroAngle)
+		@see void Chassis::MecanumDrive_Cartesian(double x, double y, double rotation,
+		double gyroAngle)
+ * @param x
+ * @param y
+ * @param rotation
+ * @param gyroAngle
+ */
+void Chassis::teleopDrive(double x, double y, double rotation,
+		double gyroAngle) {
+	x = pow(x, 3);
+	y = pow(y, 3);
+	rotation = pow(rotation, 3) * 0.3; // limit to 10% to make it easier to control
+	MecanumDrive_Cartesian(x, y, rotation, gyroAngle + rotateAngle);
 }
 
-void Chassis::AutoDrive(double fwdSpeed, double rotateSpeed) {  //%NE
-	drive->MecanumDrive_Cartesian(0, -fwdSpeed, rotateSpeed);
+void Chassis::AutoDrive(double fwdSpeed, double rotateSpeed) {
+	MecanumDrive_Cartesian(0, -fwdSpeed, rotateSpeed);
 }
 
 /**
@@ -56,11 +78,9 @@ void Chassis::AutoDrive(double fwdSpeed, double rotateSpeed) {  //%NE
  */
 void Chassis::MecanumDrive_Cartesian(double x, double y, double rotation,
 		double gyroAngle) {
-	x = pow(x, 3);
-	y = pow(y, 3);
-	rotation = pow(rotation, 3) * 0.3; // limit to 10% to make it easier to control
-	drive->MecanumDrive_Cartesian(x, y, rotation, gyroAngle + rotateAngle);
+
 //TODO: we should probably make sure that rotateAngle is 0 for autonomous
+	drive->MecanumDrive_Cartesian(x,y,rotation,gyroAngle);
 	dashboardTelemetry();
 }
 void Chassis::stop() {
@@ -106,7 +126,7 @@ void Chassis::zeroEncoders() {
 }
 
 void Chassis::prepareForTeleop() {
-	// TODO
+
 }
 
 // void Chassis::initMagicMode() {}
@@ -202,3 +222,11 @@ double Chassis::getRightFrontVelocity() {
 double Chassis::getHeading() {
 	return RobotMap::ahrs->GetAngle();
 }
+void Chassis::resetHeading() {
+	RobotMap::ahrs->Reset();
+	rotateAngle = getHeading();
+}
+
+
+
+
