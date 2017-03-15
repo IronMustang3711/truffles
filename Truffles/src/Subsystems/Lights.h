@@ -6,23 +6,22 @@
 class Light {
 public:
 	std::shared_ptr<Solenoid> impl;
-	Light(std::shared_ptr<Solenoid> light) : impl(light){
+	Light(std::shared_ptr<Solenoid> light) :
+			impl(light) {
 
 	}
-	bool isOn(){
+	bool isOn() {
 		return impl->Get();
 	}
-	void setOn(bool on){
+	void setOn(bool on) {
 		impl->Set(on);
 	}
-	void toggle(){
+	void toggle() {
 		setOn(!isOn());
 	}
 };
 
-class Lights : public Subsystem {
-
-
+class Lights: public Subsystem {
 
 public:
 	Lights();

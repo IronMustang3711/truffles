@@ -24,11 +24,11 @@ private:
 	Vision();
 	~Vision();
 	Vision(const Vision&) = delete;
-	const Vision& operator=(const Vision)=delete;
+	const Vision& operator=(const Vision) = delete;
 
 	std::thread visionThread;
 	std::mutex lock;
-	std::atomic_bool active{false};
+	std::atomic_bool active { false };
 
 };
 

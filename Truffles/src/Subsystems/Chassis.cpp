@@ -1,36 +1,36 @@
-
 #include "Chassis.h"
 #include "../Commands/DriveWithJoystick.h"
 #include "../RobotMap.h"
 /**
  *   gearbox ratio 8.45:1
-  wheelbase== 26"
-  encoder 360 : 1
-  theoretically: 1 revolution = 18.8"
+ wheelbase== 26"
+ encoder 360 : 1
+ theoretically: 1 revolution = 18.8"
  */
-Chassis::Chassis() : Subsystem("Chassis") {
-  leftFront = RobotMap::leftFrontController;
-  leftRear = RobotMap::leftRearController;
-  rightFront = RobotMap::rightFrontController;
-  rightRear = RobotMap::rightRearController;
-  drive = RobotMap::chassisDrive;
+Chassis::Chassis() :
+		Subsystem("Chassis") {
+	leftFront = RobotMap::leftFrontController;
+	leftRear = RobotMap::leftRearController;
+	rightFront = RobotMap::rightFrontController;
+	rightRear = RobotMap::rightRearController;
+	drive = RobotMap::chassisDrive;
 }
 
 void Chassis::InitDefaultCommand() {
-  SetDefaultCommand(new DriveWithJoystick());
+	SetDefaultCommand(new DriveWithJoystick());
 }
 
 void Chassis::MecanumDrive(std::shared_ptr<Joystick> stickPosition,
-                           double gyroAngle) {
-  double x = stickPosition->GetX();  // this is driverJoystick left/right
-  double y = stickPosition->GetY();  // this is forward/backward
-  double z = stickPosition->GetZ();  // this is twist left/right
+		double gyroAngle) {
+	double x = stickPosition->GetX();  // this is driverJoystick left/right
+	double y = stickPosition->GetY();  // this is forward/backward
+	double z = stickPosition->GetZ();  // this is twist left/right
 
-  MecanumDrive_Cartesian(x, y, z, gyroAngle);
+	MecanumDrive_Cartesian(x, y, z, gyroAngle);
 }
 
 void Chassis::AutoDrive(double fwdSpeed, double rotateSpeed) {  //%NE
-  drive->MecanumDrive_Cartesian(0, -fwdSpeed, rotateSpeed);
+	drive->MecanumDrive_Cartesian(0, -fwdSpeed, rotateSpeed);
 }
 
 /**
@@ -54,62 +54,59 @@ void Chassis::AutoDrive(double fwdSpeed, double rotateSpeed) {  //%NE
  * @param gyroAngle The current angle reading from the gyro.  Use this to
  *                  implement field-oriented controls.
  */
-void Chassis::MecanumDrive_Cartesian(double x,
-                                     double y,
-                                     double rotation,
-                                     double gyroAngle) {
-  x = pow(x, 3);
-  y = pow(y, 3);
-  rotation =
-      pow(rotation, 3) * 0.3;  // limit to 10% to make it easier to control
-  drive->MecanumDrive_Cartesian(x, y, rotation, gyroAngle + rotateAngle);
+void Chassis::MecanumDrive_Cartesian(double x, double y, double rotation,
+		double gyroAngle) {
+	x = pow(x, 3);
+	y = pow(y, 3);
+	rotation = pow(rotation, 3) * 0.3; // limit to 10% to make it easier to control
+	drive->MecanumDrive_Cartesian(x, y, rotation, gyroAngle + rotateAngle);
 //TODO: we should probably make sure that rotateAngle is 0 for autonomous
-  dashboardTelemetry();
+	dashboardTelemetry();
 }
 void Chassis::stop() {
 	drive->StopMotor();
 }
 
 void Chassis::dashboardTelemetry() {
-  std::map<std::string, CANTalon*> talons = {{"front left", leftFront.get()},
-                                             {"front right", rightFront.get()},
-                                             {"rear left", leftRear.get()},
-                                             {"rear right", rightRear.get()}};
+	std::map<std::string, CANTalon*> talons = {
+			{ "front left", leftFront.get() },
+			{ "front right", rightFront.get() },
+			{ "rear left", leftRear.get() }, { "rear right", rightRear.get() } };
 
-  for (auto it = talons.begin(); it != talons.end(); ++it) {
-    SmartDashboard::PutNumber(it->first + " enc_position",
-                              it->second->GetEncPosition());
-    SmartDashboard::PutNumber(it->first + " position",
-                                it->second->GetPosition());
-  }
+	for (auto it = talons.begin(); it != talons.end(); ++it) {
+		SmartDashboard::PutNumber(it->first + " enc_position",
+				it->second->GetEncPosition());
+		SmartDashboard::PutNumber(it->first + " position",
+				it->second->GetPosition());
+	}
 }
 
 double Chassis::getRightFrontCurrent() {
-  return RobotMap::powerDistributionPanel->GetCurrent(15);
+	return RobotMap::powerDistributionPanel->GetCurrent(15);
 }
 
 double Chassis::getRightRearCurrent() {
-  return RobotMap::powerDistributionPanel->GetCurrent(0);
+	return RobotMap::powerDistributionPanel->GetCurrent(0);
 }
 
 double Chassis::getLeftFrontCurrent() {
-  return RobotMap::powerDistributionPanel->GetCurrent(14);
+	return RobotMap::powerDistributionPanel->GetCurrent(14);
 }
 
 double Chassis::getLeftRearCurrent() {
-  return RobotMap::powerDistributionPanel->GetCurrent(1);
+	return RobotMap::powerDistributionPanel->GetCurrent(1);
 }
 
 void Chassis::zeroEncoders() {
-  rightFront->SetPosition(0);
-  rightRear->SetPosition(0);
+	rightFront->SetPosition(0);
+	rightRear->SetPosition(0);
 
-  leftFront->SetPosition(0);
-  leftRear->SetPosition(0);
+	leftFront->SetPosition(0);
+	leftRear->SetPosition(0);
 }
 
 void Chassis::prepareForTeleop() {
-  // TODO
+	// TODO
 }
 
 // void Chassis::initMagicMode() {}
@@ -117,13 +114,12 @@ void Chassis::prepareForTeleop() {
 // void Chassis::initRegularMode() {}
 
 void Chassis::toggleRobotFrontDirection() {
-  rotateAngle = (rotateAngle == 0.0 ? 90.0 : 0.0);
+	rotateAngle = (rotateAngle == 0.0 ? 90.0 : 0.0);
 }
 
-void Chassis::TankDrive(double leftValue,
-                        double rightValue,
-                        bool squaredInputs) {
-  drive->TankDrive(leftValue, rightValue, squaredInputs);
+void Chassis::TankDrive(double leftValue, double rightValue,
+bool squaredInputs) {
+	drive->TankDrive(leftValue, rightValue, squaredInputs);
 }
 /**
  * Drive the motors at "outputMagnitude" and "curve".
@@ -149,9 +145,8 @@ void Chassis::TankDrive(double leftValue,
  */
 //note wheelbase == 33-34 inches, probably
 //6" wheel diameter
-
 void Chassis::Drive(double outputMagnitude, double curve) {
-  drive->Drive(outputMagnitude, curve);
+	drive->Drive(outputMagnitude, curve);
 }
 /**
  * Drive method for Mecanum wheeled robots.
@@ -170,41 +165,40 @@ void Chassis::Drive(double outputMagnitude, double curve) {
  * @param rotation  The rate of rotation for the robot that is completely
  *                  independent of the magnitute or direction. [-1.0..1.0]
  */
-void Chassis::MecanumDrive_Polar(double magnitude,
-                                 double direction,
-                                 double rotation) {
-  drive->MecanumDrive_Polar(magnitude, direction, rotation);
+void Chassis::MecanumDrive_Polar(double magnitude, double direction,
+		double rotation) {
+	drive->MecanumDrive_Polar(magnitude, direction, rotation);
 }
 
 double Chassis::getLeftRearVelocity() {
-  return leftRear->GetSpeed();
+	return leftRear->GetSpeed();
 }
 
 double Chassis::getLeftRearPosition() {
-  return leftRear->GetPosition();
+	return leftRear->GetPosition();
 }
 
 double Chassis::getRightRearPosition() {
-  return rightRear->GetPosition();
+	return rightRear->GetPosition();
 }
 
 double Chassis::getRightRearVelocity() {
-  return rightRear->GetSpeed();
+	return rightRear->GetSpeed();
 }
 
 double Chassis::getLeftFrontVelocity() {
-  return leftFront->GetSpeed();
+	return leftFront->GetSpeed();
 }
 double Chassis::getLeftFrontPosition() {
-  return leftFront->GetPosition();
+	return leftFront->GetPosition();
 }
 double Chassis::getRightFrontPosition() {
-  return rightFront->GetPosition();
+	return rightFront->GetPosition();
 }
 double Chassis::getRightFrontVelocity() {
-  return rightFront->GetSpeed();
+	return rightFront->GetSpeed();
 }
 
 double Chassis::getHeading() {
-  return RobotMap::ahrs->GetAngle();
+	return RobotMap::ahrs->GetAngle();
 }

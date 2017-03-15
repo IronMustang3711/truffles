@@ -8,47 +8,47 @@
 #include "../Robot.h"
 #include <Commands/Command.h>
 
-class GearCatchCommand : public InstantCommand {
- public:
-  GearCatchCommand(const std::string& name);
-  std::shared_ptr<GearCatch> gearCatch = Robot::gearCatch;
+class GearCatchCommand: public InstantCommand {
+public:
+	GearCatchCommand(const std::string& name);
+	std::shared_ptr<GearCatch> gearCatch = Robot::gearCatch;
 };
 
-class GearCatchOut : public GearCatchCommand {
- public:
-  GearCatchOut();
+class GearCatchOut: public GearCatchCommand {
+public:
+	GearCatchOut();
 
-  virtual void Execute() override;
+	virtual void Execute() override;
 };
 
-class GearCatchIn : public GearCatchCommand {
- public:
-  GearCatchIn();
+class GearCatchIn: public GearCatchCommand {
+public:
+	GearCatchIn();
 
-  virtual void Execute() override;
+	virtual void Execute() override;
 };
 
-class GearCatchInUnpowered : public GearCatchCommand {
- public:
-  GearCatchInUnpowered();
+class GearCatchInUnpowered: public GearCatchCommand {
+public:
+	GearCatchInUnpowered();
 
-  virtual void Execute() override;
+	virtual void Execute() override;
 };
 
-class GearCatchToggle : public InstantCommand {
- public:
-  GearCatchToggle();
+class GearCatchToggle: public InstantCommand {
+public:
+	GearCatchToggle();
 
-  virtual void Execute() override;
+	virtual void Execute() override;
 
-  void setCurrentCommand(GearCatchCommand* cmd);
+	void setCurrentCommand(GearCatchCommand* cmd);
 
- protected:
-  void changeCommand();
+protected:
+	void changeCommand();
 
- private:
-  GearCatchIn catchIn{};
-  GearCatchOut catchOut{};
-  Command* currentCommand;
+private:
+	GearCatchIn catchIn { };
+	GearCatchOut catchOut { };
+	Command* currentCommand;
 };
 #endif  // TRUFFLES_GEARCATCHCOMMANDS_H

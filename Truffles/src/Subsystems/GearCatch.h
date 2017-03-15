@@ -8,33 +8,33 @@
 #include "Commands/Subsystem.h"
 #include "LinearActuator.h"
 #include <memory>
-class GearCatch : public Subsystem {
- public:
-  GearCatch();
+class GearCatch: public Subsystem {
+public:
+	GearCatch();
 
-  void moveOut();
+	void moveOut();
 
-  void moveIn();
-  /**
-   * WARNING: be careful about calling this!
-   */
-  void chill();
+	void moveIn();
+	/**
+	 * WARNING: be careful about calling this!
+	 */
+	void chill();
 
-  /**
-   *
-   * @param position a value between 0 and 1
-   */
-  void setPosition(double position);
+	/**
+	 *
+	 * @param position a value between 0 and 1
+	 */
+	void setPosition(double position);
 
-  /**
-   *
-   * @return a value between 0 and 1
-   */
-  double getPosition();
+	/**
+	 *
+	 * @return a value between 0 and 1
+	 */
+	double getPosition();
 
- private:
-  std::shared_ptr<LinearActuator> actuator1;
-  std::shared_ptr<LinearActuator> actuator2;
+private:
+	std::shared_ptr<LinearActuator> actuator1;
+	std::shared_ptr<LinearActuator> actuator2;
 };
 
 #endif  // TRUFFLES_GEARCATCH_H

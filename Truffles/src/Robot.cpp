@@ -1,4 +1,3 @@
-
 #include "Robot.h"
 
 #include "opencv2/imgcodecs.hpp"
@@ -38,14 +37,14 @@ void Robot::RobotInit() {
 
 	chooser.AddDefault("nothing", new Noop());
 	chooser.AddObject("drive straight", new DriveStraight(2));
-	SmartDashboard::PutData("auto modes",&chooser);
+	SmartDashboard::PutData("auto modes", &chooser);
 
 	//autonomousCommand.reset(new Noop());
 
 	CameraServer::GetInstance()->StartAutomaticCapture().SetResolution(320,
 			240);
 
-	 // std::thread visionThread(vision);
+	// std::thread visionThread(vision);
 //	  visionThread.detach();
 }
 
@@ -184,9 +183,9 @@ void Robot::TestPeriodic() {
 void Robot::autonomousDidFinish() {
 	updateAllianceColor();
 	lights->perimeterGreen.setOn(false);
-		RobotMap::ahrs->ZeroYaw();
-		chassis->zeroEncoders();
-		Vision::getInstance().stop();
+	RobotMap::ahrs->ZeroYaw();
+	chassis->zeroEncoders();
+	Vision::getInstance().stop();
 }
 
 void Robot::dashboardUpdate() {

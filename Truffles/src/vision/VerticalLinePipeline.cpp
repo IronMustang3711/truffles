@@ -50,8 +50,8 @@ void VerticalLinePipeline::Process(cv::Mat& mat) {
 	cv::Canny(work2, work, 200, 150, 3, true);
 
 	//work2.copyTo(mat);
-	cv::rectangle(mat, cv::Point(130,20), cv::Point(mat.cols-50, mat.rows-20),
-			cv::Scalar(255, 0, 0)); //TODO: figure out ROI.
+	cv::rectangle(mat, cv::Point(130, 20),
+			cv::Point(mat.cols - 50, mat.rows - 20), cv::Scalar(255, 0, 0)); //TODO: figure out ROI.
 
 	auto lsd = cv::createLineSegmentDetector(cv::LSD_REFINE_STD);
 	std::vector<cv::Vec4i> lines;
@@ -70,9 +70,9 @@ void VerticalLinePipeline::Process(cv::Mat& mat) {
 		if (len > minLen
 				&& ((angle >= minAngle && angle <= maxAngle)
 						|| (angle + 180 >= minAngle && angle + 180 <= maxAngle))) {
-			cv::Point p1(line[0],line[1]);
-			cv::Point p2(line[2],line[3]);
-			cv::line(mat,p1,p2,cv::Scalar(0,255,0));
+			cv::Point p1(line[0], line[1]);
+			cv::Point p2(line[2], line[3]);
+			cv::line(mat, p1, p2, cv::Scalar(0, 255, 0));
 		}
 
 	}

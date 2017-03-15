@@ -3,11 +3,10 @@
 
 #include "Commands/InstantCommand.h"
 
-class Ringlights : public frc::InstantCommand {
+class Ringlights: public frc::InstantCommand {
 public:
 	Ringlights();
 	void Execute();
-
 
 };
 

@@ -27,13 +27,15 @@ Vision& Vision::getInstance() {
 
 Vision::Vision() {
 }
-Vision::~Vision(){
+Vision::~Vision() {
 }
 
 void Vision::start() {
-	if(active){ return; }
+	if (active) {
+		return;
+	}
 	active = true;
-	visionThread = std::thread(&Vision::loop,this);
+	visionThread = std::thread(&Vision::loop, this);
 	visionThread.detach(); //TODO do we really want to detach?
 	//see http://en.cppreference.com/w/cpp/thread/thread/detach
 	//specifically, is thread.join() a valid call after this?
@@ -45,7 +47,7 @@ void Vision::stop() {
 	visionThread.join();
 
 }
-void Vision::loop(){
+void Vision::loop() {
 	cs::CvSink cvSink = CameraServer::GetInstance()->GetVideo();
 
 	cs::CvSource outputStream = CameraServer::GetInstance()->PutVideo("vision",
@@ -54,16 +56,15 @@ void Vision::loop(){
 
 	VerticalLinePipeline pipe;
 	cv::Mat src;
-	while(active){
-
+	while (active) {
 
 		if (cvSink.GrabFrame(src) == 0) {
 			outputStream.NotifyError(cvSink.GetError());
 			continue;
 		}
 		pipe.Process(src);
-	//	cv::rectangle(src, cv::Point(5, 5), cv::Point(100, 100),
-	//			cv::Scalar(255, 0, 0));
+		//	cv::rectangle(src, cv::Point(5, 5), cv::Point(100, 100),
+		//			cv::Scalar(255, 0, 0));
 		outputStream.PutFrame(src);
 	}
 	outputStream.SetConnected(false); //clean up stream(hopefully)

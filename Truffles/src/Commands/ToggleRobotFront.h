@@ -7,8 +7,8 @@
 #include "../Robot.h"
 #include "Commands/Subsystem.h"
 
-class ToggleRobotFront : public InstantCommand {
-  virtual void Execute() override;
+class ToggleRobotFront: public InstantCommand {
+	virtual void Execute() override;
 };
 
 #endif  // TRUFFLES_TOGGLEROBOTFRONT_H

@@ -3,12 +3,11 @@
 
 #include "Commands/Command.h"
 
-class RotateOnce : public Command {
+class RotateOnce: public Command {
 public:
 	RotateOnce();
 	void Initialize();
-	void Execute();
-	bool IsFinished();
+	void Execute();bool IsFinished();
 	void End();
 	void Interrupted();
 };

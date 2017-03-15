@@ -3,7 +3,7 @@
 
 #include <Commands/PrintCommand.h>
 
-class Noop : public PrintCommand {
+class Noop: public PrintCommand {
 public:
 	Noop();
 

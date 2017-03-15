@@ -14,9 +14,10 @@
 class SimpleDriveStraight: public Command, PIDSource, PIDOutput {
 public:
 	SimpleDriveStraight(double distanceInInches) :
-			Command("drive straight(simple)"), targetDistance(19*distanceInInches)
-			//p,i,d,f,src,target,update rate
-					, pid { 0.01, 0, 0, 0.001, this, this, 0.02 } {
+			Command("drive straight(simple)"), targetDistance(
+					19 * distanceInInches)
+					//p,i,d,f,src,target,update rate
+							, pid { 0.01, 0, 0, 0.001, this, this, 0.02 } {
 
 	}
 
@@ -50,7 +51,8 @@ public:
 
 // PIDOutput interface
 	virtual void PIDWrite(double output) {
-		double headingCorrection = 0.02*(initialHeading - Robot::chassis->getHeading());
+		double headingCorrection = 0.02
+				* (initialHeading - Robot::chassis->getHeading());
 		Robot::chassis->AutoDrive(output, headingCorrection);
 	}
 
@@ -72,7 +74,8 @@ private:
 class SimpleRotate: public Command {
 public:
 	SimpleRotate(double targetHeadingInDegrees_Relative) :
-			Command("rotate(simple)"), targetHeading(targetHeadingInDegrees_Relative) {
+			Command("rotate(simple)"), targetHeading(
+					targetHeadingInDegrees_Relative) {
 	}
 
 	virtual void Initialize() override {

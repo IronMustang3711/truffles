@@ -1,7 +1,8 @@
 #include "Lights.h"
 #include "../RobotMap.h"
 
-Lights::Lights() : Subsystem("ExampleSubsystem") {
+Lights::Lights() :
+		Subsystem("ExampleSubsystem") {
 
 }
 

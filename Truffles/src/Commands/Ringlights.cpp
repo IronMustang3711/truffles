@@ -5,12 +5,9 @@ Ringlights::Ringlights() {
 	// eg. Requires(Robot::chassis.get());
 }
 
-
-
 // Called repeatedly when this Command is scheduled to run
 void Ringlights::Execute() {
- Robot::lights->rearRinglight.toggle();
- Robot::lights->pixyRingLight.toggle();
+	Robot::lights->rearRinglight.toggle();
+	Robot::lights->pixyRingLight.toggle();
 }
-
 
