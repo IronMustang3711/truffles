@@ -5,10 +5,10 @@
 #include "DriveStraight.h"
 #include "../../Robot.h"
 
-template<typename T> int sgn(T val) {
-	return (T(0) < val) - (val < T(0));
-}
-template<> int sgn<double>(double);
+//template<typename T> int sgn(T val) {
+//	return (T(0) < val) - (val < T(0));
+//}
+//template<> int sgn<double>(double);
 
 //These next 2 are from ctre exaple code
 /** @param value to cap.
@@ -75,7 +75,8 @@ double DriveStraight2::ReturnPIDInput() {
 	return Robot::chassis->getHeading();
 }
 
-void DriveStraight2::UsePIDOutput(double out) {
+void DriveStraight2::UsePIDOutput(double headingPID) {
+    //TODO headingPID is unused!
 	double t = timer.Get();
 	double output = 0.0;
 	if (t <= duration) {
@@ -98,6 +99,7 @@ void DriveStraight2::UsePIDOutput(double out) {
 //		float right = output + turnThrottle;
 //		left = Cap(left, 1.0);
 //		right = Cap(right, 1.0);
+
 	Robot::chassis->MecanumDrive_Cartesian(0, output, turnThrottle, 0);
 }
 
