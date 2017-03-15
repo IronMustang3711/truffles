@@ -1,6 +1,5 @@
 #include "OI.h"
 
-#include "Commands/AutonomousCommand.h"
 #include "Commands/DriveWithJoystick.h"
 #include "Commands/GearCatchCommands.h"
 #include "Commands/RunIntake.h"
@@ -15,6 +14,7 @@
 #include "Commands/auto/RotateCommand.h"
 #include "Commands/auto/StrafeCommand.h"
 #include "Commands/auto/SimpleAuto.cpp"
+#include "Commands/auto/AutonomousCommandFactory.h"
 #include "Commands/Ringlights.h"
 #include "Commands/SolenoidToggle.h"
 

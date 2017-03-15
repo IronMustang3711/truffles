@@ -4,6 +4,7 @@
 #include "commands/auto/Noop.h"
 #include "commands/auto/DriveStraight.h"
 #include "vision/Vision.h"
+#include "commands/auto/AutonomousCommandFactory.h"
 
 std::shared_ptr<Chassis> Robot::chassis;
 std::shared_ptr<Shooter> Robot::shooter;
