@@ -34,7 +34,6 @@ void RobotMap::init() {
   lw->AddActuator("Chassis", "LeftFront", leftFrontController);
 	//(encoder count)*(gear reduction)
 	const uint16_t encTicksPerRev = 360 * 4;
-	LiveWindow* lw = LiveWindow::GetInstance();
 	auto talonCommon =
 			[](std::shared_ptr<CANTalon>t) {
 				t->SetFeedbackDevice(CANTalon::QuadEncoder);
