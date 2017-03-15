@@ -9,8 +9,27 @@
 #include <DriverStation.h>
 #include "Noop.h"
 #include "DriveStraight.h"
+#include "../../Robot.h"
+#include "RotateCommand.h"
+#include "PlaceGear.h"
 
 using namespace frc;
+
+class PositionOneOrThreeSequence: public CommandGroup {
+public:
+	PositionOneOrThreeSequence(bool onTheRight) :
+			CommandGroup("position one or three sequence") {
+		Requires(Robot::chassis.get());
+		AddSequential(new DriveStraight(70), 3.5);
+		double angle = 45.0 * (onTheRight ? 1 : -1);
+		AddSequential(new RotateCommand(angle), 2.0);
+		AddSequential(new PlaceGear());
+
+	}
+
+};
+
+
 Command* AutonomousCommandFactory::createAutonomousCommand() {
 
 	int position = DriverStation::GetInstance().GetLocation();
@@ -30,15 +49,19 @@ Command* AutonomousCommandFactory::createAutonomousCommand() {
 }
 
 Command* AutonomousCommandFactory::position1Auto() {
-	return new DriveStraight(120.0); //TODO
+	return new PositionOneOrThreeSequence(false);
 }
 
 Command* AutonomousCommandFactory::position2Auto() {
-	return new DriveStraight(120.0); //TODO
+	CommandGroup* g = new CommandGroup("position 2  auto");
+	g->AddSequential(new DriveStraight(80),3.0);
+	g->AddSequential(new PlaceGear());
+	return g;
 }
 
 Command* AutonomousCommandFactory::position3Auto() {
-	return new DriveStraight(120.0); //TODO
+	return new PositionOneOrThreeSequence(true);
+
 }
 
 Command* AutonomousCommandFactory::driveStraightAuto() {
