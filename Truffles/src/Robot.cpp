@@ -5,7 +5,7 @@
 #include "opencv2/imgproc.hpp"
 #include "opencv2/core.hpp"
 #include "opencv2/features2d.hpp"
-#include "commands/Noop.h"
+#include "commands/auto/Noop.h"
 #include "commands/auto/DriveStraight.h"
 #include "vision/VisionRunner.h"
 #include "vision/VerticalLinePipeline.h"
