@@ -10,7 +10,6 @@
 #include <memory>
 #include "Notifier.h"
 #include "Timer.h"
-//TODO: see if this works (better than DriveStraight)
 class DriveStraight2 : public PIDCommand {
  public:
   DriveStraight2(double distanceInInches);

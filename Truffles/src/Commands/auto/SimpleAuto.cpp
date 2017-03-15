@@ -14,7 +14,7 @@
 class SimpleDriveStraight: public Command, PIDSource, PIDOutput {
 public:
 	SimpleDriveStraight(double distanceInInches) :
-			Command("drive straight(simple)"), targetDistance(distanceInInches)
+			Command("drive straight(simple)"), targetDistance(19*distanceInInches)
 			//p,i,d,f,src,target,update rate
 					, pid { 0.01, 0, 0, 0.001, this, this, 0.02 } {
 
@@ -27,8 +27,8 @@ public:
 		timer.Reset();
 		timer.Start();
 		pid.SetInputRange(0, targetDistance);
-		pid.SetOutputRange(-0.5, 0.5);
-		pid.SetPercentTolerance(2);
+		pid.SetOutputRange(-0.3, 0.3);
+		pid.SetPercentTolerance(1);
 		initialHeading = Robot::chassis->getHeading();
 		pid.Enable();
 		// notifier.StartPeriodic(0.02); //50 hz
@@ -50,7 +50,7 @@ public:
 
 // PIDOutput interface
 	virtual void PIDWrite(double output) {
-		double headingCorrection = -0.2*(initialHeading - Robot::chassis->getHeading());
+		double headingCorrection = 0.02*(initialHeading - Robot::chassis->getHeading());
 		Robot::chassis->AutoDrive(output, headingCorrection);
 	}
 

@@ -43,10 +43,30 @@ void Robot::RobotInit() {
 
 	CameraServer::GetInstance()->StartAutomaticCapture().SetResolution(320,
 			240);
-//	  std::thread visionThread(vision2);
-//	  visionThread.detach();
-	  std::thread visionThread(vision);
+	  std::thread visionThread(vision3);
 	  visionThread.detach();
+	 // std::thread visionThread(vision);
+//	  visionThread.detach();
+}
+
+void Robot::vision3(){
+	cs::CvSink cvSink = CameraServer::GetInstance()->GetVideo();
+	cs::CvSource outputStream = CameraServer::GetInstance()->PutVideo("vision",
+			320, 240);
+	VerticalLinePipeline pipe;
+	cv::Mat src;
+	for(;;){
+	if (cvSink.GrabFrame(src) == 0) {
+		// Send the output the error.
+		outputStream.NotifyError(cvSink.GetError());
+		// skip the rest of the current iteration
+		continue;
+	}
+	pipe.Process(src);
+//	cv::rectangle(src, cv::Point(5, 5), cv::Point(100, 100),
+//			cv::Scalar(255, 0, 0));
+	outputStream.PutFrame(src);
+	}
 }
 
 void Robot::vision2(){

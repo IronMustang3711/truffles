@@ -22,6 +22,7 @@ LinearActuator::LinearActuator(int channel) : Servo(channel) {
   SetSpeed(1.0);  // TODO Is this what the chief delphi post was talking about?
                   // This seems wrong.
   SetSpeed(-1);
+  SetSpeed(0);
 }
 /**
  * Set(double) will delegate to this method

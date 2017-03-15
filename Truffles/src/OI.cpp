@@ -1,4 +1,3 @@
-
 #include "OI.h"
 
 #include "Commands/AutonomousCommand.h"
@@ -20,14 +19,14 @@
 #include "Commands/SolenoidToggle.h"
 
 /**
- * Operator Input Setup //TODO update/validate description
+ * Operator Input Setup
  * ====================
  *
  * Driver Joystick
  * ------------------
- * 	-Toggle pickup: button 2
+ * 	-Toggle pickup: button 3
  * 	-switch robot front: button 1
- * 	-rope climb: button 5 - go up while held, hold on release
+ * 	-rope climb: button 8 - go up while held, hold on release
  * 	-driving: x,y,twist
  *
  * 	Secondary Joystick
@@ -35,99 +34,75 @@
  * 	-shoot(toggle hexapus): button 1
  * 	-shoot(toggle flywheel): button 2
  * 	-shoot(flywheel speed): throttle
- * 	-shoot(hexapus unjam/go backwards a little): button 4
- * 	-Gear Catch Toggle(in/out): button 3
+ * 	-shoot(hexapus unjam/go backwards a little): button 7
+ * 	-Gear Catch Toggle(in/out): button 5
+ * 	-winch up: 11
+ * 	-winch hold: 10
+ * 	-winch stop: 9
+ *
  *
  */
 OI::OI() {
-  driverJoystick.reset(new DriverJoystick());
-  shooterJoystick.reset(new ShooterJoystick());
+	driverJoystick.reset(new DriverJoystick());
+	shooterJoystick.reset(new ShooterJoystick());
 
-  initSmartDashboardCommands();
+	initSmartDashboardCommands();
 }
 void OI::initSmartDashboardCommands() {
-  // SmartDashboard Buttons
-//  SmartDashboard::PutData("RunIntake", new RunIntake());
-  //  SmartDashboard::PutData("RunWinch: down", RunWinch::createDownCommand());
-  //  SmartDashboard::PutData("RunWinch: up", RunWinch::createGoUpCommand());
-  //  SmartDashboard::PutData("RunWinch: upslow",
-  //  RunWinch::createHoldCommand());
-//  SmartDashboard::PutData("RunShooter", new RunShooter());
-//  SmartDashboard::PutData("RunShooterAndIntake", new RunShooterAndIntake());
-  //  SmartDashboard::PutData("DriveWithJoystick", new DriveWithJoystick());
-  //  SmartDashboard::PutData("Autonomous Command", new AutonomousCommand());
-  //
-  //  SmartDashboard::PutData("Gear catch: in (undriven)",
-  //                          new GearCatchInUnpowered());
-  //  SmartDashboard::PutData("gear catch: toggle", new GearCatchToggle());
-  //  SmartDashboard::PutData("Gear catch: in", new GearCatchIn());
-  //  SmartDashboard::PutData("Gear catch: out", new GearCatchOut());
-  //  SmartDashboard::PutData("Toggle lights", new ToggleLights());
+	// SmartDashboard Buttons
 
-  SmartDashboard::PutData("zero encoders", new ZeroEncoders());
-  SmartDashboard::PutData("driveStraight", new DriveStraight(100));
-  SmartDashboard::PutData("driveStraight2",new DriveStraight2(100));
-  SmartDashboard::PutData("driveStraightSimple",new SimpleDriveStraight(100));
+	SmartDashboard::PutData("zero encoders", new ZeroEncoders());
+	SmartDashboard::PutData("driveStraight", new DriveStraight(100));
+	SmartDashboard::PutData("driveStraight2", new DriveStraight2(100));
+	SmartDashboard::PutData("driveStraightSimple",
+			new SimpleDriveStraight(100));
 
-  SmartDashboard::PutData("rotate", new RotateCommand(45));
-  SmartDashboard::PutData("strafe", new StrafeCommand(20));
+	SmartDashboard::PutData("rotate", new RotateCommand(45));
+	SmartDashboard::PutData("strafe", new StrafeCommand(20));
 
-  //  SmartDashboard::PutData(
-  //      new SolenoidToggle(RobotMap::lightsRed, "red lights"));
-  //  SmartDashboard::PutData(
-  //      new SolenoidToggle(RobotMap::lightsGreen, "green lights"));
-  //  SmartDashboard::PutData(
-  //      new SolenoidToggle(RobotMap::lightsBlue, "blue lights"));
+	SmartDashboard::PutData(
+			new SolenoidToggle(RobotMap::lightsRed, "perimeter lights(red)"));
+	SmartDashboard::PutData(
+			new SolenoidToggle(RobotMap::lightsGreen,
+					"perimeter lights(green)"));
+	SmartDashboard::PutData(
+			new SolenoidToggle(RobotMap::lightsBlue, "perimeter lights(blue)"));
 
-  SmartDashboard::PutData(
-      new SolenoidToggle(RobotMap::pixyRinglight, "pixy ringlight"));
-  SmartDashboard::PutData(
-      new SolenoidToggle(RobotMap::rearRingLight, "rear ringlight"));
-
-  SmartDashboard::PutData("ringlights",new Ringlights());
+	SmartDashboard::PutData("ringlights", new Ringlights());
 }
 
-Btn::Btn(Joystick* j, int b) : joystick(j), buttonNumber(b) {}
+Btn::Btn(Joystick* j, int b) :
+		joystick(j), buttonNumber(b) {
+}
 
 bool Btn::Get() {
-  return joystick->GetRawButton(buttonNumber);
+	return joystick->GetRawButton(buttonNumber);
 }
 
-DriverJoystick::DriverJoystick()
-    : Joystick(0),
-      winchUp(new Btn(this, 8)),
-      ballIntake(new Btn(this, 3)),
-      changeFront(new Btn(this, 1)) {
-  winchUp->WhileHeld(RunWinch::createGoUpCommand());
-  winchUp->WhenReleased(RunWinch::createHoldCommand());
-  ballIntake->WhileHeld(new RunIntake());
-  changeFront->WhenPressed(new ToggleRobotFront());
+DriverJoystick::DriverJoystick() :
+		Joystick(0), winchUp(new Btn(this, 8)), ballIntake(new Btn(this, 3)), changeFront(
+				new Btn(this, 1)) {
+	winchUp->WhileHeld(RunWinch::createGoUpCommand());
+	winchUp->WhenReleased(RunWinch::createHoldCommand());
+	ballIntake->WhileHeld(new RunIntake());
+	changeFront->WhenPressed(new ToggleRobotFront());
 }
 
-ShooterJoystick::ShooterJoystick()
-    : Joystick(1),
-      winchUp(new Btn(this, 11)),
-      winchDown(new Btn(this, 9)),
-      winchStop(new Btn(this, 10)),
-      runHexapus(new Btn(this, 1)),
-      runIntake(new Btn(this, 3)),
-      shoot(new Btn(this, 2)),
-      unjam(new Btn(this, 7)),
-      gearCatchToggle(new Btn(this, 5)) {
-  winchDown->WhileHeld(RunWinch::createDownCommand());
-  winchStop->WhenPressed(RunWinch::createStopCommand());
-  winchUp->WhileHeld(RunWinch::createGoUpCommand());
-  winchUp->WhenReleased(RunWinch::createHoldCommand());
+ShooterJoystick::ShooterJoystick() :
+		Joystick(1), winchUp(new Btn(this, 11)), winchDown(new Btn(this, 9)), winchStop(
+				new Btn(this, 10)), runHexapus(new Btn(this, 1)), runIntake(
+				new Btn(this, 3)), shoot(new Btn(this, 2)), unjam(
+				new Btn(this, 7)), gearCatchToggle(new Btn(this, 5)) {
+	winchDown->WhileHeld(RunWinch::createDownCommand());
+	winchStop->WhenPressed(RunWinch::createStopCommand());
+	winchUp->WhileHeld(RunWinch::createGoUpCommand());
+	winchUp->WhenReleased(RunWinch::createHoldCommand());
 
-  shoot->ToggleWhenPressed(new RunShooter());
-  // RunShooterAndIntake is another option, but the intake draws too much
-  // current
-  // and messes with shooter tuning. It seems like the talon should be able to
-  // adapt to this,
-  // but whatever...
+	shoot->ToggleWhenPressed(new RunShooter());
 
-  runIntake->WhileHeld(new RunIntake());
-  gearCatchToggle->WhenPressed(new GearCatchToggle());
-  runHexapus->WhileHeld(new MyHexapusCommand());
-  unjam->WhenPressed(new UnjamHexapus(new StopHexapus()));
+
+	runIntake->WhileHeld(new RunIntake());
+	gearCatchToggle->WhenPressed(new GearCatchToggle());
+	runHexapus->WhileHeld(new MyHexapusCommand());
+	unjam->WhenPressed(new UnjamHexapus(new StopHexapus()));
 }

@@ -29,7 +29,6 @@ void GearCatch::moveIn() {
   setPosition(0);
 }
 void GearCatch::chill() {
-  // TODO does this work better than SetPosition(0) ?
   actuator1->SetOffline();
   actuator2->SetOffline();
 }

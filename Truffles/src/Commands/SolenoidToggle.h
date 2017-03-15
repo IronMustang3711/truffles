@@ -10,7 +10,6 @@
 #include "commands/InstantCommand.h"
 #include <solenoid.h>
 class SolenoidToggle : public InstantCommand {
-  // class Solenoid; //TODO figure out how forward declarations work in cpp
  public:
   SolenoidToggle(std::shared_ptr<Solenoid> solenoid,
                  std::string name = "solenoid toggle");

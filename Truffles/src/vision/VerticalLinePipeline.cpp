@@ -45,22 +45,26 @@ void VerticalLinePipeline::Process(cv::Mat& mat) {
 
 	cv::cvtColor(mat, work, cv::COLOR_BGR2GRAY);
 
-	cv::warpAffine(work, work2, rot_mat, work.size());
-	cv::GaussianBlur(work2, work, cv::Size(5, 5), 3, 3, cv::BORDER_DEFAULT);
-	cv::Canny(work, work2, 384, 310, 3, true);
+	//cv::warpAffine(work, work2, rot_mat, work.size());
+	cv::GaussianBlur(work, work2, cv::Size(5, 5), 3, 3, cv::BORDER_DEFAULT);
+	cv::Canny(work2, work, 200, 150, 3, true);
 
 	//work2.copyTo(mat);
-	cv::rectangle(mat, cv::Point(5, 5), cv::Point(100, 100),
+	cv::rectangle(mat, cv::Point(130,20), cv::Point(mat.cols-50, mat.rows-20),
 			cv::Scalar(255, 0, 0)); //TODO: figure out ROI.
 
-	//TODO: hough detector?
 	auto lsd = cv::createLineSegmentDetector(cv::LSD_REFINE_STD);
 	std::vector<cv::Vec4i> lines;
 	lsd->detect(work, lines);
-	double minLen = 62;
-	double minAngle = 216; //NOTE: these  angles are for vertically rotated images
-	double maxAngle = 286;
+	//lsd->drawSegments(mat,lines);
+	//std::cout << "line count: "<< lines.size() << std::endl;
+	double minLen = 30;
+	double minAngle = -10; //NOTE: these  angles are for vertically rotated images
+	double maxAngle = 10;
 	for (auto line : lines) {
+//		cv::Point p1(line[0],line[1]);
+//					cv::Point p2(line[2],line[3]);
+//					cv::line(mat,p1,p2,cv::Scalar(0,200,0),2);
 		double len = length(line);
 		double angle = computeAngle(line);
 		if (len > minLen

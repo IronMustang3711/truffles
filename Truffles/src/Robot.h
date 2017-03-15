@@ -44,6 +44,7 @@ class Robot : public IterativeRobot {
 
   static void vision();
   static void vision2();
+  static void vision3();
 
 
  private:
