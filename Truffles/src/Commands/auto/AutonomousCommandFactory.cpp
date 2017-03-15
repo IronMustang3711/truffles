@@ -8,6 +8,7 @@
 #include "AutonomousCommandFactory.h"
 #include <DriverStation.h>
 #include "Noop.h"
+#include "DriveStraight.h"
 
 using namespace frc;
 Command* AutonomousCommandFactory::createAutonomousCommand() {
@@ -29,16 +30,19 @@ Command* AutonomousCommandFactory::createAutonomousCommand() {
 }
 
 Command* AutonomousCommandFactory::position1Auto() {
+	return new DriveStraight(120.0); //TODO
 }
 
 Command* AutonomousCommandFactory::position2Auto() {
+	return new DriveStraight(120.0); //TODO
 }
 
 Command* AutonomousCommandFactory::position3Auto() {
+	return new DriveStraight(120.0); //TODO
 }
 
 Command* AutonomousCommandFactory::driveStraightAuto() {
-
+	return new DriveStraight(120.0);
 }
 
 Command* AutonomousCommandFactory::doNothingAuto() {
