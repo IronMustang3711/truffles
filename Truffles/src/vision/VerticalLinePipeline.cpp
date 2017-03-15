@@ -18,26 +18,58 @@
 #include <map>
 #include <math.h>
 
+double length(const cv::Vec4i& v) {
+	double x1 = v[0];
+	double y1 = v[1];
+	double x2 = v[2];
+	double y2 = v[3];
+	return sqrt(pow(x2 - x1, 2) + pow(y2 - y1, 2));
+}
+double computeAngle(const cv::Vec4i& v) {
+	double x1 = v[0];
+	double y1 = v[1];
+	double x2 = v[2];
+	double y2 = v[3];
+	return (180 * atan2(y2 - y1, x2 - x1) / CV_PI);
+}
+
 void VerticalLinePipeline::Process(cv::Mat& mat) {
-	cv::Mat rot_mat( 2, 3, CV_32FC1 );
-	rot_mat = cv::getRotationMatrix2D(cv::Point2f(0,0),90,1.0);
+	cv::Mat rot_mat(2, 3, CV_32FC1);
+	rot_mat = cv::getRotationMatrix2D(cv::Point2f(0, 0), 90, 1.0);
 
 	cv::Mat work;
 	cv::Mat work2;
 
-	cv::Mat src;
-	src = mat.clone();
+//	cv::Mat src;
+//	src = mat.clone();
 
+	cv::cvtColor(mat, work, cv::COLOR_BGR2GRAY);
 
+	cv::warpAffine(work, work2, rot_mat, work.size());
+	cv::GaussianBlur(work2, work, cv::Size(5, 5), 3, 3, cv::BORDER_DEFAULT);
+	cv::Canny(work, work2, 384, 310, 3, true);
 
-	cv::warpAffine(mat,work,rot_mat,mat.size());
-	cv::GaussianBlur(work,work2,cv::Size(5,5),3,3,cv::BORDER_DEFAULT);
-	cv::Canny(work2,work,384,350,3,true);
+	//work2.copyTo(mat);
+	cv::rectangle(mat, cv::Point(5, 5), cv::Point(100, 100),
+			cv::Scalar(255, 0, 0)); //TODO: figure out ROI.
 
-	work.copyTo(mat);
+	//TODO: hough detector?
+	auto lsd = cv::createLineSegmentDetector(cv::LSD_REFINE_STD);
+	std::vector<cv::Vec4i> lines;
+	lsd->detect(work, lines);
+	double minLen = 62;
+	double minAngle = 216; //NOTE: these  angles are for vertically rotated images
+	double maxAngle = 286;
+	for (auto line : lines) {
+		double len = length(line);
+		double angle = computeAngle(line);
+		if (len > minLen
+				&& ((angle >= minAngle && angle <= maxAngle)
+						|| (angle + 180 >= minAngle && angle + 180 <= maxAngle))) {
+			cv::Point p1(line[0],line[1]);
+			cv::Point p2(line[2],line[3]);
+			cv::line(mat,p1,p2,cv::Scalar(0,255,0));
+		}
 
-	cv::rectangle(mat,cv::Point(5,5),cv::Point(100,100), cv::Scalar(255,0,0));//TODO: figure out ROI.
-
-
-
+	}
 }
