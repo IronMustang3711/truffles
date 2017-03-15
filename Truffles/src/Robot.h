@@ -35,6 +35,7 @@ class Robot : public IterativeRobot {
   virtual void DisabledPeriodic();
   virtual void AutonomousInit();
   virtual void AutonomousPeriodic();
+  void autonomousDidFinish();
   virtual void TeleopInit();
   virtual void TeleopPeriodic();
   virtual void TestPeriodic();
@@ -42,13 +43,14 @@ class Robot : public IterativeRobot {
 
   void dashboardUpdate();
 
-  static void vision();
-  static void vision2();
-  static void vision3();
+//  static void vision();
+//  static void vision2();
+//  static void vision3();
 
 
  private:
  	std::unique_ptr<frc::Command> autonomousCommand;
  	frc::SendableChooser<frc::Command*> chooser;
+ 	std::thread* visionThread = nullptr;
 };
 #endif
