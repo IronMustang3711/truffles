@@ -1,5 +1,8 @@
 #include "DriveStraight.h"
 #include "../../Robot.h"
+/*
+ * example: /Users/jason/repos/wpi/FRC-Examples/CPP_Pigeon_StraightServo_Example/src/Robot.cpp
+ */
 DriveStraight::DriveStraight(double distanceInInches) :
 		Command("drive straight(simple)",/*timeout=*/5.0), targetDistance(
 				19 * distanceInInches)
