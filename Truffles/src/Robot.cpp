@@ -30,8 +30,7 @@ void Robot::RobotInit() {
 
 	updateAllianceColor();
 
-	chooser.AddDefault("nothing", new Noop());
-	chooser.AddObject("drive straight", new DriveStraight(2));
+	AutonomousCommandFactory::setupChooser(chooser);
 	SmartDashboard::PutData("auto modes", &chooser);
 
 	//autonomousCommand.reset(new Noop());
@@ -149,8 +148,7 @@ void Robot::AutonomousInit() {
 }
 
 void Robot::AutonomousPeriodic() {
-	//if we cant do autonomous, at least we can sparkle....
-	lights->perimeterGreen.toggle();
+	lights->perimeterGreen.toggle(); //TODO this is probably annoying
 	Scheduler::GetInstance()->Run();
 }
 
@@ -161,8 +159,7 @@ void Robot::TeleopInit() {
 	chassis->zeroEncoders();
 	updateAllianceColor();
 
-	if (autonomousCommand.get() != nullptr)
-		autonomousCommand->Cancel();
+
 }
 
 void Robot::TeleopPeriodic() {
@@ -177,6 +174,8 @@ void Robot::TestPeriodic() {
 
 void Robot::autonomousDidFinish() {
 	updateAllianceColor();
+	if (autonomousCommand.get() != nullptr)
+		autonomousCommand->Cancel();
 	lights->perimeterGreen.setOn(false);
 	RobotMap::ahrs->ZeroYaw();
 	chassis->zeroEncoders();
