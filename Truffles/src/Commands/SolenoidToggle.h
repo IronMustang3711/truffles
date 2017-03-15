@@ -9,16 +9,15 @@
 #define SRC_SUBSYSTEMS_SOLENOIDTOGGLE_H_
 #include "commands/InstantCommand.h"
 #include <solenoid.h>
-class SolenoidToggle : public InstantCommand {
-  // class Solenoid; //TODO figure out how forward declarations work in cpp
- public:
-  SolenoidToggle(std::shared_ptr<Solenoid> solenoid,
-                 std::string name = "solenoid toggle");
+class SolenoidToggle: public InstantCommand {
+public:
+	SolenoidToggle(std::shared_ptr<Solenoid> solenoid, std::string name =
+			"solenoid toggle");
 
-  virtual void Execute() override;
+	virtual void Execute() override;
 
- private:
-  std::shared_ptr<Solenoid> solenoid;
+private:
+	std::shared_ptr<Solenoid> solenoid;
 };
 
 #endif /* SRC_SUBSYSTEMS_SOLENOIDTOGGLE_H_ */

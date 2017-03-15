@@ -21,28 +21,28 @@ const int ENCODER_PULSES_PER_REVOLUTION = 20;
 const int PIXY_I2C_ADDR = 0x54;
 
 class RobotMap {
- public:
-  static std::shared_ptr<CANTalon> leftFrontController;
-  static std::shared_ptr<CANTalon> leftRearController;
-  static std::shared_ptr<CANTalon> rightFrontController;
-  static std::shared_ptr<CANTalon> rightRearController;
-  static std::shared_ptr<RobotDrive> chassisDrive;
-  static std::shared_ptr<CANTalon> shooterController;
-  static std::shared_ptr<Spark> intakeController;
-  static std::shared_ptr<Spark> winchController;
-  static std::shared_ptr<Spark> hexapusController;
-  static std::shared_ptr<LinearActuator> gearCatchActuator1;
-  static std::shared_ptr<LinearActuator> gearCatchActuator2;
-  static std::shared_ptr<AHRS> ahrs;
-  static std::shared_ptr<Solenoid> lightsRed;
-  static std::shared_ptr<Solenoid> lightsGreen;
-  static std::shared_ptr<Solenoid> lightsBlue;
-  static std::shared_ptr<Solenoid> pixyRinglight;
-  static std::shared_ptr<Solenoid> rearRingLight;
+public:
+	static std::shared_ptr<CANTalon> leftFrontController;
+	static std::shared_ptr<CANTalon> leftRearController;
+	static std::shared_ptr<CANTalon> rightFrontController;
+	static std::shared_ptr<CANTalon> rightRearController;
+	static std::shared_ptr<RobotDrive> chassisDrive;
+	static std::shared_ptr<CANTalon> shooterController;
+	static std::shared_ptr<Spark> intakeController;
+	static std::shared_ptr<Spark> winchController;
+	static std::shared_ptr<Spark> hexapusController;
+	static std::shared_ptr<LinearActuator> gearCatchActuator1;
+	static std::shared_ptr<LinearActuator> gearCatchActuator2;
+	static std::shared_ptr<AHRS> ahrs;
+	static std::shared_ptr<Solenoid> lightsRed;
+	static std::shared_ptr<Solenoid> lightsGreen;
+	static std::shared_ptr<Solenoid> lightsBlue;
+	static std::shared_ptr<Solenoid> pixyRinglight;
+	static std::shared_ptr<Solenoid> rearRingLight;
 
-  static std::shared_ptr<PowerDistributionPanel> powerDistributionPanel;
+	static std::shared_ptr<PowerDistributionPanel> powerDistributionPanel;
 
-  static void init();
+	static void init();
   static Pixy* pixy;
 };
 #endif

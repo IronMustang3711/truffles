@@ -2,9 +2,9 @@
 <project version="4">
   <component name="CMakeRunConfigurationManager" shouldGenerate="true" buildAllGenerated="true">
     <generated>
-      <config projectName="Truffles" targetName="FRCUserProgram" />
       <config projectName="Truffles" targetName="clangformat" />
       <config projectName="Truffles" targetName="deploy" />
+      <config projectName="Truffles" targetName="FRCUserProgram" />
     </generated>
   </component>
   <component name="CMakeSettings">
@@ -14,45 +14,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1c4993e5-df4e-4337-bd19-e201baa65fdb" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/Commands/auto/SimpleAuto.cpp" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/Commands/auto/SimpleAuto.h" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Commands/AutonomousCommand.cpp" afterPath="$PROJECT_DIR$/src/Commands/AutonomousCommand.cpp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Commands/AutonomousCommand.h" afterPath="$PROJECT_DIR$/src/Commands/AutonomousCommand.h" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Commands/DriveWithJoystick.cpp" afterPath="$PROJECT_DIR$/src/Commands/DriveWithJoystick.cpp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Commands/DriveWithJoystick.h" afterPath="$PROJECT_DIR$/src/Commands/DriveWithJoystick.h" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Commands/RunIntake.cpp" afterPath="$PROJECT_DIR$/src/Commands/RunIntake.cpp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Commands/RunIntake.h" afterPath="$PROJECT_DIR$/src/Commands/RunIntake.h" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Commands/RunShooter.cpp" afterPath="$PROJECT_DIR$/src/Commands/RunShooter.cpp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Commands/RunShooter.h" afterPath="$PROJECT_DIR$/src/Commands/RunShooter.h" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Commands/RunWinch.cpp" afterPath="$PROJECT_DIR$/src/Commands/RunWinch.cpp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Commands/RunWinch.h" afterPath="$PROJECT_DIR$/src/Commands/RunWinch.h" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Commands/auto/AutonomousCommandFactory.cpp" afterPath="$PROJECT_DIR$/src/Commands/auto/AutonomousCommandFactory.cpp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Commands/auto/DriveStraight.cpp" afterPath="$PROJECT_DIR$/src/Commands/auto/DriveStraight.cpp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Commands/auto/PixyRotate.cpp" afterPath="$PROJECT_DIR$/src/Commands/auto/PixyRotate.cpp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Commands/auto/PixyStrafe.cpp" afterPath="$PROJECT_DIR$/src/Commands/auto/PixyStrafe.cpp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Commands/auto/PlaceGear.cpp" afterPath="$PROJECT_DIR$/src/Commands/auto/PlaceGear.cpp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Commands/auto/RotateCommand.cpp" afterPath="$PROJECT_DIR$/src/Commands/auto/RotateCommand.cpp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Commands/auto/StrafeCommand.cpp" afterPath="$PROJECT_DIR$/src/Commands/auto/StrafeCommand.cpp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Commands/auto/StrafeCommand.h" afterPath="$PROJECT_DIR$/src/Commands/auto/StrafeCommand.h" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/OI.cpp" afterPath="$PROJECT_DIR$/src/OI.cpp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/OI.h" afterPath="$PROJECT_DIR$/src/OI.h" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Robot.cpp" afterPath="$PROJECT_DIR$/src/Robot.cpp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Robot.h" afterPath="$PROJECT_DIR$/src/Robot.h" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/RobotMap.cpp" afterPath="$PROJECT_DIR$/src/RobotMap.cpp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/RobotMap.h" afterPath="$PROJECT_DIR$/src/RobotMap.h" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Subsystems/Chassis.cpp" afterPath="$PROJECT_DIR$/src/Subsystems/Chassis.cpp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Subsystems/Chassis.h" afterPath="$PROJECT_DIR$/src/Subsystems/Chassis.h" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Subsystems/GearCatch.h" afterPath="$PROJECT_DIR$/src/Subsystems/GearCatch.h" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Subsystems/Intake.cpp" afterPath="$PROJECT_DIR$/src/Subsystems/Intake.cpp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Subsystems/Intake.h" afterPath="$PROJECT_DIR$/src/Subsystems/Intake.h" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Subsystems/Shooter.cpp" afterPath="$PROJECT_DIR$/src/Subsystems/Shooter.cpp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Subsystems/Shooter.h" afterPath="$PROJECT_DIR$/src/Subsystems/Shooter.h" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Subsystems/Winch.cpp" afterPath="$PROJECT_DIR$/src/Subsystems/Winch.cpp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Subsystems/Winch.h" afterPath="$PROJECT_DIR$/src/Subsystems/Winch.h" />
-    </list>
-    <list id="7c380e8f-e321-480a-a9be-11b064a25aef" name="ide files" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Commands/Ringlights.cpp" afterPath="$PROJECT_DIR$/src/Commands/Ringlights.cpp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Commands/auto/DriveStraight.cpp" afterPath="$PROJECT_DIR$/src/Commands/auto/DriveStraight.cpp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Robot.cpp" afterPath="$PROJECT_DIR$/src/Robot.cpp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/vision/VerticalLinePipeline.cpp" afterPath="$PROJECT_DIR$/src/vision/VerticalLinePipeline.cpp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/vision/Vision.cpp" afterPath="$PROJECT_DIR$/src/vision/Vision.cpp" />
     </list>
+    <list id="7c380e8f-e321-480a-a9be-11b064a25aef" name="ide files" comment="" />
     <ignored path="$PROJECT_DIR$/cmake-build-debug/" />
     <ignored path="$PROJECT_DIR$/Debug/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -70,33 +39,58 @@
     <favorites_list name="Truffles" />
   </component>
   <component name="FileEditorManager">
-    <leaf>
-      <file leaf-file-name="Chassis.h" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Subsystems/Chassis.h">
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file leaf-file-name="Ringlights.cpp" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Commands/Ringlights.cpp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="345">
-              <caret line="69" column="18" lean-forward="false" selection-start-line="69" selection-start-column="18" selection-end-line="69" selection-end-column="18" />
+            <state relative-caret-position="15">
+              <caret line="1" column="13" lean-forward="false" selection-start-line="1" selection-start-column="13" selection-end-line="1" selection-end-column="13" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="AutonomousCommandFactory.cpp" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Commands/auto/AutonomousCommandFactory.cpp">
+      <file leaf-file-name="VerticalLinePipeline.cpp" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/vision/VerticalLinePipeline.cpp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+            <state relative-caret-position="105">
+              <caret line="7" column="33" lean-forward="false" selection-start-line="7" selection-start-column="33" selection-end-line="7" selection-end-column="33" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="DriveWithJoystick.cpp" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/Commands/DriveWithJoystick.cpp">
+      <file leaf-file-name="Vision.cpp" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/vision/Vision.cpp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="225">
-              <caret line="15" column="0" lean-forward="true" selection-start-line="15" selection-start-column="0" selection-end-line="15" selection-end-column="0" />
+            <state relative-caret-position="735">
+              <caret line="49" column="26" lean-forward="false" selection-start-line="49" selection-start-column="26" selection-end-line="49" selection-end-column="26" />
+              <folding>
+                <element signature="e#76#101#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Robot.cpp" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Robot.cpp">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="60">
+              <caret line="4" column="40" lean-forward="false" selection-start-line="4" selection-start-column="40" selection-end-line="4" selection-end-column="40" />
               <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="DriveStraight.cpp" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Commands/auto/DriveStraight.cpp">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="244">
+              <caret line="78" column="32" lean-forward="false" selection-start-line="78" selection-start-column="32" selection-end-line="78" selection-end-column="32" />
+              <folding>
+                <element signature="e#46#72#0" expanded="true" />
+                <marker date="1489602222000" expanded="false" signature="184:194" ph="&lt;&gt;" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -143,7 +137,6 @@
         <option value="$PROJECT_DIR$/src/Commands/DriveWithJoystick.h" />
         <option value="$PROJECT_DIR$/src/Commands/GearCatchCommands.h" />
         <option value="$PROJECT_DIR$/src/Commands/RunHexapus.cpp" />
-        <option value="$PROJECT_DIR$/src/Robot.cpp" />
         <option value="$PROJECT_DIR$/src/RobotMap.cpp" />
         <option value="$PROJECT_DIR$/src/Commands/GearCatchCommands.cpp" />
         <option value="$PROJECT_DIR$/src/Subsystems/LinearActuator.h" />
@@ -156,9 +149,13 @@
         <option value="$PROJECT_DIR$/src/Commands/auto/ZeroEncoders.h" />
         <option value="$PROJECT_DIR$/src/Commands/auto/ZeroEncoders.cpp" />
         <option value="$PROJECT_DIR$/src/Commands/auto/DriveStraight.h" />
-        <option value="$PROJECT_DIR$/src/Commands/auto/DriveStraight.cpp" />
         <option value="$PROJECT_DIR$/src/Subsystems/Chassis.h" />
         <option value="$PROJECT_DIR$/src/Subsystems/Chassis.cpp" />
+        <option value="$PROJECT_DIR$/src/Commands/Ringlights.cpp" />
+        <option value="$PROJECT_DIR$/src/vision/VerticalLinePipeline.cpp" />
+        <option value="$PROJECT_DIR$/src/vision/Vision.cpp" />
+        <option value="$PROJECT_DIR$/src/Robot.cpp" />
+        <option value="$PROJECT_DIR$/src/Commands/auto/DriveStraight.cpp" />
       </list>
     </option>
   </component>
@@ -234,6 +231,74 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Truffles" />
+              <option name="myItemType" value="com.jetbrains.cidr.projectView.CidrFilesViewHelper$MyProjectTreeStructure$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Truffles" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Truffles" />
+              <option name="myItemType" value="com.jetbrains.cidr.projectView.CidrFilesViewHelper$MyProjectTreeStructure$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Truffles" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="vision" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Truffles" />
+              <option name="myItemType" value="com.jetbrains.cidr.projectView.CidrFilesViewHelper$MyProjectTreeStructure$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Truffles" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Subsystems" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Truffles" />
+              <option name="myItemType" value="com.jetbrains.cidr.projectView.CidrFilesViewHelper$MyProjectTreeStructure$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Truffles" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Commands" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
         </subPane>
       </pane>
     </panes>
@@ -247,7 +312,7 @@
     <property name="full.screen.before.presentation.mode" value="false" />
     <property name="SearchEverywhereHistoryKey" value="Servo&#9;null&#9;null&#10;Command&#9;null&#9;null&#10;Ro&#9;FILE&#9;file:///Users/jason/git/truffles/Truffles/src/RobotMap.cpp" />
   </component>
-  <component name="RunManager" selected="Application.clangformat">
+  <component name="RunManager" selected="Application.Build All">
     <configuration default="true" type="CMakeGoogleTestRunConfigurationType" factoryName="Google Test" PASS_PARENT_ENVS_2="true" PROJECT_NAME="Truffles" TARGET_NAME="deploy" CONFIG_NAME="Debug" TEST_MODE="SUITE_TEST">
       <envs />
       <method />
@@ -468,7 +533,9 @@
       <workItem from="1488587487596" duration="679000" />
       <workItem from="1488601028098" duration="795000" />
       <workItem from="1488601835124" duration="1769000" />
-      <workItem from="1488951588651" duration="411000" />
+      <workItem from="1489601819555" duration="19000" />
+      <workItem from="1489601850963" duration="325000" />
+      <workItem from="1489602188532" duration="80000" />
     </task>
     <task id="LOCAL-00001" summary="add shooter code">
       <created>1486938208656</created>
@@ -586,7 +653,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="34370000" />
+    <option name="totallyTimeSpent" value="34380000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -603,10 +670,10 @@
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.28118393" sideWeight="0.47453415" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.36317137" sideWeight="0.49330515" order="9" side_tool="false" content_ui="tabs" />
-      <window_info id="CMake" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32480818" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.36456996" sideWeight="0.50669485" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.48465472" sideWeight="0.49753347" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.36317137" sideWeight="0.49048626" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="CMake" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32480818" sideWeight="0.49753347" order="11" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.36317137" sideWeight="0.50951374" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4857143" sideWeight="0.49753347" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.28188866" sideWeight="0.53915274" order="1" side_tool="true" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32991013" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
@@ -703,20 +770,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/Subsystems/Intake.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="672">
-          <caret line="42" column="0" lean-forward="false" selection-start-line="42" selection-start-column="0" selection-end-line="42" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Subsystems/Winch.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="496">
-          <caret line="31" column="38" lean-forward="false" selection-start-line="31" selection-start-column="38" selection-end-line="31" selection-end-column="38" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$USER_HOME$/wpilib/cpp/current/include/Commands/CommandGroup.h">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="410">
@@ -787,6 +840,13 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/Commands/DriveWithJoystick.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="155">
+          <caret line="19" column="16" lean-forward="true" selection-start-line="19" selection-start-column="16" selection-end-line="19" selection-end-column="16" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/Commands/DriveWithJoystick.h">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="43">
@@ -813,13 +873,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1232">
           <caret line="77" column="20" lean-forward="false" selection-start-line="77" selection-start-column="20" selection-end-line="77" selection-end-column="20" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Robot.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="16">
-          <caret line="23" column="66" lean-forward="false" selection-start-line="23" selection-start-column="66" selection-end-line="23" selection-end-column="66" />
         </state>
       </provider>
     </entry>
@@ -998,13 +1051,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Commands/auto/DriveStraight.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="105">
-          <caret line="8" column="0" lean-forward="true" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$USER_HOME$/wpilib/cpp/current/include/RobotDrive.h">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="319">
@@ -1026,6 +1072,13 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/Subsystems/Chassis.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="660">
+          <caret line="69" column="18" lean-forward="false" selection-start-line="69" selection-start-column="18" selection-end-line="69" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$USER_HOME$/wpilib/user/cpp/include/CANTalon.h">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-30">
@@ -1033,26 +1086,47 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Subsystems/Chassis.h">
+    <entry file="file://$PROJECT_DIR$/src/Commands/Ringlights.cpp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="345">
-          <caret line="69" column="18" lean-forward="false" selection-start-line="69" selection-start-column="18" selection-end-line="69" selection-end-column="18" />
+        <state relative-caret-position="15">
+          <caret line="1" column="13" lean-forward="false" selection-start-line="1" selection-start-column="13" selection-end-line="1" selection-end-column="13" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Commands/auto/AutonomousCommandFactory.cpp">
+    <entry file="file://$PROJECT_DIR$/src/vision/Vision.cpp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        <state relative-caret-position="735">
+          <caret line="49" column="26" lean-forward="false" selection-start-line="49" selection-start-column="26" selection-end-line="49" selection-end-column="26" />
+          <folding>
+            <element signature="e#76#101#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Robot.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="60">
+          <caret line="4" column="40" lean-forward="false" selection-start-line="4" selection-start-column="40" selection-end-line="4" selection-end-column="40" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Commands/DriveWithJoystick.cpp">
+    <entry file="file://$PROJECT_DIR$/src/Commands/auto/DriveStraight.cpp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="225">
-          <caret line="15" column="0" lean-forward="true" selection-start-line="15" selection-start-column="0" selection-end-line="15" selection-end-column="0" />
+        <state relative-caret-position="244">
+          <caret line="78" column="32" lean-forward="false" selection-start-line="78" selection-start-column="32" selection-end-line="78" selection-end-column="32" />
+          <folding>
+            <element signature="e#46#72#0" expanded="true" />
+            <marker date="1489602222000" expanded="false" signature="184:194" ph="&lt;&gt;" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/vision/VerticalLinePipeline.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="105">
+          <caret line="7" column="33" lean-forward="false" selection-start-line="7" selection-start-column="33" selection-end-line="7" selection-end-column="33" />
           <folding />
         </state>
       </provider>

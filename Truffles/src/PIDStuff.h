@@ -15,12 +15,13 @@ namespace utils {
 typedef std::function<double(void)> PIDSourceProvider;
 typedef std::function<void(double)> PIDOutputCallback;
 
-class PIDSourceAdapter :public frc::PIDSource {
+class PIDSourceAdapter: public frc::PIDSource {
 public:
-	PIDSourceAdapter(PIDSourceProvider p) : provider{p}
-	{}
-	virtual ~PIDSourceAdapter()
-	{}
+	PIDSourceAdapter(PIDSourceProvider p) :
+			provider { p } {
+	}
+	virtual ~PIDSourceAdapter() {
+	}
 	virtual double PIDGet() override {
 		return provider();
 	}
@@ -28,12 +29,13 @@ private:
 	PIDSourceProvider provider;
 };
 
-class PIDOutputAdapter : public frc::PIDOutput {
+class PIDOutputAdapter: public frc::PIDOutput {
 public:
-	PIDOutputAdapter(PIDOutputCallback cb) : callback{cb}
-	{}
-	virtual ~PIDOutputAdapter()
-	{}
+	PIDOutputAdapter(PIDOutputCallback cb) :
+			callback { cb } {
+	}
+	virtual ~PIDOutputAdapter() {
+	}
 
 	virtual void PIDWrite(double value) override {
 		callback(value);

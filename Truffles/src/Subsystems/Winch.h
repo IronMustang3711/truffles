@@ -1,4 +1,3 @@
-
 #ifndef WINCH_H
 #define WINCH_H
 
@@ -10,15 +9,15 @@
  *
  * @author ExampleAuthor
  */
-class Winch : public Subsystem {
- private:
-  std::shared_ptr<SpeedController> winchMotor;
+class Winch: public Subsystem {
+private:
+	std::shared_ptr<SpeedController> winchMotor;
 
- public:
-  Winch();
-  void InitDefaultCommand();
+public:
+	Winch();
+	void InitDefaultCommand();
 
-  void runWinchMotor(double speed);
+	void runWinchMotor(double speed);
 };
 
 #endif

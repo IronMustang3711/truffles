@@ -8,6 +8,7 @@
 #ifndef SRC_COMMANDS_AUTO_SIMPLEAUTO_H_
 #define SRC_COMMANDS_AUTO_SIMPLEAUTO_H_
 
-class SimpleAuto {};
+class SimpleAuto {
+};
 
 #endif /* SRC_COMMANDS_AUTO_SIMPLEAUTO_H_ */

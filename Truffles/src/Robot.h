@@ -1,4 +1,3 @@
-
 #ifndef _ROBOT_H
 #define _ROBOT_H
 
@@ -18,31 +17,38 @@
 #include "Subsystems/GearCatch.h"
 #include "Subsystems/Hexapus.h"
 
-class Robot : public IterativeRobot {
- public:
-  std::unique_ptr<Command> autonomousCommand;
-  static std::unique_ptr<OI> oi;
-  LiveWindow* lw = LiveWindow::GetInstance();
-  static std::shared_ptr<Chassis> chassis;
-  static std::shared_ptr<Shooter> shooter;
-  static std::shared_ptr<Hexapus> hexapus;
-  static std::shared_ptr<Intake> intake;
-  static std::shared_ptr<Winch> winch;
-  static std::shared_ptr<GearCatch> gearCatch;
-  static std::shared_ptr<Lights> lights;
+class Robot: public IterativeRobot {
+public:
+	static std::unique_ptr<OI> oi;
+	LiveWindow* lw = LiveWindow::GetInstance();
+	static std::shared_ptr<Chassis> chassis;
+	static std::shared_ptr<Shooter> shooter;
+	static std::shared_ptr<Hexapus> hexapus;
+	static std::shared_ptr<Intake> intake;
+	static std::shared_ptr<Winch> winch;
+	static std::shared_ptr<GearCatch> gearCatch;
+	static std::shared_ptr<Lights> lights;
 
-  virtual void RobotInit();
-  virtual void DisabledInit();
-  virtual void DisabledPeriodic();
-  virtual void AutonomousInit();
-  virtual void AutonomousPeriodic();
-  virtual void TeleopInit();
-  virtual void TeleopPeriodic();
-  virtual void TestPeriodic();
-  void updateAllianceColor();
+	virtual void RobotInit();
+	virtual void DisabledInit();
+	virtual void DisabledPeriodic();
+	virtual void AutonomousInit();
+	virtual void AutonomousPeriodic();
+	void autonomousDidFinish();
+	virtual void TeleopInit();
+	virtual void TeleopPeriodic();
+	virtual void TestPeriodic();
+	void updateAllianceColor();
 
-  void dashboardUpdate();
+	void dashboardUpdate();
 
-  static void vision();
+//  static void vision();
+//  static void vision2();
+//  static void vision3();
+
+private:
+	std::unique_ptr<frc::Command> autonomousCommand;
+	frc::SendableChooser<frc::Command*> chooser;
+	std::thread* visionThread = nullptr;
 };
 #endif
