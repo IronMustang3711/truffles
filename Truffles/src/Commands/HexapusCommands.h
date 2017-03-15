@@ -9,9 +9,9 @@
 #include <Timer.h>
 #include "SimpleCommand.h"
 #include <string>
-class MyHexapusCommand: public SimpleCommand {
+class RunHexapusCommand: public SimpleCommand {
 public:
-	MyHexapusCommand();
+	RunHexapusCommand();
 	enum class State {
 		INITIAL_OFF, WAITING_FOR_SHOOTER, RUNNING, UNJAM
 	};
@@ -45,17 +45,6 @@ public:
 	virtual void Execute() override;
 };
 
-class RunHexapus: public SimpleCommand {
-public:
-	RunHexapus();
-	//  virtual void Initialize() override;
-	virtual void Execute() override;
-	virtual void End() override;
-	UnjamHexapus unjamHexapus;
-	StopHexapus stopHexapus;
-	int jamCount = 0;
-	// bool disable = false;
-	//    bool pausedAfterDisable=false;
-};
+
 
 #endif  // TRUFFLES_HEXAPUSCOMMAND_H

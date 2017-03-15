@@ -6,14 +6,14 @@
 #include "../Robot.h"
 static const double UNJAM_TIME = 0.15;
 
-MyHexapusCommand::MyHexapusCommand() :
-		SimpleCommand("my hexapus command") {
+RunHexapusCommand::RunHexapusCommand() :
+		SimpleCommand("run hexapus command") {
 }
 
-MyHexapusCommand::State MyHexapusCommand::getState() {
+RunHexapusCommand::State RunHexapusCommand::getState() {
 	return state;
 }
-void MyHexapusCommand::transition(State newState) {
+void RunHexapusCommand::transition(State newState) {
 	State prevState = state;
 
 	if (prevState == State::RUNNING) {
@@ -52,7 +52,7 @@ void MyHexapusCommand::transition(State newState) {
 
 	state = newState;
 }
-std::string MyHexapusCommand::StateName(State state) {
+std::string RunHexapusCommand::StateName(State state) {
 	switch (state) {
 	case State::INITIAL_OFF:
 		return "initial/off";
@@ -67,11 +67,11 @@ std::string MyHexapusCommand::StateName(State state) {
 	return "lol";
 }
 
-void MyHexapusCommand::Initialize() {
+void RunHexapusCommand::Initialize() {
 	transition(State::INITIAL_OFF);
 }
 
-void MyHexapusCommand::Execute() {
+void RunHexapusCommand::Execute() {
 	switch (state) {
 	case State::INITIAL_OFF:
 		transition(State::WAITING_FOR_SHOOTER);
@@ -98,62 +98,16 @@ void MyHexapusCommand::Execute() {
 		break;
 	}
 }
-void MyHexapusCommand::End() {
+void RunHexapusCommand::End() {
 	transition(State::INITIAL_OFF);
 }
 
 StopHexapus::StopHexapus() :
-		InstantCommand("stop") {
+		InstantCommand("stop hexapus") {
 }
 
 void StopHexapus::Execute() {
 	Robot::hexapus->stop();
-}
-
-RunHexapus::RunHexapus() :
-		SimpleCommand("run"), unjamHexapus { this }, stopHexapus { } {
-}
-
-void RunHexapus::Execute() {
-	//  if (disable) {
-	//    DriverStation::ReportError("Hexapus disabled because of too many
-	//    Jams!");
-	//    Cancel();
-	//    return;
-	//  }
-
-	auto shooterState = Robot::shooter->state;
-
-	if (shooterState == Shooter::OFF) {
-		return;
-	}
-
-	if (Robot::hexapus->isJammed()) {
-		jamCount++;
-		// SmartDashboard::PutNumber("current",
-		// Robot::shooter->getHexapusCurrent());
-		SmartDashboard::PutNumber("hexapus jam count", jamCount);
-		Robot::hexapus->stop();
-		Cancel();
-		unjamHexapus.Start();
-	} else {
-		jamCount = 0;
-		if (shooterState != Shooter::STEADY) {
-			Robot::hexapus->run(0.2);
-		} else {
-			Robot::hexapus->run();
-		}
-	}
-
-	if (jamCount % 5 == 0) {
-		DriverStation::ReportError("Hexapus is jammed!");
-		// disable = true;
-	}
-}
-
-void RunHexapus::End() {
-	Robot::hexapus->stop();
-	// stopHexapus.Start();
 }
 
 void UnjamHexapus::Execute() {
@@ -169,5 +123,5 @@ void UnjamHexapus::End() {
 }
 
 UnjamHexapus::UnjamHexapus(Command* c) :
-		SimpleCommand("unjam", 0.1), nextCommand(c) {
+		SimpleCommand("unjam hexapus", 0.1), nextCommand(c) {
 }

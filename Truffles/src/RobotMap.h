@@ -16,7 +16,7 @@
 #include <AHRS.h>
 #include "Subsystems/LinearActuator.h"
 
-const int ENCODER_PULSES_PER_REVOLUTION = 20;
+
 
 class RobotMap {
 public:

@@ -96,6 +96,6 @@ ShooterJoystick::ShooterJoystick() :
 
 	runIntake->WhileHeld(new RunIntake());
 	gearCatchToggle->WhenPressed(new GearCatchToggle());
-	runHexapus->WhileHeld(new MyHexapusCommand());
+	runHexapus->WhileHeld(new RunHexapusCommand());
 	unjam->WhenPressed(new UnjamHexapus(new StopHexapus()));
 }
