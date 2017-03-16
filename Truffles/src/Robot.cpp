@@ -24,7 +24,7 @@ void Robot::RobotInit() {
 	hexapus.reset(new Hexapus());
 	intake.reset(new Intake());
 	winch.reset(new Winch());
-	gearCatch.reset(new GearCatch());
+	//gearCatch.reset(new GearCatch());
 	lights.reset(new Lights());
 
 	oi.reset(new OI());
@@ -38,6 +38,7 @@ void Robot::RobotInit() {
 
 	CameraServer::GetInstance()->StartAutomaticCapture().SetResolution(320,
 			240);
+	//DriverStation::ReportWarning("trace:Robot:RobotInit:exit");
 
 	// std::thread visionThread(vision);
 //	  visionThread.detach();
@@ -128,13 +129,20 @@ void Robot::RobotInit() {
  * You can use it to reset subsystems before shutting down.
  */
 void Robot::DisabledInit() {
+	//DriverStation::ReportWarning("trace:Robot:DisabledInit");
 }
 
 void Robot::DisabledPeriodic() {
+	//DriverStation::ReportWarning("trace:Robot:DisabledPeriodic:enter");
+
 	Scheduler::GetInstance()->Run();
+	//DriverStation::ReportWarning("trace:Robot:DisabledPeriodic:exit");
+
 }
 
 void Robot::AutonomousInit() {
+	//DriverStation::ReportWarning("trace:Robot:AutonomousInit:enter");
+
 	updateAllianceColor();
 	lights->perimeterGreen.setOn(false);
 
@@ -146,6 +154,8 @@ void Robot::AutonomousInit() {
 //	std::thread visionThread(vision3);
 //	  visionThread.detach();
 	Vision::getInstance().start();
+	//DriverStation::ReportWarning("trace:Robot:AutonomousInit:exit");
+
 }
 
 void Robot::AutonomousPeriodic() {
@@ -154,11 +164,14 @@ void Robot::AutonomousPeriodic() {
 }
 
 void Robot::TeleopInit() {
-	autonomousDidFinish();
+//	DriverStation::ReportWarning("trace:Robot:TeleopInit:enter");
+	//autonomousDidFinish();
 	lights->perimeterGreen.setOn(false);
 	RobotMap::ahrs->ZeroYaw();
 	chassis->zeroEncoders();
 	updateAllianceColor();
+//	DriverStation::ReportWarning("trace:Robot:TeleopInit:exit");
+
 
 
 }
@@ -172,7 +185,7 @@ void Robot::TestPeriodic() {
 	updateAllianceColor();
 	lw->Run();
 }
-
+//FIXME: XXX causes crash!!!
 void Robot::autonomousDidFinish() {
 	updateAllianceColor();
 	if (autonomousCommand.get() != nullptr)

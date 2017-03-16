@@ -13,8 +13,8 @@
  */
 GearCatch::GearCatch() :
 		Subsystem("Gear Catch") {
-	actuator1 = RobotMap::gearCatchActuator1;
-	actuator2 = RobotMap::gearCatchActuator2;
+//	actuator1 = RobotMap::gearCatchActuator1;
+//	actuator2 = RobotMap::gearCatchActuator2;
 }
 
 void GearCatch::moveOut() {
@@ -22,18 +22,19 @@ void GearCatch::moveOut() {
 }
 
 void GearCatch::setPosition(double position) {
-	actuator1->Set(position);
-	actuator2->Set(position);
+//	actuator1->Set(position);
+//	actuator2->Set(position);
 }
 
 void GearCatch::moveIn() {
 	setPosition(0);
 }
 void GearCatch::chill() {
-	actuator1->SetOffline();
-	actuator2->SetOffline();
+//	actuator1->SetOffline();
+//	actuator2->SetOffline();
 }
 
 double GearCatch::getPosition() {
-	return actuator1->Get();
+	return 0;
+//	return actuator1->Get();
 }

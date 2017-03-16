@@ -12,6 +12,7 @@ public:
 	void End();
 	void doUpdate();
 	double getPosition();
+	double error();
 
 private:
 	Notifier notifier{&RotateWheelseOnce::doUpdate,this};

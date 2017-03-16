@@ -11,8 +11,8 @@ std::shared_ptr<CANTalon> RobotMap::shooterController;
 std::shared_ptr<Spark> RobotMap::intakeController;
 std::shared_ptr<Spark> RobotMap::winchController;
 std::shared_ptr<Spark> RobotMap::hexapusController;
-std::shared_ptr<LinearActuator> RobotMap::gearCatchActuator1;
-std::shared_ptr<LinearActuator> RobotMap::gearCatchActuator2;
+//std::shared_ptr<LinearActuator> RobotMap::gearCatchActuator1;
+//std::shared_ptr<LinearActuator> RobotMap::gearCatchActuator2;
 std::shared_ptr<PowerDistributionPanel> RobotMap::powerDistributionPanel;
 
 std::shared_ptr<AHRS> RobotMap::ahrs;
@@ -24,6 +24,7 @@ std::shared_ptr<Solenoid> RobotMap::pixyRinglight;
 std::shared_ptr<Solenoid> RobotMap::rearRingLight;
 
 void RobotMap::init() {
+	//DriverStation::ReportWarning("trace:RobotMap::Init:enter");
 	//(encoder count)*(gear reduction)
 	const uint16_t encTicksPerRev = 360 * 4;
 	LiveWindow* lw = LiveWindow::GetInstance();
@@ -86,11 +87,11 @@ void RobotMap::init() {
 	hexapusController.reset(new Spark(0));
 	lw->AddActuator("Shooter", "hexopus", hexapusController);
 
-	gearCatchActuator1.reset(new LinearActuator(3));
-	lw->AddActuator("Gear Catch", "linear actuator 1", gearCatchActuator1);
-
-	gearCatchActuator2.reset(new LinearActuator(4));
-	lw->AddActuator("Gear Catch", "linear actuator 2", gearCatchActuator2);
+//	gearCatchActuator1.reset(new LinearActuator(3));
+//	lw->AddActuator("Gear Catch", "linear actuator 1", gearCatchActuator1);
+//
+//	gearCatchActuator2.reset(new LinearActuator(4));
+//	lw->AddActuator("Gear Catch", "linear actuator 2", gearCatchActuator2);
 
 	ahrs.reset(new AHRS(SPI::Port::kMXP));
 
@@ -111,4 +112,6 @@ void RobotMap::init() {
 
 	rearRingLight.reset(new Solenoid(20, 4));
 	lw->AddActuator("ringlight", "rear cam", rearRingLight);
+	//DriverStation::ReportWarning("trace:RobotMap::Init:exit");
+
 }

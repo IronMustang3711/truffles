@@ -45,10 +45,12 @@
  *
  */
 OI::OI() {
+	//DriverStation::ReportWarning("OI begin");
 	driverJoystick.reset(new DriverJoystick());
 	shooterJoystick.reset(new ShooterJoystick());
 
 	initSmartDashboardCommands();
+	//DriverStation::ReportWarning("OI done");
 }
 void OI::initSmartDashboardCommands() {
 	SmartDashboard::PutData("zero encoders", new ZeroEncoders());

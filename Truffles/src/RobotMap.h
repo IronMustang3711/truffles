@@ -29,8 +29,8 @@ public:
 	static std::shared_ptr<Spark> intakeController;
 	static std::shared_ptr<Spark> winchController;
 	static std::shared_ptr<Spark> hexapusController;
-	static std::shared_ptr<LinearActuator> gearCatchActuator1;
-	static std::shared_ptr<LinearActuator> gearCatchActuator2;
+//	static std::shared_ptr<LinearActuator> gearCatchActuator1;
+//	static std::shared_ptr<LinearActuator> gearCatchActuator2;
 	static std::shared_ptr<AHRS> ahrs;
 	static std::shared_ptr<Solenoid> lightsRed;
 	static std::shared_ptr<Solenoid> lightsGreen;
