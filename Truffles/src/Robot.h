@@ -41,6 +41,9 @@ public:
 
 	void dashboardUpdate();
 
+	static void TrackPegSliderPeriodic();
+	static void trackPegSlider();
+
 //  static void vision();
 //  static void vision2();
 //  static void vision3();

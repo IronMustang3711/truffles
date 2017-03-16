@@ -14,6 +14,10 @@ std::shared_ptr<Winch> Robot::winch;
 std::shared_ptr<GearCatch> Robot::gearCatch;
 std::unique_ptr<OI> Robot::oi;
 std::shared_ptr<Lights> Robot::lights;
+
+Image *cameraFrame;
+
+
 /**
  * WARNING: changing order of initialization will probably break everything!
  */
@@ -36,11 +40,11 @@ void Robot::RobotInit() {
 
 	//autonomousCommand.reset(new Noop());
 
-	CameraServer::GetInstance()->StartAutomaticCapture().SetResolution(320,
-			240);
+	CameraServer::GetInstance()->StartAutomaticCapture().SetResolution(320, 240);
 
 	// std::thread visionThread(vision);
 //	  visionThread.detach();
+
 }
 
 //void Robot::vision3(){
@@ -151,6 +155,7 @@ void Robot::AutonomousInit() {
 void Robot::AutonomousPeriodic() {
 	lights->perimeterGreen.toggle(); //TODO this is probably annoying
 	Scheduler::GetInstance()->Run();
+	TrackPegSliderPeriodic();
 }
 
 void Robot::TeleopInit() {
@@ -159,12 +164,16 @@ void Robot::TeleopInit() {
 	RobotMap::ahrs->ZeroYaw();
 	chassis->zeroEncoders();
 	updateAllianceColor();
+}
 
-
+void Robot::TrackPegSliderPeriodic() {
+	// TODO: Put camera image into frame here!
+	trackPegSlider();
 }
 
 void Robot::TeleopPeriodic() {
 	Scheduler::GetInstance()->Run();
+	TrackPegSliderPeriodic();
 	dashboardUpdate();
 }
 
@@ -282,6 +291,85 @@ void Robot::updateAllianceColor() {
 
 		break;
 	}
+}
+
+void Robot::trackPegSlider() {
+	int width = 320;
+	int height = 240;
+	int histogram[width];
+	char sourceImage[height][width][4]; // TODO: Source image from camera should go in here!
+	char buffer[height][width][3];  // Our buffer doesn't need alpha channel
+
+	// Copy image into our array
+	char *arrayP;
+	arrayP = (char*)imaqImageToArray(cameraFrame, IMAQ_NO_RECT, NULL, NULL);
+	memcpy(sourceImage, arrayP, sizeof(sourceImage));
+
+	// Edge detection enhanced for vertical lines
+	float matrix[3][3] = { { -1, -1, -1 },
+	                       { -1,  9, -1 },
+	                       { -1, -1, -1 } };
+
+	for (int x = 1; x < width - 1; x++) {
+		for (int y = 1; y < height - 1; y++) {
+			int sum = 0;
+			for (int my = -1; my <= 1; my++) {
+				for (int mx = -1; mx <= 1; mx++) {
+					int pos = (y + my) * width + (x + mx);
+					float val = sourceImage[y][x][0] + sourceImage[y][x][1] + sourceImage[y][x][2];
+					if (val > 180 * 3) {
+						sum += matrix[my + 1][mx + 1] * val;
+					}
+				}
+			}
+			buffer[y][x][0] = sum / 3.0;
+			buffer[y][x][1] = sum / 3.0;
+			buffer[y][x][2] = sum / 3.0;
+		}
+	}
+
+	// Clear our histogram
+	memset(histogram, 0, sizeof(histogram));
+
+	// Generate histogram
+	int maxHistVal = 0;
+	for (int y = height / 2 - 30 - 20; y < height / 2 + 10 + 20; y++) {
+		for (int x = 0; x < width; x++) {
+			int r = buffer[y][x][0];
+			int g = buffer[y][x][1];
+			int b = buffer[y][x][2];
+
+			int sum = r + g + b;
+			if (sum > 10 * 3) {
+				histogram[x] += sum;
+			}
+		}
+	}
+
+	// Figure out what the max histogram value was
+	int maxHistVal = 0;
+	for (int x = 0; x < width; x++) {
+		if (histogram[x] > maxHistVal) {
+			maxHistVal = histogram[x];
+		}
+	}
+
+	// Find right and left side
+	int leftPos = -1;
+	for (int x = 0; x < width; x++) {
+		if ((float) histogram[x] / maxHistVal * 20 > 15 && leftPos == -1) {
+			leftPos = x;
+		}
+	}
+	int rightPos = -1;
+	for (int x = width - 1; x > 0; x--) {
+		if ((float) histogram[x] / maxHistVal * 20 > 15 && rightPos == -1) {
+			rightPos = x;
+		}
+	}
+
+	Robot::chassis->pegSliderLeft = leftPos;
+	Robot::chassis->pegSliderRight = rightPos;
 }
 
 START_ROBOT_CLASS(Robot)

@@ -14,6 +14,8 @@ Chassis::Chassis() :
 	rightFront = RobotMap::rightFrontController;
 	rightRear = RobotMap::rightRearController;
 	drive = RobotMap::chassisDrive;
+    pegSliderLeft = -1;
+    pegSliderRight = -1;
 }
 
 void Chassis::InitDefaultCommand() {
