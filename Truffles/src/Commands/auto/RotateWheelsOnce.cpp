@@ -1,6 +1,8 @@
 #include <Commands/auto/RotateWheelsOnce.h>
 #include "../../Robot.h"
 #include <iostream>
+//TODO:: This goes about 20"
+//TODO:: This Command ruins driving after use
 RotateWheelseOnce::RotateWheelseOnce() :  Command("rotate wheels 1x") {
 }
 
@@ -12,11 +14,11 @@ void RotateWheelseOnce::Initialize() {
 }
 
 void RotateWheelseOnce::Execute() {
-
+	std::cout << "err: "<< error() <<std::endl;
 }
 
 bool RotateWheelseOnce::IsFinished() {
-	return IsTimedOut() || IsCanceled()|| error() < 0.1;
+	return IsTimedOut()|| error() < 0.1;
 }
 
 void RotateWheelseOnce::End() {
@@ -26,17 +28,15 @@ void RotateWheelseOnce::End() {
 
 void RotateWheelseOnce::doUpdate() {
 	if (!IsFinished()) {
-		std::cout << "err: "<< error() <<std::endl;
 		Robot::chassis->AutoDrive(0.2, 0);
 	} else{
 		Robot::chassis->stop();
-		Cancel();
+
 	}
 }
 
 double RotateWheelseOnce::getPosition() {
-	return (Robot::chassis->getLeftRearPosition()
-			+ Robot::chassis->getRightRearPosition());
+	return Robot::chassis->getLeftRearPosition();
 }
 
 double RotateWheelseOnce::error() {

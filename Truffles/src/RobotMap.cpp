@@ -26,10 +26,10 @@ std::shared_ptr<Solenoid> RobotMap::rearRingLight;
 void RobotMap::init() {
 	//DriverStation::ReportWarning("trace:RobotMap::Init:enter");
 	//(encoder count)*(gear reduction)
-	const uint16_t encTicksPerRev = 360 * 4;
+	const uint16_t encTicksPerRev = 360;
 	LiveWindow* lw = LiveWindow::GetInstance();
 	auto talonCommon =
-			[](std::shared_ptr<CANTalon>t) {
+			[](std::shared_ptr<CANTalon> t) {
 				t->SetFeedbackDevice(CANTalon::QuadEncoder);
 				t->SetPosition(0);
 				t->ConfigLimitMode(CANSpeedController::kLimitMode_SrxDisableSwitchInputs);
@@ -37,23 +37,23 @@ void RobotMap::init() {
 	leftFrontController.reset(new CANTalon(2));
 	talonCommon(leftFrontController);
 	leftFrontController->ConfigEncoderCodesPerRev(encTicksPerRev);
-	leftFrontController->SetSensorDirection(false);
+	leftFrontController->SetSensorDirection(true);
 	lw->AddActuator("Chassis", "LeftFront", leftFrontController);
 
 	leftRearController.reset(new CANTalon(5));
 	talonCommon(leftRearController);
 	leftRearController->ConfigEncoderCodesPerRev(encTicksPerRev);
-	leftRearController->SetSensorDirection(false);
+	leftRearController->SetSensorDirection(true);
 	lw->AddActuator("Chassis", "LeftRear", leftRearController);
 
 	rightFrontController.reset(new CANTalon(1));
 	talonCommon(rightFrontController);
-	rightFrontController->ConfigEncoderCodesPerRev(1000);
-	rightFrontController->SetSensorDirection(true);
+	rightFrontController->ConfigEncoderCodesPerRev(250);
+	rightFrontController->SetSensorDirection(false);
 	lw->AddActuator("Chassis", "RightFront", (rightFrontController));
 
 	rightRearController.reset(new CANTalon(4));
-	talonCommon(rightFrontController);
+	talonCommon(rightRearController);
 	rightFrontController->ConfigEncoderCodesPerRev(encTicksPerRev);
 	rightFrontController->SetSensorDirection(true);
 	lw->AddActuator("Chassis", "RightRear", (rightRearController));

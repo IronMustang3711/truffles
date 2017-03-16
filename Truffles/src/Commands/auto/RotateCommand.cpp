@@ -14,7 +14,7 @@ RotateCommand::RotateCommand(double amt) :
 	c->SetAbsoluteTolerance(2.0);
 	c->SetToleranceBuffer(3);
 	c->SetInputRange(-180, 180);
-	c->SetOutputRange(-1, 1);
+	c->SetOutputRange(-0.4, 0.4);
 	c->SetContinuous(true);
 
 }
