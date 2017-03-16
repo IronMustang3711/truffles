@@ -3,18 +3,20 @@
 
 #include "WPILib.h"
 
-class RotateOnce: public Command {
+class RotatWheelseOnce: public Command {
 public:
-	RotateOnce();
+	RotatWheelseOnce();
 	void Initialize();
 	void Execute();
 	bool IsFinished();
 	void End();
 	void doUpdate();
+	double getPosition();
 
 private:
-	Notifier notifier{&RotateOnce::doUpdate,this};
+	Notifier notifier{&RotatWheelseOnce::doUpdate,this};
 	double initialEncoderPosition = 0;
+
 };
 
 #endif  // RotateOnce_H

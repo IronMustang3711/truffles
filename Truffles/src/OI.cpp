@@ -14,6 +14,7 @@
 #include "Commands/auto/RotateCommand.h"
 #include "Commands/auto/StrafeCommand.h"
 #include "Commands/auto/DriveStraight.h"
+#include "Commands/auto/RotatWheelseOnce.h"
 #include "Commands/auto/AutonomousCommandFactory.h"
 #include "Commands/Ringlights.h"
 #include "Commands/SolenoidToggle.h"
@@ -63,6 +64,8 @@ void OI::initSmartDashboardCommands() {
 			new SolenoidToggle(RobotMap::lightsBlue, "perimeter lights(blue)"));
 
 	SmartDashboard::PutData("ringlights", new Ringlights());
+
+	SmartDashboard::PutData("rotate wheels one time",new RotateWheelsOnce());
 }
 
 Btn::Btn(Joystick* j, int b) :
