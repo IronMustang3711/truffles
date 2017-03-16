@@ -3,9 +3,9 @@
 
 #include "WPILib.h"
 
-class RotatWheelseOnce: public Command {
+class RotateWheelseOnce: public Command {
 public:
-	RotatWheelseOnce();
+	RotateWheelseOnce();
 	void Initialize();
 	void Execute();
 	bool IsFinished();
@@ -14,7 +14,7 @@ public:
 	double getPosition();
 
 private:
-	Notifier notifier{&RotatWheelseOnce::doUpdate,this};
+	Notifier notifier{&RotateWheelseOnce::doUpdate,this};
 	double initialEncoderPosition = 0;
 
 };

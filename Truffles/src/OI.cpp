@@ -1,3 +1,4 @@
+#include <Commands/auto/RotateWheelsOnce.h>
 #include "OI.h"
 
 #include "Commands/DriveWithJoystick.h"
@@ -14,7 +15,7 @@
 #include "Commands/auto/RotateCommand.h"
 #include "Commands/auto/StrafeCommand.h"
 #include "Commands/auto/DriveStraight.h"
-#include "Commands/auto/RotatWheelseOnce.h"
+#include "Commands/auto/RotateWheelsOnce.h"
 #include "Commands/auto/AutonomousCommandFactory.h"
 #include "Commands/Ringlights.h"
 #include "Commands/SolenoidToggle.h"
@@ -64,8 +65,7 @@ void OI::initSmartDashboardCommands() {
 			new SolenoidToggle(RobotMap::lightsBlue, "perimeter lights(blue)"));
 
 	SmartDashboard::PutData("ringlights", new Ringlights());
-
-	SmartDashboard::PutData("rotate wheels one time",new RotateWheelsOnce());
+	SmartDashboard::PutData("rotate wheels 1x",new RotateWheelseOnce());
 }
 
 Btn::Btn(Joystick* j, int b) :
@@ -98,7 +98,7 @@ ShooterJoystick::ShooterJoystick() :
 	shoot->ToggleWhenPressed(new RunShooter());
 
 	runIntake->WhileHeld(new RunIntake());
-	gearCatchToggle->WhenPressed(new GearCatchToggle());
+	//gearCatchToggle->WhenPressed(new GearCatchToggle());
 	runHexapus->WhileHeld(new RunHexapusCommand());
 	unjam->WhenPressed(new UnjamHexapus(new StopHexapus()));
 }

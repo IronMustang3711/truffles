@@ -1,30 +1,30 @@
-#include "RotatWheelseOnce.h"
+#include <Commands/auto/RotateWheelsOnce.h>
 #include "../../Robot.h"
 
-RotatWheelseOnce::RotatWheelseOnce() {
+RotateWheelseOnce::RotateWheelseOnce() :  Command("rotate wheels 1x") {
 }
 
-void RotatWheelseOnce::Initialize() {
+void RotateWheelseOnce::Initialize() {
 	Robot::chassis->zeroEncoders();
 	initialEncoderPosition = getPosition();
 
 }
 
-void RotatWheelseOnce::Execute() {
+void RotateWheelseOnce::Execute() {
 
 }
 
-bool RotatWheelseOnce::IsFinished() {
+bool RotateWheelseOnce::IsFinished() {
 	return IsTimedOut() || IsCanceled()
 			|| (getPosition() - initialEncoderPosition) >= 1.0;
 }
 
-void RotatWheelseOnce::End() {
+void RotateWheelseOnce::End() {
 	Robot::chassis->stop();
 
 }
 
-void RotatWheelseOnce::doUpdate() {
+void RotateWheelseOnce::doUpdate() {
 	if (!IsFinished()) {
 		Robot::chassis->AutoDrive(0.2, 0);
 	} else{
@@ -33,7 +33,7 @@ void RotatWheelseOnce::doUpdate() {
 	}
 }
 
-double RotatWheelseOnce::getPosition() {
+double RotateWheelseOnce::getPosition() {
 	return (Robot::chassis->getLeftRearPosition()
 			+ Robot::chassis->getRightRearPosition());
 }
