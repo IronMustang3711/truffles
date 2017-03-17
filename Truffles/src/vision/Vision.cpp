@@ -35,7 +35,7 @@ Vision::~Vision() {
 }
 
 void Vision::start() {
-	if (active) {
+	if (active.load()) {
 		return;
 	}
 	active = true;
@@ -47,28 +47,25 @@ void Vision::start() {
 
 void Vision::stop() {
 	active = false;
-	//assert(visionThread.joinable());
-	visionThread.join();
+	if(visionThread.joinable()) visionThread.join();
+
 
 }
 void Vision::loop() {
-	cs::CvSink cvSink = CameraServer::GetInstance()->GetVideo();
-
-	cs::CvSource outputStream = CameraServer::GetInstance()->PutVideo("vision",
-			320, 240);
+	cs::CvSink cvSink = frc::CameraServer::GetInstance()->GetVideo();
 	//TODO output is only needed for debugging;
+	cs::CvSource outputStream = frc::CameraServer::GetInstance()->PutVideo("vision",
+			320, 240);
 
 	VerticalLinePipeline pipe;
 	cv::Mat src;
-	while (active) {
+	while (active.load()) {
 
 		if (cvSink.GrabFrame(src) == 0) {
 			outputStream.NotifyError(cvSink.GetError());
 			continue;
 		}
 		pipe.Process(src);
-		//	cv::rectangle(src, cv::Point(5, 5), cv::Point(100, 100),
-		//			cv::Scalar(255, 0, 0));
 		outputStream.PutFrame(src);
 	}
 	outputStream.SetConnected(false); //clean up stream(hopefully)
