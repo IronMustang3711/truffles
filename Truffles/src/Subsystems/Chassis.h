@@ -131,6 +131,9 @@ public:
 	//  void initRegularMode();
 	void dashboardTelemetry();
 	double rotateAngle = 0.0;
+
+	int pegSliderLeft;
+	int pegSliderRight;
 };
 
 #endif
