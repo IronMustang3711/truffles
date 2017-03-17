@@ -31,10 +31,10 @@ void DriveStraight::Execute() {
 }
  void DriveStraight::End() {
 	pid.Disable();
-	SmartDashboard::PutNumber("final position(left)",
-			Robot::chassis->getLeftRearPosition());
-	SmartDashboard::PutNumber("final position(right)",
-			Robot::chassis->getRightRearPosition());
+//	SmartDashboard::PutNumber("final position(left)",
+//			Robot::chassis->getLeftRearPosition());
+//	SmartDashboard::PutNumber("final position(right)",
+//			Robot::chassis->getRightRearPosition());
 }
  bool DriveStraight::IsFinished() {
 	return pid.OnTarget() || IsTimedOut();

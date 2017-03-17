@@ -89,14 +89,16 @@ void Chassis::stop() {
 }
 
 void Chassis::dashboardTelemetry() {
+	SmartDashboard::PutData(this);
+
 	std::map<std::string, CANTalon*> talons = {
 			{ "front left", leftFront.get() },
 			{ "front right", rightFront.get() },
 			{ "rear left", leftRear.get() }, { "rear right", rightRear.get() } };
 
 	for (auto it = talons.begin(); it != talons.end(); ++it) {
-		SmartDashboard::PutNumber(it->first + " enc_position",
-				it->second->GetEncPosition());
+//		SmartDashboard::PutNumber(it->first + " enc_position",
+//				it->second->GetEncPosition());
 		SmartDashboard::PutNumber(it->first + " position",
 				it->second->GetPosition());
 	}

@@ -3,9 +3,10 @@
 
 #include <Commands/PrintCommand.h>
 
-class Noop: public PrintCommand {
+class Noop: public InstantCommand {
 public:
 	Noop();
+	virtual void Execute() override;
 
 };
 

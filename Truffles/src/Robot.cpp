@@ -42,7 +42,7 @@ void Robot::RobotInit() {
 	AutonomousCommandFactory::setupChooser(chooser);
 	SmartDashboard::PutData("auto modes", &chooser);
 
-	//autonomousCommand.reset(new Noop());
+	autonomousCommand.reset(new Noop());
 
 	CameraServer::GetInstance()->StartAutomaticCapture().SetResolution(320,
 			240);

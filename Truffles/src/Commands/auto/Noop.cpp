@@ -1,8 +1,11 @@
 #include "Noop.h"
-
+#include "DriverStation.h"
+#include "../../Robot.h"
 Noop::Noop() :
-		PrintCommand("laaame") {
-	// Use Requires() here to declare subsystem dependencies
-	// eg. Requires(Robot::chassis.get());
+		InstantCommand("laaame") {
+	Requires(Robot::chassis.get());
 }
 
+void Noop::Execute() {
+	DriverStation::ReportError("using lame auto!!!``11");
+}
