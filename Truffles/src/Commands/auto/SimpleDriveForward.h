@@ -3,9 +3,9 @@
 
 #include "Commands/TimedCommand.h"
 
-class DumbDriveForward : public TimedCommand {
+class SimpleDriveForward : public TimedCommand {
 public:
-	DumbDriveForward();
+	SimpleDriveForward();
 	void Execute() override;
 	void End() override;
 

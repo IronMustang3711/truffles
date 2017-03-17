@@ -1,3 +1,4 @@
+#include <Commands/auto/SimpleDriveForward.h>
 #include "Robot.h"
 
 
@@ -5,7 +6,6 @@
 #include "commands/auto/DriveStraight.h"
 #include "vision/Vision.h"
 #include "commands/auto/AutonomousCommandFactory.h"
-#include "Commands/auto/DumbDriveForward.h"
 
 Robot* Robot::robot;
 std::shared_ptr<Chassis> Robot::chassis;
@@ -40,7 +40,8 @@ void Robot::RobotInit() {
 	oi.reset(new OI());
 
 	updateAllianceColor();
-	chooser.AddDefault("drive straight(timed)", new DumbDriveForward());
+
+	//chooser.AddDefault("drive straight(timed)", new SimpleDriveForward());
 	AutonomousCommandFactory::setupChooser(chooser);
 	SmartDashboard::PutData("auto modes", &chooser);
 
@@ -52,6 +53,8 @@ void Robot::RobotInit() {
 
 	// std::thread visionThread(vision);
 //	  visionThread.detach();
+
+	SmartDashboard::PutString("version:","sick dude,chillin");
 }
 
 

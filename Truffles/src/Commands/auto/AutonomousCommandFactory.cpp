@@ -5,6 +5,7 @@
  *      Author: jason
  */
 
+#include <Commands/auto/SimpleDriveForward.h>
 #include "AutonomousCommandFactory.h"
 #include <DriverStation.h>
 #include "Noop.h"
@@ -12,7 +13,6 @@
 #include "../../Robot.h"
 #include "RotateCommand.h"
 #include "PlaceGear.h"
-#include "DumbDriveForward.h"
 
 using namespace frc;
 
@@ -81,6 +81,6 @@ void AutonomousCommandFactory::setupChooser(
 	chooser.AddObject("xxx position 2 auto", position2Auto());
 	chooser.AddObject("xxx position 3 auto", position3Auto());
 	chooser.AddDefault("xxx drive forward", driveStraightAuto());
-	chooser.AddDefault("drive forward(dumb)",new DumbDriveForward());
+	chooser.AddDefault("drive forward(timed)",new SimpleDriveForward());
 	chooser.AddObject("do nothing", doNothingAuto());
 }

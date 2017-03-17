@@ -1,19 +1,19 @@
-#include "DumbDriveForward.h"
+#include <Commands/auto/SimpleDriveForward.h>
 #include "../../Robot.h"
-DumbDriveForward::DumbDriveForward() : TimedCommand("drive forward(timed)",5.0) {
+SimpleDriveForward::SimpleDriveForward() : TimedCommand("drive forward(timed)",4.0) {
 	  Requires(Robot::chassis.get());
 }
 
 
 
 // Called repeatedly when this Command is scheduled to run
-void DumbDriveForward::Execute() {
+void SimpleDriveForward::Execute() {
 	Robot::chassis->AutoDrive(0.3,0.0);
 
 }
 
 // Called once after command times out
-void DumbDriveForward::End() {
+void SimpleDriveForward::End() {
 	Robot::chassis->stop();
 
 }
