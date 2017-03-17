@@ -100,7 +100,7 @@ void Shooter::run(double speed) {
 		break;
 
 	case SHOOT:
-		if (std::abs(prevVelocity - vel < 10)
+		if ((std::abs(prevVelocity - vel) < 10)
 				|| std::abs(prevClosedLoopError - err) < 5.0) {
 			// deceleration is over
 			// TODO keep track of acceleration!
