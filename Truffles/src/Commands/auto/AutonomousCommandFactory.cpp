@@ -22,7 +22,7 @@ public:
 			CommandGroup("position one or three sequence") {
 		Requires(Robot::chassis.get());
 		AddSequential(new DriveStraight(70), 3.5);
-		double angle = 45.0 * (onTheRight ? 1 : -1);
+		double angle = 30.0 * (onTheRight ? 1 : -1);
 		AddSequential(new RotateCommand(angle), 2.0);
 		AddSequential(new PlaceGear());
 
