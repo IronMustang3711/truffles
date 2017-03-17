@@ -4,6 +4,7 @@
 DriveWithJoystick::DriveWithJoystick() :
 		Command() {
 	Requires(Robot::chassis.get());
+
 }
 
 void DriveWithJoystick::Execute() {
@@ -12,4 +13,13 @@ void DriveWithJoystick::Execute() {
 
 bool DriveWithJoystick::IsFinished() {
 	return false;
+}
+
+void DriveWithJoystick::Interrupted() {
+	DriverStation::ReportWarning("trace:DriveWithJoystick:Interrupted"); //TODO: remove when no longer needed;
+	Robot::chassis->stop();
+}
+
+void DriveWithJoystick::End() {
+	Robot::chassis->stop();
 }
