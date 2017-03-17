@@ -8,7 +8,7 @@
 RotateCommand::RotateCommand(double amt) :
 		PIDCommand("Rotate", 0.5, 0, 0, 0.1, 0.05), dstAngle(amt) {
 	Requires(Robot::chassis.get());
-	SetTimeout(4.0); //TODO <-- tune
+	SetTimeout(1.0); //TODO <-- tune
 	SetPIDSourceType(PIDSourceType::kDisplacement);
 	auto c = GetPIDController();
 	c->SetAbsoluteTolerance(2.0);

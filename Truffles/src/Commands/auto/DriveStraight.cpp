@@ -4,7 +4,7 @@
  * example: /Users/jason/repos/wpi/FRC-Examples/CPP_Pigeon_StraightServo_Example/src/Robot.cpp
  */
 DriveStraight::DriveStraight(double distanceInInches) :
-		Command("drive straight(simple)",/*timeout=*/5.0), targetDistance(
+		Command("drive straight(simple)",/*timeout=*/4.0), targetDistance(
 				19 * distanceInInches)
 				//p,i,d,f,src,target,update rate
 						, pid { 0.01, 0, 0, 0.001, this, this, 0.02 } {
