@@ -22,7 +22,7 @@ public:
 			CommandGroup("position one or three sequence") {
 		Requires(Robot::chassis.get());
 		AddSequential(new DriveStraight(70), 3.5);
-		double angle = 30.0 * (onTheRight ? 1 : -1);
+		double angle = 30.0 * (onTheRight ? -1 : 1);
 		AddSequential(new RotateCommand(angle), 2.0);
 		AddSequential(new PlaceGear());
 
@@ -81,6 +81,6 @@ void AutonomousCommandFactory::setupChooser(
 	chooser.AddObject("xxx position 2 auto", position2Auto());
 	chooser.AddObject("xxx position 3 auto", position3Auto());
 	chooser.AddDefault("xxx drive forward", driveStraightAuto());
+    chooser.AddObject("do nothing", doNothingAuto());
 	chooser.AddDefault("drive forward(timed)",new SimpleDriveForward());
-	chooser.AddObject("do nothing", doNothingAuto());
 }

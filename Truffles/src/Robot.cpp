@@ -32,16 +32,13 @@ void Robot::RobotInit() {
 	hexapus.reset(new Hexapus());
 	intake.reset(new Intake());
 	winch.reset(new Winch());
-	//gearCatch.reset(new GearCatch());
 	lights.reset(new Lights());
-	//lights->setRinglightsState(true);
 	collisionDetector.reset(new CollisionDetector());
 
 	oi.reset(new OI());
 
 	updateAllianceColor();
 
-	//chooser.AddDefault("drive straight(timed)", new SimpleDriveForward());
 	AutonomousCommandFactory::setupChooser(chooser);
 	SmartDashboard::PutData("auto modes", &chooser);
 
@@ -49,12 +46,8 @@ void Robot::RobotInit() {
 
 	CameraServer::GetInstance()->StartAutomaticCapture().SetResolution(320,
 			240);
-	//DriverStation::ReportWarning("trace:Robot:RobotInit:exit");
 
-	// std::thread visionThread(vision);
-//	  visionThread.detach();
-
-	SmartDashboard::PutString("version:","sick dude,chillin");
+	SmartDashboard::PutString("version:","sick bro");
 }
 
 
@@ -70,7 +63,6 @@ void Robot::DisabledInit() {
 
 void Robot::DisabledPeriodic() {
 	//DriverStation::ReportWarning("trace:Robot:DisabledPeriodic:enter");
-
 	Scheduler::GetInstance()->Run();
 	//DriverStation::ReportWarning("trace:Robot:DisabledPeriodic:exit");
 
@@ -81,8 +73,6 @@ void Robot::AutonomousInit() {
 	autoDidRun = true;
 	updateAllianceColor();
 	lights->setRinglightsState(true);
-	lights->perimeterGreen.setOn(false);
-
 	autonomousCommand.reset(chooser.GetSelected());
 	if (autonomousCommand.get() != nullptr)
 		autonomousCommand->Start();
@@ -95,8 +85,7 @@ void Robot::AutonomousInit() {
 void Robot::AutonomousPeriodic() {
 	lights->perimeterGreen.toggle(); //TODO this is probably annoying
 	Scheduler::GetInstance()->Run();
-	//TrackPegSliderPeriodic();
-	//TODO: vision stuff!
+
 }
 
 void Robot::TeleopInit() {
@@ -119,12 +108,10 @@ void Robot::TeleopInit() {
 
 void Robot::TeleopPeriodic() {
 	Scheduler::GetInstance()->Run();
-	//TrackPegSliderPeriodic();
 	dashboardUpdate();
 }
 
 void Robot::TestPeriodic() {
-	updateAllianceColor();
 	lw->Run();
 }
 

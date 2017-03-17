@@ -14,10 +14,7 @@
 #include "vision/VisionRunner.h"
 #include "VerticalLinePipeline.h"
 
-/*
- * thread stuff:
- * http://stackoverflow.com/questions/16111663/do-i-have-to-use-atomicbool-for-exit-bool-variable
- */
+
 
 Vision& Vision::getInstance() {
 	static Vision instance;
@@ -46,6 +43,9 @@ void Vision::start() {
 }
 
 void Vision::stop() {
+    if(!active.load()){
+        return;
+    }
 	active = false;
 	if(visionThread.joinable()) visionThread.join();
 

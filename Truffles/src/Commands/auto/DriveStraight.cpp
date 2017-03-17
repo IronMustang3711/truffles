@@ -25,7 +25,7 @@ double DriveStraight::encoderValue() {
 	initialEncoder = Robot::chassis->getLeftRearPosition();
 	pid.SetInputRange(0, targetRotations);
 	pid.SetOutputRange(-0.3, 0.3);
-	pid.SetAbsoluteTolerance(5.0);
+	pid.SetAbsoluteTolerance(0.5);
 	pid.SetSetpoint(targetRotations);
 	initialHeading = Robot::chassis->getHeading();
 	pid.Enable();
