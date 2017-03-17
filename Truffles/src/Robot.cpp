@@ -5,7 +5,7 @@
 #include "commands/auto/DriveStraight.h"
 #include "vision/Vision.h"
 #include "commands/auto/AutonomousCommandFactory.h"
-
+Robot* Robot::robot;
 std::shared_ptr<Chassis> Robot::chassis;
 std::shared_ptr<Shooter> Robot::shooter;
 std::shared_ptr<Hexapus> Robot::hexapus;
@@ -18,6 +18,7 @@ std::shared_ptr<Lights> Robot::lights;
  * WARNING: changing order of initialization will probably break everything!
  */
 void Robot::RobotInit() {
+	robot = this;
 	RobotMap::init();
 	chassis.reset(new Chassis());
 	shooter.reset(new Shooter());
@@ -26,6 +27,7 @@ void Robot::RobotInit() {
 	winch.reset(new Winch());
 	//gearCatch.reset(new GearCatch());
 	lights.reset(new Lights());
+	lights->setRinglightsState(true);
 
 	oi.reset(new OI());
 
@@ -44,85 +46,7 @@ void Robot::RobotInit() {
 //	  visionThread.detach();
 }
 
-//void Robot::vision3(){
-//	cs::CvSink cvSink = CameraServer::GetInstance()->GetVideo();
-//	cs::CvSource outputStream = CameraServer::GetInstance()->PutVideo("vision",
-//			320, 240);
-//	VerticalLinePipeline pipe;
-//	cv::Mat src;
-//	for(;;){
-//	if (cvSink.GrabFrame(src) == 0) {
-//		// Send the output the error.
-//		outputStream.NotifyError(cvSink.GetError());
-//		// skip the rest of the current iteration
-//		continue;
-//	}
-//	pipe.Process(src);
-////	cv::rectangle(src, cv::Point(5, 5), cv::Point(100, 100),
-////			cv::Scalar(255, 0, 0));
-//	outputStream.PutFrame(src);
-//	}
-//}
-//
-//void Robot::vision2(){
-//	auto outVideo = CameraServer::GetInstance()->PutVideo("machine vision",320,240);
-//	auto myCallback = [](VerticalLinePipeline& pipe){
-//		//TODO: replace with something useful!
-//	};
-//	VisionRunner<VerticalLinePipeline> runner(outVideo,new VerticalLinePipeline(),myCallback);
-//
-//	runner.RunForever(); //I assume that this blocks, but one never knows with wpilib code.
-//}
-//
-//void Robot::vision() {
-//	cs::UsbCamera camera = CameraServer::GetInstance()->StartAutomaticCapture();
-//	camera.SetResolution(640, 480);
-//	cs::CvSink cvSink = CameraServer::GetInstance()->GetVideo();
-//	cs::CvSource outputStream = CameraServer::GetInstance()->PutVideo("corners",
-//			320, 240);
-//
-//	cv::Mat src;
-//	cv::Mat src_gray;
-//
-//	srand(123);
-//
-//	//	  auto detector = cv::FastFeatureDetector::create();
-//	//	  std::vector<cv::KeyPoint> keys;
-//
-//	while (true) {
-//		if (cvSink.GrabFrame(src) == 0) {
-//			// Send the output the error.
-//			outputStream.NotifyError(cvSink.GetError());
-//			// skip the rest of the current iteration
-//			continue;
-//		}
-//		cv::cvtColor(src, src_gray, cv::COLOR_BGR2GRAY);
-//		//		keys.clear();
-//		//		detector->detect(src_gra, keys);
-//
-//		std::vector<cv::Point2f> corners;
-//		cv::Mat copy;
-//		copy = src.clone();
-//
-//		double qualityLevel = 0.01;
-//		double minDistance = 10;
-//		int blockSize = 3;
-//		bool useHarrisDetector = false;
-//		int maxCorners = 20;
-//		double k = 0.04;
-//
-//		cv::goodFeaturesToTrack(src_gray, corners, maxCorners, qualityLevel,
-//				minDistance, cv::Mat(), blockSize, useHarrisDetector, k);
-//		int r = 4;
-//		for (size_t i = 0; i < corners.size(); i++) {
-//			cv::circle(copy, corners[i], r,
-//					cv::Scalar(rand() * 255, rand() * 255.0, rand() * 255), -1,
-//					8, 0);
-//		}
-//
-//		outputStream.PutFrame(copy);
-//	}
-//}
+
 
 /**
  * This function is called when the disabled button is hit.
@@ -142,7 +66,7 @@ void Robot::DisabledPeriodic() {
 
 void Robot::AutonomousInit() {
 	//DriverStation::ReportWarning("trace:Robot:AutonomousInit:enter");
-
+	autoDidRun = true;
 	updateAllianceColor();
 	lights->perimeterGreen.setOn(false);
 
@@ -165,11 +89,16 @@ void Robot::AutonomousPeriodic() {
 
 void Robot::TeleopInit() {
 //	DriverStation::ReportWarning("trace:Robot:TeleopInit:enter");
-	//autonomousDidFinish();
+	if(autoDidRun) {
+		Vision::getInstance().stop();
+		if (autonomousCommand.get() != nullptr)
+				autonomousCommand->Cancel();
+	}
+	updateAllianceColor();
 	lights->perimeterGreen.setOn(false);
 	RobotMap::ahrs->ZeroYaw();
 	chassis->zeroEncoders();
-	updateAllianceColor();
+
 //	DriverStation::ReportWarning("trace:Robot:TeleopInit:exit");
 
 
@@ -185,16 +114,7 @@ void Robot::TestPeriodic() {
 	updateAllianceColor();
 	lw->Run();
 }
-//FIXME: XXX causes crash!!!
-void Robot::autonomousDidFinish() {
-	updateAllianceColor();
-	if (autonomousCommand.get() != nullptr)
-		autonomousCommand->Cancel();
-	lights->perimeterGreen.setOn(false);
-	RobotMap::ahrs->ZeroYaw();
-	chassis->zeroEncoders();
-	Vision::getInstance().stop();
-}
+
 
 void Robot::dashboardUpdate() {
 	//SmartDashboard::PutData(hexapus.get());

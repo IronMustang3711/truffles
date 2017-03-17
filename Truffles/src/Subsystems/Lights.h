@@ -33,6 +33,7 @@ public:
 
 	Light rearRinglight = Light(RobotMap::rearRingLight);
 	Light pixyRingLight = Light(RobotMap::pixyRinglight);
+	void setRinglightsState(bool on);
 };
 
 #endif  // Lights_H
