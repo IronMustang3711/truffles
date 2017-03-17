@@ -74,13 +74,11 @@ Command* AutonomousCommandFactory::doNothingAuto() {
 
 void AutonomousCommandFactory::setupChooser(
 		SendableChooser<Command*>& chooser) {
-	chooser.AddDefault("auto",
+	chooser.AddObject("xxx auto",
 			AutonomousCommandFactory::createAutonomousCommand());
-	//rod insisted on having these even though the "auto" mode should handle all three cases.
-	//dont remove.
-	chooser.AddObject("position 1 auto", position1Auto());
-	chooser.AddObject("position 2 auto", position2Auto());
-	chooser.AddObject("position 3 auto", position3Auto());
-	chooser.AddObject("drive straight", driveStraightAuto());
+	chooser.AddObject("xxx position 1 auto", position1Auto());
+	chooser.AddObject("xxx position 2 auto", position2Auto());
+	chooser.AddObject("xxx position 3 auto", position3Auto());
+	chooser.AddDefault("drive straight", driveStraightAuto());
 	chooser.AddObject("do nothing", doNothingAuto());
 }
