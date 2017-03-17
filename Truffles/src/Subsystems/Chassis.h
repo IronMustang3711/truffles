@@ -132,8 +132,8 @@ public:
 	void dashboardTelemetry();
 	double rotateAngle = 0.0;
 
-	int pegSliderLeft;
-	int pegSliderRight;
+//	int pegSliderLeft;
+//	int pegSliderRight;
 };
 
 #endif

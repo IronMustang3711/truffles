@@ -43,17 +43,13 @@ public:
 
 	static Robot* robot;
 
-	static void TrackPegSliderPeriodic();
-	static void trackPegSlider();
 
-//  static void vision();
-//  static void vision2();
-//  static void vision3();
+
+
 
 private:
 	std::unique_ptr<frc::Command> autonomousCommand;
 	frc::SendableChooser<frc::Command*> chooser;
-	std::thread* visionThread = nullptr;
 	bool autoDidRun = false;
 };
 #endif
