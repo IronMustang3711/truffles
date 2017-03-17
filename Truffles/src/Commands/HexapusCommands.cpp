@@ -17,7 +17,7 @@ void RunHexapusCommand::transition(State newState) {
 	State prevState = state;
 
 	if (prevState == State::RUNNING) {
-		if (runCount <= 10) {
+		if (runCount <= 20) {
 			jamCount++;
 		}
 		runCount = 0;

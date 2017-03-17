@@ -14,15 +14,17 @@ Hexapus::Hexapus() :
 }
 
 bool Hexapus::isJammed() {
-	bool jam = getMotorCurrent() >= 6.0;
+	bool jam = getMotorCurrent() >= 9.5;
 	return jam;
 }
 
 double Hexapus::getMotorCurrent() {
-	return RobotMap::powerDistributionPanel->GetCurrent(2);
+	double ret = RobotMap::powerDistributionPanel->GetCurrent(2);
+	//SmartDashboard::PutNumber("hexapus current",ret);
+	return ret;
 }
 void Hexapus::run(double speed) {
-	SmartDashboard::PutBoolean("hexapus jammed", isJammed());
+	//SmartDashboard::PutBoolean("hexapus jammed", isJammed());
 	hexapusController->Set(-speed);
 }
 void Hexapus::run() {

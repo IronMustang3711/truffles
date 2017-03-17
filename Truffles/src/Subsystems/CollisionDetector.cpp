@@ -20,10 +20,10 @@ public:
 	void Execute() override {
 		SmartDashboard::PutBoolean("collision detected: ",
 				Robot::collisionDetector->impactDetected());
-		SmartDashboard::PutNumber("max jerk(x)",
-				Robot::collisionDetector->maxJerkX);
-		SmartDashboard::PutNumber("max jerk(y)",
-				Robot::collisionDetector->maxJerkY);
+//		SmartDashboard::PutNumber("max jerk(x)",
+//				Robot::collisionDetector->maxJerkX);
+//		SmartDashboard::PutNumber("max jerk(y)",
+//				Robot::collisionDetector->maxJerkY);
 	}
 
 };
@@ -43,7 +43,7 @@ void CollisionDetector::resetDetector() {
 	last_world_linear_accel_y = 0;
 	collisionDetected = false;
 }
-static const double COLLISION_THRESHOLD_DELTA_G = 0.2;
+static const double COLLISION_THRESHOLD_DELTA_G = 3.0;
 
 bool CollisionDetector::impactDetected() {
 	return collisionDetected.load();

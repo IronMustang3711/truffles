@@ -12,8 +12,8 @@ public:
 
 	SimpleCommand(const std::string& name, double timeout);
 
-//protected:
-//	void Interrupted() override;
+protected:
+	void Interrupted() override;
 
 protected:
 	bool IsFinished() override;
