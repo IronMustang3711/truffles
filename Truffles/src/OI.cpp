@@ -1,5 +1,5 @@
-#include <Commands/auto/RotateWheelsOnce.h>
-#include <Commands/auto/SimpleDriveForward.h>
+#include "Commands/auto/RotateWheelsOnce.h"
+#include "Commands/auto/SimpleDriveForward.h"
 #include "OI.h"
 
 #include "Commands/DriveWithJoystick.h"

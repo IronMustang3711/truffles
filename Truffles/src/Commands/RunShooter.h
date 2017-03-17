@@ -16,7 +16,7 @@ public:
 	virtual void Interrupted();
 
 private:
-	bool enabled { true };
+	//bool enabled { true };
 };
 
 class RunShooterAndIntake: public CommandGroup {

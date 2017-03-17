@@ -1,4 +1,4 @@
-#include <Commands/auto/SimpleDriveForward.h>
+#include "SimpleDriveForward.h"
 #include "../../Robot.h"
 SimpleDriveForward::SimpleDriveForward() : TimedCommand("drive forward(timed)",4.0) {
 	  Requires(Robot::chassis.get());

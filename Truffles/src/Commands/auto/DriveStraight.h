@@ -18,10 +18,10 @@ public:
 	virtual bool IsFinished() override;
 
 // PIDOutput interface
-	virtual void PIDWrite(double output);
+	virtual void PIDWrite(double output) override;
 
 	// PIDSource interface
-	virtual double PIDGet();
+	virtual double PIDGet() override;
 
 private:
 	double targetRotations = 0;
