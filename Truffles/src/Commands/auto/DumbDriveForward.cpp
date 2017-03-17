@@ -1,6 +1,6 @@
 #include "DumbDriveForward.h"
 #include "../../Robot.h"
-DumbDriveForward::DumbDriveForward() : TimedCommand(5.0) {
+DumbDriveForward::DumbDriveForward() : TimedCommand("drive forward(timed)",5.0) {
 	  Requires(Robot::chassis.get());
 }
 

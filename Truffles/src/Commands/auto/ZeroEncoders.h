@@ -7,6 +7,8 @@
 
 #include "commands/InstantCommand.h"
 class ZeroEncoders: public InstantCommand {
+public:
+	ZeroEncoders();
 protected:
 	void Execute() override;
 };

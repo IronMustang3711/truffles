@@ -4,6 +4,7 @@
 //TODO:: This goes about 20"
 //TODO:: This Command ruins driving after use
 RotateWheelseOnce::RotateWheelseOnce() :  Command("rotate wheels 1x") {
+	Requires(Robot::chassis.get());
 }
 
 void RotateWheelseOnce::Initialize() {

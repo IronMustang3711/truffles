@@ -8,3 +8,7 @@
 void ZeroEncoders::Execute() {
 	Robot::chassis->zeroEncoders();
 }
+
+ZeroEncoders::ZeroEncoders() : InstantCommand("zero encoders"){
+	Requires(Robot::chassis.get());
+}

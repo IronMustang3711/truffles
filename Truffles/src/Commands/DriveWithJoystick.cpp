@@ -2,7 +2,7 @@
 #include "DriveWithJoystick.h"
 
 DriveWithJoystick::DriveWithJoystick() :
-		Command() {
+		Command("Drive with joystick") {
 	Requires(Robot::chassis.get());
 
 }
