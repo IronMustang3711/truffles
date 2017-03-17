@@ -5,6 +5,7 @@
 #include "commands/auto/DriveStraight.h"
 #include "vision/Vision.h"
 #include "commands/auto/AutonomousCommandFactory.h"
+#include "Commands/auto/DumbDriveForward.h"
 
 Robot* Robot::robot;
 std::shared_ptr<Chassis> Robot::chassis;
@@ -33,12 +34,13 @@ void Robot::RobotInit() {
 	winch.reset(new Winch());
 	//gearCatch.reset(new GearCatch());
 	lights.reset(new Lights());
-	lights->setRinglightsState(true);
+	//lights->setRinglightsState(true);
 	collisionDetector.reset(new CollisionDetector());
 
 	oi.reset(new OI());
 
 	updateAllianceColor();
+	chooser.AddDefault("drive straight(timed)", new DumbDriveForward());
 	AutonomousCommandFactory::setupChooser(chooser);
 	SmartDashboard::PutData("auto modes", &chooser);
 
@@ -59,6 +61,7 @@ void Robot::RobotInit() {
  * You can use it to reset subsystems before shutting down.
  */
 void Robot::DisabledInit() {
+	lights->setRinglightsState(false);
 	//DriverStation::ReportWarning("trace:Robot:DisabledInit");
 }
 
@@ -74,6 +77,7 @@ void Robot::AutonomousInit() {
 	//DriverStation::ReportWarning("trace:Robot:AutonomousInit:enter");
 	autoDidRun = true;
 	updateAllianceColor();
+	lights->setRinglightsState(true);
 	lights->perimeterGreen.setOn(false);
 
 	autonomousCommand.reset(chooser.GetSelected());
@@ -100,6 +104,7 @@ void Robot::TeleopInit() {
 				autonomousCommand->Cancel();
 	}
 	updateAllianceColor();
+	lights->setRinglightsState(true);
 	lights->perimeterGreen.setOn(false);
 	RobotMap::ahrs->ZeroYaw();
 	chassis->zeroEncoders();
