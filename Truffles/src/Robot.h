@@ -12,9 +12,11 @@
 #include "Subsystems/Winch.h"
 #include "Subsystems/Lights.h"
 
+
 #include "OI.h"
 #include "Subsystems/GearCatch.h"
 #include "Subsystems/Hexapus.h"
+#include "Subsystems/CollisionDetector.h"
 
 class Robot: public IterativeRobot {
 public:
@@ -27,6 +29,7 @@ public:
 	static std::shared_ptr<Winch> winch;
 	static std::shared_ptr<GearCatch> gearCatch;
 	static std::shared_ptr<Lights> lights;
+	static std::shared_ptr<CollisionDetector> collisionDetector;
 
 	virtual void RobotInit();
 	virtual void DisabledInit();

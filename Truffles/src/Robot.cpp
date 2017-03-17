@@ -14,8 +14,9 @@ std::shared_ptr<Winch> Robot::winch;
 std::shared_ptr<GearCatch> Robot::gearCatch;
 std::unique_ptr<OI> Robot::oi;
 std::shared_ptr<Lights> Robot::lights;
+std::shared_ptr<CollisionDetector> Robot::collisionDetector;
 
-//Image *cameraFrame;
+
 
 
 /**
@@ -32,6 +33,7 @@ void Robot::RobotInit() {
 	//gearCatch.reset(new GearCatch());
 	lights.reset(new Lights());
 	lights->setRinglightsState(true);
+	collisionDetector.reset(new CollisionDetector());
 
 	oi.reset(new OI());
 
