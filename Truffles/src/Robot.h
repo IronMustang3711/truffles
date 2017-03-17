@@ -52,7 +52,7 @@ public:
 
 private:
 	std::unique_ptr<frc::Command> autonomousCommand;
-	frc::SendableChooser<frc::Command*> chooser;
+	frc::SendableChooser<frc::Command*> chooser{};
 	bool autoDidRun = false;
 };
 #endif

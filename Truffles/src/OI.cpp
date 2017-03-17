@@ -17,6 +17,7 @@
 #include "Commands/auto/DriveStraight.h"
 #include "Commands/auto/RotateWheelsOnce.h"
 #include "Commands/auto/AutonomousCommandFactory.h"
+#include "Commands/auto/DumbDriveForward.h"
 #include "Commands/Ringlights.h"
 #include "Commands/SolenoidToggle.h"
 
@@ -55,8 +56,11 @@ OI::OI() {
 void OI::initSmartDashboardCommands() {
 	SmartDashboard::PutData("zero encoders", new ZeroEncoders());
 	SmartDashboard::PutData("drive straight", new DriveStraight(100));
-	SmartDashboard::PutData("rotate", new RotateCommand(45));
+	SmartDashboard::PutData("drive straight(timed)",new DumbDriveForward());
+	SmartDashboard::PutData("rotate(+30deg)", new RotateCommand(30));
 	SmartDashboard::PutData("strafe", new StrafeCommand(20));
+	SmartDashboard::PutData("rotate wheels 1x",new RotateWheelseOnce());
+
 
 	SmartDashboard::PutData(
 			new SolenoidToggle(RobotMap::lightsRed, "perimeter lights(red)"));
@@ -67,7 +71,6 @@ void OI::initSmartDashboardCommands() {
 			new SolenoidToggle(RobotMap::lightsBlue, "perimeter lights(blue)"));
 
 	SmartDashboard::PutData("ringlights", new Ringlights());
-	SmartDashboard::PutData("rotate wheels 1x",new RotateWheelseOnce());
 }
 
 Btn::Btn(Joystick* j, int b) :

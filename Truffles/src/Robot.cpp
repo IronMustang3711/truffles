@@ -5,6 +5,7 @@
 #include "commands/auto/DriveStraight.h"
 #include "vision/Vision.h"
 #include "commands/auto/AutonomousCommandFactory.h"
+
 Robot* Robot::robot;
 std::shared_ptr<Chassis> Robot::chassis;
 std::shared_ptr<Shooter> Robot::shooter;
@@ -38,7 +39,6 @@ void Robot::RobotInit() {
 	oi.reset(new OI());
 
 	updateAllianceColor();
-
 	AutonomousCommandFactory::setupChooser(chooser);
 	SmartDashboard::PutData("auto modes", &chooser);
 
