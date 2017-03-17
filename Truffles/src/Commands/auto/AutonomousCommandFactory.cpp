@@ -12,6 +12,7 @@
 #include "../../Robot.h"
 #include "RotateCommand.h"
 #include "PlaceGear.h"
+#include "DumbDriveForward.h"
 
 using namespace frc;
 
@@ -79,6 +80,7 @@ void AutonomousCommandFactory::setupChooser(
 	chooser.AddObject("xxx position 1 auto", position1Auto());
 	chooser.AddObject("xxx position 2 auto", position2Auto());
 	chooser.AddObject("xxx position 3 auto", position3Auto());
-	chooser.AddDefault("drive straight", driveStraightAuto());
+	chooser.AddDefault("xxx drive forward", driveStraightAuto());
+	chooser.AddDefault("drive forward(dumb)",new DumbDriveForward());
 	chooser.AddObject("do nothing", doNothingAuto());
 }
