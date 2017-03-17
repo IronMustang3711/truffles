@@ -10,11 +10,13 @@
 #include <thread>
 #include <mutex>
 #include <atomic>
-class Vision {
+#include "PIDSource.h"
+class Vision : public frc::PIDSource {
 public:
 	static Vision& getInstance();
 	void start();
 	void stop();
+	virtual double PIDGet() override;
 
 private:
 	/**
@@ -29,6 +31,7 @@ private:
 	std::thread visionThread;
 	std::mutex lock;
 	std::atomic_bool active { false };
+
 
 };
 

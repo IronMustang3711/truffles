@@ -26,6 +26,11 @@ Vision& Vision::getInstance() {
 
 Vision::Vision() {
 }
+
+double Vision::PIDGet() {
+	return 0; //TODO!
+}
+
 Vision::~Vision() {
 }
 

@@ -15,7 +15,7 @@ StrafeCommand::StrafeCommand(double distance) :
 	updater = std::make_unique<Notifier>(&StrafeCommand::Execute, this);
 	drive = Robot::chassis;
 	Requires(Robot::chassis.get());
-	SetTimeout(4.0);
+	SetTimeout(1.0);
 }
 bool StrafeCommand::IsFinished() {
 	return IsTimedOut();

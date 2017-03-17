@@ -1,7 +1,6 @@
-
+#include <Commands/auto/RotateWheelsOnce.h>
 #include "OI.h"
 
-#include "Commands/AutonomousCommand.h"
 #include "Commands/DriveWithJoystick.h"
 #include "Commands/GearCatchCommands.h"
 #include "Commands/RunIntake.h"
@@ -14,7 +13,9 @@
 #include "Commands/auto/ZeroEncoders.h"
 #include "Commands/auto/RotateCommand.h"
 #include "Commands/auto/StrafeCommand.h"
-#include "Commands/auto/SimpleAuto.cpp"
+#include "Commands/auto/DriveStraight.h"
+#include "Commands/auto/RotateWheelsOnce.h"
+#include "Commands/auto/AutonomousCommandFactory.h"
 #include "Commands/Ringlights.h"
 #include "Commands/auto/PlaceGear.h"
 #include "Commands/SolenoidToggle.h"
@@ -44,20 +45,16 @@
  *
  */
 OI::OI() {
+	//DriverStation::ReportWarning("OI begin");
 	driverJoystick.reset(new DriverJoystick());
 	shooterJoystick.reset(new ShooterJoystick());
 
 	initSmartDashboardCommands();
+	//DriverStation::ReportWarning("OI done");
 }
 void OI::initSmartDashboardCommands() {
-	// SmartDashboard Buttons
-
 	SmartDashboard::PutData("zero encoders", new ZeroEncoders());
-	SmartDashboard::PutData("driveStraight", new DriveStraight(100));
-	SmartDashboard::PutData("driveStraight2", new DriveStraight2(100));
-	SmartDashboard::PutData("driveStraightSimple",
-			new SimpleDriveStraight(100));
-
+	SmartDashboard::PutData("drive straight", new DriveStraight(100));
 	SmartDashboard::PutData("rotate", new RotateCommand(45));
 	SmartDashboard::PutData("strafe", new StrafeCommand(20));
 
@@ -81,6 +78,7 @@ void OI::initSmartDashboardCommands() {
 
   SmartDashboard::PutData("Pixy: Strafe", new PixyStrafe());
   SmartDashboard::PutData("Pixy: Rotate", new PixyRotate());
+	SmartDashboard::PutData("rotate wheels 1x",new RotateWheelseOnce());
 }
 
 Btn::Btn(Joystick* j, int b) :
@@ -113,7 +111,7 @@ ShooterJoystick::ShooterJoystick() :
 	shoot->ToggleWhenPressed(new RunShooter());
 
 	runIntake->WhileHeld(new RunIntake());
-	gearCatchToggle->WhenPressed(new GearCatchToggle());
-	runHexapus->WhileHeld(new MyHexapusCommand());
+	//gearCatchToggle->WhenPressed(new GearCatchToggle());
+	runHexapus->WhileHeld(new RunHexapusCommand());
 	unjam->WhenPressed(new UnjamHexapus(new StopHexapus()));
 }

@@ -46,8 +46,17 @@ void VerticalLinePipeline::Process(cv::Mat& mat) {
 	cv::cvtColor(mat, work, cv::COLOR_BGR2GRAY);
 
 	//cv::warpAffine(work, work2, rot_mat, work.size());
-	cv::GaussianBlur(work, work2, cv::Size(5, 5), 3, 3, cv::BORDER_DEFAULT);
-	cv::Canny(work2, work, 200, 150, 3, true);
+	cv::GaussianBlur(work, work2, cv::Size(3,3),1);
+	//cv::Canny(work2, work, 200, 150, 3, true);
+	cv::Laplacian(work2,work,0,5,1,0,cv::BORDER_DEFAULT);
+
+	//Mat dilateKernel;
+	//Point dilateAnchor = -1,-1
+
+	auto dilateKernel = cv::getStructuringElement(cv::MorphShapes::MORPH_RECT,cv::Size(3,3),cv::Point(1,1));
+	cv::dilate(work,work2,dilateKernel,cv::Point(-1,-1),2);
+
+	cv::erode(work2,work,cv::Mat(),cv::Point(-1,-1),2);
 
 	//work2.copyTo(mat);
 	cv::rectangle(mat, cv::Point(130, 20),
@@ -73,6 +82,7 @@ void VerticalLinePipeline::Process(cv::Mat& mat) {
 			cv::Point p1(line[0], line[1]);
 			cv::Point p2(line[2], line[3]);
 			cv::line(mat, p1, p2, cv::Scalar(0, 255, 0));
+			//TODO: we need to do a lot more than this!
 		}
 
 	}

@@ -9,6 +9,7 @@
 #define SRC_PIDSTUFF_H_
 #include <PIDSource.h>
 #include <PIDOutput.h>
+#include <PIDController.h>
 #include <functional>
 namespace utils {
 
@@ -44,6 +45,18 @@ public:
 private:
 	PIDOutputCallback callback;
 };
+
+//class PIDAdapter: public frc::PIDController {
+//public:
+//	PIDAdapter(double p, double i, double d, double f,
+//			PIDSourceProvider provider, PIDOutputCallback cb,
+//			double period = 0.05) : frc::PIDController(p,i,d,f,this,this,period){ }
+//
+//private:
+//	PIDOutputAdapter *dst;
+//	PIDSourceAdapter *src;
+//
+//};
 
 } /* namespace utils */
 

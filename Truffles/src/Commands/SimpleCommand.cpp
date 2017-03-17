@@ -8,9 +8,9 @@ bool SimpleCommand::IsFinished() {
 	return IsTimedOut() || IsCanceled();
 }
 
-void SimpleCommand::Interrupted() {
-	End();
-}
+//void SimpleCommand::Interrupted() {
+//	End();
+//}
 
 SimpleCommand::SimpleCommand(const std::string& name) :
 		Command(name) {
