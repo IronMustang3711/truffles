@@ -18,6 +18,7 @@ public:
 	Btn* winchUp;
 	Btn* ballIntake;
 	Btn* changeFront;
+	Btn* jogBack;
 };
 class ShooterJoystick: public Joystick {
 public:

@@ -20,6 +20,8 @@
 #include "Commands/auto/AutonomousCommandFactory.h"
 #include "Commands/Ringlights.h"
 #include "Commands/SolenoidToggle.h"
+#include "Commands/JogBackCommand.h"
+#include "Commands/JogBackSimple.h"
 
 /**
  * Operator Input Setup
@@ -56,11 +58,10 @@ OI::OI() {
 void OI::initSmartDashboardCommands() {
 	SmartDashboard::PutData("zero encoders", new ZeroEncoders());
 	SmartDashboard::PutData("drive straight(100)", new DriveStraight(100));
-	SmartDashboard::PutData("drive straight(timed)",new SimpleDriveForward());
+	SmartDashboard::PutData("drive straight(timed)", new SimpleDriveForward());
 	SmartDashboard::PutData("rotate(+30deg)", new RotateCommand(30));
 	SmartDashboard::PutData("strafe", new StrafeCommand(20));
-	SmartDashboard::PutData("rotate wheels 1x",new RotateWheelseOnce());
-
+	SmartDashboard::PutData("rotate wheels 1x", new RotateWheelseOnce());
 
 	SmartDashboard::PutData(
 			new SolenoidToggle(RobotMap::lightsRed, "perimeter lights(red)"));
@@ -71,6 +72,9 @@ void OI::initSmartDashboardCommands() {
 			new SolenoidToggle(RobotMap::lightsBlue, "perimeter lights(blue)"));
 
 	SmartDashboard::PutData("ringlights", new Ringlights());
+
+//	SmartDashboard::PutData("jog",new JogBackCommand());
+//	SmartDashboard::PutData("jog(simple)", new JogBackSimple());
 }
 
 Btn::Btn(Joystick* j, int b) :
@@ -83,11 +87,12 @@ bool Btn::Get() {
 
 DriverJoystick::DriverJoystick() :
 		Joystick(0), winchUp(new Btn(this, 8)), ballIntake(new Btn(this, 3)), changeFront(
-				new Btn(this, 1)) {
+				new Btn(this, 1)), jogBack(new Btn(this, 2)) {
 	winchUp->WhileHeld(RunWinch::createGoUpCommand());
 	winchUp->WhenReleased(RunWinch::createHoldCommand());
 	ballIntake->WhileHeld(new RunIntake());
 	changeFront->WhenPressed(new ToggleRobotFront());
+	jogBack->WhenPressed(new JogBackSimple());
 }
 
 ShooterJoystick::ShooterJoystick() :
