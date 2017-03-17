@@ -4,10 +4,10 @@
  * example: /Users/jason/repos/wpi/FRC-Examples/CPP_Pigeon_StraightServo_Example/src/Robot.cpp
  */
 DriveStraight::DriveStraight(double distanceInInches) :
-		Command("drive straight",/*timeout=*/4.0), targetRotations(
-				 distanceInInches/20.0)
+		Command("drive straight",/*timeout=*/5.0), targetRotations(
+				 distanceInInches/18.0)
 				//p,i,d,f,src,target,update rate
-						, pid { 0.01, 0, 0, 0.001, this, this, 0.02 } {
+						, pid { 0.15, 0, 0, 0.01, this, this, 0.02 } {
 							Requires(Robot::chassis.get());
 
 }
@@ -25,7 +25,7 @@ double DriveStraight::encoderValue() {
 	initialEncoder = Robot::chassis->getLeftRearPosition();
 	pid.SetInputRange(0, targetRotations);
 	pid.SetOutputRange(-0.3, 0.3);
-	pid.SetAbsoluteTolerance(0.5);
+	pid.SetAbsoluteTolerance(0.1);
 	pid.SetSetpoint(targetRotations);
 	initialHeading = Robot::chassis->getHeading();
 	pid.Enable();
@@ -35,6 +35,7 @@ void DriveStraight::Execute() {
 }
  void DriveStraight::End() {
 	pid.Disable();
+	Robot::chassis->stop();
 //	SmartDashboard::PutNumber("final position(left)",
 //			Robot::chassis->getLeftRearPosition());
 //	SmartDashboard::PutNumber("final position(right)",

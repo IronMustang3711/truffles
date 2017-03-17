@@ -7,6 +7,7 @@
 
 #include "SimpleDriveForward.h"
 #include "AutonomousCommandFactory.h"
+#include "ZeroEncoders.h"
 #include <DriverStation.h>
 #include "Noop.h"
 #include "DriveStraight.h"
@@ -21,9 +22,10 @@ public:
 	PositionOneOrThreeSequence(bool onTheRight) :
 			CommandGroup("position one or three sequence") {
 		Requires(Robot::chassis.get());
-		AddSequential(new DriveStraight(70), 3.5);
+		AddSequential(new ZeroEncoders());
+		AddSequential(new DriveStraight(70));
 		double angle = 30.0 * (onTheRight ? -1 : 1);
-		AddSequential(new RotateCommand(angle), 2.0);
+		AddSequential(new RotateCommand(angle));
 		AddSequential(new PlaceGear());
 
 	}
@@ -54,10 +56,11 @@ Command* AutonomousCommandFactory::position1Auto() {
 }
 
 Command* AutonomousCommandFactory::position2Auto() {
-	CommandGroup* g = new CommandGroup("position 2  auto");
-	g->AddSequential(new DriveStraight(80),3.0);
-	g->AddSequential(new PlaceGear());
-	return g;
+	return new SimpleDriveForward();
+//	CommandGroup* g = new CommandGroup("position 2  auto");
+//	g->AddSequential(new DriveStraight(80),3.0);
+//	g->AddSequential(new PlaceGear());
+//	return g;
 }
 
 Command* AutonomousCommandFactory::position3Auto() {
