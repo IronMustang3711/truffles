@@ -4,9 +4,9 @@
 
 #include "GearCatchCommands.h"
 
-GearCatchCommand::GearCatchCommand(const std::string& name)
-    : InstantCommand(name) {
-  Requires(Robot::gearCatch.get());
+GearCatchCommand::GearCatchCommand(const std::string& name) :
+		InstantCommand(name) {
+	Requires(Robot::gearCatch.get());
 }
 
 // WARNING: DONT DO THIS BECAUSE IT WILL IMMEDIATELY CANCEL ANY MOVEMENT!!!!
@@ -14,42 +14,48 @@ GearCatchCommand::GearCatchCommand(const std::string& name)
 // // Robot::gearCatch->chill();
 //}
 
-GearCatchOut::GearCatchOut() : GearCatchCommand("Gear Catch -> Out") {}
+GearCatchOut::GearCatchOut() :
+		GearCatchCommand("Gear Catch -> Out") {
+}
 
-GearCatchIn::GearCatchIn() : GearCatchCommand("Gear Catch -> In") {}
+GearCatchIn::GearCatchIn() :
+		GearCatchCommand("Gear Catch -> In") {
+}
 
 void GearCatchOut::Execute() {
-  gearCatch->moveOut();
+	gearCatch->moveOut();
 }
 
 void GearCatchIn::Execute() {
-  gearCatch->moveIn();
+	gearCatch->moveIn();
 }
 
 void GearCatchInUnpowered::Execute() {
-  gearCatch->chill();
+	gearCatch->chill();
 }
 
-GearCatchInUnpowered::GearCatchInUnpowered()
-    : GearCatchCommand("Gear Catch in (undriven)") {}
+GearCatchInUnpowered::GearCatchInUnpowered() :
+		GearCatchCommand("Gear Catch in (undriven)") {
+}
 
-GearCatchToggle::GearCatchToggle() : InstantCommand("Gear Catch Toggle") {
-  currentCommand = &catchIn;
+GearCatchToggle::GearCatchToggle() :
+		InstantCommand("Gear Catch Toggle") {
+	currentCommand = &catchIn;
 }
 
 void GearCatchToggle::Execute() {
-  changeCommand();
+	changeCommand();
 }
 
 void GearCatchToggle::setCurrentCommand(GearCatchCommand* cmd) {
-  // SmartDashboard::PutString("trace", cmd->GetName());
-  currentCommand = cmd;
-  currentCommand->Start();
+	// SmartDashboard::PutString("trace", cmd->GetName());
+	currentCommand = cmd;
+	currentCommand->Start();
 }
 
 void GearCatchToggle::changeCommand() {
-  if (currentCommand != nullptr && currentCommand->GetID() == catchIn.GetID())
-    setCurrentCommand(&catchOut);
-  else
-    setCurrentCommand(&catchIn);
+	if (currentCommand != nullptr && currentCommand->GetID() == catchIn.GetID())
+		setCurrentCommand(&catchOut);
+	else
+		setCurrentCommand(&catchIn);
 }

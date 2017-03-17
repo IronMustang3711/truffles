@@ -1,4 +1,3 @@
-
 #include "RobotMap.h"
 
 using namespace frc;
@@ -12,8 +11,8 @@ std::shared_ptr<CANTalon> RobotMap::shooterController;
 std::shared_ptr<Spark> RobotMap::intakeController;
 std::shared_ptr<Spark> RobotMap::winchController;
 std::shared_ptr<Spark> RobotMap::hexapusController;
-std::shared_ptr<LinearActuator> RobotMap::gearCatchActuator1;
-std::shared_ptr<LinearActuator> RobotMap::gearCatchActuator2;
+//std::shared_ptr<LinearActuator> RobotMap::gearCatchActuator1;
+//std::shared_ptr<LinearActuator> RobotMap::gearCatchActuator2;
 std::shared_ptr<PowerDistributionPanel> RobotMap::powerDistributionPanel;
 
 std::shared_ptr<AHRS> RobotMap::ahrs;
@@ -25,84 +24,94 @@ std::shared_ptr<Solenoid> RobotMap::pixyRinglight;
 std::shared_ptr<Solenoid> RobotMap::rearRingLight;
 
 void RobotMap::init() {
-  LiveWindow* lw = LiveWindow::GetInstance();
+	//DriverStation::ReportWarning("trace:RobotMap::Init:enter");
+	//(encoder count)*(gear reduction)
+	const uint16_t encTicksPerRev = 360;
+	LiveWindow* lw = LiveWindow::GetInstance();
+	auto talonCommon =
+			[](std::shared_ptr<CANTalon> t) {
+				t->SetFeedbackDevice(CANTalon::QuadEncoder);
+				t->SetPosition(0);
+				t->ConfigLimitMode(CANSpeedController::kLimitMode_SrxDisableSwitchInputs);
+			};
+	leftFrontController.reset(new CANTalon(2));
+	talonCommon(leftFrontController);
+	leftFrontController->ConfigEncoderCodesPerRev(encTicksPerRev);
+	leftFrontController->SetSensorDirection(true);
+	lw->AddActuator("Chassis", "LeftFront", leftFrontController);
 
-  leftFrontController.reset(new CANTalon(2));
-  lw->AddActuator("Chassis", "LeftFront", leftFrontController);
+	leftRearController.reset(new CANTalon(5));
+	talonCommon(leftRearController);
+	leftRearController->ConfigEncoderCodesPerRev(encTicksPerRev);
+	leftRearController->SetSensorDirection(true);
+	lw->AddActuator("Chassis", "LeftRear", leftRearController);
 
-  leftRearController.reset(new CANTalon(5));
-  lw->AddActuator("Chassis", "LeftRear", leftRearController);
+	rightFrontController.reset(new CANTalon(1));
+	talonCommon(rightFrontController);
+	rightFrontController->ConfigEncoderCodesPerRev(250);
+	rightFrontController->SetSensorDirection(false);
+	lw->AddActuator("Chassis", "RightFront", (rightFrontController));
 
-  rightFrontController.reset(new CANTalon(1));
-  lw->AddActuator("Chassis", "RightFront", (rightFrontController));
+	rightRearController.reset(new CANTalon(4));
+	talonCommon(rightRearController);
+	rightFrontController->ConfigEncoderCodesPerRev(encTicksPerRev);
+	rightFrontController->SetSensorDirection(true);
+	lw->AddActuator("Chassis", "RightRear", (rightRearController));
 
-  rightRearController.reset(new CANTalon(4));
-  lw->AddActuator("Chassis", "RightRear", (rightRearController));
+	//gearbox ratio 4:1
+	//wheelbase== 26"
+	//encoder 360 : 1
+	//theoretically: 1 revolution = 18.8"
 
-  auto configDriveTalon = [](std::shared_ptr<CANTalon> t) {
-    t->SetFeedbackDevice(CANTalon::QuadEncoder);
-    t->ConfigEncoderCodesPerRev(2916);
-    t->SetSensorDirection(true);
-    t->SetPosition(0);
-    t->ConfigLimitMode(CANSpeedController::kLimitMode_SrxDisableSwitchInputs);
+	chassisDrive.reset(
+			new RobotDrive(leftFrontController, leftRearController,
+					rightFrontController, rightRearController));
 
-  };
+	chassisDrive->SetSafetyEnabled(false);
+	chassisDrive->SetExpiration(0.1);
+	chassisDrive->SetSensitivity(0.5);
+	chassisDrive->SetMaxOutput(1.0);
 
-  configDriveTalon(leftFrontController);
-  configDriveTalon(leftRearController);
-  configDriveTalon(rightFrontController);
-  configDriveTalon(rightRearController);
+	chassisDrive->SetInvertedMotor(RobotDrive::kFrontRightMotor, true);
+	chassisDrive->SetInvertedMotor(RobotDrive::kRearRightMotor, true);
 
-  chassisDrive.reset(new RobotDrive(leftFrontController, leftRearController,
-                                    rightFrontController, rightRearController));
+	shooterController.reset(new CANTalon(3));
+	lw->AddActuator("Shooter", "ShooterMotor", shooterController);
 
-  chassisDrive->SetSafetyEnabled(false);
-  chassisDrive->SetExpiration(0.1);
-  chassisDrive->SetSensitivity(0.5);
-  chassisDrive->SetMaxOutput(1.0);
+	intakeController.reset(new Spark(2));
+	lw->AddActuator("Intake", "IntakeMotor", (intakeController));
 
-  chassisDrive->SetInvertedMotor(RobotDrive::kFrontRightMotor, true);
-  chassisDrive->SetInvertedMotor(RobotDrive::kRearRightMotor, true);
+	winchController.reset(new Spark(1));  // TODO change to Talon?
+	lw->AddActuator("Winch", "WinchMotor", (winchController));
 
-  shooterController.reset(new CANTalon(3));
-  lw->AddActuator("Shooter", "ShooterMotor", shooterController);
+	hexapusController.reset(new Spark(0));
+	lw->AddActuator("Shooter", "hexopus", hexapusController);
 
-  intakeController.reset(new Spark(2));
-  lw->AddActuator("Intake", "IntakeMotor", (intakeController));
+//	gearCatchActuator1.reset(new LinearActuator(3));
+//	lw->AddActuator("Gear Catch", "linear actuator 1", gearCatchActuator1);
+//
+//	gearCatchActuator2.reset(new LinearActuator(4));
+//	lw->AddActuator("Gear Catch", "linear actuator 2", gearCatchActuator2);
 
-  winchController.reset(new Spark(1));  // TODO change to Talon?
-  lw->AddActuator("Winch", "WinchMotor", (winchController));
+	ahrs.reset(new AHRS(SPI::Port::kMXP));
 
-  hexapusController.reset(new Spark(0));
-  lw->AddActuator("Shooter", "hexopus", hexapusController);
+	powerDistributionPanel.reset(new PowerDistributionPanel(10));
+	lw->AddSensor("Robot", "power distribution", powerDistributionPanel);
 
-  gearCatchActuator1.reset(new LinearActuator(3));
-  lw->AddActuator("Gear Catch", "linear actuator 1", gearCatchActuator1);
+	lightsRed.reset(new Solenoid(20, 0));
+	lw->AddActuator("Lipstick", "red(0)", lightsRed);
 
-  gearCatchActuator2.reset(new LinearActuator(4));
-  lw->AddActuator("Gear Catch", "linear actuator 2", gearCatchActuator2);
+	lightsGreen.reset(new Solenoid(20, 1));
+	lw->AddActuator("Lipstick", "green(1)", lightsGreen);
 
-  ahrs.reset(new AHRS(SPI::Port::kMXP));
+	lightsBlue.reset(new Solenoid(20, 2));
+	lw->AddActuator("Lipstick", "blue(2)", lightsBlue);
 
-  powerDistributionPanel.reset(new PowerDistributionPanel(10));
-  lw->AddSensor("Robot", "power distribution", powerDistributionPanel);
+	pixyRinglight.reset(new Solenoid(20, 3));
+	lw->AddActuator("ringlight", "pixy", pixyRinglight);
 
-  lightsRed.reset(new Solenoid(20, 0));
-  lw->AddActuator("Lipstick", "red(0)", lightsRed);
+	rearRingLight.reset(new Solenoid(20, 4));
+	lw->AddActuator("ringlight", "rear cam", rearRingLight);
+	//DriverStation::ReportWarning("trace:RobotMap::Init:exit");
 
-  lightsGreen.reset(new Solenoid(20, 1));
-  lw->AddActuator("Lipstick", "green(1)", lightsGreen);
-
-  lightsBlue.reset(new Solenoid(20, 2));
-  lw->AddActuator("Lipstick", "blue(2)", lightsBlue);
-
-  pixyRinglight.reset(new Solenoid(20, 3));
-  lw->AddActuator("ringlight", "pixy", pixyRinglight);
-
-  rearRingLight.reset(new Solenoid(20, 4));
-  lw->AddActuator("ringlight", "rear cam", rearRingLight);
 }
-
-// const PowerDistributionPanel& RobotMap::getPowerDistributionPanel() {
-//  return *powerDistributionPanel.get();
-//}

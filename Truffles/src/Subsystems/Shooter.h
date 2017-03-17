@@ -1,4 +1,3 @@
-
 #ifndef SHOOTER_H
 #define SHOOTER_H
 
@@ -6,54 +5,59 @@
 #include "Commands/Subsystem.h"
 #include "Filters/LinearDigitalFilter.h"
 #include "Timer.h"
+
 using namespace frc;
 
-class Shooter : public Subsystem {
- public:
-  Shooter();
+class Shooter: public Subsystem {
+public:
+	Shooter();
 
-  void InitDefaultCommand();
-  /**
-   *
-   * @param speed in [0,1]
-   */
-  void runShooterMotor(double speed);
-  /**
-   *
-   * @param d in [0,4500]
-   */
-  void run(double d);
-  double getSetPoint();
-  double getVelocity();
-  double getClosedLoopError();
-  double getOutput();
+	void InitDefaultCommand();
 
-  double prevSetPoint = 0;
-  double prevVelocity = 0;
-  double prevClosedLoopError = 0;
-  double prevOutput = 0;
+	void stop();
+	/**
+	 *
+	 * @param speed in [0,1]
+	 */
+	void runShooterMotor(double speed);
+	/**
+	 *
+	 * @param d in [0,4500]
+	 */
+	void run(double d);
+	double getSetPoint();
+	double getVelocity();
+	int getClosedLoopError();
+	double getOutput();
 
-  enum State { OFF, INIT, SHOOT, BANG_BANG, STEADY };
+	double prevSetPoint = 0;
+	double prevVelocity = 0;
+	double prevClosedLoopError = 0;
+	double prevOutput = 0;
 
-  std::string StateName(State s);
-  State getState();
-  State state = OFF;
+	enum State {
+		OFF, INIT, SHOOT, BANG_BANG, STEADY
+	};
 
-  /**
-   * setup PID values for the shooter controller.
-   */
-  void initShooter();
+	std::string StateName(State s);
+	State getState();
+	State state = OFF;
 
-  void transition(State newState);
+	/**
+	 * setup PID values for the shooter controller.
+	 */
+	void initShooter();
 
-  // void InitTable(std::shared_ptr<ITable> subtable) override;
+	void transition(State newState);
 
- private:
-  bool isShooting();
-  bool isOff(double requestedSpeed);
-  std::shared_ptr<CANTalon> shooterController;
-  LinearDigitalFilter errorFilter;
-  Timer setpointUpdateTimer;
+	// void InitTable(std::shared_ptr<ITable> subtable) override;
+
+private:
+	bool setpointRecentlyChanged();bool isShooting();bool isOff(
+			double requestedSpeed);
+	std::shared_ptr<CANTalon> shooterController;
+	LinearDigitalFilter errorFilter;
+	Timer setpointUpdateTimer;
 };
 
 #endif

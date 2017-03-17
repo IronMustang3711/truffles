@@ -6,9 +6,11 @@
 #define TRUFFLES_ZEROENCODERS_H
 
 #include "commands/InstantCommand.h"
-class ZeroEncoders : public InstantCommand {
- protected:
-  void Execute() override;
+class ZeroEncoders: public InstantCommand {
+public:
+	ZeroEncoders();
+protected:
+	void Execute() override;
 };
 
 #endif  // TRUFFLES_ZEROENCODERS_H

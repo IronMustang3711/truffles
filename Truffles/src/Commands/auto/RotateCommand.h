@@ -7,20 +7,20 @@
 #include "Notifier.h"
 #include "Timer.h"
 
-class RotateCommand : public PIDCommand {
- public:
-  RotateCommand();
-  void Initialize();
-  void Execute();
-  void End();
-  bool IsFinished() override;
+class RotateCommand: public PIDCommand {
+public:
+	RotateCommand(double amtInDegrees);
+	void Initialize() override;
+	void Execute() override;
+	void End() override;
+    bool IsFinished() override;
 
-  virtual double ReturnPIDInput();
-  virtual void UsePIDOutput(double output);
+	virtual double ReturnPIDInput() override;
+	virtual void UsePIDOutput(double output) override;
 
- private:
-  double startAngle = 0;
-  double dstAngle = 0;
+private:
+	double startAngle = 0;
+	double dstAngle = 0;
 };
 
 #endif  // RotateCommand_H

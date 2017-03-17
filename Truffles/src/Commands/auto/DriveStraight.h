@@ -4,54 +4,32 @@
 
 #ifndef TRUFFLES_DRIVESTRAIGHT_H
 #define TRUFFLES_DRIVESTRAIGHT_H
+#include <WPILib.h>
+class DriveStraight: public Command, PIDSource, PIDOutput {
+public:
+	DriveStraight(double distanceInInches);
 
-#include "../SimpleCommand.h"
-#include "../../Subsystems/Chassis.h"
-#include <memory>
-#include "Notifier.h"
-#include "Timer.h"
+	virtual ~DriveStraight();
+	double encoderValue();
 
-class DriveStraight2 : public PIDCommand {
- public:
-  DriveStraight2();
-  void Initialize() override;
-  void Execute() override;
-  void End() override;
-  bool IsFinished() override;
+	virtual void Initialize() override;
+	virtual void Execute() override;
+	virtual void End() override;
+	virtual bool IsFinished() override;
 
-  virtual double ReturnPIDInput() override;
-  virtual void UsePIDOutput(double output) override;
+// PIDOutput interface
+	virtual void PIDWrite(double output) override;
 
- private:
-  Timer timer{};
-  double startAngle = 0;
-  double motorOut = 0.5;
-  double duration = 1.0;
-};
+	// PIDSource interface
+	virtual double PIDGet() override;
 
-class DriveStraight : public SimpleCommand {
- public:
-  DriveStraight();
+private:
+	double targetRotations = 0;
+	double initialHeading = 0;
+	double initialEncoder = 0;
+	PIDController pid;
 
- protected:
-  void Initialize() override;
 
-  void Execute() override;
-
-  void End() override;
-
- public:
-  void operator()();
-  void update();
-
- private:
-  Timer timer;
-  std::shared_ptr<Chassis> drive;
-  std::unique_ptr<Notifier> updater;
-  double motorOut = 0.5;
-  double duration = 1.0;
-  bool useGyro = true;
-  double initialHeading = 0.0;
 };
 
 #endif  // TRUFFLES_DRIVESTRAIGHT_H

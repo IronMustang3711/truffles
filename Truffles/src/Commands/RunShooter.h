@@ -1,4 +1,3 @@
-
 #ifndef RUNSHOOTER_H
 #define RUNSHOOTER_H
 
@@ -6,28 +5,28 @@
 #include <Commands/CommandGroup.h>
 #include <memory>
 
-class RunShooter : public Command {
- public:
-  RunShooter();
+class RunShooter: public Command {
+public:
+	RunShooter();
 
-  virtual void Initialize();
-  virtual void Execute();
-  virtual bool IsFinished();
-  virtual void End();
-  virtual void Interrupted();
+	virtual void Initialize();
+	virtual void Execute();
+	virtual bool IsFinished();
+	virtual void End();
+	virtual void Interrupted();
 
- private:
-  bool enabled{true};
+private:
+	//bool enabled { true };
 };
 
-class RunShooterAndIntake : public CommandGroup {
- public:
-  RunShooterAndIntake();
-  virtual ~RunShooterAndIntake();
+class RunShooterAndIntake: public CommandGroup {
+public:
+	RunShooterAndIntake();
+	virtual ~RunShooterAndIntake();
 
- private:
-  Command* runShooterCommand;
-  Command* runIntakeCommand;
+private:
+	Command* runShooterCommand;
+	Command* runIntakeCommand;
 };
 
 #endif

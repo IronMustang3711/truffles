@@ -7,31 +7,34 @@
 #include <SmartDashboard/SmartDashboard.h>
 using namespace frc;
 
-Hexapus::Hexapus() : Subsystem("hexapus") {
-  hexapusController = RobotMap::hexapusController;
-  ;
+Hexapus::Hexapus() :
+		Subsystem("hexapus") {
+	hexapusController = RobotMap::hexapusController;
+	;
 }
 
 bool Hexapus::isJammed() {
-  bool jam = getMotorCurrent() >= 6.0;
-  return jam;
+	bool jam = getMotorCurrent() >= 9.5;
+	return jam;
 }
 
 double Hexapus::getMotorCurrent() {
-  return RobotMap::powerDistributionPanel->GetCurrent(2);
+	double ret = RobotMap::powerDistributionPanel->GetCurrent(2);
+	//SmartDashboard::PutNumber("hexapus current",ret);
+	return ret;
 }
 void Hexapus::run(double speed) {
-  SmartDashboard::PutBoolean("hexapus jammed", isJammed());
-  hexapusController->Set(-speed);
+	//SmartDashboard::PutBoolean("hexapus jammed", isJammed());
+	hexapusController->Set(-speed);
 }
 void Hexapus::run() {
-  run(0.5);
+	run(0.7);
 }
 
 void Hexapus::stop() {
-  run(0);
+	run(0);
 }
 
 void Hexapus::unjam() {
-  run(-0.6);
+	run(-0.6);
 }

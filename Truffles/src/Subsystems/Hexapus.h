@@ -8,23 +8,22 @@
 #include <SpeedController.h>
 #include "Commands/Subsystem.h"
 
-class Hexapus : public Subsystem {
- public:
-  Hexapus();
+class Hexapus: public Subsystem {
+public:
+	Hexapus();
 
-  /**
- * @param speed in [0,1]
- */
-  void run(double speed);
+	/**
+	 * @param speed in [0,1]
+	 */
+	void run(double speed);
 
-  void run();
-  void stop();
-  void unjam();
+	void run();
+	void stop();
+	void unjam();
 
-  double getMotorCurrent();
-  bool isJammed();
+	double getMotorCurrent();bool isJammed();
 
-  std::shared_ptr<SpeedController> hexapusController;
+	std::shared_ptr<SpeedController> hexapusController;
 };
 
 #endif  // TRUFFLES_HEXAPUS_H
