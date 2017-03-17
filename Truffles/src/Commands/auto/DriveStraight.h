@@ -24,7 +24,7 @@ public:
 	virtual double PIDGet();
 
 private:
-	double targetDistance = 0;
+	double targetRotations = 0;
 	double initialHeading = 0;
 	double initialEncoder = 0;
 	PIDController pid;
