@@ -14,6 +14,8 @@
 #include "vision/VisionRunner.h"
 #include "VerticalLinePipeline.h"
 #include "VisionV3.h"
+#include "VisionV4.h"
+#include <SmartDashboard/SmartDashboard.h>
 
 
 Vision& Vision::getInstance() {
@@ -22,7 +24,13 @@ Vision& Vision::getInstance() {
 }
 
 Vision::Vision()  {
-	impl = new VisionV3();
+	auto v3 = new VisionV3();
+	auto v4 = new VisionV4();
+	algChooser.AddDefault("Multiscale Template Convolution", v3);
+	algChooser.AddObject("morphological op based detector",v4);
+	impl = v3;
+	frc::SmartDashboard::PutData("vision alg",&algChooser);
+
 }
 
 double Vision::PIDGet() {
@@ -36,6 +44,7 @@ void Vision::start() {
 	if (active.load()) {
 		return;
 	}
+	impl = algChooser.GetSelected();
 	active = true;
 	visionThread = std::thread(&Vision::loop, this);
 	visionThread.detach(); //TODO do we really want to detach?

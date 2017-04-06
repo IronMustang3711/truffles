@@ -47,7 +47,7 @@ void Robot::RobotInit() {
 	CameraServer::GetInstance()->StartAutomaticCapture().SetResolution(320,
 			240);
 
-	SmartDashboard::PutString("version:","1.0");
+	SmartDashboard::PutString("version:","1.1.1");
 }
 
 

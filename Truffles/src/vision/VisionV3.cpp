@@ -85,6 +85,8 @@ void VisionV3::Process(cv::Mat& src)  {
           int  distanceFromCenter =  std::abs((src.rows / 2) - 40 - maxPoint.y);
           	 pidVal = distanceFromCenter;
 	        cv::line(src, cv::Point(0,maxPoint.y), cv::Point(src.cols,maxPoint.y), cv::Scalar(5,5,255),2);
+	    } else {
+	    	pidVal = 0;
 	    }
 
 }

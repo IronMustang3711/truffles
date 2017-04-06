@@ -11,7 +11,8 @@
 #include <mutex>
 #include <atomic>
 #include "VisionPIDPipeline.h"
-
+#include <SmartDashboard/SmartDashboard.h>
+#include <SmartDashboard/SendableChooser.h>
 
 
 class Vision : public frc::PIDSource {
@@ -35,6 +36,8 @@ private:
 	std::mutex lock;
 	std::atomic_bool active { false };
 	VisionPIDPipeline *impl;
+
+	frc::SendableChooser<VisionPIDPipeline*> algChooser{};
 
 
 };

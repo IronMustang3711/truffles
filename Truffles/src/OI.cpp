@@ -57,19 +57,19 @@ OI::OI() {
 }
 void OI::initSmartDashboardCommands() {
 	SmartDashboard::PutData("zero encoders", new ZeroEncoders());
-	SmartDashboard::PutData("drive straight(100)", new DriveStraight(100));
-	SmartDashboard::PutData("drive straight(timed)", new SimpleDriveForward());
-	SmartDashboard::PutData("rotate(+30deg)", new RotateCommand(30));
-	SmartDashboard::PutData("strafe", new StrafeCommand(20));
-	SmartDashboard::PutData("rotate wheels 1x", new RotateWheelseOnce());
+//	SmartDashboard::PutData("drive straight(100)", new DriveStraight(100));
+//	SmartDashboard::PutData("drive straight(timed)", new SimpleDriveForward());
+//	SmartDashboard::PutData("rotate(+30deg)", new RotateCommand(30));
+//	SmartDashboard::PutData("strafe", new StrafeCommand(20));
+//	SmartDashboard::PutData("rotate wheels 1x", new RotateWheelseOnce());
 
-	SmartDashboard::PutData(
-			new SolenoidToggle(RobotMap::lightsRed, "perimeter lights(red)"));
-	SmartDashboard::PutData(
-			new SolenoidToggle(RobotMap::lightsGreen,
-					"perimeter lights(green)"));
-	SmartDashboard::PutData(
-			new SolenoidToggle(RobotMap::lightsBlue, "perimeter lights(blue)"));
+//	SmartDashboard::PutData(
+//			new SolenoidToggle(RobotMap::lightsRed, "perimeter lights(red)"));
+//	SmartDashboard::PutData(
+//			new SolenoidToggle(RobotMap::lightsGreen,
+//					"perimeter lights(green)"));
+//	SmartDashboard::PutData(
+//			new SolenoidToggle(RobotMap::lightsBlue, "perimeter lights(blue)"));
 
 	SmartDashboard::PutData("ringlights", new Ringlights());
 
