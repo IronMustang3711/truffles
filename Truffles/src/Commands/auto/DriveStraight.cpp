@@ -7,7 +7,10 @@ DriveStraight::DriveStraight(double distanceInInches) :
 		Command("drive straight",/*timeout=*/5.0), targetRotations(
 				 distanceInInches/18.0)
 				//p,i,d,f,src,target,update rate
-						, pid { 0.15, 0, 0, 0.01, this, this, 0.02 } {
+						, pid { Preferences::GetInstance()->GetDouble("StraightP",0.15),
+								0,
+								Preferences::GetInstance()->GetDouble("StraightD",0),
+								Preferences::GetInstance()->GetDouble("StraightF",0.01), this, this, 0.02 } {
 							Requires(Robot::chassis.get());
 
 }

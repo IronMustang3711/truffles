@@ -47,7 +47,7 @@ void Robot::RobotInit() {
 	CameraServer::GetInstance()->StartAutomaticCapture().SetResolution(320,
 			240);
 
-	SmartDashboard::PutString("version:","sick bro");
+	SmartDashboard::PutString("version:","1.0");
 }
 
 
@@ -73,11 +73,12 @@ void Robot::AutonomousInit() {
 	autoDidRun = true;
 	updateAllianceColor();
 	lights->setRinglightsState(true);
+	Vision::getInstance().start();
 	autonomousCommand.reset(chooser.GetSelected());
 	if (autonomousCommand.get() != nullptr)
 		autonomousCommand->Start();
 	Scheduler::GetInstance()->Run();
-	Vision::getInstance().start();
+
 	//DriverStation::ReportWarning("trace:Robot:AutonomousInit:exit");
 
 }

@@ -22,9 +22,10 @@ public:
 	PositionOneOrThreeSequence(bool onTheRight) :
 			CommandGroup("position one or three sequence") {
 		Requires(Robot::chassis.get());
+		double distance = Preferences::GetInstance()->GetDouble("DriveStraight",70.0);
+		double angle = Preferences::GetInstance()->GetDouble("Rotate",30.0) * (onTheRight ? -1 : 1);
 		AddSequential(new ZeroEncoders());
-		AddSequential(new DriveStraight(70));
-		double angle = 30.0 * (onTheRight ? -1 : 1);
+		AddSequential(new DriveStraight(distance));
 		AddSequential(new RotateCommand(angle));
 		AddSequential(new PlaceGear());
 
@@ -69,7 +70,7 @@ Command* AutonomousCommandFactory::position3Auto() {
 }
 
 Command* AutonomousCommandFactory::driveStraightAuto() {
-	return new DriveStraight(120.0);
+	return new DriveStraight(Preferences::GetInstance()->GetDouble("DriveStraight",70.0));
 }
 
 Command* AutonomousCommandFactory::doNothingAuto() {

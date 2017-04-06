@@ -6,7 +6,11 @@
 // positive values will rotate clockwise
 // p,i,d,f, update rate(seconds)
 RotateCommand::RotateCommand(double amt) :
-		PIDCommand("Rotate", 0.5, 0, 0, 0.1, 0.05), dstAngle(amt) {
+		PIDCommand("Rotate", Preferences::GetInstance()->GetDouble("RotateP",0.5),
+						  0,
+						  Preferences::GetInstance()->GetDouble("RotateD",0),
+						  Preferences::GetInstance()->GetDouble("RotateF",0.1),
+						  0.05), dstAngle(amt) {
 	Requires(Robot::chassis.get());
 	SetTimeout(1.0); //TODO <-- tune
 	SetPIDSourceType(PIDSourceType::kDisplacement);
