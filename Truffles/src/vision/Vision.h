@@ -10,7 +10,10 @@
 #include <thread>
 #include <mutex>
 #include <atomic>
-#include "PIDSource.h"
+#include "VisionPIDPipeline.h"
+
+
+
 class Vision : public frc::PIDSource {
 public:
 	static Vision& getInstance();
@@ -31,6 +34,7 @@ private:
 	std::thread visionThread;
 	std::mutex lock;
 	std::atomic_bool active { false };
+	VisionPIDPipeline *impl;
 
 
 };

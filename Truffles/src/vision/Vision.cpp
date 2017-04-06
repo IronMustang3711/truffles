@@ -13,7 +13,7 @@
 #include "opencv2/features2d.hpp"
 #include "vision/VisionRunner.h"
 #include "VerticalLinePipeline.h"
-
+#include "VisionV3.h"
 
 
 Vision& Vision::getInstance() {
@@ -21,11 +21,12 @@ Vision& Vision::getInstance() {
 	return instance;
 }
 
-Vision::Vision() {
+Vision::Vision()  {
+	impl = new VisionV3();
 }
 
 double Vision::PIDGet() {
-	return 0; //TODO!
+	return impl->PIDGet();
 }
 
 Vision::~Vision() {
@@ -57,7 +58,7 @@ void Vision::loop() {
 	cs::CvSource outputStream = frc::CameraServer::GetInstance()->PutVideo("vision",
 			320, 240);
 
-	VerticalLinePipeline pipe;
+
 	cv::Mat src;
 	while (active.load()) {
 
@@ -65,7 +66,7 @@ void Vision::loop() {
 			outputStream.NotifyError(cvSink.GetError());
 			continue;
 		}
-		pipe.Process(src);
+		impl->Process(src);
 		outputStream.PutFrame(src);
 	}
 	outputStream.SetConnected(false); //clean up stream(hopefully)

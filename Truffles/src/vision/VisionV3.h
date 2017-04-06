@@ -7,10 +7,9 @@
 
 #ifndef SRC_VISION_VISIONV3_H_
 #define SRC_VISION_VISIONV3_H_
-#include <vision/VisionPipeline.h>
-#include <PIDSource.h>
+#include "VisionPIDPipeline.h"
 #include <atomic>
-class VisionV3: public frc::VisionPipeline, frc::PIDSource {
+class VisionV3: public VisionPIDPipeline {
 public:
 	VisionV3();
 	virtual void Process(cv::Mat& mat) override;

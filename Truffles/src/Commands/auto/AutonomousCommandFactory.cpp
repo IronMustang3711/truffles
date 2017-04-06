@@ -14,6 +14,7 @@
 #include "../../Robot.h"
 #include "RotateCommand.h"
 #include "PlaceGear.h"
+#include "Commands/Command.h"
 
 using namespace frc;
 
@@ -81,9 +82,9 @@ void AutonomousCommandFactory::setupChooser(
 		SendableChooser<Command*>& chooser) {
 	chooser.AddObject("xxx auto",
 			AutonomousCommandFactory::createAutonomousCommand());
-	chooser.AddObject("xxx position 1 auto", position1Auto());
+	chooser.AddObject("left auto", position1Auto());
 	chooser.AddObject("xxx position 2 auto", position2Auto());
-	chooser.AddObject("xxx position 3 auto", position3Auto());
+	chooser.AddObject("right 3 auto", position3Auto());
 	chooser.AddDefault("xxx drive forward", driveStraightAuto());
     chooser.AddObject("do nothing", doNothingAuto());
 	chooser.AddDefault("drive forward(timed)",new SimpleDriveForward());

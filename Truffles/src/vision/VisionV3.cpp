@@ -29,7 +29,7 @@ void VisionV3::Process(cv::Mat& src)  {
 
 
 
-	    const int nOctaves = 2;
+	    const int nOctaves = 3;
 
 	    cv::Mat G = roi.clone();
 

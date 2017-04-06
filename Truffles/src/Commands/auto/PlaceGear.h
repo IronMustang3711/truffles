@@ -5,9 +5,9 @@
 /**
  * this is where we will use vision to go forward/servo axially in an attempt to place a gear.
  */
-class PlaceGear :Command, PIDSource, PIDOutput {
+class PlaceGear :public Command, PIDSource, PIDOutput {
 public:
-	PlaceGear(double distanceInInches);
+	PlaceGear();
 
 	virtual ~PlaceGear();
 	double encoderValue();
@@ -29,6 +29,6 @@ private:
 	double initialEncoder = 0;
 	PIDController pid;
 
-}
+};
 
 #endif  // PlaceGear_H

@@ -14,6 +14,7 @@ void JogBackSimple::Initialize() {
 // Called repeatedly when this Command is scheduled to run
 void JogBackSimple::Execute() {
 	Robot::chassis->AutoDrive(-0.3,0);
+	Robot::lights->perimeterGreen.toggle();
 
 }
 
@@ -22,6 +23,7 @@ bool JogBackSimple::IsFinished() {
 }
 
 void JogBackSimple::End() {
+	Robot::lights->perimeterGreen.setOn(false);
 	Robot::chassis->stop();
 }
 
