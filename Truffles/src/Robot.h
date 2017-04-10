@@ -47,12 +47,14 @@ public:
 	static Robot* robot;
 
 
+	frc::SendableChooser<frc::Command*> chooser{};
+
+
 
 
 
 private:
 	std::unique_ptr<frc::Command> autonomousCommand;
-	frc::SendableChooser<frc::Command*> chooser{};
 	bool autoDidRun = false;
 };
 #endif

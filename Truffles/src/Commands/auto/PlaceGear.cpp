@@ -1,6 +1,7 @@
 #include "PlaceGear.h"
 #include "DriverStation.h"
 #include "../../Robot.h"
+#include "../../vision/Vision.h"
 #include <cmath>
 PlaceGear::PlaceGear() :
 		Command("place gear",/*timeout=*/4.0),
@@ -47,7 +48,7 @@ bool PlaceGear::IsFinished() {
 
 // PIDOutput interface
 void PlaceGear::PIDWrite(double output) {
-	double rotate = std::min(0.3,Vision::getInstance().PIDGet() / 50); //TODO normalize properly, in PIDGet()
+	double rotate = 0;//std::min(0.3,Vision::getInstance().PIDGet() / 50); //TODO normalize properly, in PIDGet()
 	Robot::chassis->AutoDrive(output, rotate );
 }
 

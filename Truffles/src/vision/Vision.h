@@ -21,6 +21,7 @@ public:
 	void start();
 	void stop();
 	virtual double PIDGet() override;
+	frc::SendableChooser<VisionPIDPipeline*> algChooser{};
 
 private:
 	/**
@@ -37,7 +38,6 @@ private:
 	std::atomic_bool active { false };
 	VisionPIDPipeline *impl;
 
-	frc::SendableChooser<VisionPIDPipeline*> algChooser{};
 
 
 };

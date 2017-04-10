@@ -87,7 +87,7 @@ void VisionV4::Process(cv::Mat& src) {
 	    normThresh.convertTo(something, CV_64F);
 	    cv::Mat plotImg;
 	    //cv::plot::createPlot2d(something)->render(plotImg);
-	    cv::imshow("IR", plotImg);
+	   // cv::imshow("IR", plotImg);
 
 	    cv::dilate(normThresh, dilated, cv::getStructuringElement(cv::MorphShapes::MORPH_RECT, cv::Size(1,3)));
 
@@ -117,6 +117,7 @@ void VisionV4::Process(cv::Mat& src) {
 	    if(!maxima.empty()){
 	        sum /= maxima.size();
 	         cv::line(src, cv::Point(0 , sum), cv::Point(src.cols, sum), cv::Scalar(255,100,100));
+	         //TODO: set pidVal!
 	    }
 
 	    cv::rectangle(src, cv::Point(start,5), cv::Point(src.cols-5,src.rows-5), cv::Scalar(0,255,0));

@@ -22,6 +22,7 @@
 #include "Commands/SolenoidToggle.h"
 #include "Commands/JogBackCommand.h"
 #include "Commands/JogBackSimple.h"
+#include "Commands/ReloadChoosers.h"
 
 /**
  * Operator Input Setup
@@ -57,6 +58,7 @@ OI::OI() {
 }
 void OI::initSmartDashboardCommands() {
 	SmartDashboard::PutData("zero encoders", new ZeroEncoders());
+	SmartDashboard::PutData("reload choosers", new ReloadChoosers());
 //	SmartDashboard::PutData("drive straight(100)", new DriveStraight(100));
 //	SmartDashboard::PutData("drive straight(timed)", new SimpleDriveForward());
 //	SmartDashboard::PutData("rotate(+30deg)", new RotateCommand(30));

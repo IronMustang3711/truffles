@@ -82,12 +82,14 @@ void VisionV3::Process(cv::Mat& src)  {
 	    cv::minMaxLoc(hist, &minVal, &maxVal,&minPoint,&maxPoint);
 
 	    if(maxVal>= 4000){
-          int  distanceFromCenter =  std::abs((src.rows / 2) - 40 - maxPoint.y);
+          int  distanceFromCenter =  (src.rows / 2) - 30 - maxPoint.y;
           	 pidVal = distanceFromCenter;
 	        cv::line(src, cv::Point(0,maxPoint.y), cv::Point(src.cols,maxPoint.y), cv::Scalar(5,5,255),2);
+
 	    } else {
 	    	pidVal = 0;
 	    }
+        cv::line(src, cv::Point(0,(src.rows / 2) - 30), cv::Point(src.cols,(src.rows / 2) - 30), cv::Scalar(5,255,5),2);
 
 }
 
